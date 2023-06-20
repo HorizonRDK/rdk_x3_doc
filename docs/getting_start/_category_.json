@@ -1,0 +1,9 @@
+{
+  "label": "2. 快速开始",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "slug": "/category/getting_start",
+    "description": "RDK快速上手"
+  }
+}
