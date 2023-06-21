@@ -4,11 +4,11 @@ sidebar_position: 6
 
 # 8.6 视频处理
 
-## 8.6.1 概述
+## 概述
 `VPS（Video Process System）`是视频处理系统，支持对图像进行缩小、放大、裁剪、旋转、GDC矫正、帧率控制以及金字塔图像输出。
 
 
-## 8.6.2 功能描述
+## 功能描述
 ### 基本概念
 - Group
 
@@ -95,7 +95,7 @@ sidebar_position: 6
 
   `VPS`的channel0~5支持帧率控制，可以输出小于等于输入帧率的任意帧率。
 
-## 8.6.3 API参考
+## API参考
 ### HB_VPS_CreateGrp
 【函数声明】
 ```c
@@ -1094,7 +1094,7 @@ HB_VPS_SetChnAttr(chnA)、HB_VPS_SetChnAttr(chnB)、HB_VPS_SetChnAttr(chnC)，�
 
 如果需要VPS中四个模块串一起跑，需要HB_VPS_SetGrpGdc、HB_VPS_SetChnAttr(chnA)，HB_VPS_SetChnRotate(chnA)、HB_VPS_SetPymChnAttr(chnA)。
 
-## 8.6.4 数据结构
+## 数据结构
 ### HB_VPS_GRP_ATTR_S
 【结构定义】
 ```c
@@ -1332,7 +1332,7 @@ typedef struct HB_DIS_MV_INFO_S {
 | xUpdate |   X更新值    |
 | yUpdate |   Y更新值    |
 
-## 8.6.5 错误码
+## 错误码
 
 |    错误码    |                       宏定义 |                   描述 |
 | :----------: |: --------------------------- | :--------------------- |
@@ -1359,5 +1359,5 @@ typedef struct HB_DIS_MV_INFO_S {
 | -268,696,597 |   HB_ERR_VPS_UN_SUPPORT_RATE |           不支持的帧率 |
 | -268,696,598 |        HB_ERR_VPS_FRAME_RATE |               帧率错误 |
 
-## 8.6.6 参考代码
+## 参考代码
 VPS部分示例代码可以参考，[sample_vps](./multimedia_samples#sample_vps)和[sample_vps_zoom](./multimedia_samples#sample_vps_zoom)。

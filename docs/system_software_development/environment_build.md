@@ -4,11 +4,11 @@ sidebar_position: 1
 
 # 7.1 开发环境搭建及编译说明
 
-## 7.1.1 概述
+## 概述
 
 本章节介绍交叉编译开发环境的要求及搭建，源码下载和系统镜像的编译方法说明。
 
-## 7.1.2 交叉编译开发环境
+## 交叉编译开发环境
 
 交叉编译是指在主机上开发和构建软件，然后把构建的软件部署到开发板上运行。主机一般拥有比开发板更高的性能和内存，可以加速代码的构建，可以安装更多的开发工具，方便开发。
 
@@ -73,7 +73,7 @@ export ARCH=arm64
 
 以上命令是临时配置环境变量，要想配置永久生效，可以把以上命令添加到环境变量文件 `~/.profile` 或者 `~/.bash_profile` 的末尾。
 
-## 7.1.3 编译环境源码(rdk-gen)
+## 编译环境源码(rdk-gen)
 
 rdk-gen用于构建适用于地平线RDK X3的定制操作系统镜像。它提供了一个可扩展的框架，允许用户根据自己的需求定制和构建RDK X3的Ubuntu操作系统。
 
@@ -97,7 +97,7 @@ git clone https://github.com/HorizonRDK/rdk-gen.git
 | make_ubuntu_samplefs.sh   | 制作ubuntu系统filesystem的代码，可以修改本脚本定制samplefs   |
 | config                    | 存放需要放到系统镜像/hobot/config目录下的内容，一个vfat根式的分区，如果是sd卡启动方式，用户可以在windows系统下直接修改该分区的内容。 |
 
-## 7.1.4 编译系统镜像
+## 编译系统镜像
 
 运行以下命令进行系统镜像的打包：
 
@@ -108,14 +108,14 @@ sudo ./pack_image.sh
 
 需要有sudo权限进行编译，成功后会在deploy目录下生成 `*.img` 的系统镜像文件。
 
-### 7.1.4.1 pack_image.sh 编译过程介绍
+### pack_image.sh 编译过程介绍
 
 1. 调用 download_samplefs.sh 和 download_deb_pkgs.sh 两个脚本从地平线的文件服务器上下载samplefs和需要预装的deb软件包
 2. 解压samplefs，并调用 hobot_customize_rootfs.sh 脚本对filesystem做定制化配置
 3. 把deb安装进filesystem
 4. 生成系统镜像，参考 [安装系统](../getting_start/install_os) 使用系统镜像
 
-## 7.1.5 下载源代码
+## 下载源代码
 
 只运行`pack_image.sh`编译系统镜像是不需要下载源代码的，因为`pack_image.sh`会从地平线的文件服务器上下载官方的debian软件包直接安装进系统，只有当您需要修改debian软件包的内容，重新制作自定义软件包的时候才需要下载源代码。
 
@@ -166,7 +166,7 @@ source
 └── kernel
 ```
 
-## 7.1.6 编译kernel
+## 编译kernel
 
 内核源码在 `source/kernel`，为方便内核的编译，提供`mk_kernel.sh`程序给用户使用。
 
@@ -184,7 +184,7 @@ dtb  Image  Image.lz4  kernel_headers  modules
 
 这些内容会被hobot-boot、hobot-dtb和hobot-kernel-headers三个debian包所使用，所以如果想要自定义修改这三个软件包，需要先编译内核。
 
-## 7.1.7 编译hobot-xxx软件包
+## 编译hobot-xxx软件包
 
 hobot-xxx软件包是地平线维护的debian软件包的源码和配置，下载源码后，可以执行 `mk_deb.sh` 重新构建debian包。
 
@@ -237,7 +237,7 @@ The debian package named by help is not supported, please check the input parame
 | **hobot-bpu-driver_xxx.deb**         | bpu驱动                                                      |
 | **hobot-dtb_xxx.deb**                | 内核设备树                                                   |
 
-### 7.1.7.1 整体构建debian包
+### 整体构建debian包
 
 执行以下命令会重新全部构建所有的debian包（需要先完成kernel的编译）：
 
@@ -247,7 +247,7 @@ The debian package named by help is not supported, please check the input parame
 
 构建完成后，会在`deploy/deb_pkgs`目录下生成deb软件包。
 
-### 7.1.7.2 单独构建debian包
+### 单独构建debian包
 
 `mk_deb.sh` 支持单独构建指定的软件包，在执行时带包名参数即可，例如：
 
@@ -255,7 +255,7 @@ The debian package named by help is not supported, please check the input parame
 ./mk_deb.sh hobot-configs
 ```
 
-### 7.1.7.3 使用自定义的debian包
+### 使用自定义的debian包
 
 `pack_image.sh`不带参数运行时，默认从地平线文件服务器上下载最新发布的debian软件包安装进系统，如果您修改了同名软件包，则需要跳过从文件服务器上下载debian包的过程，可以在执行 `pack_image.sh`命令时带上任意选项参数即可，如以下命令则不会重新下载debian包，把自己做的包替换原来下载好的软件包后重新打包即可，例如您重新生成了`hobot-boot`，命名为 `hobot-boot_2.0.0-customer_arm64.deb`, 则用该文件替换`deb_packages`目录下的`hobot-boot-xxx_arm64.deb`文件。
 
@@ -265,7 +265,7 @@ sudo ./pack_image.sh c
 
 如果您新增了自定义名称的软件包，想要安装进系统中，可以在`rdk-gen`目录下新建`third_packages`目录，然后把想要安装的debian包放在该目录中即可。放在`third_packages`目录中的软件包会和`deb_packages`目录下的软件包一起安装，互相不影响。
 
-## 7.1.8 编译bootloader
+## 编译bootloader
 
 `bootloader`源码用于生成最小启动镜像`disk_xxx_miniboot.img`，生成包含分区表、spl、ddr、bl31、uboot一体的启动固件。
 
@@ -274,7 +274,7 @@ RDK X3的最小启动镜像一般会由地平线官方进行维护发布，可�
 按照以下步骤重新编译生成`miniboot`。
 
 
-### 7.1.8.1 同步uboot代码
+### 同步uboot代码
 
 执行命令下载uboot代码：
 
@@ -284,7 +284,7 @@ git submodule init
 git submodule update
 ```
 
-### 7.1.8.2 选择板级配置文件
+### 选择板级配置文件
 
 ```shell
 cd source/bootloader/build
@@ -330,7 +330,7 @@ You're building on #221-Ubuntu SMP Tue Apr 18 08:32:52 UTC 2023
 You are selected board config: horizon/x3/board_ubuntu_nand_sdcard_config.mk
 ```
 
-### 7.1.8.3 整体编译bootloader
+### 整体编译bootloader
 
 进入到build目录下，执行 xbuild.sh 进行整体编译：
 
@@ -341,7 +341,7 @@ cd build
 
 编译成功后，会在编译镜像输出目录（deploy_ubuntu_xxx） 目录下生成 miniboot.img， uboot.img， disk_nand_minimum_boot.img等镜像文件。其中disk_nand_minimum_boot.img即最小启动镜像文件。
 
-### 7.1.8.4 模块化编译bootloader
+### 模块化编译bootloader
 
 通过 xbuild.sh 脚本编译单独模块，生成的镜像文件会输出到编译镜像输出目录（deploy_ubuntu_xxx）下。
 
@@ -359,11 +359,11 @@ cd build
 ./xbuild.sh pack
 ```
 
-## 7.1.9 Ubuntu 文件系统制作
+## Ubuntu 文件系统制作
 
 本章节介绍如何制作 `samplefs_desktop-v2.0.0.tar.gz` 文件系统，地平线会维护该文件系统，如果有定制化需求，则需按照本章说明重新制作。
 
-### 7.1.9.1 环境配置
+### 环境配置
 
 建议使用ubuntu主机进行开发板ubuntu文件系统的制作，首先在主机环境安装以下软件包：
 
@@ -379,7 +379,7 @@ lib32stdc++6 libc6-i386 lib32ncurses5 lib32tinfo5 bison libbison-dev flex libfl-
 gnupg1 gpgv1 gpgv2 cpio aria2 pigz dirmngr python3-distutils distcc git dos2unix apt-cacher-ng
 ```
 
-### 7.1.9.2 重点工具介绍
+### 重点工具介绍
 
 #### debootstrap
 
@@ -406,7 +406,7 @@ chroot，即 change root directory (更改 root 目录)。在 linux 系统中，
 
 parted命令是由GNU组织开发的一款功能强大的磁盘分区和分区大小调整工具，与fdisk不同，它支持调整分区的大小。作为一种设计用于Linux的工具，它没有构建成处理与fdisk关联的多种分区类型，但是，它可以处理最常见的分区格式，包括：ext2、ext3、fat16、fat32、NTFS、ReiserFS、JFS、XFS、UFS、HFS以及Linux交换分区。
 
-### 7.1.9.3 制作Ubuntu rootfs脚本代码
+### 制作Ubuntu rootfs脚本代码
 
 下载`rdk-gen`源码：
 
@@ -457,7 +457,7 @@ rootfs/                                    # 解压 samplefs_desktop-v2.0.0.tar.
 21 directories, 5 files
 ```
 
-### 7.1.9.4 定制化修改预装软件
+### 定制化修改预装软件
 
 代码中的关键变量定义：
 

@@ -3,10 +3,10 @@ sidebar_position: 4
 ---
 
 # 8.4 视频输入
-## 8.4.1 概述
+## 概述
 视频输入（VIN）实现的功能：通过 MIPI Rx接口接收视频数据。VIN将接收到的数据给下一个模块VPS，同时也可存入到指定的内存区域，在此过程中，VIN可以对接收到的原始视频图像数据进行处理，实现视频数据的采集。
 
-### 8.4.1.1 概念
+### 概念
 
 视频输入设备 视频输入设备主要是指sif，图像数据接口，主要功能接收摄像头模组输出的图像数据，经过offline或者online直接输出到ISP模块进行图像处理。
 
@@ -30,31 +30,31 @@ sidebar_position: 4
 
 ​		DWE主要是将LDC和DIS集成在一起，包括LDC的畸变矫正和DIS的统计结果。
 
-## 8.4.2 功能描述
+## 功能描述
 
 VIN在软件上划分4个部分，如下图所示。
 
 ![image-20220329195124946](./image/video_input/image-20220329195124946.png)
 
-### 8.4.2.1 视频输入设备
+### 视频输入设备
 
 sif主要功能接收摄像头模组输出的图像数据，经过offline或者online直接输出到ISP模块进行图像处理。Mipi:支持RAW8/RAW10/RAW12/RAW14/RAW16 or YUV422 8bit/10bit。DVP interface: RAW8/RAW10/RAW12/RAW14/RAW16 or YUV422 8bit/10bit。最多支持8路sensor接入。
 
-### 8.4.2.2 视频输入PIPE
+### 视频输入PIPE
 
 Isp主要负责图像处理，硬核功能配置，支持Multi context，最多支持8路接入。主要是对图像数据进行流水线处理，输出YUV 图像格式给通道。同时PIPE也包括DIS、LDC的功能。
 
-### 8.4.2.3 视频物理通道
+### 视频物理通道
 
 VIN的PIPE 包含 2 个物理通道，物理通道0是指isp处理后的数据到ddr，或者是通过ddr给到下一级模块VPS。物理通道1是指isp处理后的数据online到VPS，VIN和VPS的绑定关系请参考“系统控制”章节。
 
-### 8.4.2.4 绑定关系
+### 绑定关系
 
 VIN和VPS之间的绑定关系请参考“系统控制”章节 HB_SYS_SetVINVPSMode
 
 
 
-## 8.4.3 API参考
+## API参考
 
 ```c
 int HB_MIPI_SetBus(MIPI_SENSOR_INFO_S *snsInfo, uint32_t busNum);
@@ -2026,7 +2026,7 @@ int HB_VIN_DisableDevMd(uint32_t devId)
 【参考代码】
 > 请参见HB_VIN_EnableDevMd举例
 
-## 8.4.4 数据结构
+## 数据结构
 
 ### MIPI_INPUT_MODE_E
 【结构定义】
@@ -2939,7 +2939,7 @@ typedef enum HB_VIN_LENS_MOTOR_TYPE_E {
 | 2M @30fps   |  AVC  |          204           |
 |             | HEVC  |          204           |
 
-## 8.4.5 错误码
+## 错误码
 
 VIN错误码如下表：
 
@@ -2965,5 +2965,5 @@ VIN错误码如下表：
 | -268565522 | HB_ERR_VIN_MD_DISABLE_FAIL       | 关闭MotionDetect失败         |
 | -268565523 | HB_ERR_VIN_SWITCH_SNS_TABLE_FAIL | ISP模式linear\DOL切换失败    |
 
-## 8.4.6 参考代码
+## 参考代码
 VIN部分示例代码可以参考，[get_sif_data](./multimedia_samples#get_sif_data)和[get_isp_data](./multimedia_samples#get_isp_data)。

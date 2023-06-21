@@ -4,7 +4,7 @@ sidebar_position: 4
 
 # 5.4 模型推理接口说明
 
-## 5.4.1 概要介绍
+## 概要介绍
 
 开发板Ubuntu系统预装了Python版本的`pyeasy_dnn`模型推理模块，通过加载模型并创建`Model`对象，完成模型推理、数据解析等功能。
 
@@ -24,11 +24,11 @@ for item in outputs:
 post_process(output_array)
 ```
 
-## 5.4.2 Model对象{#model}
+## Model对象{#model}
 
 Model对象在加载模型时创建，包含了`inputs`、`outputs`、`forward`等成员和方法，详细说明如下：
 
-### 5.4.2.1 inputs
+### inputs
 
 <font color='Blue'>【功能描述】</font>
 
@@ -75,7 +75,7 @@ print_properties(input.properties)
 
 无
 
-### 5.4.2.2 outputs
+### outputs
 
 <font color='Blue'>【功能描述】</font>  
 
@@ -123,7 +123,7 @@ print_properties(output.properties)
 无
 
 
-### 5.4.2.3 forward
+### forward
 
 <font color='Blue'>【功能描述】</font>  
 
@@ -161,5 +161,5 @@ outputs = models[0].forward(img)
 
 无
 
-## 5.4.3 示例代码
+## 示例代码
 可以查看 [模型推理示例](./pydev_dnn_demo) 章节详细了解。

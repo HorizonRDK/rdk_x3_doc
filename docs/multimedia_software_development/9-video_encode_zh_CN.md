@@ -3,10 +3,10 @@ sidebar_position: 9
 ---
 
 # 8.9 视频编码
-## 8.9.1 概述
+## 概述
 视频编码模块实现H.264/H.265/JPEG/MJPEG协议硬件编码。该模块支持多通道实时编码，各通道相互独立，常见的使用场景，包括单路录像、多路录像、单路VIO视频流、多路VIO视频流、录像+VIO视频流等。
 
-## 8.9.2 功能描述
+## 功能描述
 
 ### 基础规格
 
@@ -183,7 +183,7 @@ H264和H265编码提供集成在codec内部的智能背景编码模式，该模�
 ### 帧skip设置
 用户可调用接口设置下一次操作输入的图像的编码模式为skip模式，该模式只对非I帧编码有效；skip模式下编码器内部会忽略输入帧，而是利用上一帧的重构帧生成该次输入的的重构帧，输入帧则被编码成P帧。
 
-## 8.9.3 API参考
+## API参考
 ```C
 HB_VENC_CreateChn：创建编码通道。
 HB_VENC_DestroyChn：销毁编码通道。
@@ -2823,7 +2823,7 @@ int32_t HB_VENC_Get3DNRParam(VENC_CHN VeChn, VENC_3DNR_PARAMS *param)
 
 【参考代码】
 
-## 8.9.4 数据结构
+## 数据结构
 结构中不可动态调整变量，需要在HB_VENC_SetChnAttr前设置，可动态设置变量可以随时设置。
 ### HB_PIXEL_FORMAT_E
 【描述】
@@ -4752,7 +4752,7 @@ typedef struct HB_VENC_3DNR_PARAMS {
 |nr_noise_sigmaCr|Cr分量噪声标准偏差|
 ```
 
-## 8.9.5 错误码
+## 错误码
 VENC错误码如下表：
 
 |   错误码   |                             宏定义 |               描述 |
@@ -4778,5 +4778,5 @@ VENC错误码如下表：
 | -268958738 |               HB_ERR_VENC_NULL_PTR |             空指针 |
 | -268958739 |              HB_ERR_VENC_UNSUPPORT |             不支持 |
 
-## 8.9.6 参考代码
+## 参考代码
 VENC部分示例代码可以参考，[sample_video_codec](./multimedia_samples#sample_video_codec)。

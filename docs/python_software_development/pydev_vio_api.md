@@ -4,7 +4,7 @@ sidebar_position: 5
 
 # 5.5 多媒体接口说明
 
-## 5.5.1 概要介绍
+## 概要介绍
 
 开发板Ubuntu系统预装了Python版本的`libsrcampy`图像多媒体模块，可以创建`Camera`，`Encode`，`Decode`，`Display`等几种对象，用于完成摄像头图像采集、图像处理、视频编码、视频解码和显示输出等功能。
 
@@ -26,11 +26,10 @@ decode = libsrcampy.Decode()
 display = libsrcampy.Display()
 ```
 
-## 5.5.2 Camera对象{#camera}
+## Camera对象{#camera}
 
 Camera对象用于完成MIPI Camera的图像采集和处理功能，包含了`open_cam`、`open_vps`、`get_img`、`set_img`、`close_cam`等几种方法，详细说明如下：
-
-### 5.5.2.1 open_cam
+open_cam
 
 <font color='Blue'>【功能描述】</font>  
 
@@ -79,7 +78,7 @@ ret = cam.open_cam(0, -1, 30, [1920, 1280], [1080, 720])
 
 无
 
-### 5.5.2.2 open_vps
+### open_vps
 
 <font color='Blue'>【功能描述】</font>
 
@@ -142,7 +141,7 @@ ret = camera.open_vps(0, 1, 3840, 2160, [1920, 1280], [1080, 720], [2560, 1440])
 <font color='Blue'>【参考代码】</font>  
 无
 
-### 5.5.2.3 get_img
+### get_img
 
 <font color='Blue'>【功能描述】</font>
 
@@ -224,7 +223,7 @@ def test_camera():
 test_camera()
 ```
 
-### 5.5.2.4 set_img
+### set_img
 
 <font color='Blue'>【功能描述】</font>
 
@@ -312,7 +311,7 @@ def test_camera_vps():
 test_camera_vps():
 ```
 
-### 5.5.2.5 close_cam
+### close_cam
 
 <font color='Blue'>【功能描述】</font>
 
@@ -353,10 +352,10 @@ cam.close_cam()
 
 无
 
-## 5.5.3 Encoder对象
+## Encoder对象
 Encoder对象实现了对视频数据的编码压缩功能，包含了`encode`、`encode_file`、`get_img`、`close`等几种方法，详细说明如下：
 
-### 5.5.3.1 encode
+### encode
 
 <font color='Blue'>【功能描述】</font>
 
@@ -403,7 +402,7 @@ ret = encode.encode(0, 1, 1920, 1080)
 
 无
 
-### 5.5.3.2 encode_file
+### encode_file
 
 <font color='Blue'>【功能描述】</font>
 
@@ -447,7 +446,7 @@ ret = encode.encode_file(input_img)
 
 无
 
-### 5.5.3.3 get_img
+### get_img
 
 <font color='Blue'>【功能描述】</font>
 
@@ -518,7 +517,7 @@ def test_encode():
 test_encode()
 ```
 
-### 5.5.3.4 close
+### close
 
 <font color='Blue'>【功能描述】</font>
 
@@ -553,11 +552,11 @@ Encoder.close()
 
 无
 
-## 5.5.4 Decoder对象
+## Decoder对象
 
 Decoder对象实现了对视频数据的解码功能，包含了`decode`、`set_img`、`get_img`、`close`等几种方法，详细说明如下：
 
-### 5.5.4.1 decode
+### decode
 
 <font color='Blue'>【功能描述】</font>
 
@@ -606,7 +605,7 @@ ret = dec.decode("encode.h264", 0, 1, 1920, 1080)
 
 无
 
-### 5.5.4.2 get_img
+### get_img
 
 <font color='Blue'>【功能描述】</font>
 
@@ -675,7 +674,7 @@ def test_decode():
 test_decode()
 ```
 
-### 5.5.4.3 set_img
+### set_img
 
 <font color='Blue'>【功能描述】</font>
 
@@ -759,7 +758,7 @@ def test_cam_bind_encode_decode_bind_display():
     test_cam_bind_encode_decode()
 ```
 
-### 5.5.4.4 close
+### close
 
 <font color='Blue'>【功能描述】</font>
 
@@ -793,11 +792,11 @@ Decoder.close()
 
 无
 
-## 5.5.5 Display对象{#display}
+## Display对象{#display}
 
 Display对象实现了视频显示功能，可以将图像数据通过`HDMI`接口输出到显示器，该对象包含`display`、`set_img`、`set_graph_rect`、`set_graph_word`、`close`等方法，详细说明如下：
 
-### 5.5.5.1 display
+### display
 <font color='Blue'>【功能描述】</font>
 
 显示模块初始化，并配置显示参数
@@ -843,7 +842,7 @@ ret = disp.display(0, 1920, 1080, 0, 1)
 
 无
 
-### 5.5.5.2 set_img
+### set_img
 
 <font color='Blue'>【功能描述】</font>
 
@@ -909,7 +908,7 @@ def test_display():
 test_display()
 ```
 
-### 5.5.5.3 set_graph_rect
+### set_graph_rect
 
 <font color='Blue'>【功能描述】</font>
 
@@ -960,7 +959,7 @@ ret = disp.set_graph_rect(100, 100, 1920, 200, chn = 2, flush = 1,  color = 0xff
 
 无
 
-### 5.5.5.4 set_graph_word
+### set_graph_word
 
 <font color='Blue'>【功能描述】</font>
 
@@ -1012,7 +1011,7 @@ print ("Display set_graph_word return:%d" % ret)
 
 无
 
-### 5.5.5.5 close
+### close
 
 <font color='Blue'>【功能描述】</font>
 
@@ -1047,7 +1046,7 @@ Display.close()
 
 无
 
-### 5.5.5.6 bind接口
+### bind接口
 
 <font color='Blue'>【功能描述】</font>
 
@@ -1098,7 +1097,7 @@ print("libsrcampy bind return:%d" % ret)
 
 无
 
-### 5.5.5.7 unbind接口
+### unbind接口
 
 <font color='Blue'>【功能描述】</font>
 
@@ -1153,7 +1152,7 @@ print("libsrcampy unbind return:%d" % ret)
 
 无
 
-## 5.5.6 接口使用示例代码{#vio_demo_code}
+## 接口使用示例代码{#vio_demo_code}
 
 以下示例代码包含多个单元测试用例，覆盖了本章节接口的使用方式，具体如下：
 

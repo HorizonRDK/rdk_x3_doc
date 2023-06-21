@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # 6.2 多媒体接口说明
 
-## 6.2.1 VIO（视频输入）API
+## VIO（视频输入）API
 
 `VIO` 模块提供操作 `MIPI` 摄像头和操作图像处理的功能。
 
@@ -21,7 +21,7 @@ sidebar_position: 2
 | sp_vio_set_frame | **发送视频图像帧给vps模块** |
 
 
-### 6.2.1.1 sp_init_vio_module  
+### sp_init_vio_module  
 
 **【函数原型】**  
 
@@ -39,7 +39,7 @@ sidebar_position: 2
 
 成功返回一个`VIO`对象指针，失败返回`NULL`
 
-### 6.2.1.2 sp_release_vio_module  
+### sp_release_vio_module  
 
 **【函数原型】**  
 
@@ -57,7 +57,7 @@ sidebar_position: 2
 
 无
 
-### 6.2.1.3 sp_open_camera  
+### sp_open_camera  
 
 **【函数原型】**  
 
@@ -81,7 +81,7 @@ sidebar_position: 2
 
 成功返回 0，失败返回 -1
 
-### 6.2.1.4 sp_open_vps  
+### sp_open_vps  
 
 **【函数原型】**  
 
@@ -111,7 +111,7 @@ sidebar_position: 2
 
 成功返回 0，失败返回 -1
 
-### 6.2.1.5 sp_vio_close  
+### sp_vio_close  
 
 **【函数原型】**  
 
@@ -129,7 +129,7 @@ sidebar_position: 2
 
 成功返回 0，失败返回 -1
 
-### 6.2.1.6 sp_vio_get_frame  
+### sp_vio_get_frame  
 
 **【函数原型】**  
 
@@ -151,7 +151,7 @@ sidebar_position: 2
 
 成功返回 0，失败返回 -1 
 
-### 6.2.1.7 sp_vio_get_raw  
+### sp_vio_get_raw  
 
 **【函数原型】**  
 
@@ -173,7 +173,7 @@ sidebar_position: 2
 
 成功返回 0，失败返回 -1 
 
-### 6.2.1.8 sp_vio_get_yuv  
+### sp_vio_get_yuv  
 
 **【函数原型】**  
 
@@ -195,7 +195,7 @@ sidebar_position: 2
 
 成功返回 0，失败返回 -1 
 
-### 6.2.1.9 sp_vio_set_frame  
+### sp_vio_set_frame  
 
 **【函数原型】**  
 
@@ -215,7 +215,7 @@ sidebar_position: 2
 
 成功返回 0，失败返回 -1
 
-## 6.2.2 ENCODER（编码模块）API
+## ENCODER（编码模块）API
 
 `ENCODER` API提供了以下的接口：
 
@@ -228,7 +228,7 @@ sidebar_position: 2
 | sp_encoder_set_frame | **向编码通道传入图像帧** |
 | sp_encoder_get_stream | **从编码通道获取编码好的码流** |
 
-### 6.2.2.1 sp_init_encoder_module  
+### sp_init_encoder_module  
 
 **【函数原型】**  
 
@@ -246,7 +246,7 @@ sidebar_position: 2
 
 成功返回一个`ENCODER`对象指针，失败返回`NULL`。
 
-### 6.2.2.2 sp_release_encoder_module  
+### sp_release_encoder_module  
 
 **【函数原型】**  
 
@@ -264,7 +264,7 @@ sidebar_position: 2
 
 无
 
-### 6.2.2.3 sp_start_encode  
+### sp_start_encode  
 
 **【函数原型】**  
 
@@ -287,7 +287,7 @@ sidebar_position: 2
 
 成功返回 0，失败返回 -1
 
-### 6.2.2.4 sp_stop_encode  
+### sp_stop_encode  
 
 **【函数原型】**  
 
@@ -305,7 +305,7 @@ sidebar_position: 2
 
 成功返回 0，失败返回 -1
 
-### 6.2.2.5 sp_encoder_set_frame  
+### sp_encoder_set_frame  
 
 **【函数原型】**  
 
@@ -325,7 +325,7 @@ sidebar_position: 2
 
 成功返回 0，失败返回 -1
 
-### 6.2.2.6 sp_encoder_get_stream  
+### sp_encoder_get_stream  
 
 **【函数原型】**  
 
@@ -344,7 +344,7 @@ sidebar_position: 2
 
 成功返回码流数据的size，失败返回 -1
 
-## 6.2.3 DECODER（解码模块）API
+## DECODER（解码模块）API
 
 `DECODER` API提供了以下的接口：
 
@@ -357,7 +357,7 @@ sidebar_position: 2
 | sp_decoder_get_image | **从解码通道获取解码后的图像帧** |
 | sp_decoder_set_image | **向解码通道传入需要解码的码流数据** |
 
-### 6.2.3.1 sp_init_decoder_module  
+### sp_init_decoder_module  
 
 **【函数原型】**  
 
@@ -375,7 +375,7 @@ sidebar_position: 2
 
 成功返回`DECODER`对象，失败返回 NULL。
 
-### 6.2.3.2 sp_release_decoder_module  
+### sp_release_decoder_module  
 
 **【函数原型】**  
 
@@ -393,7 +393,7 @@ sidebar_position: 2
 
 无
 
-### 6.2.3.3 sp_start_decode  
+### sp_start_decode  
 
 **【函数原型】**  
 
@@ -416,7 +416,7 @@ sidebar_position: 2
 
 成功返回 0，失败返回 -1
 
-### 6.2.3.4 sp_stop_decode  
+### sp_stop_decode  
 
 **【函数原型】**  
 
@@ -434,7 +434,7 @@ sidebar_position: 2
 
 成功返回 0，失败返回 -1
 
-### 6.2.3.5 sp_decoder_get_image  
+### sp_decoder_get_image  
 
 **【函数原型】**  
 
@@ -453,7 +453,7 @@ sidebar_position: 2
 
 成功返回 0，失败返回 -1
 
-### 6.2.3.6 sp_decoder_set_image  
+### sp_decoder_set_image  
 
 **【函数原型】**  
 
@@ -477,7 +477,7 @@ sidebar_position: 2
 
 成功返回 0，失败返回 -1
 
-## 6.2.4 DISPLAY（显示模块）API
+## DISPLAY（显示模块）API
 
 `DISPLAY` API提供了以下的接口：
 
@@ -492,7 +492,7 @@ sidebar_position: 2
 | sp_display_draw_string | **在显示通道上绘制字符串** |
 | sp_get_display_resolution | **获取显示器的分辨率** |
 
-### 6.2.4.1 sp_init_display_module  
+### sp_init_display_module  
 
 **【函数原型】**  
 
@@ -510,7 +510,7 @@ sidebar_position: 2
 
 成功返回 `DISPLAY` 对象指针，失败返回 NULL。
 
-### 6.2.4.2 sp_release_display_module  
+### sp_release_display_module  
 
 **【函数原型】**  
 
@@ -528,7 +528,7 @@ sidebar_position: 2
 
 无
 
-### 6.2.4.3 sp_start_display  
+### sp_start_display  
 
 **【函数原型】**  
 
@@ -549,7 +549,7 @@ sidebar_position: 2
 
 成功返回 0，失败返回 -1
 
-### 6.2.4.4 sp_stop_display  
+### sp_stop_display  
 
 **【函数原型】**  
 
@@ -567,7 +567,7 @@ sidebar_position: 2
 
 成功返回 0，失败返回 -1
 
-### 6.2.4.5 sp_display_set_image  
+### sp_display_set_image  
 
 **【函数原型】**  
 
@@ -588,7 +588,7 @@ sidebar_position: 2
 
 成功返回 0，失败返回 -1
 
-### 6.2.4.6 sp_display_draw_rect  
+### sp_display_draw_rect  
 
 **【函数原型】**  
 
@@ -614,7 +614,7 @@ sidebar_position: 2
 
 成功返回 0，失败返回 -1
 
-### 6.2.4.7 sp_display_draw_string  
+### sp_display_draw_string  
 
 **【函数原型】**  
 
@@ -639,7 +639,7 @@ sidebar_position: 2
 
 成功返回 0，失败返回 -1
 
-### 6.2.4.8 sp_get_display_resolution  
+### sp_get_display_resolution  
 
 **【函数原型】**  
 
@@ -658,7 +658,7 @@ sidebar_position: 2
 
 无。
 
-## 6.2.5 BPU（算法推理模块）API
+## BPU（算法推理模块）API
 
 `BPU` API提供了以下的接口：
 
@@ -671,7 +671,7 @@ sidebar_position: 2
 | sp_deinit_bpu_tensor | **销毁tensor内存** |
 
 
-### 6.2.5.1 sp_init_bpu_module  
+### sp_init_bpu_module  
 
 **【函数原型】**  
 
@@ -689,7 +689,7 @@ sidebar_position: 2
 
 AI算法推理任务对象。
 
-### 6.2.5.2 sp_bpu_start_predict  
+### sp_bpu_start_predict  
 
 **【函数原型】**  
 
@@ -708,7 +708,7 @@ AI算法推理任务对象。
 
 无。
 
-### 6.2.5.3 sp_init_bpu_tensors 
+### sp_init_bpu_tensors 
 
 **【函数原型】**  
 
@@ -727,7 +727,7 @@ AI算法推理任务对象。
 
 无。
 
-### 6.2.5.4 sp_deinit_bpu_tensor 
+### sp_deinit_bpu_tensor 
 
 **【函数原型】**  
 
@@ -747,7 +747,7 @@ AI算法推理任务对象。
 无。
 
 
-### 6.2.5.5 sp_release_bpu_module  
+### sp_release_bpu_module  
 
 **【函数原型】**  
 
@@ -765,7 +765,7 @@ AI算法推理任务对象。
 
 成功返回 0，失败返回 -1。
 
-## 6.2.6 SYS（模块绑定）API
+## SYS（模块绑定）API
 
 `SYS` API提供了以下的接口：
 
@@ -774,7 +774,7 @@ AI算法推理任务对象。
 | sp_module_bind | **绑定数据源、目标模块** |
 | sp_module_unbind | **解除模块间的绑定** |
 
-### 6.2.6.1 sp_module_bind  
+### sp_module_bind  
 
 **【函数原型】**  
 
@@ -804,7 +804,7 @@ AI算法推理任务对象。
 
 成功返回 0，失败返回其他值。
 
-### 6.2.6.2 sp_module_unbind  
+### sp_module_unbind  
 
 **【函数原型】**  
 

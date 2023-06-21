@@ -3,10 +3,10 @@ sidebar_position: 10
 ---
 
 # 8.10 视频解码
-## 8.10.1 概述
+## 概述
 视频解码模块支持H.264/H.265/JPEG/MJPEG硬件解码。该模块支持多通道实时编码，各通道相互独立，常见的使用场景，包括智能盒子、课堂录播等。
 
-## 8.10.2 功能描述
+## 功能描述
 
 ### 基础规格
 
@@ -67,7 +67,7 @@ VDEC模块在选择帧发送(VIDEO_MODE_FRAME)模型下发送码流时，解码�
 
 - H.264/H.265解码得时候第一个帧，要给齐sps，pps，idr，如果只给sps就会报错,报错信息是 FAILED TO DEC_PIC_HDR: ret(1), SEQERR(00005000)
 
-## 8.10.3 API参考
+## API参考
 ```C
 HB_VDEC_CreateChn：创建视频解码通道。
 HB_VDEC_DestroyChn：销毁视频解码通道。
@@ -600,7 +600,7 @@ int32_t HB_VDEC_ReleaseUserData(VDEC_CHN VdChn, VDEC_USERDATA_S *pstUserData);
 【参考代码】
 > HB_VDEC_GetFd参考代码
 
-## 8.10.4 数据结构
+## 数据结构
 ### VIDEO_MODE_E
 【描述】
 > 定义码流发送方式。
@@ -839,7 +839,7 @@ typedef struct HB_VDEC_CHN_STATUS_S {
 |       pipeline       |         pipeline          |
 |   channel_port_id    |        channel id         |
 
-## 8.10.5 错误码
+## 错误码
 VDEC 错误码如下表：
 
 |   错误码   | 宏定义                             | 描述               |
@@ -864,5 +864,5 @@ VDEC 错误码如下表：
 | -269024273 | HB_ERR_VDEC_UNEXIST                | VDEC通道不存在     |
 | -269024274 | HB_ERR_VDEC_NULL_PTR               | 空指针             |
 
-## 8.10.6 参考代码
+## 参考代码
 VDEC部分示例代码可以参考，[sample_video_codec](./multimedia_samples#sample_video_codec)。

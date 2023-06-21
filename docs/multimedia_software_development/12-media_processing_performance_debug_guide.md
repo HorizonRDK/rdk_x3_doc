@@ -3,7 +3,7 @@ sidebar_position: 12
 ---
 
 # 8.12 多媒体性能调试
-## 8.12.1 概述
+## 概述
 Camera是图像数据的主要外部来源，VIO部分软件是一个相对不透明的内部软件，主要面向提供内部应用软件提供相关的图像以及信息，XJ3芯片内部图像处理IP信息大致如下：
 
 ![image-20220329205706352](./image/media_processing_performance_debug_guide/image-20220329205706352.png)
@@ -24,7 +24,7 @@ Camera是图像数据的主要外部来源，VIO部分软件是一个相对不�
 
 在DDR瞬时带宽不足时会造成视频丢帧，在帧率和丢帧这两个问题之间，可以根据本章节的描述，选择一个合适的配置值来平衡。
 
-## 8.12.2 DDR Master的QoS
+## DDR Master的QoS
 
 XJ3 各模块通过AXI接口访问DDR，XJ3有8个AXI接口，分别为AXI_0 ~ AXI_7，XJ3的模块使用AXI接口关系如下表：
 
@@ -36,7 +36,7 @@ AXI_4和AXI\_6可配置，可以通过寄存器配置VIO子模块到AXI\_4或者
 
 XJ3 VIO包括如下子模块：SIF_W、ISP0\_M0、ISP0\_M2、GDC0、DIS、SIF_R、IPU0、PYM、IAR。
 
-## 8.12.3 AXI QOS控制
+## AXI QOS控制
 
 AXI Qos优先级范围0\~15，值越大优先级越高。XJ3系统启动后读写QoS默认配置为0x2021100。
 
@@ -120,7 +120,7 @@ echo 3 > /sys/bus/platform/drivers/ddr_monitor/write_qos_ctrl/vio1
 echo 0 > /sys/bus/platform/drivers/ddr_monitor/write_qos_ctrl/peri
 ```
 
-## 8.12.4 VIO子模块配置
+## VIO子模块配置
 
 XJ3 VIO子模块包括SIF_W、ISP0\_M0、ISP0\_M2、GDC0、DIS、SIF_R、IPU0、PYM、IAR，分别对应SIF模块写、ISP写、ISP Temper读写、GDC0读写、DIS写、SIF模块读、IPU0模块读写、PYM模块读写、IAR模块读写。
 
@@ -162,7 +162,7 @@ cat /sys/bus/platform/drivers/ddr_monitor/axibus_ctrl/pym axibus: 0xc0020000: py
 cat /sys/bus/platform/drivers/ddr_monitor/axibus_ctrl/iar axibus: 0xc0020000: iar: vio1
 ```
 
-## 8.12.5 SIF的hblank设置
+## SIF的hblank设置
 
 SIF将读取到的图像逐行送给ISP处理，可以通过增加行间隔hblank来延迟下一行的送出，以置换更多时间给ISP或后边的模块做处理。
 
@@ -194,7 +194,7 @@ time = ((width + hblank * 32) * high) / (clock * 1000)
 
 查询hblank：cat /sys/devices/platform/soc/a4001000.sif/hblank
 
-## 8.12.6 IPU的设置
+## IPU的设置
 
 ### IPU Line_delay wr_ddr_fifo_thred
 
@@ -239,7 +239,7 @@ IPU多个通道的FIFO深度不同，安全尺寸如下
 
 Scaler0\~4对应IPU的ds0\~5，Scaler5对应IPU的us。如果输出尺寸超过安全尺寸，可能会造成硬件丢帧概率变大、输出数据中连续二三十字节出错的风险。
 
-## 8.12.7 典型场景的设置
+## 典型场景的设置
 
 ### 单路4K输入多通道编码
 
@@ -275,16 +275,16 @@ SIF hblank建议配置如下：
 
 echo 64 \> /sys/devices/platform/soc/a4001000.sif/hblank
 
-## 8.12.8 多进程共享配置
+## 多进程共享配置
 
 多进程共享目前最多支持8个进程共享一路camera数据，支持从IPU和PYM获取输出数据，多进程共享需要满足：
 
 -   必须是全online的场景：SIF-online-ISP-online-IPU-online-PYM；
 -   输出通道配置BUF个数需要大于等于4，否则会有帧率较低的风险；
 
-## 8.12.9 VIO延时查看
+## VIO延时查看
 
-### 方法一：
+### 方法一
 
 1.正常跑vio应用，ls /tmp，可以看到如下在/tmp目录下有vio_group_info_pidxxx，其中xxx是进
 程号。
@@ -302,7 +302,7 @@ vio_frame_state_pipe[pipeline]_[time].log
 
 ![image-20220929113655983](./image/media_processing_performance_debug_guide/image-20220929113655983.png)
 
-### 方法二：
+### 方法二
 
 通过HB_VPS_GetChnFrame(int VpsGrp, int VpsChn, void *videoFrame, int ms)接口获取到金字塔得videoFrame，此结构体指针强制转换成pym_buffer_t指针，通过pym_buffer_t找到pym_img_info，pym_img_info包含了struct timeval tv，这个tv是sif得frame start填充得系统时间，使用gettimeofday接口获取到系统当前时间减去tv时间就是sif的frame start->pym获取到数据的延时。
 

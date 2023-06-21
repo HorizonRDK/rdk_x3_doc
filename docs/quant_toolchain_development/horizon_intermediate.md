@@ -4,12 +4,12 @@ sidebar_position: 3
 
 # 10.3 进阶指南
 
-## 10.3.1 概述
+## 概述
 
 本指南适用于已了解地平线入门指南内容的用户，主要介绍地平线算法工具链中训练后量化PTQ方法的原理及步骤详解、模型算子支持说明、以及模型上板运行的嵌入式应用开发说明等；
 若您是第一次使用地平线算法工具链的用户，建议您跳转至 [入门指南](./horizon_beginner)章节进行学习。
 
-## 10.3.2 环境安装
+## 环境安装
 
 本章节主要介绍地平线算法工具链完整开发环境部署方法。
 
@@ -102,13 +102,13 @@ Docker镜像文件命名形式为 ``openexplorer/ai_toolchain_centos_7_xj3:{vers
 
   ```bash
     // 运行 docker 镜像的命令
-
+  
     export version=v2.4.2
-
+  
     export ai_toolchain_package_path=/home/users/xxx/ai_toolchain_package
-
+  
     export dataset_path=/home/users/xxx/data/
-
+  
     docker run -it --rm \
       -v "$ai_toolchain_package_path":/open_explorer \
       -v "$dataset_path":/data \
@@ -319,7 +319,7 @@ ddk_vcs show 用于显示有关已安装软件包的信息。使用 ``ddk_vcs sh
 ```
 
 
-## 10.3.3 PTQ原理及步骤详解
+## PTQ原理及步骤详解
 
 ### 简介{#PTQ_introduction}
 
@@ -402,7 +402,7 @@ ddk_vcs show 用于显示有关已安装软件包的信息。使用 ``ddk_vcs sh
 模型正式转换前，请先使用 ``hb_mapper checker`` 工具进行模型验证，确保其符合地平线X3处理器的支持约束。
 
 :::tip 小技巧
-  
+
   建议参考使用地平线模型转换 ``horizon_model_convert_sample`` 示例包中的caffe、onnx等示例模型的脚本方法: ``01_check.sh``。
 :::
 #### 使用 ``hb_mapper checker`` 工具验证模型
@@ -596,7 +596,7 @@ layout( ``input_layout_train`` )，对于featuremap输入的模型，您可以�
 为避免过长代码篇幅，各种简单transformer实现代码未贴出，具体使用请参考[transformer使用方法](../common_questions/toolchain#transposetransformer) 章节内容。
 
 :::tip 小技巧
-  
+
   建议参考使用地平线模型转换 ``horizon_model_convert_sample`` 示例包中的caffe、onnx等示例模型的预处理步骤方法: ``02_preprocess.sh`` 和 ``preprocess.py`` 。
 :::
 ```
@@ -647,7 +647,7 @@ layout( ``input_layout_train`` )，对于featuremap输入的模型，您可以�
 #### 使用 hb_mapper makertbin 工具转换模型{#makertbin}
 
 :::tip 小技巧
-  
+
   建议参考使用地平线模型转换 ``horizon_model_convert_sample`` 示例包中的caffe、onnx等示例模型的脚本方法: ``03_build.sh``。
 :::
 ```
@@ -1908,7 +1908,7 @@ hb_model_modifier的命令行参数
 
   -a --all<br/>
     后接节点类型. 支持一键删除所有对应类型的功能. 若有多个类型节点需要删除, 需要指定多次。
- 
+
 - 输出内容说明
 
 若工具后不接任何参数，则工具会打印出可供候选的可删除节点（即模型中的位于输入输出位置的所有Transpose、Quantize、Dequantize、Cast、Reshape、Softmax节点）。
@@ -2088,7 +2088,7 @@ hb_eval_preprocess的命令行参数
   更多关于 ``hb_eval_preprocess`` 工具在上板模型精度评估中的应用示例请参见嵌入式应用开发《公版模型评测说明》中的
   [数据预处理](#data_preprocess) 一节内容。
 :::
-## 10.3.4 模型算子支持列表{#supported_op_list_and_restrictions}
+## 模型算子支持列表{#supported_op_list_and_restrictions}
 
 
 ### 使用限制说明
@@ -2335,7 +2335,7 @@ hb_eval_preprocess的命令行参数
 | MeanVarianceNormalization | CPU计算※        | --                                                           | --                                                           |
 | GridSample（PyTorch）     | CPU计算※         | --                                                           |                                                              |
 
-## 10.3.5 模型上板运行(runtime)应用开发说明
+## 模型上板运行(runtime)应用开发说明
 
 ### 模型推理DNN API使用示例说明
 
@@ -2432,7 +2432,7 @@ hb_eval_preprocess的命令行参数
 
 ##### 编译
 
-​编译需要当前环境安装好交叉编译工具： ``aarch64-linux-gnu-g++`` ， ``aarch64-linux-gnu-gcc``。 请使用地平线提供的开发机Docker镜像，直接进行编译使用。开发机Docker环境的获取及使用方法，请阅读[环境安装](#machine_deploy) 章节内容；
+编译需要当前环境安装好交叉编译工具： ``aarch64-linux-gnu-g++`` ， ``aarch64-linux-gnu-gcc``。 请使用地平线提供的开发机Docker镜像，直接进行编译使用。开发机Docker环境的获取及使用方法，请阅读[环境安装](#machine_deploy) 章节内容；
 请使用horizon_runtime_sample/code目录下的 ``build_xj3.sh`` 脚本，即可一键编译开发板环境下的可执行程序，可执行程序和对应依赖会自动复制到 ``xj3/script`` 目录下的 ``aarch64`` 目录下。
 
 :::info 备注
@@ -2723,7 +2723,7 @@ hb_eval_preprocess的命令行参数
 
 ##### 日志
 
-​本章节主要包括 ``示例日志`` 和 ``模型推理 DNN API日志`` 两部分。
+本章节主要包括 ``示例日志`` 和 ``模型推理 DNN API日志`` 两部分。
 其中示例日志是指交付包示例代码中的应用日志；模型推理 dnn API日志是指嵌入式dnn库中的日志。用户根据不同的需求可以获取不同的日志信息。
 
 ###### 示例日志
@@ -2754,7 +2754,7 @@ hb_eval_preprocess的命令行参数
 
 
 :::tip 小技巧
-  
+
   工具也可以通过 ``-v`` 或者 ``--version`` 命令，查看工具的 ``dnn`` 预测库版本号。
 
   例如： hrt_model_exec -v 或 hrt_model_exec --version
@@ -2801,7 +2801,7 @@ hb_eval_preprocess的命令行参数
 模型的信息包括：模型输入输出信息 ``hbDNNTensorProperties`` 和模型的分段信息 ``stage`` ；模型的分段信息是：一张图片可以分多个阶段进行推理，stage信息为[x1, y1, x2, y2]，分别为图片推理的左上角和右下角坐标，目前地平线J5的bayes架构支持这类分段模型的推理，x3上模型均为1个stage。
 
 :::tip 小技巧
-  
+
   不指定 ``model_name`` ，则会输出模型中所有模型信息，指定 ``model_name`` ，则只输出对应模型的信息。
 :::
 - 示例说明
@@ -2843,7 +2843,7 @@ hb_eval_preprocess的命令行参数
 该参数需要与 ``input_file`` 一起使用，指定输入图片路径，工具会根据模型信息resize图片。
 
 :::tip 小技巧
-  
+
   程序单线程运行单帧数据，输出模型运行的时间。
 :::
 - 示例说明
@@ -2947,7 +2947,7 @@ dump模型每一层节点的输入数据和输出数据。 ``dump_intermediate=0
 程序运行完成后，会输出模型运行的程序线程数、帧数、模型推理总时间，模型推理平均latency，帧率信息等。
 
 :::tip 小技巧
-  
+
   程序每200帧打印一次性能信息：latnecy的最大、最小、平均值，不足200帧程序运行结束打印一次。
 :::
 
@@ -3093,9 +3093,9 @@ profile日志文件产生目录。
       b. 模型CPU算子：
       
           ⅰ. 检测模型中未包含 CPU 算子
-
+    
           ⅱ. 分类模型尾部的 Softmax 和 Reshape 为 CPU 算子
-
+    
           ⅲ. 分割模型 DeepLabV3+ 尾部的 Argmax 为 CPU 算子
 
       c. 输出反量化CPU节点：完成int8到float32的输出反量化操作。量化耗时与输出 shape 大小成正比
@@ -3248,7 +3248,7 @@ profile日志文件产生目录。
   ImageNet：https://www.image-net.org/download.php
   
   Cityscapes：https://github.com/mcordts/cityscapesScripts
-  ```
+```
 
 ##### 环境构建
 
@@ -3260,7 +3260,7 @@ profile日志文件产生目录。
 
 ###### 编译环境准备
 
-​编译需要当前环境安装好交叉编译工具 ``gcc-ubuntu-9.3.0-2020.03-x86_64-aarch64-linux-gnu``。请使用地平线提供的开发机Docker镜像，直接进行编译使用。开发机Docker环境的获取及使用方法，请阅读[环境安装](#machine_deploy) 章节内容；
+编译需要当前环境安装好交叉编译工具 ``gcc-ubuntu-9.3.0-2020.03-x86_64-aarch64-linux-gnu``。请使用地平线提供的开发机Docker镜像，直接进行编译使用。开发机Docker环境的获取及使用方法，请阅读[环境安装](#machine_deploy) 章节内容；
 请使用code目录下的 ``build_ptq_xj3.sh`` 脚本，即可一键编译开发板环境下的可执行程序，可执行程序和对应依赖会自动复制到 ``xj3/ptq/script`` 目录下的 ``aarch64`` 目录下。
 
 :::info 备注
@@ -3273,7 +3273,7 @@ profile日志文件产生目录。
 
 ###### 测评示例使用说明
 
-​评测示例脚本主要在 ``script`` 和 ``tools`` 目录下。 script是开发板上运行的评测脚本，包括常见分类，检测和分割模型。每个模型下面有三个脚本，分别表示：
+评测示例脚本主要在 ``script`` 和 ``tools`` 目录下。 script是开发板上运行的评测脚本，包括常见分类，检测和分割模型。每个模型下面有三个脚本，分别表示：
 
 - fps.sh利用多线程调度实现fps统计，用户可以根据需求自由设置线程数。
 - latency.sh实现单帧延迟统计（一个线程，单帧）。
@@ -3575,7 +3575,7 @@ workflow_latency.json 如下：
 ###### 精度评测
 
 
-​模型精度评测分为四步：
+模型精度评测分为四步：
 
 1. 数据预处理。
 2. 数据挂载。
@@ -3584,7 +3584,7 @@ workflow_latency.json 如下：
 
 - ###### 数据预处理{#data_preprocess}
 
-​对于PTQ模型：数据预处理需要在x86开发机环境下运行 ``hb_eval_preprocess`` 工具，对数据集进行预处理。
+对于PTQ模型：数据预处理需要在x86开发机环境下运行 ``hb_eval_preprocess`` 工具，对数据集进行预处理。
 所谓预处理是指图片数据在送入模型之前的特定处理操作，例如：图片resize、crop和padding等。
 该工具集成于开发机模型转换编译的环境中，原始数据集经过工具预处理之后，会生成模型对应的前处理二进制文件.bin文件集.
 直接运行 ``hb_eval_preprocess --help`` 可查看工具使用规则。
@@ -3593,7 +3593,7 @@ workflow_latency.json 如下：
 
   1. 关于 ``hb_eval_preprocess`` 工具命令行参数，可键入 ``hb_eval_preprocess -h``， 或查看 PTQ量化原理及步骤说明的
      [hb_eval_preprocess工具](#hb_eval_preprocess) 一节内容。
-:::
+     :::
 
 下面将详细介绍示例包中每一个模型对应的数据集，以及对应数据集的预处理操作：
 
@@ -3752,7 +3752,7 @@ workflow_latency.json 如下：
 - ###### 精度计算
 
 :::info 备注
-  
+
   精度计算部分请在 ``开发机`` 模型转换的环境下操作
 :::
 
@@ -3873,7 +3873,7 @@ voc_det_eval.py是用来计算使用VOC数据集评测的检测模型的精度�
 
 ###### 日志系统使用说明
 
-​日志系统主要包括 ``示例日志`` 和 ``模型推理API DNN日志`` 两部分。
+日志系统主要包括 ``示例日志`` 和 ``模型推理API DNN日志`` 两部分。
 其中示例日志是指交付包示例代码中的应用日志；DNN日志是指lib dnn库中的日志。
 用户根据不同的需求可以获取不同的日志。
 
@@ -3900,11 +3900,11 @@ voc_det_eval.py是用来计算使用VOC数据集评测的检测模型的精度�
 ###### 算子耗时说明
 
 
-​对模型算子(OP)性能的统计是通过设置 ``HB_DNN_PROFILER_LOG_PATH`` 环境变量实现的，本节介绍模型的推理性能分析，有助于开发者了解模型的真实推理性能情况。
+对模型算子(OP)性能的统计是通过设置 ``HB_DNN_PROFILER_LOG_PATH`` 环境变量实现的，本节介绍模型的推理性能分析，有助于开发者了解模型的真实推理性能情况。
 对该变量的类型和取值说明如下：
 
 :::info 备注
-  
+
   ``export HB_DNN_PROFILER_LOG_PATH=${path}``：表示OP节点dump的输出路径，程序正常运行完退出后，产生profiler.log文件。
 :::
 - 示例说明

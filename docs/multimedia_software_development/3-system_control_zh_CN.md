@@ -3,23 +3,23 @@ sidebar_position: 3
 ---
 
 # 8.3 系统控制
-## 8.3.1 概述
+## 概述
 系统控制用来初始化和去初始化整个媒体系统，通过绑定接口建立各模块间的关系。提供大块物理内存分配管理的VP（Video Pool）模块。
 
-## 8.3.2 功能描述
+## 功能描述
 
-### 8.3.2.1 视频缓冲池
+### 视频缓冲池
 
 VP（Video Pool）视频缓冲池提供大块物理内存及管理功能，负责内存的分配和回收。
 视频缓冲池由一组物理地址连续，大小相同的缓冲块组成，在使用前需要配置及初始化，可根据使用需要，配置不同数量的缓冲池和调整缓冲块的大小。
 
-### 8.3.2.2 绑定关系
+### 绑定关系
 
 ![image-20220329183230983](./image/system_control/image-20220329183230983.png)
 
 注：通过HB_SYS_Bind接口可以在模块间建立绑定关系，绑定后数据源处理完成的数据会自动发送给数据端。
 
-### 8.3.2.3 工作模式
+### 工作模式
 
 **在线模式：** 模块间的数据通过内部总线直接从上一模块传输给下一模块，不需要读写DDR，可以降低延时，节省DDR带宽
 
@@ -32,7 +32,7 @@ VP（Video Pool）视频缓冲池提供大块物理内存及管理功能，负�
 
 注：HB_SYS_SetVINVPSMode接口用来设定VIN和VPS间的工作模式。
 
-## 8.3.3 API参考
+## API参考
 
 - HB_SYS_Init : 初始化媒体系统（预留）。
 - HB_SYS_Exit : 初始化媒体系统（预留）。
@@ -63,7 +63,7 @@ VP（Video Pool）视频缓冲池提供大块物理内存及管理功能，负�
 - HB_SYS_CacheFlush :  刷新该带cache的内存cache。
 - HB_VP_DmaCopy :  通过DMA拷贝物理内存。
 
-### 8.3.3.1 HB_SYS_Init
+### HB_SYS_Init
 【函数声明】
 ```c
 int HB_SYS_Init(void);
@@ -87,7 +87,7 @@ int HB_SYS_Init(void);
 【参考代码】
 > 无
 
-### 8.3.3.2 HB_SYS_Exit
+### HB_SYS_Exit
 【函数声明】
 ```c
 int HB_SYS_Exit(void);
@@ -111,7 +111,7 @@ int HB_SYS_Exit(void);
 【参考代码】
 > 无
 
-### 8.3.3.3 HB_SYS_Bind
+### HB_SYS_Bind
 【函数声明】
 ```c
 int HB_SYS_Bind(const SYS_MOD_S *pstSrcMod, const SYS_MOD_S *pstDstMod);
@@ -139,7 +139,7 @@ int HB_SYS_Bind(const SYS_MOD_S *pstSrcMod, const SYS_MOD_S *pstDstMod);
 【参考代码】
 > 无
 
-### 8.3.3.4 HB_SYS_UnBind
+### HB_SYS_UnBind
 【函数声明】
 ```c
 int HB_SYS_UnBind(const SYS_MOD_S *pstSrcMod, const SYS_MOD_S *pstDstMod);
@@ -167,7 +167,7 @@ int HB_SYS_UnBind(const SYS_MOD_S *pstSrcMod, const SYS_MOD_S *pstDstMod);
 【参考代码】
 > 无
 
-### 8.3.3.5 HB_SYS_SetVINVPSMode
+### HB_SYS_SetVINVPSMode
 【函数声明】
 ```c
 int HB_SYS_SetVINVPSMode(int pipeId, const SYS_VIN_VPS_MODE_E mode);
@@ -195,7 +195,7 @@ int HB_SYS_SetVINVPSMode(int pipeId, const SYS_VIN_VPS_MODE_E mode);
 【参考代码】
 > 无
 
-### 8.3.3.6 HB_SYS_GetVINVPSMode
+### HB_SYS_GetVINVPSMode
 【函数声明】
 ```c
 int HB_SYS_GetVINVPSMode(int pipeId);
@@ -224,7 +224,7 @@ int HB_SYS_GetVINVPSMode(int pipeId);
 
 视频缓存池
 
-### 8.3.3.7 HB_VP_SetConfig
+### HB_VP_SetConfig
 【函数声明】
 ```c
 int HB_VP_SetConfig(VP_CONFIG_S *VpConfig);
@@ -251,7 +251,7 @@ int HB_VP_SetConfig(VP_CONFIG_S *VpConfig);
 【参考代码】
 > VideoPool参考代码
 
-### 8.3.3.8 HB_VP_GetConfig
+### HB_VP_GetConfig
 【函数声明】
 ```c
 int HB_VP_GetConfig (VP_CONFIG_S *VpConfig);
@@ -278,7 +278,7 @@ int HB_VP_GetConfig (VP_CONFIG_S *VpConfig);
 【参考代码】
 > 无
 
-### 8.3.3.9 HB_VP_Init
+### HB_VP_Init
 【函数声明】
 ```c
 int HB_VP_Init(void);
@@ -302,7 +302,7 @@ int HB_VP_Init(void);
 【参考代码】
 > VideoPool参考代码
 
-### 8.3.3.10 HB_VP_Exit
+### HB_VP_Exit
 【函数声明】
 ```c
 int HB_VP_Exit(void);
@@ -326,7 +326,7 @@ int HB_VP_Exit(void);
 【参考代码】
 > VideoPool参考代码
 
-### 8.3.3.11 HB_VP_CreatePool
+### HB_VP_CreatePool
 【函数声明】
 ```c
 uint32_t HB_VP_CreatePool(VP_POOL_CONFIG_S *VpPoolCfg);
@@ -353,7 +353,7 @@ uint32_t HB_VP_CreatePool(VP_POOL_CONFIG_S *VpPoolCfg);
 【参考代码】
 > VideoPool参考代码
 
-### 8.3.3.12 HB_VP_DestroyPool
+### HB_VP_DestroyPool
 【函数声明】
 ```c
 int HB_VP_DestroyPool(uint32_t Pool);
@@ -380,7 +380,7 @@ int HB_VP_DestroyPool(uint32_t Pool);
 【参考代码】
 > VideoPool参考代码
 
-### 8.3.3.13 HB_VP_GetBlock
+### HB_VP_GetBlock
 【函数声明】
 ```c
 uint32_t HB_VP_GetBlock(uint32_t Pool, uint64_t u64BlkSize);
@@ -408,7 +408,7 @@ uint32_t HB_VP_GetBlock(uint32_t Pool, uint64_t u64BlkSize);
 【参考代码】
 > VideoPool参考代码
 
-### 8.3.3.14 HB_VP_ReleaseBlock
+### HB_VP_ReleaseBlock
 【函数声明】
 ```c
 int HB_VP_ReleaseBlock(uint32_t Block);
@@ -435,7 +435,7 @@ int HB_VP_ReleaseBlock(uint32_t Block);
 【参考代码】
 > VideoPool参考代码
 
-### 8.3.3.15 HB_VP_PhysAddr2Block
+### HB_VP_PhysAddr2Block
 【函数声明】
 ```c
 uint32_t HB_VP_PhysAddr2Block(uint64_t u64PhyAddr);
@@ -462,7 +462,7 @@ uint32_t HB_VP_PhysAddr2Block(uint64_t u64PhyAddr);
 【参考代码】
 > VideoPool参考代码
 
-### 8.3.3.16 HB_VP_Block2PhysAddr
+### HB_VP_Block2PhysAddr
 【函数声明】
 ```c
 uint64_t HB_VP_Block2PhysAddr(uint32_t Block);
@@ -489,7 +489,7 @@ uint64_t HB_VP_Block2PhysAddr(uint32_t Block);
 【参考代码】
 > VideoPool参考代码
 
-### 8.3.3.17 HB_VP_Block2PoolId
+### HB_VP_Block2PoolId
 【函数声明】
 ```c
 uint32_t HB_VP_Block2PoolId(uint32_t Block);
@@ -516,7 +516,7 @@ uint32_t HB_VP_Block2PoolId(uint32_t Block);
 【参考代码】
 > VideoPool参考代码
 
-### 8.3.3.18 HB_VP_MmapPool
+### HB_VP_MmapPool
 【函数声明】
 ```c
 int HB_VP_MmapPool(uint32_t Pool);
@@ -543,7 +543,7 @@ int HB_VP_MmapPool(uint32_t Pool);
 【参考代码】
 > VideoPool参考代码
 
-### 8.3.3.19 HB_VP_MunmapPool
+### HB_VP_MunmapPool
 【函数声明】
 ```c
 int HB_VP_MunmapPool(uint32_t Pool);
@@ -570,7 +570,7 @@ int HB_VP_MunmapPool(uint32_t Pool);
 【参考代码】
 > VideoPool参考代码
 
-### 8.3.3.20 HB_VP_GetBlockVirAddr
+### HB_VP_GetBlockVirAddr
 【函数声明】
 ```c
 int HB_VP_GetBlockVirAddr(uint32_t Pool, uint64_t u64PhyAddr, void **ppVirAddr);
@@ -599,7 +599,7 @@ int HB_VP_GetBlockVirAddr(uint32_t Pool, uint64_t u64PhyAddr, void **ppVirAddr);
 【参考代码】
 > VideoPool参考代码
 
-### 8.3.3.21 HB_VP_InquireUserCnt
+### HB_VP_InquireUserCnt
 【函数声明】
 ```c
 int HB_VP_InquireUserCnt(uint32_t Block);
@@ -626,7 +626,7 @@ int HB_VP_InquireUserCnt(uint32_t Block);
 【参考代码】
 > 无
 
-### 8.3.3.22 HB_VP_SetAuxiliaryConfig
+### HB_VP_SetAuxiliaryConfig
 【函数声明】
 ```c
 int HB_VP_SetAuxiliaryConfig (const VP_AUXILIARY_CONFIG_S *pstAuxiliaryConfig);
@@ -653,7 +653,7 @@ int HB_VP_SetAuxiliaryConfig (const VP_AUXILIARY_CONFIG_S *pstAuxiliaryConfig);
 【参考代码】
 > 无
 
-### 8.3.3.23 HB_SYS_Alloc
+### HB_SYS_Alloc
 【函数声明】
 ```c
 int HB_SYS_Alloc(uint64_t *pu64PhyAddr, void **ppVirAddr, uint32_t u32Len);
@@ -691,7 +691,7 @@ int HB_SYS_Alloc(uint64_t *pu64PhyAddr, void **ppVirAddr, uint32_t u32Len);
     }
 ```
 
-### 8.3.3.24 HB_SYS_AllocCached
+### HB_SYS_AllocCached
 【函数声明】
 ```c
 int HB_SYS_AllocCached(uint64_t *pu64PhyAddr, void **ppVirAddr, uint32_t u32Len);
@@ -720,7 +720,7 @@ int HB_SYS_AllocCached(uint64_t *pu64PhyAddr, void **ppVirAddr, uint32_t u32Len)
 【参考代码】
 > 无
 
-### 8.3.3.25 HB_SYS_Free
+### HB_SYS_Free
 【函数声明】
 ```c
 int HB_SYS_Free(uint64_t u64PhyAddr, void *pVirAddr);
@@ -748,7 +748,7 @@ int HB_SYS_Free(uint64_t u64PhyAddr, void *pVirAddr);
 【参考代码】
 > 参考HB_SYS_Alloc
 
-### 8.3.3.26 HB_SYS_CacheInvalidate
+### HB_SYS_CacheInvalidate
 【函数声明】
 ```c
 int HB_SYS_CacheInvalidate(uint64_t pu64PhyAddr, void *pVirAddr, uint32_t u32Len);
@@ -777,7 +777,7 @@ int HB_SYS_CacheInvalidate(uint64_t pu64PhyAddr, void *pVirAddr, uint32_t u32Len
 【参考代码】
 > 无
 
-### 8.3.3.27 HB_SYS_CacheFlush
+### HB_SYS_CacheFlush
 【函数声明】
 ```c
 int HB_SYS_CacheFlush(uint64_t pu64PhyAddr, void *pVirAddr, uint32_t u32Len);
@@ -806,7 +806,7 @@ int HB_SYS_CacheFlush(uint64_t pu64PhyAddr, void *pVirAddr, uint32_t u32Len);
 【参考代码】
 > 无
 
-### 8.3.3.28 HB_VP_DmaCopy
+### HB_VP_DmaCopy
 【函数声明】
 ```c
 int HB_VP_DmaCopy(void *dstPaddr, void *srcPaddr, uint32_t len);
@@ -835,8 +835,8 @@ int HB_VP_DmaCopy(void *dstPaddr, void *srcPaddr, uint32_t len);
 【参考代码】
 > 无
 
-## 8.3.4 数据类型
-### 8.3.4.1 HB_SYS_MOD_ID_E
+## 数据类型
+### HB_SYS_MOD_ID_E
 【结构定义】
 ```c
 typedef enum HB_SYS_MOD_ID_E {
@@ -860,7 +860,7 @@ typedef enum HB_SYS_MOD_ID_E {
 【成员说明】
 > 无。
 
-### 8.3.4.2 HB_SYS_MOD_S
+### HB_SYS_MOD_S
 【结构定义】
 ```c
 typedef struct HB_SYS_MOD_S {
@@ -880,7 +880,7 @@ typedef struct HB_SYS_MOD_S {
 | s32DevId | 多路时各模块pipeline的抽象，如在VIN中表示第几个pipe，在VPS中表示第几个group |
 | s32ChnId | 通道索引号                                                                  |
 
-### 8.3.4.3 HB_SYS_VIN_VPS_MODE_E
+### HB_SYS_VIN_VPS_MODE_E
 【结构定义】
 ```c
 typedef enum HB_SYS_VIN_VPS_MODE_E {
@@ -916,7 +916,7 @@ typedef enum HB_SYS_VIN_VPS_MODE_E {
 | VIN_SIF_OFFLINE_VPS_OFFLINE              | VIN_SIF和VPS离线，一般是YUV到IPU                                                       |
 | VIN_SIF_OFFLINE                          | VIN_SIF直接到DDR                                                                       |
 
-### 8.3.4.4 HB_VP_POOL_CONFIG_S
+### HB_VP_POOL_CONFIG_S
 【结构定义】
 ```c
 typedef struct HB_VP_POOL_CONFIG_S {
@@ -936,7 +936,7 @@ typedef struct HB_VP_POOL_CONFIG_S {
 |  u32BlkCnt  | 每个缓冲池的缓冲块个数 |
 | cacheEnable | 缓冲池是否使能cache    |
 
-### 8.3.4.5 HB_VP_CONFIG_S
+### HB_VP_CONFIG_S
 【结构定义】
 ```c
 struct HB_VP_CONFIG_S {
@@ -954,7 +954,7 @@ struct HB_VP_CONFIG_S {
 | u32MaxPoolCnt | 整个系统中可以容纳缓冲池的个数 |
 |    pubPool    | 公共缓冲池属性结构体           |
 
-### 8.3.4.6 HB_VP_AUXILIARY_CONFIG_S
+### HB_VP_AUXILIARY_CONFIG_S
 【结构定义】
 ```c
 typedef struct HB_VP_AUXILIARY_CONFIG_S {
@@ -970,7 +970,7 @@ typedef struct HB_VP_AUXILIARY_CONFIG_S {
 | :-------------: | :----------- |
 | AuxiliaryConfig | 附加信息类型 |
 
-### 8.3.4.7 hb_vio_buffer_t
+### hb_vio_buffer_t
 【结构定义】
 ```c
 typedef struct hb_vio_buffer_s {
@@ -989,7 +989,7 @@ typedef struct hb_vio_buffer_s {
 | img_info | 图像数据信息 |
 | img_addr | 图像地址信息 |
 
-### 8.3.4.8 pym_buffer_t
+### pym_buffer_t
 【结构定义】
 ```c
 typedef struct pym_buffer_s {
@@ -1017,7 +1017,7 @@ typedef struct pym_buffer_s {
 | paddr_whole  | 金字塔整块buf物理地址首地址                                                                                       |
 |  layer_size  | 每一层的数据大小                                                                                                  |
 
-### 8.3.4.9 image_info_t
+### image_info_t
 【结构定义】
 ```c
 typedef struct image_info_s {
@@ -1059,7 +1059,7 @@ typedef struct image_info_s {
 |    data_type    | image的数据类型                                              |
 |      state      | buf的状态，在用户层则是user状态                              |
 
-### 8.3.4.10 address_info_t
+### address_info_t
 【结构定义】
 ```c
 typedef struct address_info_s {
@@ -1083,7 +1083,7 @@ typedef struct address_info_s {
 |    addr     | 虚拟地址，按照yuv plane数存放              |
 |    paddr    | 物理地址，按照yuv plane数存放              |
 
-## 8.3.5 错误码
+## 错误码
 
 |   错误码   |          宏定义          |          描述          |
 | :--------: | :----------------------: | :--------------------: |

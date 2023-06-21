@@ -12,7 +12,7 @@ sidebar_position: 1
 <!-- 有关训练后量化PTQ方案的详细信息请阅读 [训练后量化(PTQ)](./horizon_ai_toolchain_user_guide/ptq_user_guide/index.html#ptq) 章节内容。 -->
 
 
-## 10.1.1 使用注意事项
+## 使用注意事项
 
 本章节适用于使用地平线X3处理器的开发者，用于介绍地平线算法工具链的一些使用注意事项。
 

@@ -3,9 +3,9 @@ sidebar_position: 2
 ---
 
 # 8.2 示例程序
-## 8.2.1 get_sif_data 使用说明{#get_sif_data}
+## get_sif_data 使用说明{#get_sif_data}
 
-### 8.2.1.1 程序功能
+### 程序功能
 
 下图所示为X3M的视频数据通路框图，其中的专业名词解释请查看 [多媒体开发概述-术语约定](./overview_zh_CN#terminology)。
 
@@ -15,7 +15,7 @@ sidebar_position: 2
 
 `get_sif_data` 可以有效帮助用户调试`sensor`和`X3M`的点亮调试，在打通`sensor -> SIF`的数据通路后，再调试其他模块的功能。
 
-### 8.2.1.2 程序开发
+### 程序开发
 
 #### 源码结构
 
@@ -107,7 +107,7 @@ SENSOR_MODULE_INSTALL(sensor_probe);
 ```
 
 
-### 8.2.1.3 功能使用
+### 功能使用
 
 #### 硬件连接
 
@@ -222,9 +222,9 @@ quit
 
 ![image-20220517212105959](./image/multimedia_samples/image-20220517212105959.png)
 
-## 8.2.2 get_isp_data 使用说明{#get_isp_data}
+## get_isp_data 使用说明{#get_isp_data}
 
-### 8.2.2.1 程序功能
+### 程序功能
 
 下图所示为X3M的视频数据通路框图，其中的专业名词解释请查看 [多媒体开发概述-术语约定](./overview_zh_CN#terminology)。
 
@@ -234,7 +234,7 @@ quit
 
 `get_isp_data` 可以有效帮助用户调试`sensor`和`X3M`的ISP效果调试，在打通`sensor -> SIF -> ISP `的数据通路后，再调试其他模块的功能。
 
-### 8.2.2.2 程序开发
+### 程序开发
 
 #### 源码结构
 
@@ -325,7 +325,7 @@ SENSOR_MODULE_INSTALL(sensor_probe);
 ```
 
 
-### 8.2.2.3 功能使用
+### 功能使用
 
 #### 硬件连接
 
@@ -434,13 +434,13 @@ quit
 
 ![image-20220517212105959](./image/multimedia_samples/image-20220517212105959.png)
 
-## 8.2.3 sample_isp 使用说明{#sample_isp}
+## sample_isp 使用说明{#sample_isp}
 
-### 8.2.3.1 程序功能
+### 程序功能
 
 `sample_isp`程序完成`isp`图像接口初始化，主要功能是调用每一个`isp`图像进行接口动态设置/获取参数，并返回测试结果
 
-### 8.2.3.2 程序开发
+### 程序开发
 
 #### 源码结构
 
@@ -467,7 +467,7 @@ main.c  main.o  Makefile  sample_isp
 ```
 
 
-### 8.2.3.3 功能使用
+### 功能使用
 
 #### 程序部署
 
@@ -612,13 +612,13 @@ ISP_TEST>
 - Q:  退出程序
 
 
-## 8.2.4 sample_vps 使用说明{#sample_vps}
+## sample_vps 使用说明{#sample_vps}
 
-### 8.2.4.1 程序功能
+### 程序功能
 
 `sample_vps` 程序使用一个 `vps grp` 的多个不同通道，对 `YUV` 图像进行裁剪，旋转，缩放等操作，展示 `vps` 的基本用法。更多丰富的 `vps` 图像处理使用请参考[视频处理](./video_processing_zh_CN)章节。
 
-### 8.2.4.2 程序开发
+### 程序开发
 
 #### 源码结构
 
@@ -645,7 +645,7 @@ $ make
 $ ls
 19201080.yuv  main.c  main.o  Makefile  sample_vps
 ```
-### 8.2.4.3 功能使用
+### 功能使用
 
 #### 程序部署
 
@@ -658,9 +658,9 @@ $ ls
 * `grp_0_chn_3_out_960_540.yuv` 为原图缩小到 `960x540` 分辨率；
 * `grp_0_chn_5_out_2880_1620.yuv` 为原图放大到 `2880x1620` 分辨率；
 
-## 8.2.5 sample_vps_zoom 使用说明{#sample_vps_zoom}
+## sample_vps_zoom 使用说明{#sample_vps_zoom}
 
-### 8.2.5.1 程序功能
+### 程序功能
 
 `sample_vps_zoom` 程序使用 `vps` 的硬件模块 `ipu` 和 `pym` 对 `YUV` 图像中的部分区域做多倍放大处理，对处理后的 `YUV`图像编码成 `H264` 视频流，可以直接使用 `MPC-BE` 等工具进行预览，类似电子云台中的`zoom` 功能。整个程序的 `Pipeline` 如下图所示：
 
@@ -668,7 +668,7 @@ $ ls
 
 如 `Pipeline` 所示，程序通过 `vps0` 读取 `YUV` 图像，`vps0 chn1` 和 `vps1` 绑定，通过 `ipu` 和 `pym` 做 `crop` 及放大后，将数据送给 `venc` 的 `chn1` 做 `H264` 编码，形成 `zoom` 放大的效果，同时 `vps0 chn2` 和 `venc chn0` 绑定做 `H264` 编码， `vps0 chn3` 和 `venc chn2` 绑定做 `H264` 编码。
 
-### 8.2.5.2 程序开发
+### 程序开发
 
 #### 源码结构
 
@@ -696,7 +696,7 @@ $ ls
 19201080.yuv  main.c  main.o  Makefile  sample_vps_zoom
 ```
 
-### 8.2.5.3 功能使用
+### 功能使用
 
 #### 程序部署
 
@@ -710,13 +710,13 @@ $ ls
 
 ![vps_1_chn_5_venc_0.h264_20230523_143448](./image/multimedia_samples/vps_1_chn_5_venc_0.h264_20230523_143448.gif)
 
-## 8.2.6 sample_osd 使用说明{#sample_osd}
+## sample_osd 使用说明{#sample_osd}
 
-### 8.2.6.1 程序功能
+### 程序功能
 
 `sample_osd` 程序用于给 `vps` 通道输出的 `YUV` 数据叠加时间戳，汉语文字 `osd`。更多丰富的 `osd` 图像处理使用请参考[区域处理](./region_processing_zh_CN)章节。
 
-### 8.2.6.2 程序开发
+### 程序开发
 
 #### 源码结构
 
@@ -743,7 +743,7 @@ $ make
 $ ls
 1280720.yuv  main.c  main.o  Makefile  sample_osd
 ```
-### 8.2.6.3 功能使用
+### 功能使用
 
 #### 程序部署
 
@@ -755,9 +755,9 @@ $ ls
 
 ![Osd](./image/multimedia_samples/image-20220517151700.png)
 
-## 8.2.7 sample video codec 使用说明{#sample_video_codec}
+## sample video codec 使用说明{#sample_video_codec}
 
-### 8.2.7.1 程序功能
+### 程序功能
 
 `sample_vdec_basic` 实现最基础解码功能，读取本地`H264`/`H265`/`MJPEG`文件，进行解码保存`NV12`结果
 
@@ -767,7 +767,7 @@ $ ls
 
 `sample_venc_two_channel` 面向需要多通道同时编码的场景，在`sample_venc_basic` 基础上增加一路编码通道，实现双通道编码功能。读取本地`NV12`文件，两路同时进行解码分别保存`H264`（或`H265`或`MJPEG`）。
 
-### 8.2.7.2 程序开发
+### 程序开发
 
 #### 源码结构
 
@@ -803,7 +803,7 @@ example_vdec_basic        example_venc_basic        Makefile   sample_vdec_basic
 example_vdec_two_channel  example_venc_two_channel  README.md  sample_vdec_basic.c  sample_vdec_two_channel.c  sample_venc_basic.c  sample_venc_two_channel.c
 ```
 
-### 8.2.7.3 程序部署
+### 程序部署
 
 #### sample_vdec_basic
 
@@ -866,7 +866,7 @@ file0为要编码的文件名需要为NV12格式
 
 file1为要编码的文件名需要为NV12格式，其width和height需要和file0保持一样
 
-### 8.2.7.4 运行效果说明
+### 运行效果说明
 
 #### sample_vdec_basic
 
@@ -883,13 +883,13 @@ file1为要编码的文件名需要为NV12格式，其width和height需要和fil
 
 在当前运行目录下生成sample_venc_ch0.h264（sample_venc_ch0.h265/sample_venc_ch0.jpg）和sample_venc_ch1.h264（sample_venc_ch1.h265/sample_venc_ch1.jpg）。H264/H265文件内容为交替显示是file1和file2
 
-## 8.2.8 sample_vot 使用说明{#sample_vot}
+## sample_vot 使用说明{#sample_vot}
 
-### 8.2.8.1 程序功能
+### 程序功能
 
 `sample_vot程序`完成`VOT`模块的初始化，实现从当前目录读取一帧nv12的图片数据送到`VOT`的bt1120输出显示功能
 
-### 8.2.8.2 程序开发
+### 程序开发
 
 #### 源码结构
 
@@ -920,7 +920,7 @@ $ ls
 ```
 
 
-### 8.2.8.3 功能使用
+### 功能使用
 
 #### 程序部署
 
@@ -975,13 +975,13 @@ framesize:3110400
 
 ![](./image/multimedia_samples/20220520-163716.jpg)
 
-## 8.2.9 sample_lcd 使用说明{#sample_lcd}
+## sample_lcd 使用说明{#sample_lcd}
 
-### 8.2.9.1 程序功能
+### 程序功能
 
 `sample_lcd程序`完成`VOT`模块的初始化，实现从当前目录读取一帧NV12的图片数据送到`VOT`的`midi-dsi`输出到lcd屏幕显示
 
-### 8.2.9.2 程序开发
+### 程序开发
 
 #### 源码结构
 
@@ -1009,7 +1009,7 @@ $ make
 $ ls
 720x1280.yuv  vot.c  vot.o  Makefile  sample_lcd
 ```
-### 8.2.9.3 功能使用
+### 功能使用
 
 #### 程序部署
 
@@ -1034,9 +1034,9 @@ framesize:1382400
 
 ![](./image/multimedia_samples/20220520-161120.jpg)
 
-## 8.2.10 sample_usb_cam_4k60 使用说明{#sample_usb_cam_4k60}
+## sample_usb_cam_4k60 使用说明{#sample_usb_cam_4k60}
 
-### 8.2.10.1 程序功能
+### 程序功能
 
 `sample_usb_cam_4k60程序`完成`sensor`、`MIPI CSI` 、`SIF`、 `ISP` 、`VENC`、`USB`模块的初始化，实现从sensor实时采集数据，到编码器编码输出，通过usb模块传输到pc端预览视频的功能
 
@@ -1044,7 +1044,7 @@ framesize:1382400
 
 ![](./image/multimedia_samples/4k_60_usb_pipeline.png)
 
-### 8.2.10.2 功能使用
+### 功能使用
 
 #### 程序部署
 
@@ -1221,7 +1221,7 @@ potplayer跑起来后的截图如下：
 
 ![](./image/multimedia_samples/20220527131109.png)
 
-### 8.2.10.3 程序开发
+### 程序开发
 
 #### 模块划分
 

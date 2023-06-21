@@ -6,7 +6,7 @@ sidebar_position: 2
 
 本章节将通过静态图片推理、USB camera视频流推理和MIPI camera视频流推理等示例程序，介绍地平线python语言的`hobot_dnn`模型推理库的模型加载、数据预处理、模型推理等操作。示例代码及数据存放在`/app/pydev_demo/`目录下，用户可以参照代码来阅读文档，以更好的理解示例含义。
 
-## 5.2.1 模块导入
+## 模块导入
 
 `hobot_dnn`模型推理库，已预装到开发板Ubuntu系统，用户可以通过导入模块，查看版本信息。
 
@@ -26,9 +26,9 @@ Type "help", "copyright", "credits" or "license" for more information.
 - **TensorProperties** ：模型输入 tensor 的属性类， 更多信息请查阅 [TensorProperties](./pydev_dnn_api) 。
 - **load**：加载算法模型，更多信息请查阅 [API接口](./pydev_dnn_api) 。
 
-## 5.2.2 静态图片推理
+## 静态图片推理
 
-### 5.2.2.1 图像分类算法—Mobilenet v1
+### 图像分类算法—Mobilenet v1
 
 本示例主要实现以下功能：
   1. 加载 `mobilenet v1` 图像分类模型
@@ -126,7 +126,7 @@ cls id: 340 Confidence: 0.991851
     cls id: 340 Confidence: 0.991851
     ```
 
-### 5.2.2.2 目标检测算法—YOLOv3
+### 目标检测算法—YOLOv3
 
 本示例主要实现以下功能：
 
@@ -146,7 +146,7 @@ sudo python3 ./test_yolov3.py
 运行成功后，会输出目标检测结果，并且输出渲染结果到`result.jpg`文件中，如下图：
 ![image-20220624105321684](./image/pydev_dnn_demo/image-20220624105321684.png)
 
-### 5.2.2.3 目标检测算法—YOLOv5{#detection_yolov5}
+### 目标检测算法—YOLOv5{#detection_yolov5}
 
 本示例主要实现以下功能：
 
@@ -166,7 +166,7 @@ sudo python3 ./test_yolov5.py
 运行成功后，会输出目标检测结果，并且输出渲染结果到`result.jpg`文件中，如下图：
 ![image-20220624105432872](./image/pydev_dnn_demo/image-20220624105432872.png)
 
-### 5.2.2.4 图像分割算法—unet
+### 图像分割算法—unet
 
 本示例主要实现以下功能：
 
@@ -187,9 +187,9 @@ sudo python3 ./test_mobilenet_unet.py
 运行成功后，会输出图像的分割结果，并且输出分割效果图到``segment_result.png``文件中，如下图：
 ![image-20220624105144784](./image/pydev_dnn_demo/image-20220624105144784.png)
 
-## 5.2.3 基于USB摄像头推理{#usb}
+## 基于USB摄像头推理{#usb}
 
-### 5.2.3.1 目标检测算法—fcos
+### 目标检测算法—fcos
 
 本示例主要实现以下功能：
 
@@ -293,9 +293,9 @@ sudo python3 ./test_mobilenet_unet.py
     disp.set_img(box_nv12.tobytes())
     ```
 
-## 5.2.4 基于MIPI摄像头推理{#mipi}
+## 基于MIPI摄像头推理{#mipi}
 
-### 5.2.4.1 目标检测算法—fcos
+### 目标检测算法—fcos
 
 本示例主要实现以下功能：
 
@@ -411,7 +411,7 @@ sudo python3 ./test_mobilenet_unet.py
     
     ```
 
-### 5.2.4.2 目标检测算法 Web端可视化
+### 目标检测算法 Web端可视化
 
 本示例我们要实现：
 

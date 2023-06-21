@@ -4,7 +4,7 @@ sidebar_position: 11
 
 # 8.11 查询多媒体模块调试信息
 
-## 8.11.1 驱动与多媒体系统交互
+## 驱动与多媒体系统交互
 
 在VIN中，camera相关的控制全部在用户态完成，而mipi/ISP的控制则在驱动中完成，通过将用户态相关的配置传递给驱动，由驱动使用，对硬件进行设置，各个相关的设备节点如下：
 
@@ -43,7 +43,7 @@ ISP的功能相对来说是最复杂的，它需要和sensor交互/需要加载�
 
 - **calib：** 这个则是不同sensor配置出来的效果库，用于调整sensor效果；
 
-## 8.11.2 VIO调试信息
+## VIO调试信息
 
 ### SIF调试信息
 
@@ -118,7 +118,7 @@ cat /sys/kernel/debug/iar
 
 ![](./image/image_media_module_debugging_guide/c437b118301b57610a49246d39de9213.png)
 
-## 8.11.3 VPU调试信息
+## VPU调试信息
 
 ### VENC调试信息
 
@@ -142,7 +142,7 @@ cat /sys/kernel/debug/vpu/vdec
 
 ![](./image/image_media_module_debugging_guide/7f297a9c2dfd3b25a308f898b97f89c2.png)
 
-## 8.11.4 JPU调试信息
+## JPU调试信息
 
 ### JENC调试信息
 
@@ -164,7 +164,7 @@ cat /sys/kernel/debug/jpu/jdec
 
 ![](./image/image_media_module_debugging_guide/64fdce46047c2462decae977fd2d2288.png)
 
-## 8.11.5 媒体模块日志查看
+## 媒体模块日志查看
 
 ### 日志级别
 

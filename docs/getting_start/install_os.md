@@ -10,7 +10,7 @@ Ubuntu Desktop版本系统启动完成后，会通过HDMI接口在显示器上�
 
 ![image-desktop_display.png](./image/install_os/image-desktop_display.png)
 
-## 2.2.1 镜像下载 {#img_download}
+## 镜像下载 {#img_download}
 
 下载Ubuntu镜像压缩包，解压出Ubuntu系统镜像文件：`ubuntu-preinstalled-desktop-arm64.img`，1.0版本的系统镜像名为`system_sdcard.img`。
 
@@ -22,7 +22,7 @@ Ubuntu Desktop版本系统启动完成后，会通过HDMI接口在显示器上�
 
 ![image-20230510143353330](./image/install_os/image-20230510143353330.png)
 
-## 2.2.2 烧录系统到Micro SD卡
+## 烧录系统到Micro SD卡
 
 在烧录Ubuntu系统镜像前，用户需要做如下准备：
 
@@ -49,14 +49,14 @@ balenaEtcher是一款支持Windows/Mac/Linux等多平台的PC端启动盘制作�
 
 如Micro SD存储卡烧录过程发生中断，用户需要按照上述步骤重新进行。
 
-## 2.2.3 烧录系统到eMMC
+## 烧录系统到eMMC
 
 RDK X3模组支持eMMC存储方式，当烧录系统到eMMC时，需要使用地平线hbupdate烧录工具，请按照以下步骤进行工具的下载和安装：
 1. 下载hbupdate烧录工具，下载链接：[hbupdate](http://archive.sunrisepi.tech/downloads/hbupdate/)。
 2. 工具分为Windows、Linux两种版本，分别命名为 `hbupdate_win64_vx.x.x_rdk.tar.gz`、 `hbupdate_linux_gui_vx.x.x_rdk.tar.gz。
 3. 解压烧录工具，解压目录需要不包含**空格、中文、特殊字符**。
 
-### 2.2.3.1 安装USB驱动
+### 安装USB驱动
 
 在使用刷机工具前，需要在PC上安装USB驱动程序，点击 [android_hobot](http://archive.sunrisepi.tech/downloads/hbupdate/android_hobot.zip) 下载驱动程序。
 
@@ -75,7 +75,7 @@ RDK X3模组支持eMMC存储方式，当烧录系统到eMMC时，需要使用地
 
 ![image.png](./image/install_os/1669864644230.png)
 
-### 2.2.3.2 烧录系统{#flash_system}
+### 烧录系统{#flash_system}
 
 确认PC设备管理器显示fastboot设备`Android Device`后，运行`hbupdate.exe`打开烧录工具，并按照以下步骤进行烧录：
 
@@ -120,7 +120,7 @@ RDK X3模组支持eMMC存储方式，当烧录系统到eMMC时，需要使用地
 
 ![img](./image/install_os/1684294256572-26.png)
 
-## 2.2.4 启动系统
+## 启动系统
 
 首先保持开发板断电，然后将制作好的存储卡插入开发板的Micro SD卡槽，并通过HDMI线缆连接开发板与显示器，最后给开发板上电。用户可通过指示灯判断开发板状态，指示灯说明如下：
 

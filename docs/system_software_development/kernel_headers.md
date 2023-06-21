@@ -6,7 +6,7 @@ sidebar_position: 4
 
 如果你需要在开发板上编译内核模块或类似的代码，你需要安装 Linux 内核头文件。这些头文件包含Linux内核的各种常量定义、宏定义、函数接口定义和数据结构定义，是完成内核模块代码编译所必须的依赖代码。
 
-## 7.4.1 安装
+## 安装
 
 你可以通过以下命令安装内核头文件。
 
@@ -20,7 +20,7 @@ arch   certs   Documentation  firmware  include  ipc      kernel  Makefile  Modu
 block  crypto  drivers        fs        init     Kconfig  lib     mm        net             scripts  sound     tools       virt
 ```
 
-## 7.4.2 使用示例
+## 使用示例
 
 我们用一个简单的 `Hello World` 内核模块的开发介绍如果使用内核头文件。步骤概要如下：
 
@@ -30,7 +30,7 @@ block  crypto  drivers        fs        init     Kconfig  lib     mm        net 
 - 测试加载、卸载模块
 - （可选）配置开机自动加载
 
-### 7.4.2.1 编写Hello World程序
+### 编写Hello World程序
 打开你熟悉的编辑器（比如VIM），创建文件 `hello.c`，输入下面的内容：
 ```c
 #include <linux/module.h>
@@ -56,7 +56,7 @@ module_exit(hello_exit);
 ```
 模块加载时打印`Hello, World!`, 模块卸载时打印`Goodbye, World!`。
 
-### 7.4.2.2 编写Makefile
+### 编写Makefile
 打开你熟悉的编辑器（比如VIM），创建文件 `Makefile`，输入下面的内容：
 ```c
 ifneq ($(KERNELRELEASE),)
@@ -88,7 +88,7 @@ make[1]: Entering directory '/usr/src/linux-headers-4.14.87'
 make[1]: Leaving directory '/usr/src/linux-headers-4.14.87'
 ```
 
-### 7.4.2.3 模块签名
+### 模块签名
 编译好的驱动模块文件，需要进行签名后才能加载到RDK X3的内核里，命令如下：
 ```bash
 root@ubuntu:~# hobot-sign-file hello.ko
@@ -99,7 +99,7 @@ Sign Kernel Module File Done.
 insmod: ERROR: could not insert module hello.ko: Required key not available
 ```
 
-### 7.4.2.4 加载模块
+### 加载模块
 
 加载ko：`insmod hello.ko`
 ```bash
@@ -125,7 +125,7 @@ hello                  16384  0
 [ 3136.909409] Goodbye, World!
 ```
 
-### 7.4.2.5 配置开机自动加载
+### 配置开机自动加载
 
 如果想要自定义的驱动模块在开机时自动加载，请按照以下步骤进行配置：
 

@@ -3,12 +3,12 @@ sidebar_position: 7
 ---
 
 # 8.7 区域处理
-## 8.7.1 概述
+## 概述
 用户一般都需要在视频中叠加 `OSD` 用于显示一些特定的信息（如：通道号、时间戳等），必要时还会填充色块。这些叠加在视频上的 `OSD` 和遮挡在视频上的色块统称为区域。`REGION` 模块，用于统一管理这些区域资源。
 
 区域管理可以实现区域的创建，并叠加到视频中或对视频进行遮挡。例如，实际应用中，用户通过`HB_RGN_AttachToChn`创建一个区域，将该区域叠加到某个通道（如US通道）中。在通道进行调度时，则会将 `OSD` 叠加在视频中。一个区域支持通过调用设置通道显示属性接口指定到多个通道中（如：`US通道`和`DS通道`），且支持在每个通道的显示属性（如位置、是否显示等）都不同。
 
-## 8.7.2 功能描述
+## 功能描述
 ### 基本概念
 区域类型：
 - `overlay`:视频叠加区域，绘制文字、线条等；
@@ -45,7 +45,7 @@ sidebar_position: 7
 - 通过`HB_RGN_SetDisplayAttr`/`HB_RGN_GetDisplayAttr`获取或设置通道显示属性；
 - 最后用户再将区域从通道中撤出，销毁区域；
 
-## 8.7.3 API参考
+## API参考
 ```c
 int32_t HB_RGN_Create(RGN_HANDLE Handle, const RGN_ATTR_S *pstRegion);
 int32_t HB_RGN_Destory(RGN_HANDLE Handle);
@@ -749,7 +749,7 @@ int32_t HB_RGN_SetDisplayLevel(RGN_HANDLE Handle, const RGN_CHN_S *pstChn, uint3
 【参考代码】
 > 请参见HB_RGN_AttachToChn/HB_RGN_DetachFromChn举例
 
-## 8.7.4 数据结构
+## 数据结构
 ### RGN_SIZE_S
 【结构定义】
 ```c
@@ -1226,7 +1226,7 @@ typedef int32_t RGN_HANDLEGROUP;
 【功能描述】
 > 定义最大批处理数量
 
-## 8.7.5 错误码
+## 错误码
 RGN错误码如下表：
 
 |   错误码   | 宏定义                       | 描述             |
@@ -1241,5 +1241,5 @@ RGN错误码如下表：
 | -268762120 | HB_ERR_RGN_INVALID_OPERATION | 无效操作         |
 | -268762121 | HB_ERR_RGN_PROCESS_FAIL	OSD  | 处理失败         |
 
-## 8.7.6 参考代码
+## 参考代码
 OSD部分示例代码可以参考，[sample_osd](./multimedia_samples#sample_osd)。

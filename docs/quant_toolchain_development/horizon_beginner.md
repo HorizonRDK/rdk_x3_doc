@@ -4,14 +4,14 @@ sidebar_position: 2
 
 # 10.2 入门指南
 
-## 10.2.1 概述
+## 概述
 
 
 本指南用于介绍地平线算法工具链中训练后量化PTQ方法的使用流程，若您是第一次使用地平线算法工具链的用户，建议您根据本指南章节步骤进行学习；若您已完成入门指南章节内容的学习，下一步可以参考本指南的[快速体验](#quick_experiments)章节步骤来进行私有模型的模型转换及上板运行；
 如果需要了解地平线算法工具链的更多内容，请跳转至[进阶指南](./horizon_intermediate) 章节。
 
 
-## 10.2.2 环境安装{#env_install}
+## 环境安装{#env_install}
 
 
 本章节主要介绍使用地平线算法工具链前必须的环境准备工作。
@@ -30,7 +30,7 @@ sidebar_position: 2
   | GPU(可选)     | CUDA11、驱动版本Linux:>= 450.80.02*<br/>适配显卡包括但不限于：<br/>1)GeForce RTX 3090<br/>2)GeForce RTX 2080 Ti<br/>3)NVIDIA TITAN V<br/>4)Tesla V100S-PCIE-32GB              
   | 系统          | CentOS 7、Ubuntu 18.04及以上         |
 
-  
+
 **开发机部署**
 
 :::caution 注意
@@ -73,7 +73,7 @@ sidebar_position: 2
 
     pip install pycocotools -i https://mirrors.aliyun.com/pypi/simple
 ```
-  
+
 
 在顺利完成安装后，您可以键入 hb_mapper --help 命令验证是否可以正常得到帮助信息，若打印如下信息，说明环境已安装完成：
 ```bash
@@ -93,13 +93,13 @@ sidebar_position: 2
 ```
 
 :::tip 小技巧
-  
+
   后续进行模型转换时，请首先使用命令 ``source activate horizon_bpu`` 或 ``conda activate horizon_bpu`` 进入模型转换环境!
 
   地平线算法工具链环境安装包整体大小 ``50M`` 左右，下载安装包和安装依赖包受网络速率影响，整个安装过程耗时大约10分钟左右，请您耐心等候安装完成。
 :::
 
-## 10.2.3 快速体验{#quick_experiments}
+## 快速体验{#quick_experiments}
 
 本章节中，我们为您介绍地平线算法工具链PTQ方案的基本使用流程，便于您实现快速上手。 这里我们以 yolov5s 模型为例，为您进行使用演示，地平线算法工具链PTQ方案的更多详细内容，请阅读 [进阶指南-PTQ原理及步骤详解](./horizon_intermediate#PTQ_introduction) 章节。
 
@@ -257,9 +257,9 @@ sidebar_position: 2
     b. 模型CPU算子：
 
         ⅰ. 检测模型中未包含 CPU 算子
-
+    
         ⅱ. 分类模型尾部的 Softmax 和 Reshape 为 CPU 算子
-
+    
         ⅲ. 分割模型 DeepLabV3+ 尾部的 Argmax 为 CPU 算子
 
     c. 输出反量化CPU节点：完成int8到float32的输出反量化操作。量化耗时与输出 shape 大小成正比

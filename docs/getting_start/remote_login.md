@@ -10,7 +10,7 @@ sidebar_position: 3
 - 有线以太网：开发板默认采用静态IP模式，IP地址为`192.168.1.10`,掩码`255.255.255.0`,网关 `192.168.1.1`
 - 无线WiFi：开发板IP地址一般由路由器分配，可在设备命令行中通过`ifconfig`命令查看wlan0网络的IP地址
 
-## 2.3.1 串口登录{#login_uart}
+## 串口登录{#login_uart}
 
 在使用串口登录前，需要确认开发板串口线跟电脑正确连接，连接方法可参考[调试串口](#debug_uart)章节。串口登录需要借助PC终端工具，目前常用的工具有`Putty`、`MobaXterm`等，用户可根据自身使用习惯来选择。不同工具的端口配置流程基本类似，下面以`MobaXterm`为例，介绍新建串口连接过程：
 
@@ -58,7 +58,7 @@ wlan0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
 ```
 
-## 2.3.2 网络状态确认{#network_config}
+## 网络状态确认{#network_config}
 
 在使用远程登录前，需要确保电脑、开发板网络通信正常，如无法`ping`通，需按如下步骤进行确认：
 - 确认开发板、电脑IP地址配置，一般前三段需要是一样的，例如开发板：`192.168.1.10`  电脑：`192.168.1.100`
@@ -75,7 +75,7 @@ wlan0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
 
 如需将开发板有线网络配置为动态获取DHCP模式，可参考[有线网络](../configuration/network_configuration#config_ethnet)章节进行配置。
 
-## 2.3.3 VNC登录
+## VNC登录
 本章节面向使用Ubuntu Desktop系统版本的用户，介绍如何通过`VNC Viewer`实现远程桌面登录功能。`VNC Viewer`是一个图形桌面共享软件，可在电脑上实现设备远程登录和控制桌面。该软件可以通过电脑显示器预览开发板系统桌面，并使用电脑的鼠标、键盘进行远程操作。用户通过VNC Viewer操作，可以获得跟开发板本地操作相同的效果，下载链接[VNC Viewer](https://www.realvnc.com/en/connect/download/viewer/)。
 
 **连接开发板**  
@@ -90,7 +90,7 @@ wlan0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
 - 输入密码 `sunrise`，勾选 `Remember password`, 点击 `OK`连接  
 ![image-20220610160928136](./image/remote_login/image-20220610160928136.png)
 
-## 2.3.4 SSH登录{#ssh}
+## SSH登录{#ssh}
 除了VNC登录远程桌面外，还可以通过SSH连接登录开发板。下面分别介绍终端软件、终端命令行两种方法的创建步骤。
 
 **终端软件**  

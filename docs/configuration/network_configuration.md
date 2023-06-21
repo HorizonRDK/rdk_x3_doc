@@ -6,7 +6,7 @@ sidebar_position: 2
 
 本章节主要介绍开发板有线、无线网络配置的修改方法。
 
-## 3.2.1 有线网络{#config_ethnet}
+## 有线网络{#config_ethnet}
 
 开发板有线网络默认采用静态IP配置，初始IP地址为192.168.1.10。用户可通过如下方法实现静态、DHCP模式的切换。
 
@@ -72,10 +72,10 @@ iface eth0 inet static
 
 修改完成后，命令行输入`sudo restart_network`命令让配置生效。
 
-## 3.2.2 无线网络
+## 无线网络
 开发板集成了2.4GHz无线WiFi模块，支持Soft AP和Station两种模式，默认运行在Station模式下。下面介绍两种模式的使用方法。
 
-### 3.2.2.1 Station模式
+### Station模式
 Station模式下，开发板作为客户端，接入路由器无线热点进行联网。
 
 - 对于使用Ubuntu Desktop版本系统的用户，可点击桌面右上角Wi-Fi图标，选择对应热点并输入密码以完成网络配置，如下图：  
@@ -100,7 +100,7 @@ Station模式下，开发板作为客户端，接入路由器无线热点进行�
     Error: No network with SSID 'WiFi-Test' found.
     ```
 
-### 3.2.2.2 Soft AP模式
+### Soft AP模式
 
 开发板无线网络默认运行在Station模式下，如需使用Soft AP模式，请按照以下步骤进行配置。
 
@@ -230,7 +230,7 @@ Station模式下，开发板作为客户端，接入路由器无线热点进行�
     wifi_connect "WiFi-Test" "12345678"
     ```
 
-## 3.2.3 DNS服务
+## DNS服务
 
 DNS(Domain Name Server)是进行域名(domain name)和与之相对应的IP地址转换的服务器。
 

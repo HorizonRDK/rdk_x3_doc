@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # 9.2 RDK X3 Module硬件说明
 
-## 9.2.1 硬件资料
+## 硬件资料
 
 本章节提供RDK X3 Module（旭日X3模组）的规格书、数据手册、参考设计、硬件设计指导等资料，帮助开发者全面了解产品，并为硬件设计工作提供指导。
 
@@ -37,7 +37,7 @@ RDK X3 Module开发者套件的40PIN管脚定义、复用关系如下：
 
 ![image-20230510155124570](./image/rdk_x3_module/image-20230510155124570.png)
 
-## 9.2.2 认证配件清单
+## 认证配件清单
 
 ### 基础配件
 
@@ -72,7 +72,7 @@ RDK X3 Module开发者套件的40PIN管脚定义、复用关系如下：
 | HDMI | 微雪 | 13.3英寸触控屏 | 分辨率1920x1080，钢化玻璃面板，高色域触控屏 | [购买链接](https://www.waveshare.net/shop/13.3inch-HDMI-LCD-H-with-Holder-V2.htm)  |
 | MIPI | 微雪 | 4.3英寸MIPI LCD | 分辨率800×480，IPS广视角，MIPI DSI接口  | [购买链接](https://www.waveshare.net/shop/4.3inch-DSI-LCD.htm)  |
 
-## 9.2.3 微雪载板使用说明
+## 微雪载板使用说明
 
 本章节介绍RDK X3 Module配合第三方载板的使用方法。该载板是微雪为树莓派CM4设计的第三方载板，由于RDK X3 Module接口兼容树莓派CM4，因此可以配套使用以实现摄像头采集、HDMI/LCD显示、网络/USB连接等功能。载板接口说明如下：  
 ![image-20230529170409727](./image/rdk_x3_module/image-20230529170409727.png)  

@@ -6,7 +6,7 @@ sidebar_position: 1
 
 开发板上的40PIN功能管脚，接口定义请查看[40PIN管脚定义](#40pin_define)章节。
 
-## 5.1.1 管脚复用关系配置
+## 管脚复用关系配置
 
 40PIN的管脚会按照 [40PIN管脚定义](#40pin_define) 所示，默认使能UART、SPI、I2C、I2S等专用功能，如需将特定管脚配置成GPIO功能，需要通过`srpi-config`图形化配置工具进行配置。
 
@@ -23,7 +23,7 @@ sudo srpi-config
 - 键盘上、下键选择功能项， 回车键开关功能
 - 键盘左、右键选择  Select 和 Exit ，回车键确认
 
-## 5.1.2 40PIN管脚定义{#40pin_define}
+## 40PIN管脚定义{#40pin_define}
 
 开发板提供40PIN标准接口，方便用户进行外围扩展，其中数字IO采用3.3V电平设计。40PIN接口定义如下：  
 ![image-20220828203147852](./image/40pin_user_guide/image-20220828203147852.png)
@@ -35,7 +35,7 @@ RDK X3 Module 外扩40PIN管脚及其定义如下：
 
 ![image-20230510155124570](./image/40pin_user_guide/image-20230510155124570.png)
 
-## 5.1.3 使用GPIO功能
+## 使用GPIO功能
 
 开发板预置了GPIO Python库`Hobot.GPIO`，用户可以通过如下命令导入GPIO库。
 
@@ -51,7 +51,7 @@ Get board ID: 0x504
 'X3PI'
 ```
 
-### 5.1.3.1 设置引脚编码方式
+### 设置引脚编码方式
 
 开发板的引脚编码有4种模式：
 
@@ -80,7 +80,7 @@ mode = GPIO.getmode()
 
 程序会输出 `BOARD, BCM, CVM, SOC or None` 其中的一种结果。
 
-### 5.1.3.2 警告信息
+### 警告信息
 
 以下几种情况下运行代码，会有警告日志输出，但并不会影响正常功能：
 
@@ -93,7 +93,7 @@ mode = GPIO.getmode()
 GPIO.setwarnings(False)
 ```
 
-### 5.1.3.3 管脚配置
+### 管脚配置
 
 GPIO管脚在使用之前，需要进行相应的配置，具体如下：
 
@@ -122,7 +122,7 @@ channels = [18, 12, 13]
 GPIO.setup(channels, GPIO.OUT)
 ```
 
-### 5.1.3.4 输入操作
+### 输入操作
 
 要读取通道的值，请使用：
 
@@ -132,7 +132,7 @@ GPIO.input(channel)
 
 命令返回值为 0 或者 1。 0 代表 GPIO.LOW， 1 代表 GPIO.HIGH。
 
-### 5.1.3.5 输出操作
+### 输出操作
 
 要设置通道的输出值，请使用：
 
@@ -142,7 +142,7 @@ GPIO.output(channel, state)
 
 其中 state 可以是 GPIO.LOW 或 GPIO.HIGH。
 
-### 5.1.3.6 清理管脚占用
+### 清理管脚占用
 
 在程序推出前，推荐进行通道清理动作，请使用：
 
@@ -160,7 +160,7 @@ GPIO.cleanup( (channel1, channel2) )
 GPIO.cleanup( [channel1, channel2] )
 ```
 
-### 5.1.3.7 查看管脚状态
+### 查看管脚状态
 
 此功能允许您检查对应 GPIO 通道的功能：
 
@@ -170,7 +170,7 @@ GPIO.gpio_function(channel)
 
 该函数返回 IN 或 OUT。
 
-### 5.1.3.8 边沿检测与中断
+### 边沿检测与中断
 
 边沿是电信号`从低到高`（上升沿）或`从高到低`（下降沿）的变化，这种改变可以看作是一种事件的发生，这种事件可以用来触发CPU中断信号。
 
@@ -250,7 +250,7 @@ GPIO.add_event_detect(channel, GPIO.RISING, callback=callback_fn, bouncetime=200
 GPIO.remove_event_detect(channel)
 ```
 
-### 5.1.3.9 测试例程
+### 测试例程
 
 在 `/app/40pin_samples/`目录下提供主要的测试例程：
 
@@ -442,7 +442,7 @@ if __name__ == '__main__':
     main()
 ```
 
-## 5.1.4 使用PWM
+## 使用PWM
 
 Hobot.GPIO 库仅在带有附加硬件 PWM 控制器的引脚上支持 PWM。与 RPi.GPIO 库不同，Hobot.GPIO 库不实现软件模拟 PWM。RDK X3支持 2 个 PWM 通道。
 
@@ -489,7 +489,7 @@ if __name__ == '__main__':
 
 ```
 
-## 5.1.5 使用串口{#40pin_uart_usage}
+## 使用串口{#40pin_uart_usage}
 
 RDK X3在40PIN上默认使能 UART3，物理管脚号 8 和 10，IO电压 3.3V。
 
@@ -573,7 +573,7 @@ if __name__ == '__main__':
 
 ```
 
-## 5.1.6 使用I2C
+## 使用I2C
 
 RDK X3在40Pin上默认使能 I2C0，物理管脚号 3 和 5，IO电压3.3V。
 
@@ -641,7 +641,7 @@ if __name__ == '__main__':
 
 ```
 
-## 5.1.7 使用SPI
+## 使用SPI
 
 RDK X3在40Pin上物理管脚 `19, 21, 23, 24`引出了旭日X3M芯片的 `SPI2` 总线，支持一个片选，IO电压3.3V。
 

@@ -6,13 +6,13 @@ sidebar_position: 3
 
 
 :::tip 小技巧
-  
+
   模型推理API接口所用的头文件和lib库文件，请在 `《交付物说明》 <../quant_toolchain_development/horizon_intermediate/env_install.html#id4>`_ 的 package/host/host_package/xj3_aarch64/dnn文件夹获取。 
 :::
 
-## 6.3.1 模型推理库版本信息获取 API
+## 模型推理库版本信息获取 API
 
-### 6.3.1.1 hbDNNGetVersion()
+### hbDNNGetVersion()
 
 **【函数原型】**  
 
@@ -31,10 +31,10 @@ sidebar_position: 3
 返回版本信息。
 
 
-## 6.3.2 模型加载/释放 API
+## 模型加载/释放 API
 
 
-### 6.3.2.1 hbDNNInitializeFromFiles()
+### hbDNNInitializeFromFiles()
 
 
 **【函数原型】**  
@@ -55,7 +55,7 @@ sidebar_position: 3
 
 - 返回 ``0`` 则表示API成功执行，否则执行失败。
 
-### 6.3.2.2 hbDNNInitializeFromDDR()
+### hbDNNInitializeFromDDR()
 
 
 **【函数原型】**  
@@ -77,7 +77,7 @@ sidebar_position: 3
 
 - 返回 ``0`` 则表示API成功执行，否则执行失败。
 
-### 6.3.2.3 hbDNNRelease()
+### hbDNNRelease()
 
 
 **【函数原型】**  
@@ -96,10 +96,10 @@ sidebar_position: 3
 
 - 返回 ``0`` 则表示API成功执行，否则执行失败。
 
-## 6.3.3 模型信息获取 API
+## 模型信息获取 API
 
 
-### 6.3.3.1 hbDNNGetModelNameList()
+### hbDNNGetModelNameList()
 
 
 **【函数原型】**  
@@ -120,7 +120,7 @@ sidebar_position: 3
 
 - 返回 ``0`` 则表示API成功执行，否则执行失败。
 
-### 6.3.3.2 hbDNNGetModelHandle()
+### hbDNNGetModelHandle()
 
 
 **【函数原型】**  
@@ -141,7 +141,7 @@ sidebar_position: 3
 
 - 返回 ``0`` 则表示API成功执行，否则执行失败。
 
-### 6.3.3.3 hbDNNGetInputCount()
+### hbDNNGetInputCount()
 
 
 **【函数原型】**  
@@ -161,7 +161,7 @@ sidebar_position: 3
 
 - 返回 ``0`` 则表示API成功执行，否则执行失败。
 
-### 6.3.3.4 hbDNNGetInputName()
+### hbDNNGetInputName()
 
 
 **【函数原型】**  
@@ -182,7 +182,7 @@ sidebar_position: 3
 
 - 返回 ``0`` 则表示API成功执行，否则执行失败。
 
-### 6.3.3.5 hbDNNGetInputTensorProperties()
+### hbDNNGetInputTensorProperties()
 
 
 **【函数原型】**  
@@ -203,7 +203,7 @@ sidebar_position: 3
 
 - 返回 ``0`` 则表示API成功执行，否则执行失败。
 
-### 6.3.3.6 hbDNNGetOutputCount()
+### hbDNNGetOutputCount()
 
 
 **【函数原型】**  
@@ -223,7 +223,7 @@ sidebar_position: 3
 
 - 返回 ``0`` 则表示API成功执行，否则执行失败。
 
-### 6.3.3.7 hbDNNGetOutputName()
+### hbDNNGetOutputName()
 
 
 **【函数原型】**  
@@ -244,7 +244,7 @@ sidebar_position: 3
 
 - 返回 ``0`` 则表示API成功执行，否则执行失败。
 
-### 6.3.3.8 hbDNNGetOutputTensorProperties()
+### hbDNNGetOutputTensorProperties()
 
 
 **【函数原型】**  
@@ -265,10 +265,10 @@ sidebar_position: 3
 
 - 返回 ``0`` 则表示API成功执行，否则执行失败。
 
-## 6.3.4 模型推理 API
+## 模型推理 API
 
 
-### 6.3.4.1 hbDNNInfer()
+### hbDNNInfer()
 
 
 **【函数原型】**  
@@ -292,7 +292,7 @@ sidebar_position: 3
 - 返回 ``0`` 则表示API成功执行，否则执行失败。
 
 :::info 备注
-  
+
   使用该接口提交任务时应提前将 ``taskHandle`` 置为 ``nullptr``，除非是给指定 ``taskHandle`` 追加任务（即使用 ``inferCtrlParam::more`` 功能）。
 
   最多支持同时存在32个模型任务。
@@ -300,7 +300,7 @@ sidebar_position: 3
   对于batch模型，允许分开设置输入张量的内存地址。例如：模型的输入validShape/alignedShape为[4, 3, 224, 224], 可以申请四个hbDNNTensor， 每个hbDNNTensor的validShape/alignedShape都设置为[1, 3, 224, 224],存放每个batch的数据。当模型有多个输入时， ``input`` 的顺序应为input0[batch0], input0[batch1], ..., inputn[batch0], inputn[batch1], ...。
 :::
 
-### 6.3.4.2 hbDNNRoiInfer()
+### hbDNNRoiInfer()
 
 
 **【函数原型】**  
@@ -326,7 +326,7 @@ sidebar_position: 3
 - 返回 ``0`` 则表示API成功执行，否则执行失败。
 
 :::info 备注
-  
+
   | 该接口支持批处理操作，假设需要推理的数据批数为 ``batch``，模型输入个数为 ``input_count``，其中resizer输入源的数量为 ``resizer_count``。
   | 准备输入参数 ``input``：第i个 ``batch`` 对应的 ``input`` 数组下标范围是 :math:`[i * input\_count`, :math:`(i + 1) * input\_count)，i=[0,batch)`;
   | 准备输入参数 ``rois``：每个resizer输入源的输入都应匹配一个roi，第i个 ``batch`` 对应的 ``rois`` 数组下标范围是 :math:`[i * resizer\_count`, :math:`(i + 1) * resizer\_count)，i=[0,batch)`; 每个batch的roi顺序应和输入的顺序保持一致；
@@ -347,7 +347,7 @@ sidebar_position: 3
   目前也支持多输入的nv12数据，resizer常用的输出尺寸(HxW)：128x128、128x64、64x128、160x96
 :::
 
-### 6.3.4.3 hbDNNWaitTaskDone()
+### hbDNNWaitTaskDone()
 
 
 **【函数原型】**  
@@ -373,7 +373,7 @@ sidebar_position: 3
   2. ``timeout <= 0`` 表示一直等待，直到任务完成。
 :::
 
-### 6.3.4.4 hbDNNReleaseTask()
+### hbDNNReleaseTask()
 
 
 **【函数原型】**  
@@ -392,10 +392,10 @@ sidebar_position: 3
 
 - 返回 ``0`` 则表示API成功执行，否则执行失败。
 
-## 6.3.5 模型内存操作 API
+## 模型内存操作 API
 
 
-### 6.3.5.1 hbSysAllocMem()
+### hbSysAllocMem()
 
 
 **【函数原型】**  
@@ -415,7 +415,7 @@ sidebar_position: 3
 
 - 返回 ``0`` 则表示API成功执行，否则执行失败。
 
-### 6.3.5.2 hbSysAllocCachedMem()
+### hbSysAllocCachedMem()
 
 
 **【函数原型】**  
@@ -435,7 +435,7 @@ sidebar_position: 3
 
 - 返回 ``0`` 则表示API成功执行，否则执行失败。
 
-### 6.3.5.3 hbSysFlushMem()
+### hbSysFlushMem()
 
 
 **【函数原型】**  
@@ -455,7 +455,7 @@ sidebar_position: 3
 
 - 返回 ``0`` 则表示API成功执行，否则执行失败。
 
-### 6.3.5.4 hbSysFreeMem()
+### hbSysFreeMem()
 
 
 **【函数原型】**  
@@ -474,7 +474,7 @@ sidebar_position: 3
 
 - 返回 ``0`` 则表示API成功执行，否则执行失败。
 
-### 6.3.5.5 hbSysWriteMem()
+### hbSysWriteMem()
 
 
 **【函数原型】**  
@@ -495,7 +495,7 @@ sidebar_position: 3
 
 - 返回 ``0`` 则表示API成功执行，否则执行失败。
 
-### 6.3.5.6 hbSysReadMem()
+### hbSysReadMem()
 
 
 **【函数原型】**  
@@ -516,7 +516,7 @@ sidebar_position: 3
 
 - 返回 ``0`` 则表示API成功执行，否则执行失败。
 
-### 6.3.5.7 hbSysRegisterMem()
+### hbSysRegisterMem()
 
 
 **【函数原型】**  
@@ -535,7 +535,7 @@ sidebar_position: 3
 
 - 返回 ``0`` 则表示API成功执行，否则执行失败。
 
-### 6.3.5.8 hbSysUnregisterMem()
+### hbSysUnregisterMem()
 
 
 **【函数原型】**  
@@ -554,10 +554,10 @@ sidebar_position: 3
 
 - 返回 ``0`` 则表示API成功执行，否则执行失败。
 
-## 6.3.6 模型前处理 API
+## 模型前处理 API
 
 
-### 6.3.6.1 hbDNNResize()
+### hbDNNResize()
 
 
 **【函数原型】**  
@@ -595,9 +595,9 @@ sidebar_position: 3
   7. 最多支持同时存在32个reisze任务。
 :::
 
-## 6.3.7 数据类型和数据结构
+## 数据类型和数据结构
 
-### 6.3.7.1 版本信息类
+### 版本信息类
 
 ``HB_DNN_VERSION_MAJOR``
 
@@ -626,7 +626,7 @@ DNN补丁版本号信息。
   注意，本小节中的版本信息类型的版本号随版本变化有所不同，此处的版本号仅供参考，实际版本请以您获取到的发布物为准。
 :::
 
-### 6.3.7.2 模型类
+### 模型类
 
 
 ``HB_DNN_TENSOR_MAX_DIMENSIONS``
@@ -940,7 +940,7 @@ Task优先级配置，提供默认参数。
     |``reserved1``	|  保留字段1。|
     |``Reserved2``	|  保留字段2。|
 
-### 6.3.7.3 系统类
+### 系统类
 
 
 ``hbBPUCore``
@@ -1017,7 +1017,7 @@ DSP核枚举。
     | ``HB_SYS_MEM_CACHE_INVALIDATE``  | 将内存同步到缓存中，CPU读前使用。     |
     | ``HB_SYS_MEM_CACHE_CLEAN``       | 将缓存数据同步到内存中，CPU写后使用。 |
 
-### 6.3.7.4 前处理类
+### 前处理类
 
 
 ``HB_DNN_INITIALIZE_RESIZE_CTRL_PARAM``
@@ -1076,10 +1076,10 @@ DSP核枚举。
     |``Reserved4``  | 保留字段4。|
 
 
-## 6.3.8 数据排布及对齐规则
+## 数据排布及对齐规则
 
 
-### 6.3.8.1 数据排布
+### 数据排布
 
 硬件内部为了提高计算效率，其数据使用特殊的排布方式以使得卷积运算中同一批次乘加用到的feature map和kernel在内存中相邻排放。
 下面简要介绍X3中数据排布（layout）的概念。
@@ -1127,7 +1127,7 @@ DSP核枚举。
   下文中提到的native都特指该layout。
 :::
 
-### 6.3.8.2 BPU对齐限制规则
+### BPU对齐限制规则
 
 
 本节内容介绍使用BPU的对齐限制规则。
@@ -1145,7 +1145,7 @@ BPU有 ``stride`` 要求。通常可以在 ``hbDNNTensorProperties`` 中根据 `
 ``alignedShape`` 就是 ``stride`` 对齐的要求。对于NV12或Y输入的有些特别，只要求W的 ``stride`` 是16的倍数，不需要完全按照 ``alignedShape`` 进行对齐。
 在后续场景使用时，考虑到对齐要求，建议按照 ``alignedByteSize`` 大小来申请内存空间。
 
-### 6.3.8.3 NV12介绍
+### NV12介绍
 
 
 #### YUV格式
@@ -1164,10 +1164,10 @@ NV12图像格式属于YUV颜色空间中的YUV420SP格式，每四个Y分量共�
 ![nv12_layout](./image/cdev_dnn_api/nv12_layout.png)
 
 
-## 6.3.9 模型推理DEBUG方法
+## 模型推理DEBUG方法
 
 
-### 6.3.9.1 错误码
+### 错误码
 
     HB_DNN_SUCCESS = 0                   // 执行成功
     HB_DNN_INVALID_ARGUMENT              // 非法参数
@@ -1185,13 +1185,13 @@ NV12图像格式属于YUV颜色空间中的YUV420SP格式，每四个Y分量共�
     HB_DNN_MODEL_IS_RUNNING              // 任务执行中
     HB_DNN_INCOMPATIBLE_MODEL            // 不兼容的模型
     HB_DNN_API_USE_ERROR                 // 接口使用错误
-
+    
     HB_SYS_SUCCESS                       // 执行成功
     HB_SYS_INVALID_ARGUMENT              // 非法参数
     HB_SYS_OUT_OF_MEMORY                 // 没有足够的内存
     HB_SYS_REGISTER_MEM_FAILED           // 注册内存失败
 
-### 6.3.9.2 配置信息{#configuration_information}
+### 配置信息{#configuration_information}
 
 1. 日志等级。 ``dnn`` 中的日志主要分为4个等级，：
 
@@ -1223,7 +1223,7 @@ NV12图像格式属于YUV颜色空间中的YUV420SP格式，每四个Y分量共�
         HB_DNN_SIM_PLATFORM             // x86模拟器模拟平台设置，可设置为BERNOULLI、BERNOULLI2、BAYES。
         HB_DNN_SIM_BPU_MEM_SIZE         // x86模拟器设置BPU内存大小，单位MB。
 
-### 6.3.9.3 开发机模拟器使用注意事项
+### 开发机模拟器使用注意事项
 
 
 1. 开发机模拟器在使用时，可以通过设置环境变量 ``HB_DNN_SIM_PLATFORM`` 来指定需要模拟的处理器架构，可执行如下命令：

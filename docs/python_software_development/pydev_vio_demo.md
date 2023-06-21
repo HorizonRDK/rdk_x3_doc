@@ -6,14 +6,14 @@ sidebar_position: 3
 
 本章节将通过视频流解码等示例程序，介绍地平线Python语言的`hobot_vio`图像多媒体库的使用方法，包括视频拉流、缩放及编解码等操作。
 
-## 5.3.1 视频流解码
+## 视频流解码
 
 本示例代码位于`/app/pydev_demo/08_decode_rtsp_stream/` 目录下，所实现的功能有：
 1. 通过opencv打开rtsp码流，获取到码流数据
 2. 调用视频解码接口对码流进行解码
 3. 把解码后的视频通过HDMI显示
 
-### 5.3.1.1 运行方法
+### 运行方法
 
 本示例运行依赖rtsp流，如用户不方便搭建rtsp推流服务，可使用系统预置的推流服务。该服务会把`1080P_test.h264`视频文件处理成rtsp流，url地址为`rtsp://127.0.0.1/1080P_test.h264`。
 
@@ -53,7 +53,7 @@ RTSP stream frame_width:1920, frame_height:1080
 
 最后，视频流会通过HDMI接口输出，用户可以通过显示器预览视频画面。
 
-### 5.3.1.2 选项参数说明
+### 选项参数说明
 
 示例程序`decode_rtsp_stream.py`可通过修改启动参数，设置rtsp地址、开关HDMI输出、开关AI推理等功能。参数说明如下：
 
@@ -84,7 +84,7 @@ sudo ./decode_rtsp_stream.py -u "rtsp://x.x.x.x/xxx;rtsp://x.x.x.x/xxx"
 sudo ./decode_rtsp_stream.py -a
 ```
 
-### 5.3.1.3 注意事项
+### 注意事项
 
 - 推流服务器推送的rtsp码流里面需要包含`PPS`和`SPS`参数信息，否则会导致开发板解码异常，错误信息如下：
 ![image-20220728110439753](./image/pydev_vio_demo/image-20220728110439753.png)

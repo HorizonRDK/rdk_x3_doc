@@ -3,7 +3,7 @@ sidebar_position: 2
 ---
 
 # 7.2 驱动开发指南
-## 7.2.1 概述
+## 概述
 
 RDK X3系统软件基于Linux操作系统，内核版本为：4.14.x 。系统为应用运行的环境提供基础的C和C++库，硬件模块接口库，C++算法应用程序框架。
 
@@ -11,11 +11,11 @@ RDK X3系统软件基于Linux操作系统，内核版本为：4.14.x 。系统�
 
 ![46a619838b123841cf4a4baea970364d](./image/driver_develop_guide/46a619838b123841cf4a4baea970364d.png)
 
-## 7.2.2 配置uboot和kernel选项参数
+## 配置uboot和kernel选项参数
 
 在系统软件开发中，经常需要对uboot和Kernel的功能选项进行配置，本章节介绍几个常用的配置方法，供用户参考使用。
 
-### 7.2.2.1 配置uboot选项参数
+### 配置uboot选项参数
 
 首先进入`uboot`目录，执行`make ARCH=arm64 xj3_soc_defconfig `。因为`make`命令将首先执行顶级目录下的 Makefile 文件。其中对于以config结尾的目标都有一个共同的入口：
 
@@ -58,7 +58,7 @@ make ARCH=arm64 xj3_soc_defconfig
 
 如果修改正确，请执行 `cp .config configs/xj3_soc_defconfig`替换默认的配置文件。
 
-### 7.2.2.2 配置kernel选项参数
+### 配置kernel选项参数
 
 通过`menuconfig`方式配置`kernel`与配置`uboot`的的过程是一样的。命令执行过程如下：
 
@@ -94,7 +94,7 @@ cp .config arch/arm64/configs/xj3_perf_ubuntu_defconfig
 ./xbuild.sh boot
 ```
 
-## 7.2.3 UART驱动调试指南
+## UART驱动调试指南
 
 X3 芯片共有4路串口：UART0、UART1，UART2，UART3
 
@@ -102,7 +102,7 @@ X3 芯片共有4路串口：UART0、UART1，UART2，UART3
 - 支持比特率 115.2Kbps，230.4Kbps，460.8Kbps，921.6Kbps，1.5Mbps，2Mbps，4Mbps。2M以上速录需要使能TOI
 - 支持基于中断或基于 DMA 的模式
 
-### 7.2.3.1 驱动代码
+### 驱动代码
 
 #### 代码路径
 
@@ -155,7 +155,7 @@ uart0: serial@0xA5000000 {
 
 
 
-### 7.2.3.2 UART测试{#uart_test}
+### UART测试{#uart_test}
 
 硬件上把uart3的TX和RX进行连接。
 
@@ -189,9 +189,7 @@ This is receive test 2 times
 
 uart_duplex命令是测试uart的，可以阅读它的帮助信息获取更多使用方法。
 
-### 7.2.3.3 附录
-
-### 7.2.3.4 A 测试代码
+### 附录（测试代码）
 
 ```c
 #include <stdio.h>
@@ -636,9 +634,9 @@ int main(int argc, char *argv[])
 }
 ```
 
-## 7.2.4 I2C调试指南
+## I2C调试指南
 
-### 7.2.4.1 前言
+### 前言
 
 X3芯片提供了标准的I2C总线，I2C总线控制器通过串行数据线（SDA）和串行时钟（SCL）线在连接到总线的器件间传递信息。
 每个器件都有一个唯一的地址（无论是微控制器——MCU、LCD控制器、存储器或键盘接口），而且都可以作为一个发送器和一个接收器（由器件的功能决定），而且都可以作为一个发送器或接收器（由器件的功能决定）。I2C控制器支持以下功能：
@@ -649,7 +647,7 @@ X3芯片提供了标准的I2C总线，I2C总线控制器通过串行数据线（
 
 -   支持7位和10位寻址模式
 
-### 7.2.4.2 驱动代码
+### 驱动代码
 ```bash
 drivers/i2c/busses/i2c-hobot.c # I2C驱动代码源文件
 inlcude/linux/i2c-hobot.h # I2C驱动代码头文件
@@ -684,7 +682,7 @@ i2c0: i2c@0xA5009000 {
  备注：  
 hobot-xj3.dtsi中的节点主要声明一些寄存器、中断的resource，均为soc共有特性，和具体电路板无关，一般情况下不用修改。
 
-### 7.2.4.3 I2C使用
+### I2C使用
 
 对于I2C的使用说明在Linux Kernel的Documentation/i2c下有详细的说明，本文主要列出X3J3 I2C驱动接口特殊的部分。
 
@@ -773,11 +771,11 @@ i2c-tools是一套开源工具，该工具已经被交叉编译并包含在在X3
 -   i2cset — 写入i2c设备某个register的值
 -   i2ctransfer — 可以读、写i2c设备某个或者多个register的值
 
-## 7.2.5 GPIO调试指南
+## GPIO调试指南
 
 X3 芯片共有121个IO功能管脚，每个管脚都可以配置工作在gpio模式下，但是需要注意和其他功能管脚的复用关系。
 
-### 7.2.5.1 管脚查询
+### 管脚查询
 
 IO管脚的复用和配置可以在 [datasheets](http://archive.sunrisepi.tech/downloads/datasheets/) 查阅《PL-2500-3-X3 PIN SW Reg-V1.2.xls》 和《RM-2500-5-X3M Register Reference Manual-GPIO&PIN-V1.1.pdf》。
 
@@ -817,7 +815,7 @@ IO管脚的复用和配置可以在 [datasheets](http://archive.sunrisepi.tech/d
 
 ![image-20220529120102028](./image/driver_develop_guide/image-20220529120102028.png)
 
-### 7.2.5.2 驱动代码
+### 驱动代码
 
 ```bash
 drivers/gpio/gpio-hobot-x3.c # gpio驱动源文件
@@ -846,7 +844,7 @@ gpios: gpio@0xA6003000 {
 :::info 备注
 hobot-xj3.dtsi中的节点主要声明一些寄存器、中断的resource，均为soc共有特性，和具体电路板无关，一般情况下不用修改。
 :::
-### 7.2.5.3 GPIO使用
+### GPIO使用
 
 #### Kernel Space
 
@@ -976,13 +974,13 @@ root@x3dvbx3-hynix1G-2666:~#
 :::info 备注  
 X3 GPIO在User Space的接口都是Linux的标准接口，更多使用方法请参考Documentation/gpio/sysfs.txt
 :::
-## 7.2.6 Pinctrl调试指南
+## Pinctrl调试指南
 
-### 7.2.6.1 前言
+### 前言
 
 X3 Pinctrl使用Linux Kernel主线代码的pinctl-single作为驱动，主要通过配置DTS来实现pinctrl功能。
 
-### 7.2.6.2 管脚查询
+### 管脚查询
 
 IO管脚的复用和配置可以在 [datasheets](http://archive.sunrisepi.tech/downloads/datasheets/) 查阅《PL-2500-3-X3 PIN SW Reg-V1.2.xls》。
 
@@ -1024,7 +1022,7 @@ pinctrl: pinctrl@0xA6004000 {
 }
 ```
 
-### 7.2.6.3 Pinctrl使用
+### Pinctrl使用
 
 #### 驱动DTS配置
 
@@ -1215,13 +1213,13 @@ cat /sys/kernel/debug/pinctrl/a6004000.pinctrl/pinmux-pins
 ```
 可以查看哪些pin脚被配置为配置组。
 
-## 7.2.7 IO-DOMAIN调试指南
-### 7.2.7.1 前言
+## IO-DOMAIN调试指南
+### 前言
 IO-Domain用来配置X3J3部分模块的电压域，以RGMII接口为例，如果电路设计时外接电压域为3.3V，则需要配置RGMII模块的IO-DOMAIN为3.3V，如果电路设计时外接电压域为1.8V，则需要配置为1.8v，需要注意的是：
 -   外接电压域为3.3V而对应的IO-DOMAIN配置为1.8V时，可能会对芯片有损伤；
 -   外接电压域为1.8V而对应的IO-DOMAIN配置为3.3V时，相应的模块可能无法正常工作；
 
-### 7.2.7.2 管脚查询
+### 管脚查询
 
 IO管脚的复用和配置可以在 [datasheets](http://archive.sunrisepi.tech/downloads/datasheets/) 查阅《PL-2500-3-X3 PIN SW Reg-V1.2.xls》 和《RM-2500-5-X3M Register Reference Manual-GPIO&PIN-V1.1.pdf》。
 
@@ -1229,7 +1227,7 @@ IO管脚的复用和配置可以在 [datasheets](http://archive.sunrisepi.tech/d
 
 在 《RM-2500-5-X3M Register Reference Manual-GPIO&PIN-V1.1.pdf》文档中查阅 SD_MODE_CTRL 和 IO_MODE_CTRL 两个寄存器来确定电压域配置。
 
-### 7.2.7.3 驱动代码
+### 驱动代码
 
 #### 代码位置
 ```bash
@@ -1315,7 +1313,7 @@ static int hobot_xxx_probe(struct platform_device *pdev)
 }
 ```
 
-### 7.2.7.4 uboot下修改电压域
+### uboot下修改电压域
 
 在uboot源码 board/hobot/xj3/xj3.c 文件中，根据硬件实际电压情况，调用init_io_vol接口配置电压域，如果硬件上面管脚的电源域是1.8v那么改管脚对应的位是1，如果是3.3v则该管脚对应的bit是0，最后面把拼成的16进制值value写入base+0x170和base+0x174中（base： 0xA6003000），寄存器详细说明可以查阅《RM-2500-5-X3 Register Reference Manual-GPIO&PIN-V1.1.pdf》
 
@@ -1357,8 +1355,8 @@ int init_io_vol(void)
 }
 ```
 
-## 7.2.8 SPI调试指南{#SPI_debug_guide}
-### 7.2.8.1 驱动代码
+## SPI调试指南{#SPI_debug_guide}
+### 驱动代码
 #### 代码路径
 ```bash
 drivers/spi/spidev.c # 生成字符设备节点，可供用户空间操作
@@ -1426,7 +1424,7 @@ spi0: spi@0xA5004000 {
 -   spi0配置为spi master，spi2配置为spi slave，其中spi2中 isslave = \<1\>
     属性表示该spi配置为slave
 -   两个节点中的spidev@0x00、slave@0x00节点会在spidev.c中被识别成为/dev/spidev0.0和/dev/spidev2.0设备节点，供用户空间操作
-### 7.2.8.2 SPI驱动
+### SPI驱动
 驱动位于：drivers/spi/spi-hobot.c
 #### SPI master/slave配置
 ```c
@@ -1590,7 +1588,7 @@ cat /sys/module/spi_hobot/parameters/slave_tout
 root@x3dvbj3-hynix2G-2666:~# cat /sys/module/spi_hobot/parameters/slave_tout
 2000
 ```
-### 7.2.8.3 SPI测试
+### SPI测试
 
 #### 硬件回环测试
 
@@ -1643,8 +1641,8 @@ test: OK, times=49
 
 spidev_tc 命令是测试spi的工具集命令，可以阅读它的帮助信息获取更多使用方法。
 
-### 7.2.8.4 附录
-#### A spidev_tc.c测试代码
+### 附录
+#### spidev_tc.c测试代码
 ```c
 /*
  * SPI testing utility (using spidev driver)
@@ -2277,15 +2275,15 @@ int main(int argc, char *argv[])
     return ret;
 }
 ```
-#### B SPI时序
+#### SPI时序
 ![](./image/driver_develop_guide/a91efe6c59515b2b9d38b106a7e066a5.png)
 
-## 7.2.9 PWM 驱动调试指南
+## PWM 驱动调试指南
 X3有两类控制器：一类是标准PWM，有3组，每组三个，共9个，另一类是LPWM，主要用于支持Sensor的同步曝光。
 - PWM 默认支持频率范围是192MHz到46.8KHz，每组PWM的占空比寄存器RATIO精度为8bit。
 - LPWM 默认支持频率范围是100KHz到24.4Hz，没有占空比寄存器，只有一个高电平持续时间HIGH，HIGH寄存器配置单位是us，最大支持设置高电平为160us，所以LPWM的占空比与频率有关。
 - LPWM是为了Sensor 同步设计的，不是一个通用的PWM，**单纯PWM功能建议使用PWM。**
-### 7.2.9.1 驱动代码
+### 驱动代码
 #### 代码路径
 ```c
 drivers/pwm/pwm-hobot.c
@@ -2352,7 +2350,7 @@ pwm_c0: pwm@0xA500D000 {
 };
 ...
 ```
-### 7.2.9.2 测试
+### 测试
 用户可以使用如下脚本进行`pwm`功能测试，并进行信号测量，验证`pwm`工作是否正常。
 ```shell
 echo 8 8 8 8  > /proc/sys/kernel/printk
@@ -2408,8 +2406,8 @@ echo "PWM_SRCPND  `devmem 0xA500e01C 32`"
 echo "PWM_INTMASK `devmem 0xA500e020 32`"
 ```
 
-## 7.2.10 BPU驱动sysfs调试接口
-### 7.2.10.1 BPU sysfs节点说明
+## BPU驱动sysfs调试接口
+### BPU sysfs节点说明
 ```bash
 /sys/devices/system/bpu
 ```
@@ -2499,7 +2497,7 @@ echo "PWM_INTMASK `devmem 0xA500e020 32`"
 -   user：用户进程号
 -   ratio：该用户对应Core上的占用率
 
-### 7.2.10.2 使用示例
+### 使用示例
 下文所有案例均已BPU0为目标，所有命令可以在运行模型应用后执行。
 #### 关闭BPU Core
 执行以下命令：
@@ -2530,9 +2528,9 @@ limit接口可以用于调试，用户也可在执行应用时使用以下命令
 export BPLAT_CORELIMIT=2
 ```
 
-## 7.2.11 Thermal 系统
+## Thermal 系统
 
-### 7.2.11.1 温度传感器
+### 温度传感器
 
 在X3芯片上有一个温度传感器，直接反应的是X3芯片DIE的温度。
 
@@ -2553,7 +2551,7 @@ pvt_ts
 
 这个hwmon0设备的温度直接作用到  cat /sys/class/thermal/thermal_zone0/temp 设备，两者的数值是一摸一样。
 
-### 7.2.11.2 Thermal
+### Thermal
 
 Linux Thermal 是 Linux 系统下温度控制相关的模块，主要用来控制系统运行过程中芯片产生的热量，使芯片温度和设备外壳温度维持在一个安全、舒适的范围。
 
@@ -2622,14 +2620,14 @@ echo 105000 > /sys/devices/virtual/thermal/thermal_zone0/trip_point_2_temp
 
 ps：以上设置断电重启后需要重新设置
 
-### 7.2.11.3 thermal参考文档
+### thermal参考文档
 
 kernel/Documentation/thermal/
 
 
-## 7.2.12 修改BPU保留内存大小
+## 修改BPU保留内存大小
 
-### 7.2.12.1 临时设置BPU保留内存
+### 临时设置BPU保留内存
 
 当ion选择cma作为内存池时，通过cma区域来为BPU mem划分空间，以此兼顾cma的灵活性和预留空间的效率，该空间大小可在系统启动后通过修改/sys节点修改：
 
@@ -2643,7 +2641,7 @@ echo 100 > /sys/class/misc/ion/cma_carveout_size
 
 因为这部分预留是从cma中分配出的连续物理空间，所以设置有可能失败，设置了之后再cat一下这个节点，成功的话就是设置的值，失败就是0。
 
-### 7.2.12.2 在设备树中设置ion_cam size
+### 在设备树中设置ion_cam size
 
 1、串口或者ssh终端登录X3Pi
 
@@ -2704,19 +2702,19 @@ dtc -I dts -O dtb -o /boot/hobot/hobot-x3-pi.dtb hobot-x3-pi.dts
 - 修改DTB文件可能会影响您的系统的稳定性和安全性。在修改DTB文件之前，请确保您了解您要更改的内容的含义，并备份原始DTB文件以防止意外错误。
 - /boot/hobot/ 下文件由地平线软件包管理，如果升级了系统软件，则用户的修改会被重置为默认配置（672MB）
 
-## 7.2.13 DDR压力测试方案
+## DDR压力测试方案
 
-### 7.2.13.1 目的
+### 目的
 
 本文主要介绍DDR颗粒在高低温环境下长时间大压力运行的测试方法。
 
-### 7.2.13.2 名词解释
+### 名词解释
 
 判定术语：
 PASS：测试完成后，DUT所有功能、性能符合预期，无异常发生
 FAIL：测试完成后，DUT功能出现损坏或功能失效，或未达到指标要求
 
-### 7.2.13.3 测试项
+### 测试项
 
 | **测试类别**    | **环境温度** | **测试时长** |
 | --------------- | ------------ | ------------ |
@@ -2724,7 +2722,7 @@ FAIL：测试完成后，DUT功能出现损坏或功能失效，或未达到指�
 | DDR高温压力测试 | 60度         | 48H          |
 | DDR低温压力测试 | -25度        | 48H          |
 
-### 7.2.13.4 测试环境
+### 测试环境
 
 #### DUT压力程序
 
@@ -2806,23 +2804,23 @@ tail /userdata/bpu-stress.log
 13、检查bpu test result, 如果bpu_stress.log 中出现 error 或者 system hung 等关键字，表示测试FAIL。 
 
 
-## 7.2.14 RTC 调试指南
+## RTC 调试指南
 
 注： 以pcf8563芯片为例说明
 
-### 7.2.14.1 驱动代码
+### 驱动代码
 
 ```
 drivers/rtc/rtc-pcf8563.c
 ```
 
-### 7.2.14.2 内核配置
+### 内核配置
 
 CONFIG_RTC_DRV_PCF8563
 
 ![image-20220323100439451](./image/driver_develop_guide/image-20220323100439451.png)
 
-### 7.2.14.3 RTC使用
+### RTC使用
 
 驱动加载成功后，会出现 /dev/rtc1 设备节点，对应的就是pcf-8563，可以使用以下命令进行测试。
 
@@ -2843,7 +2841,7 @@ date             				# 读取系统时间
 如果需要保证 RTC 断电后依然能够记录时间，需要给RTC提供单独的供电，供电接口为 RTC Battery Con 。
 :::
 
-## 7.2.15 看门狗驱动调试指南
+## 看门狗驱动调试指南
 
 代码路径
 

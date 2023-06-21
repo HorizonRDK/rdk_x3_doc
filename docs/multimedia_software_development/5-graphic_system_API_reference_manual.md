@@ -4,7 +4,7 @@ sidebar_position: 5
 
 # 8.5 ISP图像系统
 
-## 8.5.1 概述
+## 概述
 
 ### AE
 
@@ -258,7 +258,7 @@ iridix模块提供的1024bin统计数据。![](./image/graphic_system_API_refere
 ISP提供YUV域的区域亮度平均值的统计信息和区域亮度平均值的方差。该模块始终使用32x16的固定区域大小（水平x垂直），此统计模块提供可用结果所需的最小帧分辨率为512x256。这些统计信息存储在512个位置的SRAM中，每个位置包含每个区域的10位（LSB）平均值信息和12位（MSB）亮度平均值信息的方差。其存储方法为10bits
 reserved + 12bits亮度方差 + 10bits 亮度平均值。
 
-## 8.5.2 功能描述
+## 功能描述
 
 ### 交互数据
 
@@ -306,7 +306,7 @@ Driver中如AWB收到算法配置的值会更新到ISP寄存器空间；
 |            |                                                   | iridix_contrast        |
 |            |                                                   | frame_id               |
 
-### 3A开发说明
+### 开发说明
 
 ISP
 Firmware有两部分，分用户空间和内核空间。内核空间Firmware随系统启动而初始化，用户空间Firmware（内含默认3A算法）由HB_VIN_StartPipe接口启动，Firmware启动过程中会优先选择外部3A算法，如果未注册外部3A算法，那么启动默认3A算法。每一类算法都会有对应的两个输入参数——统计数据（stats）、输入参数（input），和一个输出参数——输出参数（output）。在每帧统计数据Ready后ISP
@@ -444,7 +444,7 @@ int32_t awb_deinit_func(void *awb_ctx)
 }
 ```
 
-## 8.5.3 API参考
+## API参考
 
 ### HB_ISP_SetFWState/HB_ISP_GetFWState
 
@@ -3119,7 +3119,7 @@ int HB_ISP_SetAfSpeed(uint8_t pipeId, uint32_t speed);
 
 【参考代码】无
 
-## 8.5.4 数据结构
+## 数据结构
 
 ### HB_ISP_FW_STATE_E
 
@@ -5703,6 +5703,6 @@ AE_ZONE_WGHT_HOR表示纵轴的行的权重系数，一个数据控制几列与h
 
 AE_ZONE_WGHT_VER表示横轴的列的权重系数，lut表下标控制行数计算公式如AE_ZONE_WGHT_HOR。
 
-## 8.5.5 参考代码
+## 参考代码
 
 ISP图像系统部分示例代码可以参考，[sample_isp](./multimedia_samples#sample_isp)。

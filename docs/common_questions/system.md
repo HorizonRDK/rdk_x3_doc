@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # 11.1 系统类
 
-## 11.1.1 开发板上电后无显示
+## 开发板上电后无显示
 
 <font color='Blue'>【问题】</font> 
 
@@ -23,7 +23,7 @@ sidebar_position: 1
 
 ![image-20221124194721750](./image/system/image-20221124194721750.png)
 
-## 11.1.2 开发板默认账户
+## 开发板默认账户
 
 <font color='Blue'>【问题】</font> 
 
@@ -35,7 +35,7 @@ sidebar_position: 1
   - 默认账户：用户名`sunrise`  密码`sunrise` 
   - root账户：用户名`root`  密码`root`
 
-## 11.1.3 NTFS文件系统挂载
+## NTFS文件系统挂载
 <font color='Blue'>【问题】</font> 
 
 - NTFS文件系统挂载后，如何支持读写模式
@@ -47,7 +47,7 @@ sidebar_position: 1
     sudo apt -y install ntfs-3g
     ```
 
-## 11.1.4 vscode工具支持
+## vscode工具支持
 <font color='Blue'>【问题】</font> 
 
 - 开发板是否支持`vscode`开发工具
@@ -56,7 +56,7 @@ sidebar_position: 1
 
 - 开发板不支持`vscode`本地安装，用户可在PC端通过`ssh-remote`插件方式远程链接开发板
 
-## 11.1.5 adb调试功能
+## adb调试功能
 <font color='Blue'>【问题】</font> 
 
 - 开发板如何启动adb调试功能
@@ -65,7 +65,7 @@ sidebar_position: 1
 
 - Ubuntu系统中默认启动了`adbd`服务，用户只需在电脑安装adb工具后即可使用，方法可参考[bootloader镜像更新](https://developer.horizon.ai/forumDetail/88859074455714818)。
 
-## 11.1.6 apt update更新失败
+## apt update更新失败
 
 <font color='Blue'>【问题】</font> 
 
@@ -81,14 +81,14 @@ sidebar_position: 1
 
 - Ubuntu系统自动运行的更新程序，跟用户`apt update`操作发生冲突。可以杀死系统自动运行的更新进程后重试，例如`kill 4299`。
 
-## 11.1.7 开发板文件传输方式
+## 开发板文件传输方式
 
 <font color='Blue'>【问题】</font> 
 
 - 开发板和电脑之间的文件传输的方式有哪些
 
 <font color='Green'>【解答】</font> 
- 
+
 - 可以通过网络、USB等方式进行传输。其中，网络可使用ftp工具、scp命令等方式，USB可使用u盘、adb等方式。以scp命令为例，文件传输的方式如下：
 
     - 拷贝`local_file`单个文件到开发板：

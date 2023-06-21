@@ -4,12 +4,12 @@ sidebar_position: 8
 
 # 8.8 视频输出
 
-## 8.8.1 概述
+## 概述
 VOT（视频输出）模块主动从内存中读取图像和图形数据，并通过相应的显示输出设备输出图像。芯片支持的显示/回写设备、视频层和图形层情况如下表所示。
 
 ![image-20220329222211836](./image/video_output/image-20220329222211836.png)
 
-## 8.8.2 功能描述
+## 功能描述
 
 ### 基本概念
 - 高清显示设备
@@ -53,7 +53,7 @@ VOT（视频输出）模块主动从内存中读取图像和图形数据，并�
 | FORMAT_YUV420P_UV  |                    |
 
 
-## 8.8.3 API参考
+## API参考
 
 视频输出（VOT）实现启用视频输出设备或通道、发送视频数据到输出通道等功能。
 
@@ -1581,7 +1581,7 @@ int sample_vot_deinit()
 }
 ```
 
-## 8.8.4 数据结构
+## 数据结构
 
 ### HB_VOT_PUB_ATTR_S
 【结构定义】
@@ -2023,7 +2023,7 @@ typedef struct HB_SIZE_S {
 | u32Width  | 图像的宽 |
 | u32Height | 图像的高 |
 
-## 8.8.5 错误码
+## 错误码
 VOT错误码如下表所示。
 
 | 错误码 | 宏定义                                   | 描述                        |
@@ -2082,5 +2082,5 @@ VOT错误码如下表所示。
 | 0xa473 | HB_ERR_VOT_GFX_INVALID_ID                | 图形层ID超出范围            |
 | 0xa480 | HB_ERR_VOT_BUF_MANAGER_ILLEGAL_OPERATION | Buffer manger非法的工作状态 |
 
-## 8.8.6 参考代码
+## 参考代码
 VO部分示例代码可以参考，[sample_vot](./multimedia_samples#sample_vot)和[sample_lcd](./multimedia_samples#sample_lcd)。

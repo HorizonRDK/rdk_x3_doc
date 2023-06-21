@@ -6,7 +6,7 @@ sidebar_position: 1
 
 本章节介绍多媒体库开发的多种功能示例，包括摄像头图像采集、视频编解码、视频显示、算法推理等功能。
 
-## 6.1.1 摄像头图像采集和显示
+## 摄像头图像采集和显示
 
 本示例`vio2display`示例实现了`MIPI`摄像头图像采集功能，并通过`HDMI`接口输出，用户可通过显示器预览画面。示例流程框图如下：  
 ![image-vio_to_display](./image/cdev_demo/image-vio_to_display.png)
@@ -41,7 +41,7 @@ sidebar_position: 1
     Press 'q' to Exit !
     ```
 
-## 6.1.2 摄像头图像本地保存
+## 摄像头图像本地保存
 
 本示例`vio_capture`示例实现了`MIPI`摄像头图像采集，并将`RAW`和`YUV`两种格式的图像本地保存的功能。示例流程框图如下：  
 ![image-capture](./image/cdev_demo/image-capture.png)
@@ -86,7 +86,7 @@ sidebar_position: 1
     [  701.213210]hb_isp_algo_stop@main_user.c:389 GENERIC(ERR) :g_mutex destroy.
     ```
 
-## 6.1.3 摄像头图像采集并编码
+## 摄像头图像采集并编码
 
 本示例`vio2encoder`示例实现了 `MIPI` 摄像头图像采集功能，并编码后在本地保存，用户可通过显示器预览画面。示例流程框图如下：  
 ![image-vio_to_encoder](./image/cdev_demo/image-vio_to_encoder.png)
@@ -120,7 +120,7 @@ sidebar_position: 1
     sp_module_bind(vio -> encoder) success!
     ```
 
-## 6.1.4 视频文件解码并显示
+## 视频文件解码并显示
 
 本示例`decoder2display`实现了视频文件解码，并通过`HDMI`接口输出的工，用户可通过显示器预览画面。示例流程框图如下：  
 ![image-decoder_to_display](./image/cdev_demo/image-decoder_to_display.png)
@@ -155,7 +155,7 @@ sidebar_position: 1
     sp_open_vps success!
     ```
 
-## 6.1.5 RTSP拉流解码
+## RTSP拉流解码
 
 本示例`rtsp2display`实现了拉取`rtsp`码流、解码，并通过`HDMI`输出视频图像的功能，用户可通过显示器预览画面。示例流程框图如下：  
 ![rtsp2display](./image/cdev_demo/image-rtsp_to_display.png)
@@ -205,7 +205,7 @@ sidebar_position: 1
 - **注意事项：**
   - 使用UDP协议传输码流时，可能出现因网络丢包导致的花屏现象，此时可切换成TCP协议传输解决。
 
-## 6.1.6 VPS缩放示例
+## VPS缩放示例
 
 本示例实现了基于视频处理模块`VPS`的视频缩放功能，用户可通过显示器预览画面。
 
@@ -241,7 +241,7 @@ sidebar_position: 1
     hb_vp_deinit success
     ```
 
-## 6.1.7 目标检测算法—fcos
+## 目标检测算法—fcos
 
 本示例基于`fcos`模型，实现了本地视频流的目标检测算法功能，用户可通过显示器预览检测结果。
 
@@ -305,7 +305,7 @@ sidebar_position: 1
     fps:55.555556,processing time:18
     ```
 
-## 6.1.8 目标检测算法—YOLOv5
+## 目标检测算法—YOLOv5
 
 本示例基于`YOLOv5`模型，实现了摄像头目标检测算法功能，用户可通过显示器预览检测结果。
 
