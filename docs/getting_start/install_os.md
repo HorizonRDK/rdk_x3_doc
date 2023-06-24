@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# 2.2 安装系统
+# 1.2 安装系统
 
 开发板支持Ubuntu 20.04 Desktop系统版本，支持图形化交互。
 

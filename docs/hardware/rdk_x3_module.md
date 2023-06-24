@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# 9.2 RDK X3 Module硬件说明
+# 8.2 RDK X3 Module硬件说明
 
 ## 硬件资料
 

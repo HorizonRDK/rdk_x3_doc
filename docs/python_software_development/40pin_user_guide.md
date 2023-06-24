@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# 5.1 40PIN功能使用
+# 4.1 40PIN功能使用
 
 开发板上的40PIN功能管脚，接口定义请查看[40PIN管脚定义](#40pin_define)章节。
 

@@ -2,7 +2,7 @@
 sidebar_position: 6
 ---
 
-# 8.6 视频处理
+# 7.6 视频处理
 
 ## 概述
 `VPS（Video Process System）`是视频处理系统，支持对图像进行缩小、放大、裁剪、旋转、GDC矫正、帧率控制以及金字塔图像输出。

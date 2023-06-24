@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# 9.1 RDK X3硬件说明
+# 8.1 RDK X3硬件说明
 
 ## 硬件资料
 

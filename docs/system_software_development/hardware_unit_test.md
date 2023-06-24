@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-# 7.3 硬件单元测试
+# 6.3 硬件单元测试
 ## 概述
 本章介绍如何进行X3硬件单元测试，所用到的程序和脚本请从 [点击](http://archive.sunrisepi.tech/downloads/unittest/sample_base_test.tar.gz) 下载。
 ### 测试程序使用方法

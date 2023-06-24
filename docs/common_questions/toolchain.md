@@ -2,7 +2,7 @@
 sidebar_position: 4
 ---
 
-# 11.4 算法工具链类
+# 10.4 算法工具链类
 
 ### 模型量化错误及解决方法{#model_convert_errors_and_solutions}
 

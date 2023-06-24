@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# 4.1 GPIO读写操作
+# 3.1 GPIO读写操作
 
 开发板 `/app/40pin_samples/` 目录下，预置了多种40PIN管脚的功能测试代码，包括gpio的输入/输出测试、PWM、I2C、SPI、UART等测试。所有测试程序均使用python语言编写，详细信息可以查阅 [40PIN 功能使用](../python_software_development/40pin_user_guide.md)。
 

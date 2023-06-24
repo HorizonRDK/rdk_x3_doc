@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# 8.2 示例程序
+# 7.2 示例程序
 ## get_sif_data 使用说明{#get_sif_data}
 
 ### 程序功能

@@ -79,7 +79,7 @@ const config = {
         items: [
           {
             type: 'doc',
-            docId: 'introduction/rdk_overview',
+            docId: 'RDK',
             position: 'left',
             label: '用户手册',
           },
