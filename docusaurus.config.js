@@ -89,10 +89,6 @@ const config = {
             position: 'left',
           },
           {
-            type: 'localeDropdown',
-            position: 'right',
-          },
-          {
             href: 'https://github.com/HorizonRDK',
             label: 'Github',
             position: 'right',
