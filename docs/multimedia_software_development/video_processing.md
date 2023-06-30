@@ -20,7 +20,7 @@ sidebar_position: 6
 ### 功能描述
 ![Func Description](./image/video_processing/ss_ch5_func_description.png)
 
-`VPS`可以通过调用 [系统控制](./system_control_zh_CN) 提供的绑定接口与其他模块绑定，输入可以与`VIN`、`VDEC`模块绑定，`VPS`输出可以与`VOT`、`VENC`模块绑定，前者为`VPS`的输入源，后者为`VPS`的接收者，也可以与另一个`VPS`绑定实现更多的通道；支持处理用户回灌的图像数据。用户可以通过`VPS`接口对`Group`进行管理，每个`Group`仅可以与一个输入源绑定，每个`Channel`可以与不同的模块绑定。 `VPS`与`VIN`绑定场景下，需要调用`HB_SYS_SetVINVPSMode` 来配置`VIN`与`VPS`之间在线或离线的不同模式。
+`VPS`可以通过调用 [系统控制](./system_control) 提供的绑定接口与其他模块绑定，输入可以与`VIN`、`VDEC`模块绑定，`VPS`输出可以与`VOT`、`VENC`模块绑定，前者为`VPS`的输入源，后者为`VPS`的接收者，也可以与另一个`VPS`绑定实现更多的通道；支持处理用户回灌的图像数据。用户可以通过`VPS`接口对`Group`进行管理，每个`Group`仅可以与一个输入源绑定，每个`Channel`可以与不同的模块绑定。 `VPS`与`VIN`绑定场景下，需要调用`HB_SYS_SetVINVPSMode` 来配置`VIN`与`VPS`之间在线或离线的不同模式。
 
 ![Func Description Topology](./image/video_processing/ss_ch5_func_description_topology.png)
 

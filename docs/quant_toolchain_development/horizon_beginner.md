@@ -35,7 +35,7 @@ sidebar_position: 2
 
 :::caution 注意
 
-  在进行模型转换前，请确保已在开发机的Ubuntu或Centos系统中安装完成支持 Python 3.6.x 版本的 ``Anaconda3`` 环境。  
+  在进行模型转换前，请确保已在开发机的Ubuntu或Centos系统中安装完成支持 Python 3.8.x 版本的 ``Anaconda3`` 环境。  
 :::
 
 - 1.开发机中执行如下命令，获取模型转换资料包：
@@ -53,7 +53,7 @@ sidebar_position: 2
 ```bash
     //horizon_bpu 为环境名，可自行设置
 
-    conda create -n horizon_bpu python=3.6 -y   
+    conda create -n horizon_bpu python=3.8 -y   
 ```
 
 - 3.进入模型转换环境：

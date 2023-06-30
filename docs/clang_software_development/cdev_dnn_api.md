@@ -43,7 +43,7 @@ sidebar_position: 3
 
 **【功能描述】**  
 
-从文件完成对 ``packedDNNHandle`` 的创建和初始化。
+从文件完成对 ``packedDNNHandle`` 的创建和初始化。调用方可以跨函数、跨线程使用返回的 ``packedDNNHandle``。
 
 **【参数】**
 
@@ -64,7 +64,7 @@ sidebar_position: 3
 
 **【功能描述】**  
 
-从内存完成对 ``packedDNNHandle`` 的创建和初始化。
+从文件完成对 ``packedDNNHandle`` 的创建和初始化。调用方可以跨函数、跨线程使用返回的 ``packedDNNHandle``。
 
 **【参数】**
 
@@ -129,7 +129,7 @@ sidebar_position: 3
 
 **【功能描述】** 
 
-从 ``packedDNNHandle`` 所指向模型列表中获取一个模型的句柄。
+从 ``packedDNNHandle`` 所指向模型列表中获取一个模型的句柄。调用方可以跨函数、跨线程使用返回的 ``dnnHandle``。
 
 **【参数】**
 
@@ -277,7 +277,7 @@ sidebar_position: 3
 
 **【功能描述】** 
 
-根据输入参数执行推理任务。
+根据输入参数执行推理任务。调用方可以跨函数、跨线程使用返回的 ``taskHandle``。
 
 **【参数】**
 
@@ -309,7 +309,7 @@ sidebar_position: 3
 
 **【功能描述】** 
 
-根据输入参数执行ROI推理任务。
+根据输入参数执行ROI推理任务。根据输入参数执行ROI推理任务。调用方可以跨函数、跨线程使用返回的 ``taskHandle``。
 
 **【参数】**
 
@@ -725,12 +725,16 @@ DNN句柄，指向单一模型。
 
 张量的类型。 ``S`` 代表有符号， ``U`` 代表无符号， ``F`` 代表浮点型，后面的数字代表bit数。
 
+``HB_DNN_IMG_TYPE_NV12`` 与 ``HB_DNN_IMG_TYPE_NV12_SEPARATE`` 都代表NV12的数据，只是在存储上有差异。
+
+推理NV12输入的模型时，用户可根据实际情况更改张量的 ``tensorType`` 属性为 ``HB_DNN_IMG_TYPE_NV12`` 或 ``HB_DNN_IMG_TYPE_NV12_SEPARATE``。
+
 + 成员
 
     | 成员名称                      | 描述                              |
     |-----------------------------------|-----------------------------------|
     | ``HB_DNN_IMG_TYPE_Y``             | 张量类型为仅有Y通道的图片。           |
-    | ``HB_DNN_TENSOR_TYPE_NV12``       | 张量类型为一张NV12的图片。            |
+    | ``HB_DNN_IMG_TYPE_NV12``       | 张量类型为一张NV12的图片。            |
     | ``HB_DNN_IMG_TYPE_NV12_SEPARATE`` | 张量类型为Y通道及UV通道为输入的图片。 |
     | ``HB_DNN_IMG_TYPE_YUV444``        | 张量类型为YUV444为输入的图片。        |
     | ``HB_DNN_IMG_TYPE_RGB``           | 张量类型为RGB为输入的图片。           |
@@ -844,6 +848,7 @@ DNN句柄，指向单一模型。
       hbDNNQuantiType quantiType;
       int32_t quantizeAxis;
       int32_t alignedByteSize;
+      int32_t stride[HB_DNN_TENSOR_MAX_DIMENSIONS];
     } hbDNNTensorProperties;
 
 张量的信息。
@@ -864,6 +869,7 @@ DNN句柄，指向单一模型。
     |``quantiType``     |   量化类型。|
     |``quantizeAxis``   |   量化通道。|
     |``alignedByteSize``|   张量对齐内容的内存大小。|
+    |``stride``         |   张量中各维度的步长。|
 
 ``hbDNNTaskPriority``
 
@@ -924,6 +930,7 @@ Task优先级配置，提供默认参数。
     } hbDNNInferCtrlParam;
 
 模型推理的控制参数。
+``bpuCoreId`` 与 ``dspCoreId`` 用于控制推理模型BPU和DSP节点使用的核；X3不支持DSP推理，``dspCoreId`` 仅作为占位符使用。
 其中 ``more`` 参数用于小模型批量处理场景，当希望所有任务都执行完再获得输出时，除最后一个任务设置 ``more`` 为 ``0`` 外，
 之前的任务 ``more`` 都设置为 ``1``，最多支持255个小模型的推理。
 ``customId`` 参数用于用户自定义优先级，定义task的优先级大小，例如：时间戳、frame id等，数值越小优先级越高。优先级：priority > customId。
@@ -1218,8 +1225,6 @@ NV12图像格式属于YUV颜色空间中的YUV420SP格式，每四个Y分量共�
         HB_DNN_DUMP_PATH                // 模型卷积层结果输出路径，与HB_DNN_CONV_MAP_PATH配合使用。
         HB_DNN_PLUGIN_PATH              // 自定义CPU算子动态链接库所在目录。
         HB_DNN_PROFILER_LOG_PATH        // 模型运行各阶段耗时统计信息dump路径。
-        HB_MAX_THREAD_NUM               // 处理CPU算子的线程个数，默认为4。
-        HB_MAX_TASK_NUM                 // 同时处理任务的最大个数，默认为8。
         HB_DNN_SIM_PLATFORM             // x86模拟器模拟平台设置，可设置为BERNOULLI、BERNOULLI2、BAYES。
         HB_DNN_SIM_BPU_MEM_SIZE         // x86模拟器设置BPU内存大小，单位MB。
 

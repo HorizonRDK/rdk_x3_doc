@@ -103,7 +103,7 @@ const config = {
             items: [
               {
                 label: '手册',
-                to: 'docs/introduction/document_usage_guide',
+                to: 'docs/RDK',
               },
             ],
           },

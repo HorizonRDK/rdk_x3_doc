@@ -1383,8 +1383,6 @@ YUV_BT601_Video_Range，某些摄像头输入数据都是YUV BT601(Video Range)�
       outputs = sess.run(output_names, feed_dict, input_offset=128)         
       # featuremap模型，数据dtype=float32, 若模型输入非featuremap，请注释掉下行代码！
       outputs = sess.run_feature(output_names, feed_dict, input_offset=0)     
-      # 混合多输入（即同时包含featuremap和图像输入）模型，若模型输入非多输入，请注释掉下行代码！
-      outputs = sess.hb_session.run(output_names, feed_dict)  #-128的操作需要在预处理时完成
       # 后处理
       postprocess(outputs)
           
@@ -1430,8 +1428,6 @@ optimize_float.onnx模型的推理可参考如下示例代码步骤，来确认 
       outputs = sess.run(output_names, feed_dict, input_offset=128)         
       # featuremap模型，数据dtype=float32, 若模型输入非featuremap，请注释掉下行代码！
       outputs = sess.run_feature(output_names, feed_dict, input_offset=0)     
-      # 混合多输入（即同时包含featuremap和图像输入）模型，若模型输入非多输入，请注释掉下行代码！
-      outputs = sess.hb_session.run(output_names, feed_dict)  #-128的操作需要在预处理时完成
       # 后处理
       postprocess(outputs)
           
@@ -1477,8 +1473,6 @@ quantized.onnx模型的推理可参考如下示例代码步骤，来确认 quant
       outputs = sess.run(output_names, feed_dict, input_offset=128)         
       # featuremap模型，数据dtype=float32, 若模型输入非featuremap，请注释掉下行代码！
       outputs = sess.run_feature(output_names, feed_dict, input_offset=0)     
-      # 混合多输入（即同时包含featuremap和图像输入）模型，若模型输入非多输入，请注释掉下行代码！
-      outputs = sess.hb_session.run(output_names, feed_dict)  #-128的操作需要在预处理时完成
       # 后处理
       postprocess(outputs)
           
@@ -1672,7 +1666,3 @@ compiler_parameters:
     Image图像数据：设置 ``aligned_shape = valid_shape`` ，然后按单张数据准备的方式，把10张图片依次按顺序写入申请的内存空间；
 
     FeatureMap数据：按aligned_shape把数据padding好，然后按单batch数据准备的方式，把10份数据依次按顺序写入申请的内存空间，模型推理流程和单batch模型推理流程一致；
-
-#### 模型转换工具链中的主动量化和被动量化逻辑
-
-使用模型转换工具链将模型成功转换成bin后，发现仍然有个别op运行在CPU上，但回头仔细对照地平线算子约束列表，明明该op是符合算子约束的，也就是理论上该算子应该成功运行在BPU上，但仍然是CPU计算。 请参考 [模型转换工具链中的主动量化和被动量化逻辑](https://developer.horizon.ai/forumDetail/118364000835765793) 文档说明。

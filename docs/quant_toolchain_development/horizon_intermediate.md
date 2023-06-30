@@ -77,12 +77,22 @@ sidebar_position: 3
   # re-login
 ```
 
-请从[地平线 docker hub](https://hub.docker.com/r/openexplorer/ai_toolchain_centos_7_xj3/tags) ，获取模型转换编译需要使用的 **最新版本的Docker镜像**。
-Docker镜像文件命名形式为 ``openexplorer/ai_toolchain_centos_7_xj3:{version}``。
+获取本节需要使用的Docker镜像的地址如下：
+
+- `地平线 Docker Hub GPU Docker <https://hub.docker.com/r/openexplorer/ai_toolchain_ubuntu_20_xj3_gpu>`_
+
+- `地平线 Docker Hub CPU Docker <https://hub.docker.com/r/openexplorer/ai_toolchain_ubuntu_20_xj3_cpu>`_
+
+镜像文件命名形式为：
+
+- GPU版本docker： ``openexplorer/ai_toolchain_ubuntu_20_xj3_gpu:{version}``
+
+- CPU版本docker： ``openexplorer/ai_toolchain_ubuntu_20_xj3_cpu:{version}``
+
 
 :::tip 小技巧
 
-  执行命令时将 ``{version}`` 替换为您获取到的 **最新版本的Docker镜像** ，例如：[地平线 docker hub](https://hub.docker.com/r/openexplorer/ai_toolchain_centos_7_xj3/tags)  中目前的最新版本为 ``openexplorer/ai_toolchain_centos_7_xj3:v2.4.2``。
+  执行命令时将 ``{version}`` 替换为您获取到的 **最新版本的Docker镜像** ，例如： `地平线 docker hub CPU Docker <https://hub.docker.com/r/openexplorer/ai_toolchain_ubuntu_20_xj3_cpu>`_ 中目前的最新版本为 ``openexplorer/ai_toolchain_ubuntu_20_xj3_cpu:v2.6.2b``。
 
   本地Docker镜像包版本，可以联系地平线技术支持团队获取。
 
@@ -94,7 +104,7 @@ Docker镜像文件命名形式为 ``openexplorer/ai_toolchain_centos_7_xj3:{vers
 - 镜像拉取命令为：
 
   ```bash
-    docker pull openexplorer/ai_toolchain_centos_7_xj3:v2.4.2
+    docker pull openexplorer/ai_toolchain_ubuntu_20_xj3_cpu:v2.6.2b
   ```
 然后执行以下命令运行Docker容器。
 
@@ -103,7 +113,7 @@ Docker镜像文件命名形式为 ``openexplorer/ai_toolchain_centos_7_xj3:{vers
   ```bash
     // 运行 docker 镜像的命令
   
-    export version=v2.4.2
+    export version=v2.6.2b
   
     export ai_toolchain_package_path=/home/users/xxx/ai_toolchain_package
   
@@ -112,14 +122,14 @@ Docker镜像文件命名形式为 ``openexplorer/ai_toolchain_centos_7_xj3:{vers
     docker run -it --rm \
       -v "$ai_toolchain_package_path":/open_explorer \
       -v "$dataset_path":/data \
-      openexplorer/ai_toolchain_centos_7_xj3:"${version}"
+      openexplorer/ai_toolchain_ubuntu_20_xj3_cpu:"${version}"
   ```
 - GPU开发机 Docker容器执行以下命令：
 
   ```bash
     // 运行 docker 镜像的命令
 
-    export version=v2.4.2
+    export version=v2.6.2b
 
     export ai_toolchain_package_path=/home/users/xxx/ai_toolchain_package
 
@@ -129,7 +139,7 @@ Docker镜像文件命名形式为 ``openexplorer/ai_toolchain_centos_7_xj3:{vers
       -e NVIDIA_VISIBLE_DEVICES=all --rm --shm-size="15g" \
       -v "$ai_toolchain_package_path":/open_explorer \
       -v "$dataset_path":/data \
-      openexplorer/ai_toolchain_centos_7_xj3:"${version}"
+      openexplorer/ai_toolchain_ubuntu_20_xj3_gpu:"${version}"
   ```
 :::info 备注
 
@@ -423,7 +433,10 @@ hb_mapper checker 参数解释：
 --model-type<br/>
   用于指定检查输入的模型类型，目前只支持设置 ``caffe`` 或者 ``onnx``。
 
---march<br/>model_conversion
+--march
+  用于指定需要适配的地平线处理器类型，可设置值为 ``bernoulli2`` 和 ``bayes``；X3处理器应设置为 ``bernoulli2``，J5处理器应设置为 ``bayes``。
+
+--proto<br/>
   此参数仅在 ``model-type`` 指定 ``caffe`` 时有效，取值为Caffe模型的prototxt文件名称。
 
 --model<br/>
@@ -434,22 +447,22 @@ hb_mapper checker 参数解释：
   可选参数，明确指定模型的输入shape。
   取值为 ``{input_name} {NxHxWxC/NxCxHxW}`` ，``input_name`` 与shape之间以空格分隔。
   例如模型输入名称为 ``data1``，输入shape为 ``[1,224,224,3]``，
-  则配置应该为 ``--input_shape data1 1x224x224x3``。
+  则配置应该为 ``--input-shape data1 1x224x224x3``。
   如果此处配置shape与模型内shape信息不一致，以此处配置为准。
 :::info 备注
   注意一个 ``--input-shape`` 只接受一个name和shape组合，如果您的模型有多个输入节点，
   在命令中多次配置 ``--input-shape`` 参数即可。
 :::
 
---output<br/>
-  该参数已经废弃, log信息默认存储于 ``hb_mapper_checker.log`` 中。
-
+:::caution
+  -\-output参数已经废弃，log信息默认存储于 ``hb_mapper_checker_{date_time}.log`` 中。
+:::
 
 
 
 #### 检查异常处理
 
-如果模型检查步骤异常终止或者出现报错信息，则说明模型验证不通过，请根据终端打印或在当前路径下生成的 ``hb_mapper_checker.log`` 日志文件确认报错信息和修改建议。
+如果模型检查步骤异常终止或者出现报错信息，则说明模型验证不通过，请根据终端打印或在当前路径下生成的 ``hb_mapper_checker_{date_time}.log`` 日志文件确认报错信息和修改建议。
 
 例如：以下配置中含不可识别算子类型 ``Accuracy``：
 
@@ -487,7 +500,7 @@ hb_mapper checker 参数解释：
     }
   }
 ```
-使用 ``hb_mapper checker`` 检查这个模型，您会在hb_mapper_checker.log中得到如下信息：
+使用 ``hb_mapper checker`` 检查这个模型，您会在 ``hb_mapper_checker_{date_time}.log`` 中得到如下信息：
 
 ```bash
   ValueError: Not support layer name=accuracy type=Accuracy
@@ -574,7 +587,9 @@ hb_mapper checker 参数解释：
 在进行模型转换时，校准阶段会需要 **100份左右** 标定样本输入，每一份样本都是一个独立的数据文件。
 为了确保转换后模型的精度效果，我们希望这些校准样本来自于您训练模型使用的 **训练集或验证集** ，不要使用非常少见的异常样本，例如 **纯色图片、不含任何检测或分类目标的图片等**。
 
-您需要把取自训练集/验证集的样本做与模型推理（inference）前一样的前处理，
+转换配置文件中的 ``preprocess_on`` 参数，该参数启用和关闭状态下分别对应了两种不同的预处理样本要求。
+(有关参数的详细配置可参考下文校准参数组中相关说明)
+``preprocess_on`` 关闭状态下，您需要把取自训练集/验证集的样本做与模型推理（inference）前一样的前处理，
 处理完后的校准样本会与原始模型具备一样的数据类型( ``input_type_train`` )、尺寸( ``input_shape`` )和
 layout( ``input_layout_train`` )，对于featuremap输入的模型，您可以通过 ``numpy.tofile`` 命令将数据保存为float32格式的二进制文件，
 工具链校准时会基于 ``numpy.fromfile`` 命令进行读取。
@@ -641,7 +656,14 @@ layout( ``input_layout_train`` )，对于featuremap输入的模型，您可以�
     for src_image, dst_file in zip(src_images, dst_files):
     convert_image(src_image, dst_file, transformers)
 ```
+:::info
+  ``preprocess_on`` 启用状态下，标定样本使用skimage支持读取的图片格式文件即可。
+  转换工具读取这些图片后，会将其缩放到模型输入节点要求的尺寸大小，以此结果作为校准的输入。
+  这样的操作会简单，但是对于量化的精度没有保障，因此我们强烈建议您使用关闭 ``preprocess_on`` 的方式。
 
+:::caution 注意
+  请注意，您所准备的每份校准数据大小，都应与原始模型输入大小保持一致。
+:::
 
 
 #### 使用 hb_mapper makertbin 工具转换模型{#makertbin}
@@ -677,8 +699,7 @@ hb_mapper makertbin参数解释：
 #### 模型转换yaml配置参数说明{#yaml_config}
 
 :::info 备注
-
-  此处配置文件仅作展示，在实际模型配置文件中 ``caffe_model`` 与 ``onnx_model`` 两个参数只存在其中之一。
+  要么是Caffe模型，要么是ONNX模型。即 ``caffe_model`` + ``prototxt`` 或者 ``onnx_model`` 二选一。
   即，要么是Caffe模型，要么是ONNX模型。
 :::
 ```
@@ -693,7 +714,7 @@ hb_mapper makertbin参数解释：
     # 原始Onnx浮点模型文件
     onnx_model: '****.onnx'
 
-    # 转换的目标处理器架构，保持默认，X3 bpu使用的是bernoulli2架构
+    # 转换的目标处理器架构，保持默认，X3处理器使用的是bernoulli2架构
     march: 'bernoulli2'
 
     # 模型转换输出的用于上板执行的模型文件的名称前缀
@@ -704,6 +725,15 @@ hb_mapper makertbin参数解释：
 
     # 指定转换后混合异构模型是否保留输出各层的中间结果的能力,保持默认即可
     layer_out_dump: False
+
+    # 指定模型的输出节点
+    output_nodes: {OP_name}
+
+    # 批量删除某一类型的节点
+    remove_node_type: Dequantize
+
+    # 删除指定名称的节点
+    remove_node_name: {OP_name}
 
   # 输入信息参数组
   input_parameters:
@@ -763,6 +793,12 @@ hb_mapper makertbin参数解释：
     # 强制指定OP在BPU上运行， 一般不需要配置，在模型性能调优阶段可以开启此功能，用于尝试性能优化
     # run_on_bpu:  {OP_name}
 
+    # 指定是否针对每个channel进行校准
+    #per_channel: False
+
+    # 指定输出节点的数据精度
+    #optimization: set_model_output_int8
+
   # 编译参数组
   compiler_parameters:
     # 编译策略选择
@@ -777,6 +813,15 @@ hb_mapper makertbin参数解释：
     # 模型编译的优化等级选择，保持默认的 O3
     optimize_level: 'O3'
 
+    # 指定名称为data的输入数据来源
+    #input_source: {"data": "pyramid"}
+
+    # 指定模型的每个function call的最大可连续执行时间
+    #max_time_per_fc: 1000
+
+    # 指定编译模型时的进程数
+    #jobs: 8
+	
   # 此参数组，无需配置，只在有自定义CPU算子时开启使用
   #custom_op: 
     # 自定义op的校准方式, 推荐使用注册方式 register
@@ -801,7 +846,7 @@ hb_mapper makertbin参数解释：
 
 :::caution 注意
 
-  - 请注意，如果设置 ``input_type_rt`` 为 ``nv12`` ，则模型的输入尺寸中不能出现奇数。
+  - 请注意，如果设置 ``input_type_rt`` 为 ``nv12`` 或 ``yuv444`` ，则模型的输入尺寸中不能出现奇数。
   - 请注意，目前X3上暂不支持 ``input_type_rt`` 为 ``yuv444`` 且 ``input_layout_rt`` 为 ``NCHW`` 组合的场景。
 :::
 
@@ -848,7 +893,7 @@ hb_mapper makertbin参数解释：
 |------------|----------|----------|--------|
 |``cal_data_dir``| **参数作用**：指定模型校准使用的标定样本的存放目录。<br/>**参数说明**：目录内校准数据需要符合输入配置的要求。具体请参考 准备校准数据 部分的介绍。配置多个输入节点时， 设置的节点顺序需要与 ``input_name`` 里的顺序严格保持一致。多个值的配置方法请参考前文对 ``param_value`` 配置描述。当calibration_type为 ``load``, ``skip`` 时，cal_data_dir不用填。注意： 为了方便您的使用，如果未发现cal_data_type的配置，我们将根据文件夹 后缀对数据类型进行配置。如果文件夹后缀以 ``_f32`` 结尾，则认为数据 类型是float32，否则认为数据类型是uint8。当然，我们强烈建议您通过cal_data_type参数对数据类型进行约束。| **取值范围**：无。<br/> **默认配置**：无。|可选 |
 |``preprocess_on``| **参数作用**：开启图片校准样本自动处理。<br/>**参数说明**：该选项仅适用于4维图像输入的模型， 非4维模型不要打开该选项。在启动该功能时，cal_data_dir 目录下存放的都是jpg/bmp/png 等图片数据，工具会使用skimage读取图片， 并resize到输入节点需要的尺寸。为了保证校准的效果，建议您保持该参数关闭。使用的影响请参考 准备校准数据 部分的介绍。| **取值范围**：``True`` 、 ``False``。<br/> **默认配置**： ``False``。|可选 |
-|``calibration_type``| **参数作用**：校准使用的算法类型。<br/>**参数说明**：每 ``kl`` 和 ``max`` 都是公开的校准量化算法， 其基本原理可以通过网络资料查阅。使用 ``load`` 方式校准时, qat模型必须是通过horizon_nn提供的 export_onnx来导出的模型。``default`` 是一个自动搜索的策略， 会尝试从系列校准量化参数中获得一个相对效果较好的组合。建议您先尝试 ``default``， 如果最终的精度结果不满足预期， 再根据 精度调优 部分建议配置不同的校准参数。若您只想尝试对模型性能进行验证，但对精度没有要求， 则可以尝试 “skip” 方式进行校准。该方式会使用随机数进行校准， 不需要您准备校准数据，比较适合初次尝试对模型结构进行验证。注意： 使用skip方式时，因使用随机数校准, 得到的模型不可用于精度验证。| **取值范围**：``default``、``kl``、``max``、``load`` 和 ``skip`` 。<br/> **默认配置**：无。|必选 |
+|``calibration_type``| **参数作用**：校准使用的算法类型。<br/>**参数说明**：每 ``kl`` 和 ``max`` 都是公开的校准量化算法， 其基本原理可以通过网络资料查阅。使用 ``load`` 方式校准时, qat模型必须是通过plugin导出的的模型。``mix`` 是一个集成多种校准方法的搜索策略，能够自动确定量化敏感节点，并在节点粒度上从不同的校准方法中挑选出最佳方法，最终构建一个融合了多种校准方法优势的组合校准方式。``default`` 是一个自动搜索的策略， 会尝试从系列校准量化参数中获得一个相对效果较好的组合。建议您先尝试 ``default``， 如果最终的精度结果不满足预期， 再根据 精度调优 部分建议配置不同的校准参数。若您只想尝试对模型性能进行验证，但对精度没有要求， 则可以尝试 “skip” 方式进行校准。该方式会使用随机数进行校准， 不需要您准备校准数据，比较适合初次尝试对模型结构进行验证。注意： 使用skip方式时，因使用随机数校准, 得到的模型不可用于精度验证。| **取值范围**：``default``、``mix`、```kl``、``max``、``load`` 和 ``skip``。<br/> **默认配置**：``default``。|必选 |
 |``max_percentile``| **参数作用**：该参数为 ``max`` 校准方法的参数，用以调整 ``max`` 校准的截取点。<br/>**参数说明**：此参数仅在 ``calibration_type`` 为 ``max`` 时有效。常用配置选项有：0.99999/0.99995/0.99990/0.99950/0.99900。建议您先尝试 ``calibration_type`` 配置 ``default``， 如果最终的精度结果不满足预期， 再根据 精度调优 部分建议调整该参数。| **取值范围**：``0.0``~``1.0`` 。<br/> **默认配置**：``1.0`` 。|可选 |
 |``per_channel``| **参数作用**：控制是否针对featuremap的每个channel进行校准。<br/>**参数说明**：``calibration_type`` 设置非default时有效。建议您先尝试 ``default``， 如果最终的精度结果不满足预期， 再根据 精度调优 部分建议调整该参数。| **取值范围**：``True`` 、 ``False``。<br/> **默认配置**：``False``。|可选 |
 |``run_on_cpu``| **参数作用**：强制指定算子在CPU上运行。<br/>**参数说明**：CPU上虽然性能不及BPU，但是提供的是float精度计算。如果您确定某些算子需要在CPU上计算， 可以通过该参数指定。 设置值为模型中的具体节点名称，多个值的配置方法请参考前文对 ``param_value`` 配置描述。| **取值范围**：无。<br/> **默认配置**：无。|可选 |
@@ -865,8 +910,8 @@ hb_mapper makertbin参数解释：
 |``debug``| **参数作用**：是否打开编译的debug信息。<br/>**参数说明**：开启该参数情况下， 编译后模型将附带一些调试信息， 用于支持后续的调优分析过程。默认情况下，建议您保持该参数关闭。| **取值范围**：``True`` 、 ``False``。<br/> **默认配置**： ``False``。|可选 |
 |``core_num``| **参数作用**：模型运行核心数。<br/>**参数说明**：地平线平台支持利用多个AI加速器核心同时完成一个推理任务， 多核心适用于输入尺寸较大的情况， 理想状态下的双核速度可以达到单核的1.5倍左右。如果您的模型输入尺寸较大，对于模型速度有极致追求， 可以配置 ``core_num=2``。| **取值范围**：``1``、 ``2`` 。<br/> **默认配置**：``1``。|可选 |=
 |``optimize_level``| **参数作用**：模型编译的优化等级选择。<br/>**参数说明**：优化等级可选范围为 ``O0`` ~ ``O3``。``O0`` 不做任何优化, 编译速度最快，优化程度最低。``O1`` - ``O3`` 随着优化等级提高， 预期编译后的模型的执行速度会更快， 但是所需编译时间也会变长。正常用于生成和验证性能的模型， 必须使用 ``O3`` 级别优化才能保证得到最优性能。某些流程验证或精度调试过程中， 可以尝试使用更低级别优化加快过程速度。| **取值范围**：``O0`` 、 ``O1`` 、 ``O2`` 、 ``O3``。<br/> **默认配置**：无。|必选 |
-|``input_source``| **参数作用**：设置上板bin模型的输入数据来源。<br/>**参数说明**：这个参数是适配工程环境的选项， 建议您已经全部完成模型验证后再配置。``ddr`` 表示数据来自内存，``pyramid`` 和 ``resizer`` 表示来自处理器上的固定硬件。注意：如果设置为resizer，模型的 h*w 要小于18432。具体在工程环境中如何适配 ``pyramid`` 和 ``resizer`` 数据源， 此参数配置有点特殊，例如模型输入名称为 data, 数据源为内存(ddr), 则此处应该配置值为 ``{"data": "ddr"}``。| **取值范围**：``ddr``, ``pyramid``, ``resizer``<br/> **默认配置**：``{"input_name": "ddr"}``。|可选 |
-|``max_time_per_fc``| **参数作用**：指定模型的每个function-call的最大可连续执行时间(单位ms)。<br/>**参数说明**：编译后的数据指令模型在BPU上进行推理计算时， 它将表现为1个或者多个function-call的调用， 其中function-call是BPU的执行粒度,该参数用来限制每个function-call最大的执行时间, 设置达到后即使这一段function-call还未执行完也会被高优先级模型抢占。当一个模型设置了 ``max_time_per_fc`` 编译参数后，即为低优先级模型， 它才可以被抢占。详情参见 模型优先级控制 部分的介绍。此参数仅用于实现模型抢占功能，如无需实现该功能则可以忽略。| **取值范围**：``0或1000-4294967295``。<br/> **默认配置**：``0``。|可选 |
+|``input_source``| **参数作用**：设置上板bin模型的输入数据来源。<br/>**参数说明**：这个参数是适配工程环境的选项， 建议您已经全部完成模型验证后再配置。``ddr`` 表示数据来自内存，``pyramid`` 和 ``resizer`` 表示来自处理器上的固定硬件。注意：如果设置为resizer，模型的 h*w 要小于18432。具体在工程环境中如何适配 ``pyramid`` 和 ``resizer`` 数据源， 此参数配置有点特殊，例如模型输入名称为 data, 数据源为内存(ddr), 则此处应该配置值为 ``{"data": "ddr"}``。| **取值范围**：``ddr``, ``pyramid``, ``resizer``<br/> **默认配置**：无，默认会根据input_type_rt的值从可选范围中自动选择。|可选 |
+|``max_time_per_fc``| **参数作用**：指定模型的每个function-call的最大可连续执行时间(单位us)。<br/>**参数说明**：编译后的数据指令模型在BPU上进行推理计算时， 它将表现为1个或者多个function-call（BPU的执行粒度）的调用，取值为0代表不做限制。该参数用来限制每个function-call最大的执行时间, 模型只有在单个function-call执行完时才有机会被抢占。详情参见 模型优先级控制 部分的介绍。- 此参数仅用于实现模型抢占功能，如无需实现该功能则可以忽略。<br/> - 模型抢占功能仅支持在开发板端实现，不支持PC端模拟器实现。| **取值范围**：``0或1000-4294967295``。<br/> **默认配置**：``0``。|可选 |
 |``jobs``| **参数作用**：设置编译bin模型时的进程数。<br/>**参数说明**：在编译bin模型时，用于设置进程数。 一定程度上可提高编译速度。| **取值范围**：``机器支持的最大核心数范围内。``<br/> **默认配置**：无。|可选 |
 
 
@@ -874,8 +919,8 @@ hb_mapper makertbin参数解释：
 
 | 参数名称 | 参数配置说明   | 取值范围说明 |    可选/必选     |
 |------------|----------|----------|--------|
-|``custom_op_method``| **参数作用**：自定义算子策略选择。<br/>**参数说明**：目前仅支持register策略，具体使用请参考| **取值范围**：``register``。<br/> **默认配置**：无。|可选 |
-|``op_register_files``| **参数作用**：自定义算子的Python实现文件名称。<br/>**参数说明**：多个文件可用 ``;`` 分隔，算子如何实现请参考| **取值范围**：无。<br/> **默认配置**： 无。|可选 |
+|``custom_op_method``| **参数作用**：自定义算子策略选择。<br/>**参数说明**：目前仅支持register策略。| **取值范围**：``register``。<br/> **默认配置**：无。|可选 |
+|``op_register_files``| **参数作用**：自定义算子的Python实现文件名称。<br/>**参数说明**：多个文件可用 ``;`` 分隔| **取值范围**：无。<br/> **默认配置**： 无。|可选 |
 |``core_num``| **参数作用**：自定义算子的Python实现文件存放路径。<br/>**参数说明**：设置路径时，请使用相对路径。| **取值范围**：无 。<br/> **默认配置**：无。|可选 |
 
 
@@ -1087,6 +1132,19 @@ HzPreprocess内的计算公式为：`((input（取值范围[-128,127]）+ 128) -
 - 当 ``input_type_rt`` 的取值为非 ``featuremap`` 时，则输入的数据类型均使用INT8，
   反之， 当 ``input_type_rt`` 取值为 ``featuremap`` 时，则输入的数据类型则为float32。
 
+数据排布layout关系对应如下例：
+
+- 原模型输入layout：NCHW。
+- input_layout_train： NCHW。
+- origin.onnx输入layout：NCHW。
+- quanti.onnx输入layout：NCHW。
+
+即：input_layout_train、origin.onnx、quanti.onnx输入的layout与原模型输入的layout一致。
+
+:::caution 注意
+  请注意，如果input_type_rt为nv12时，对应quanti.onnx的输入layout都是NHWC。
+:::
+
 **模型编译阶段** 会使用地平线模型编译器，将量化模型转换为地平线平台支持的计算指令和数据，
 这个阶段的产出一个 ``***.bin`` 模型，这个bin模型就是可在地平线嵌入式平台运行的模型，也就是模型转换的最终产出结果。
 
@@ -1223,7 +1281,7 @@ Model Performance Summary是bin模型的整体性能评估结果，其中各项�
 
 - Model Name——模型名称。
 - Model Latency(ms)——模型整体单帧计算耗时(单位为ms)。
-- Model DDR Occupation(Mb per frame)——模型运行的整体内存占用情况(单位为Mb/frame)。
+- Total DDR (loaded+stored) bytes per frame(MB per frame)——模型整体BPU部分数据加载和存储所占用的DDR总量（单位为MB/frame）。
 - Loaded Bytes per Frame——模型运行每帧读取数据量。
 - Stored Bytes per Frame——模型运行每帧存储数据量。
 
@@ -1300,7 +1358,7 @@ hrt_model_exec perf参数解析：
     默认值 ``1``，设置运行的线程数，取值范围 ``[1,8]``。若要分析极限帧率，请将线程数改大。
 
   profile_path：<br/>
-    默认关闭，统计工具日志产生路径。该参数引入的分析结果会存放在指定目录下的profiler.log文件中。
+    默认关闭，统计工具日志产生路径。该参数引入的分析结果会存放在指定目录下的profiler.log和profiler.csv文件中。
 
 命令执行完成后，您将在控制台得到如下结果：
 
@@ -1309,11 +1367,11 @@ Running condition:
   Thread number is: 1
   Frame count   is: 200
   core number   is: 1
-  Program run time: 726.604000  ms
+  Program run time: 818.985000 ms
 Perf result:
-  Frame totally latency is: 714.537781  ms
-  Average    latency    is: 3.572689  ms
-  Frame      rate       is: 275.253095  FPS
+  Frame totally latency is: 800.621155 ms
+  Average    latency    is: 4.003106 ms
+  Frame      rate       is: 244.204717 FPS
 ```
 :::tip 小技巧
   评估结果中 ``Average latency`` 和 ``Frame rate``，分别表示平均单帧推理延时和模型极限帧率。
@@ -1324,50 +1382,119 @@ Perf result:
 
 ```bash
 {
+  "perf_result": {
+    "FPS": 244.20471681410527,
+    "average_latency": 4.003105640411377
+  },
+  "running_condition": {
+    "core_id": 0,
+    "frame_count": 200,
+    "model_name": "mobilenetv1_224x224_nv12",
+    "run_time": 818.985,
+    "thread_num": 1
+  }
+}
+***
+{
+  "chip_latency": {
+    "BPU_inference_time_cost": {
+      "avg_time": 3.42556,
+    
   "model_latency": {
-    "MOBILENET_subgraph_0": {
-      "avg_time": 2.889,
-      "max_time": 2.889,
-      "min_time": 2.889
+    "BPU_MOBILENET_subgraph_0": {
+      "avg_time": 3.42556,
+      "max_time": 3.823,
+      "min_time": 3.057
+    },
+    "Dequantize_fc7_1_HzDequantize": {
+      "avg_time": 0.12307,
+      "max_time": 0.274,
+      "min_time": 0.044
     },
     "MOBILENET_subgraph_0_output_layout_convert": {
-      "avg_time": 0.017265,
-      "max_time": 0.038,
-      "min_time": 0.015
+      "avg_time": 0.025945,
+      "max_time": 0.069,
+      "min_time": 0.012
     },
-    "fc7_1_HzDequantize": {
-      "avg_time": 0.07467,
-      "max_time": 0.146,
-      "min_time": 0.069
+    "Preprocess": {
+      "avg_time": 0.009245,
+      "max_time": 0.027,
+      "min_time": 0.003
     },
-    "prob": {
-      "avg_time": 0.08839,
-      "max_time": 0.172,
-      "min_time": 0.052
+    "Softmax_prob": {
+      "avg_time": 0.13366999999999998,
+      "max_time": 0.338,
+      "min_time": 0.042
     }
   },
   "task_latency": {
+    "TaskPendingTime": {
+      "avg_time": 0.04952,
+      "max_time": 0.12,
+      "min_time": 0.009
+    },
     "TaskRunningTime": {
-      "avg_time": 3.43695,
-      "max_time": 5.883,
-      "min_time": 3.354
+      "avg_time": 3.870965,
+      "max_time": 4.48,
+      "min_time": 3.219
+    }
+  }
+}  "max_time": 3.823,
+      "min_time": 3.057
     },
-    "TaskScheduleTime": {
-      "avg_time": 0.07456,
-      "max_time": 0.215,
-      "min_time": 0.054
+    "CPU_inference_time_cost": {
+      "avg_time": 0.29193,
+      "max_time": 0.708,
+      "min_time": 0.101
+    }
+  },
+  "model_latency": {
+    "BPU_MOBILENET_subgraph_0": {
+      "avg_time": 3.42556,
+      "max_time": 3.823,
+      "min_time": 3.057
     },
-    "TaskSubmitTime": {
-      "avg_time": 0.00861,
-      "max_time": 0.106,
-      "min_time": 0.006
+    "Dequantize_fc7_1_HzDequantize": {
+      "avg_time": 0.12307,
+      "max_time": 0.274,
+      "min_time": 0.044
+    },
+    "MOBILENET_subgraph_0_output_layout_convert": {
+      "avg_time": 0.025945,
+      "max_time": 0.069,
+      "min_time": 0.012
+    },
+    "Preprocess": {
+      "avg_time": 0.009245,
+      "max_time": 0.027,
+      "min_time": 0.003
+    },
+    "Softmax_prob": {
+      "avg_time": 0.13366999999999998,
+      "max_time": 0.338,
+      "min_time": 0.042
+    }
+  },
+  "task_latency": {
+    "TaskPendingTime": {
+      "avg_time": 0.04952,
+      "max_time": 0.12,
+      "min_time": 0.009
+    },
+    "TaskRunningTime": {
+      "avg_time": 3.870965,
+      "max_time": 4.48,
+      "min_time": 3.219
     }
   }
 }
 ```
 上述日志内容对应到[使用hb_perf工具估计性能](#hb_perf)中的BIN Model Structure部分介绍的bin可视化图中，
-图中每个节点都有对应的节点在profiler.log文件中，可以通过 ``name`` 对应起来，另外，profiler.log文件中也记录出每个节点的执行时间，对优化模型算子提供参考。
+图中每个节点都有对应的节点在profiler.log文件中，可以通过 ``name`` 对应起来，另外，profiler.log文件中也记录出每个节点的执行时间，对优化模型算子提供参考，由于模型中的BPU节点对输入输出有特殊要求，如特殊的layout和padding对齐要求，因此需要对BPU节点的输入、输出数据进行处理。
 
+- ``Preprocess``：表示对模型输入数据进行padding和layout转换操作，其耗时统计在Preprocess中。
+- ``xxxx_input_layout_convert``： 表示对BPU节点的输入数据进行padding和layout转换的操作，其耗时统计在xxxx_input_layout_convert中。
+- ``xxxx_output_layout_convert``： 表示对BPU节点输出数据进行去掉padding和layout转换的操作，其耗时统计在xxxx_output_layout_convert中。
 ``profiler`` 分析是模型性能调优中经常使用的操作，前文 [检查结果解读](#check_result) 部分提到检查阶段不用过于关注CPU算子，此阶段可以看到CPU算子的具体耗时情况，可以根据对应算子的耗时情况来进行模型性能调优。
 
 
@@ -1376,7 +1503,6 @@ Perf result:
 通过以上性能分析结果，您可能发现模型性能结果不及预期，本章节内容介绍地平线对提升模型性能的建议与措施，包括检查yaml配置参数、处理CPU算子、高性能模型设计建议、使用地平线平台友好结构&模型几个方面。
 
 :::caution 注意
-
   本章节中部分修改建议可能会影响原始浮点模型的参数空间，因此需要您重训模型，为了避免在性能调优过程中反复调整并训练模型，建议您在得到满意模型性能前，使用随机参数导出模型来验证性能。
 :::
 
@@ -1407,9 +1533,42 @@ Perf result:
   修改原始浮点模型参数对模型计算精度的影响需要您自己把控，例如：Convolution的 ``input_channel`` 或 ``output_channel`` 超出范围就是一种较典型的情况，减少channel后，使该算子被BPU支持，但只做这一处修改也可能对模型精度产生影响。
 :::
 
-如果算子并不具备BPU支持能力，建议您在地平线支持的BPU算子中找一个替代算子，并将其替换到原始浮点模型中。
-对于计算密集型的算子，地平线一般都具备BPU支持能力，少数只能在CPU上运行算子也都经过了极致优化。
-所以，这种情况一般是您使用了一种不被BPU支持的激活函数造成的，而且这个激活函数反复被使用，从而导致bin模型中出现很多子图分割情况。
+如果算子并不具备BPU支持能力，就需要您根据以下情况做出对应优化操作：
+
+- CPU 算子处于模型中部
+
+  对于CPU 算子处于模型中部的情况，建议您优先尝试参数调整、算子替换或修改模型。
+
+- CPU算子处于模型首尾部
+
+  对于CPU算子处于模型首尾部的情况，请参考以下示例，下面以量化/反量化节点为例：
+
+  - 对于与模型输入输出相连的节点，可以在yaml文件model_parameters配置组（模型参数组）中增加 ``remove_node_type`` 参数，并重新编译模型。
+
+    .. code-block::
+
+      remove_node_type: "Quantize; Dequantize"
+
+    或使用hb_model_modifier 工具对bin模型进行修改：
+
+    .. code-block::
+
+      hb_model_modifier x.bin -a Quantize -a Dequantize
+
+  - 对于下图这种没有与输入输出节点相连的模型，则需要使用hb_model_modifier工具判断相连节点是否支持删除后按照顺序逐个进行删除。
+
+    .. image:: _static/nodes_connected.png
+      :align: center
+      :scale: 80%
+
+    先使用hb_perf工具获取模型结构图片，然后使用以下两条命令可以自上而下移除Quantize节点， 
+    对于Dequantize节点自下而上逐个删除即可，每一步可删除节点的名称可以通过 ``hb_model_modifier x.bin`` 进行查看。
+
+    .. code-block::
+
+      hb_model_modifier x.bin -r res2a_branch1_NCHW2NHWC_LayoutConvert_Input0
+      hb_model_modifier x_modified.bin -r data_res2a_branch1_HzQuantize
+
 
 ##### 高性能模型设计建议
 
@@ -1517,16 +1676,16 @@ if __name__ == '__main__':
     note: 工具链版本： 1.5 后架构上的调整，如果更新 工具链版本 需要重新编译模型
   """
 ```
-上述代码中， ``input_offset`` 参数默认值为128. 对于有前处理节点的模型, 这里都需要做-128的操作. 如果模型输入前并未添加前处理节点, 则需要将 ``input_offset`` 设置为0.
+上述代码中，``input_offset`` 参数默认值为128。 对于有前处理节点的模型, 这里都需要做-128的操作。 如果模型输入前并未添加前处理节点, 则需要将 ``input_offset`` 设置为0。
 
 :::info 备注
   对于多输入模型：
 
-  - 如果输入 input_type 均属于 （ RGB/BGR/NV12/YUV444/GRAY ），可以采用 sess.run 方法做推理.
+  - 如果输入 input_type 均属于 （ RGB/BGR/NV12/YUV444/GRAY ），可以采用 sess.run 方法做推理。
   
-  - 如果输入 input_type 均属于 （ FEATURE ），可以采用 sess.run_feature 方法做推理.
+  - 如果输入 input_type 均属于 （ FEATURE ），可以采用 sess.run_feature 方法做推理。
   
-  - 如果输入 input_type 为混合类型，暂不支持这种场景.
+  - 请注意，目前暂不支持输入 input_type 为混合类型。
 :::
 此外, ``your_custom_data_prepare`` 函数所代表的输入数据准备过程是最容易出现误操作的部分。
 相对于您设计&训练原始浮点模型的精度验证过程，建议您在数据预处理后将推理输入数据进行调整：主要是数据格式（RGB、NV12等）、数据精度（int8、float32等）和数据排布（NCHW或NHWC）。
@@ -1559,6 +1718,9 @@ def your_custom_data_prepare_sample(image_file):
   image = CenterCrop(image, crop_size=224)
   # skimage读取结果通道顺序为RGB，转换为bgr_128需要的BGR顺序
   image = RGB2BGR(image)
+  # 如果原模型是 NCHW 输入（input_type_rt为nv12除外）
+  if layout == "NCHW":
+    image = HWC2CHW(image)
   # skimage读取数值范围为[0.0,1.0]，调整为bgr需要的数值范围
   image = image * 255
   # bgr_128是bgr减去128
@@ -2099,7 +2261,7 @@ hb_eval_preprocess的命令行参数
 
 -    BPU加速   ：地平线处理器可以进行加速的算子（一定约束条件下），如果不满足约束条件，则会在CPU进行计算
 
--    CPU计算   ：当前已经在地平线ARM CPU上进行优化的算子。
+-    CPU计算   ：当前已经在地平线ARM CPU上进行优化的算子，支持onnx opset10与opset11。
 
 -    CPU计算※   ：暂时未集成的CPU算子。
 
@@ -2116,6 +2278,7 @@ hb_eval_preprocess的命令行参数
 
 -   基于tensorlfow-onnx（https://github.com/onnx/tensorflow-onnx）转换工具，支持将 ``tensorlfow1.*`` 版本的算子稳定的转换到opset6-opset11版本的ONNX模型格式，但是 ``Tensroflow2.*`` 当前支持还属于实验版本。
 
+-   关于OP主动量化被动量化的说明：一个符合本章节约束条件的OP仍然运行在CPU的主要原因是该OP属于被动量化OP，算法工具链会根据OP的计算特性和BPU底层逻辑等多方面考虑设计量化逻辑，当前量化逻辑分为：主动量化，被动量化，手动量化。量化逻辑更多信息请阅读：[算法工具链中的主动量化和被动量化逻辑](https://developer.horizon.ai/forumDetail/118364000835765793) 章节。
 
 
 ### 支持的Caffe算子列表
@@ -2139,7 +2302,7 @@ hb_eval_preprocess的命令行参数
 | TanH                                                         | BPU加速 | 无限制 | 无                                         |
 | Eltwise                                                      | BPU加速 | operation目前支持Add和Mul，暂不支持减。  <br/>Add：  <br/>输入channel大小 M<= 2048  <br/>支持以下几种情况： <br/> 1. Add的两个输入shape为NCHW和NCHW；  <br/>2. Add的两个输入shape为NCHW和NC11（Add的两个输入都需要是其它op的输出） <br/> Mul： <br/> Mul的两个输入都需要是四维并且C的大小需要 <= 2048。 <br/> 同时仅支持如下shape的相乘：  <br/>1. (1xCxHxW vs 1xCxHxW)。  <br/>2. (1xCxHxW vs 1xCx1x1)。  <br/>3. (1xCxHxW vs 1x1x1x1)。 | 无                                                           |
 | Bias                                                         | BPU加速 | 参考Eltwise等于Add的情况                                     | 无                                                           |
-| Scale                                                        | BPU加速 | 参考Eltwise等于Sub的情况                                     | 无                                                           |
+| Scale                                                        | BPU加速 | 参考Eltwise等于Mul的情况                                     | 无                                                           |
 | AbsVal                                                       | CPU计算 | 不支持                                                       | 无                                                           |
 | Exp                                                          | BPU加速 | 无限制                                                       | 无                                                           |
 | Log                                                          | CPU计算 | 不支持                                                       | 无                                                           |
@@ -2188,7 +2351,7 @@ hb_eval_preprocess的命令行参数
 | AveragePool               | BPU加速         | Kernel HxW=[1, 7]x[1, 7], Stride ∈{1, 185}                   | auto_pad 属性不支持。 <br/>仅支持四维Tensor计算。     |                      
 | BatchNormalization        | BPU加速         | 优化阶段会被融合到上一个conv中支持                               | type约束：仅支持float类型。  <br/>支持第1个维度是channel的数据排布方式计算。   |         
 | BitShift                  | CPU计算※        | --                                                           | --                                                           |     
-| Cast                      | CPU计算         | --                                                           | from_type支持bool,float,int64,int32,int8,uint8。 <br/>to_type支持bool,float,int64,int32,int8,uint32,uint8。|    
+| Cast                      | CPU计算         | --                                                           | from_type支持double, float, bool, int64, uint32, int32, uint16, int16, uint8, int8。<br/>to_type支持double, float, bool, int64, uint32, int32, uint16, int16, uint8, int8。|    
 | Ceil                      | CPU计算         | --                                                           | type约束：仅支持float类型。     | 
 | Clip                      | BPU加速         | 无限制。                                                      | type约束：仅支持float类型。 <br/>仅有2个输入时，默认为min参数。 | 
 | Compress                  | CPU计算※        | --                                                           | --                                                           |  
@@ -2254,7 +2417,7 @@ hb_eval_preprocess的命令行参数
 | Multinomial               | CPU计算※        | --                                                           | --                                                           |   
 | Neg                       | CPU计算        | --                                                           | --                                                        |  
 | NonZero                   | CPU计算         | --                                                           | - type约束支持：float,int32,int8。 <br/>- 支持1维计算。 <br/>- 支持4维计算。 |   
-| Not                       | CPU计算※        | --                                                           | --                                                           |  
+| Not                       | CPU计算        | --                                                           | --                                                           |  
 | OneHot                    | CPU计算        | --                                                           | --                                                        |   
 | Or                        | CPU计算         | --                                                           | - 支持相同输入shape计算。 <br/>- 支持输入1是标量或者输入2是标量的计算。  <br/>- 支持broadcast计算，最大维度是5。  |   
 | PRelu                     | BPU加速         | --                                                        | - type约束支持：仅支持float类型。 <br/>- from_type：X和slope。 <br/>- to_type：Y。 <br/>- X的shape为data_shape，slope的为slope_shape ，shape约束如下：   <br/>- data_shape == slope_shape。    <br/>- slope_shape.ProdSize() == 1。    <br/>- X和slope仅支持NCHW排布的4维度计算，并且N、C维度值相等。      <br/>- HxW 与1x1（ slope_shape ）。      <br/>- HxW与Hx1（ slope_shape ）。      <br/>- HxW与1xW（ slope_shape ）。  <br/>- X是4维度 && slope是3维度 && data_shape[1] == slope_shape [0] && slope_shape [1] == 1 && slope_shape [2] == 1。  |                         |
@@ -2285,7 +2448,7 @@ hb_eval_preprocess的命令行参数
 | Resize                    | BPU加速         | 1. 输入featuremap需为四维NCHW，并且只支持在H和W维度上进行resize，onnx opset=11时支持roi输入（pytorch转换的模型需手动修改算子添加roi输入，roi只支持常量输入），roi输入只支持H和W维度，roi输入只在tf_crop_and_resize模式下起作用。 <br/>2. 属性mode支持nearest和linear两种模式。 <br/>3. 支持放大和缩小。 <br/>4. 对于mode=nearest，放大系数factor支持2的幂数倍如2，4，8，16，32等；支持H维度和W维度的放大系数不同但需要满足H_factor <= W_factor。 <br/>5. 对于onnx opset=11，属性coordinate_transformation_mode支持half_pixel，pytorch_half_pixel, asymmetric，align_corners和tf_crop_and_resize，当coordinate_transformation_mode=tf_crop_and_resize时，需要保证roi输入转换得到的边界坐标为整数。 | resize-10  <br/>- 输入等于2时，使用opset10。 <br/>- 输入数据是4维Tensor。  <br/>resize-11   <br/>- 输入大于2时，使用opset11。 <br/>- 输入数据是4维Tensor。 <br/>- coordinate_transformation_mode在nearest, linear模式下支持half_pixel, asymmetric, align_corners和pytorch_half_pixel四种，在cubic模式下只支持half_pixel。 <br/>- extrapolation_value属性不支持。 |
 | ReverseSequence           | CPU计算         | --                                                           | --                                                           |
 | RoiAlign                  | CPU计算         | --                                                           | --                                                           |
-| Round                     | CPU计算※        | --                                                           | --                                                           |
+| Round                     | CPU计算        | --                                                           | --                                                           |
 | Scan                      | CPU计算※        | --                                                           | --                                                           |
 | Scatter (deprecated)      | CPU计算※        | --                                                           | --                                                           |
 | ScatterElements           | CPU计算         | --                                                           | from_type支持： <br/>- data：type约束支持：float,int32,int8。 <br/>- indices：type约束仅支持int32类型。 <br/>- updates：type约束支持：float,int32,int8。 <br/>to_type支持：type约束支持：float,int32,int8。  |
@@ -2297,7 +2460,7 @@ hb_eval_preprocess的命令行参数
 | SequenceErase             | CPU计算※        | --                                                           | --                                                           |
 | SequenceInsert            | CPU计算※        | --                                                           | --                                                           |
 | SequenceLength            | CPU计算※        | --                                                           | --                                                           |
-| Shape                     | BPU加速         | 会通过常量折叠将其优化为数值存储                               | from_type支持：type约束支持float,int32,int8类型。  |
+| Shape                     | BPU加速         | 会通过常量折叠将其优化为数值存储                               | --  |
 | Shrink                    | CPU计算※        | --                                                           | --                                                           |
 | Sigmoid                   | BPU加速         | 对于一个输入维度为1CHW的tensor，仅支持min(8W4C对齐后的shape，32C对齐后的shape) <=8192的情况。 <br/>8W4C：实际运行时tensor的W维度padding至8的整数倍，C维度padding至4的整数倍。 <br/>32C：实际运行时tensor的C维度padding至32的整数倍。 <br/>在两个对齐方式中取对齐后shape最小值，判断是否<=8192。    | type约束：仅支持float类型。   |
 | Sign                      | CPU计算         | --                                                           | 无                                                           |
@@ -2392,9 +2555,10 @@ hb_eval_preprocess的命令行参数
   │   │   ├── cls_images
   │   │   ├── det_images
   │   │   ├── misc_data
+  │   │   ├── custom_identity_data
   │   ├── model
   │   │   ├── README.md
-  │   │   └── runtime -> ../../../model_zoo/runtime   # 软链接指向工具链SDK包中的模型，板端运行环境需要自行制定模型路径
+  │   │   └── runtime -> ../../../model_zoo/runtime/horizon_runtime_sample   # 软链接指向模型包中的模型，板端运行环境需要自行制定模型路径
   │   └── script                  # aarch64 示例运行脚本
   │   │    ├── 00_quick_start
   │   │    ├── 01_api_tutorial
@@ -2506,7 +2670,7 @@ hb_eval_preprocess的命令行参数
 ```
 
 :::info 备注
-- model文件夹下包含模型的路径，其中 ``runtime`` 文件夹为软链接，链接路径为 ``../../../data/runtime`` ，可直接找到交付包中的模型路径
+- model文件夹下包含模型的路径，其中 ``runtime`` 文件夹为软链接，链接路径为 ``../../../model_zoo/runtime/horizon_runtime_sample`` ，可直接找到交付包中的模型路径
 - 板端运行环境需要将模型放至 ``model`` 文件夹下
 :::
 ###### quick_start
@@ -2523,7 +2687,7 @@ hb_eval_preprocess的命令行参数
 
 ###### api_tutorial
 
-01_api_tutorial 目录下的示例，用于引导开发者如何使用嵌入式API。其目录包含以下脚本：
+01_api_tutorial 目录下的示例，用于介绍如何使用嵌入式API。其目录包含以下脚本：
 
 ``` shell
   ├── model.sh
@@ -2620,25 +2784,26 @@ hb_eval_preprocess的命令行参数
 
 ```shell
     /userdata/ruxin.song/xj3/script/02_advanced_samples# sh custom_arm_op_custom_identity.sh
-    ../aarch64/bin/run_custom_op --model_file=../../model/runtime/googlenet_cop/googlenet_cop_224x224_nv12.bin --image_file=../../data/cls_images/zebra_cls.jpg --image_height=224 --image_width=224 --top_k=5
-    I0000 00:00:00.000000 25036 vlog_is_on.cc:197] RAW: Set VLOG level for "*" to 3
-    I0108 07:04:16.743277 25036 main.cpp:138] hbDNNRegisterLayerCreator success
-    [HBRT] set log level as 0. version = 3.12.1
-    [BPU_PLAT]BPU Platform Version(1.2.2)!
-    [HorizonRT] The model builder version = 1.3.4
-    I0108 07:04:16.902737 25036 main.cpp:153] hbDNNGetModelNameList success
-    I0108 07:04:16.902809 25036 main.cpp:160] hbDNNGetModelHandle success
-    I0108 07:04:16.920487 25036 main.cpp:169] read image to nv12 success
-    I0108 07:04:16.920793 25036 main.cpp:179] prepare nv12 tensor success
-    I0108 07:04:16.920900 25036 main.cpp:189] prepare tensor success
-    I0108 07:04:16.922179 25036 main.cpp:200] hbDNNInfer success
-    I0108 07:04:16.996123 25036 main.cpp:205] task done
-    I0108 07:04:16.996308 25036 main.cpp:210] task post process success
-    I0108 07:04:16.996355 25036 main.cpp:217] TOP 0 result id: 340
-    I0108 07:04:16.996380 25036 main.cpp:217] TOP 1 result id: 351
-    I0108 07:04:16.996403 25036 main.cpp:217] TOP 2 result id: 83
-    I0108 07:04:16.996426 25036 main.cpp:217] TOP 3 result id: 352
-    I0108 07:04:16.996448 25036 main.cpp:217] TOP 4 result id: 353
+    ../aarch64/bin/run_custom_op --model_file=../../model/runtime/custom_op/custom_op_featuremap.bin --input_file=../../data/custom_identity_data/input0.bin,../../data/custom_identity_data/input1.bin
+    I0000 00:00:00.000000 30421 vlog_is_on.cc:197] RAW: Set VLOG level for "*" to 3
+    I0723 15:06:12.172068 30421 main.cpp:212] hbDNNRegisterLayerCreator success
+    I0723 15:06:12.172335 30421 main.cpp:217] hbDNNRegisterLayerCreator success
+    [BPU_PLAT]BPU Platform Version(1.3.1)!
+    [HBRT] set log level as 0. version = 3.15.3.0
+    [DNN] Runtime version = 1.15.2_(3.15.3 HBRT)
+    [A][DNN][packed_model.cpp:217](1563865572232) [HorizonRT] The model builder version = 1.13.5
+    I0723 15:06:12.240696 30421 main.cpp:232] hbDNNGetModelNameList success
+    I0723 15:06:12.240784 30421 main.cpp:239] hbDNNGetModelHandle success
+    I0723 15:06:12.240819 30421 main.cpp:245] hbDNNGetInputCount success
+    file length: 602112
+    file length: 602112
+    I0723 15:06:12.243616 30421 main.cpp:268] hbDNNGetOutputCount success
+    I0723 15:06:12.244102 30421 main.cpp:297] hbDNNInfer success
+    I0723 15:06:12.257903 30421 main.cpp:302] task done
+    I0723 15:06:14.277941 30421 main.cpp:306] write output tensor
+
+  模型的第一个输出数据保存至 ``output0.txt`` 文件。
+
 ```
 - ``run_multi_model_batch.sh`` ：该脚本主要实现多个小模型批量推理功能，
   使用的时候，进入 02_advanced_samples 目录, 然后直接执行 ``sh run_multi_model_batch.sh`` 即可，如下所示：
@@ -2695,7 +2860,7 @@ hb_eval_preprocess的命令行参数
     I0108 07:23:35.510903 25139 run_lenet_gray.cc:217] TOP 3 result id: 4
     I0108 07:23:35.510927 25139 run_lenet_gray.cc:217] TOP 4 result id: 2
 ```
-- ``run_resnet50_feature.sh`` ：该脚本主要实现feature数据输入的resnet50模型推理功能，
+- ``run_resnet50_feature.sh`` ：该脚本主要实现feature数据输入的resnet50模型推理功能，示例代码对feature数据做了quantize和padding以满足模型的输入条件，然后输入到模型进行infer。
   使用的时候，进入 03_misc 目录, 然后直接执行 ``sh run_resnet50_feature.sh`` 即可，如下所示：
 
 ```shell
@@ -2840,7 +3005,7 @@ hb_eval_preprocess的命令行参数
 - 概述
 
 该参数用于输入自定义图片后，模型推理一帧，并给出模型推理结果。
-该参数需要与 ``input_file`` 一起使用，指定输入图片路径，工具会根据模型信息resize图片。
+该参数需要与 ``input_file`` 一起使用，指定输入图片路径，工具根据模型信息resize图片，整理模型输入信息。
 
 :::tip 小技巧
 
@@ -2976,7 +3141,7 @@ dump模型每一层节点的输入数据和输出数据。 ``dump_intermediate=0
   |                                 | ``2``：输出类型为 ``bin`` 和 ``txt``，其中BPU节点输出为aligned数据； ``3``：输出类型为 ``bin`` 和 ``txt``，其中BPU节点输出为valid数据。 |
   | ``perf_time``                   | 设置 ``perf`` 运行时间，单位：分钟，默认为 ``0``。                                                                                      |
   | ``thread_num``                  | 设置程序运行线程数，范围[1, 8], 默认为 ``1``, 设置大于8时按照8个线程处理。                                                              |
-  | ``profile_path``                | 统计工具日志产生路径，运行产生profiler.log，分析op耗时和调度耗时。                                                                      |
+  | ``profile_path``                | 统计工具日志产生路径，运行产生profiler.log和profiler.csv，分析op耗时和调度耗时。时。                                                                      |
 
 
 ###### ``多线程Latency数据说明``
@@ -3131,64 +3296,79 @@ profile日志文件产生目录。
 ###### 示例代码包结构
 
 ```bash
-  +---ai_benchmark
-  | +---code                           # 示例源码文件夹
-  | | +---build_ptq_xj3.sh
-  | | +---CMakeLists.txt
-  | | +---deps/deps_gcc9.3             # 第三方依赖库，gcc6.5环境为deps，gcc9.3为deps_gcc9.3
-  |   | +---aarch64
-  | | +---include                      # 源码头文件
-  |   | +---base
-  |   | +---input
-  |   | +---method
-  |   | +---output
-  |   | +---plugin
-  |   | +---utils
-  | | +---src                          # 示例源码
-  |   | +---input
-  |   | +---method
-  |   | +---output
-  |   | +---plugin
-  |   | +---utils
-  |   | +---simple_example.cc          # 示例主程序
-  | +---xj3                             # 示例包运行环境
-  |   +---ptq                          # 后量化模型示例
-  |   | +---data                       # 模型精度评测数据集
-  |   | +---mini_data                  # 模型性能评测数据集
-  |   | +---model                      # 后量化nv12模型
-  |   | +---script                     # 执行脚本
-  |   | | +---aarch64                  # 编译产生可执行文件及依赖库
-  |   | | +---base_config.sh
-  |   | | +---config
-  |   | | +---classification           # 分类模型示例
-  |   | | | +---efficientnet_lite0
-  |   | | | | +---accuracy.sh          # 模型精度示例脚本
-  |   | | | | +---fps.sh               # 模型性能示例脚本
-  |   | | | | +---latency.sh           # 模型单帧延时示例脚本
-  |   | | | | +---workflow_accuracy.json
-  |   | | | | +---workflow_fps.json
-  |   | | | | +---workflow_latency.json
-  |   | | | +---efficientnet_lite1
-  |   | | | +---efficientnet_lite2
-  |   | | | +---efficientnet_lite3
-  |   | | | +---efficientnet_lite4
-  |   | | | +---googlenet
-  |   | | | +---mobilenetv1
-  |   | | | +---mobilenetv2
-  |   | | | +---resnet18
-  |   | | +---detection                # 检测模型示例
-  |   | | | +---efficientdetd0
-  |   | | | +---centernet_resnet50
-  |   | | | +---fcos_efficientnetb0
-  |   | | | +---ssd_mobilenetv1
-  |   | | | +---yolov2_darknet19
-  |   | | | +---yolov3_darknet53
-  |   | | | +---yolov5s
-  |   | | +---segmentation             # 分割模型示例
-  |   | | | +---unet_mobilenet
-  |   | +---tools                      # 精度评测工具
-  |   | | +---python_tools
-  |   | | | +---accuracy_tools
+  ai_benchmark/code                     # 示例源码文件夹
+  ├── build_ptq_xj3.sh
+  ├── CMakeLists.txt
+  ├── deps/deps_gcc9.3                  # 第三方依赖库，gcc6.5环境为deps，gcc9.3为deps_gcc9.3
+  │   └── aarch64
+  ├── include                           # 源码头文件
+  │   ├── base
+  │   ├── input
+  │   ├── method
+  │   ├── output
+  │   ├── plugin
+  │   └── utils
+  ├── README.md
+  └── src                               # 示例源码
+      ├── input
+      ├── method
+      ├── output
+      ├── plugin
+      ├── simple_example.cc             # 示例主程序
+      └── utils
+
+  ai_benchmark/xj3                      # 示例包运行环境
+  └── ptq                               # PTQ方案模型示例
+      ├── data                          # 模型精度评测数据集
+      ├── mini_data                     # 模型性能评测数据集
+      │   ├── cifar10
+      │   ├── cityscapes
+      │   ├── coco
+      │   ├── culane
+      │   ├── flyingchairs
+      │   ├── imagenet
+      │   ├── kitti3d
+      │   ├── nuscenes
+      │   └── voc
+      ├── model                         # PTQ方案nv12模型
+      │   ├── README.md
+      │   └── runtime -> ../../../../model_zoo/runtime/ai_benchmark/ptq   # 软链接指向OE包中的模型，板端运行环境需要自行指定模型路径
+      ├── README.md
+      ├── script                        # 执行脚本
+      │   ├── aarch64                   # 编译产生可执行文件及依赖库
+      │   ├── classification            # 分类模型示例
+      │   │   ├── efficientnet_lite0
+      │   │   ├── efficientnet_lite1
+      │   │   ├── efficientnet_lite2
+      │   │   ├── efficientnet_lite3
+      │   │   ├── efficientnet_lite4
+      │   │   ├── googlenet
+      │   │   ├── mobilenetv1
+      │   │   ├── mobilenetv2
+      │   │   └── resnet18
+      │   ├── config                    # 模型推理配置文件
+      │   │   └── data_name_list  
+      │   ├── detection                 # 检测模型示例
+      │   │   ├── centernet_resnet50
+      │   │   ├── efficientdetd0
+      │   │   ├── fcos_efficientnetb0
+      │   │   ├── preq_qat_fcos_efficientnetb0 
+      │   │   ├── preq_qat_fcos_efficientnetb1
+      │   │   ├── preq_qat_fcos_efficientnetb2
+      │   │   ├── ssd_mobilenetv1
+      │   │   ├── yolov2_darknet19
+      │   │   ├── yolov3_darknet53
+      │   │   └── yolov5s
+      │   ├── segmentation              # 分割模型示例
+      │   │   ├── deeplabv3plus_efficientnetb0
+      │   │   ├── fastscnn_efficientnetb0   
+      │   │   └── unet_mobilenet
+      │   ├── base_config.sh            # 基础配置
+      │   └── README.md
+      └── tools                         # 精度评测工具
+          ├── python_tools
+          └── README.md
+
 ```
 - **code**：该目录内是评测程序的源码，用来进行模型性能和精度评测。
 - **xj3**： 提供了已经编译好的应用程序，以及各种评测脚本，用来测试多种模型在地平线BPU上运行的性能，精度等。
@@ -3210,27 +3390,30 @@ profile日志文件产生目录。
 
   | MODEL              | MODEL NAME                                   |
   |--------------------|----------------------------------------------|
-  | centernet_resnet50 | centernet_resnet50_512x512_nv12.bin          |
-  | efficientdetd0     | efficientdetd0_512x512_nv12.bin              |
-  | efficientnet_lite0 | efficientnet_lite0_224x224_nv12.bin          |
-  | efficientnet_lite1 | efficientnet_lite1_240x240_nv12.bin          |
-  | efficientnet_lite2 | efficientnet_lite1_260x260_nv12.bin          |
-  | efficientnet_lite3 | efficientnet_lite1_280x280_nv12.bin          |
-  | efficientnet_lite4 | efficientnet_lite1_300x300_nv12.bin          |
-  | fcos_efficientnetb0| fcos_efficientnetb0_512x512_nv12.bin         |
-  | googlenet          | googlenet_224x224_nv12.bin                   |
-  | googlenet_cop      | googlenet_cop_224x224_nv12.bin.bin           |
-  | lenet_gray         | lenet_28x28_gray.bin                         |
-  | mobilenet_multi    | mobilenet_multi_224x224_gray.bin             |
-  | ssd_mobilenetv1    | ssd_mobilenetv1_300x300_nv12.bin             |
-  | unet_mobilenet     | unet_mobilenet_1024x2048_nv12.bin            |
-  | mobilenetv1        | mobilenetv1_224x224_nv12.bin<br/>mobilenetv1_224x224_nv12_dump.bin<br/>mobilenetv1_128x128_resizer_nv12.bin|
-  | mobilenetv2        | mobilenetv2_224x224_nv12.bin                 |
-  | resnet18           | resnet18_224x224_nv12.bin                    |
-  | resnet50_feature   | resnet50_64x56x56_featuremap.bin             |
-  | yolov2_darknet19   | yolov2_darknet19_608x608_nv12.bin<br/>yolov2_darknet19_preempted_608x608_nv12.bin|
-  | yolov3_darknet53   | yolov3_darknet53_416x416_nv12.bin<br/>yolov3_darknet53_preempted_416x416_nv12.bin|
-  | yolov5s            | yolov5s_672x672_nv12.bin                     |
+  | centernet_resnet50           | centernet_resnet50_512x512_nv12.bin              |
+  | deeplabv3plus_efficientnetb0 | deeplabv3plus_efficientnetb0_1024x2048_nv12.bin  |  
+  | efficientdetd0               | efficientdetd0_512x512_nv12.bin                  |
+  | efficientnet_lite0           | efficientnet_lite0_224x224_nv12.bin              |
+  | efficientnet_lite1           | efficientnet_lite1_240x240_nv12.bin              |
+  | efficientnet_lite2           | efficientnet_lite1_260x260_nv12.bin              |
+  | efficientnet_lite3           | efficientnet_lite1_280x280_nv12.bin              |
+  | efficientnet_lite4           | efficientnet_lite1_300x300_nv12.bin              |
+  | fastscnn_efficientnetb0      | fastscnn_efficientnetb0_1024x2048_nv12.bin       |
+  | fcos_efficientnetb0          | fcos_efficientnetb0_512x512_nv12.bin             |
+  | googlenet                    | googlenet_224x224_nv12.bin                       |
+  | mobilenetv1                  | mobilenetv1_224x224_nv12.bin                     |
+  | mobilenetv2                  | mobilenetv2_224x224_nv12.bin                     |
+  | preq_qat_fcos_efficientnetb0 | fcos_efficientnetb0_512x512_nv12.bin             |
+  | preq_qat_fcos_efficientnetb1 | fcos_efficientnetb1_640x640_nv12.bin             |
+  | preq_qat_fcos_efficientnetb2 | fcos_efficientnetb2_768x768_nv12.bin             |
+  | resnet18                     | resnet18_224x224_nv12.bin                        |
+  | ssd_mobilenetv1              | ssd_mobilenetv1_300x300_nv12.bin                 |
+  | unet_mobilenet               | unet_mobilenet_1024x2048_nv12.bin                |
+  | yolov2_darknet19             | yolov2_darknet19_608x608_nv12.bin                |
+  | yolov3_darknet53             | yolov3_darknet53_416x416_nv12.bin                |
+  | yolov5s                      | yolov5s_672x672_nv12.bin                         |
+  
+
 
 
 
@@ -3275,22 +3458,22 @@ profile日志文件产生目录。
 
 评测示例脚本主要在 ``script`` 和 ``tools`` 目录下。 script是开发板上运行的评测脚本，包括常见分类，检测和分割模型。每个模型下面有三个脚本，分别表示：
 
-- fps.sh利用多线程调度实现fps统计，用户可以根据需求自由设置线程数。
-- latency.sh实现单帧延迟统计（一个线程，单帧）。
-- accuracy.sh用于精度评测。
+- fps.sh：利用多线程调度实现fps统计，用户可以根据需求自由设置线程数。
+- latency.sh：实现单帧延迟统计（一个线程，单帧）。
+- accuracy.sh：用于精度评测。
 
 ```shell
   script:
 
   ├── aarch64             # 编译产生的可执行文件及依赖库
   │   ├── bin
-  │   ├── lib
+  │   └── lib
   ├── base_config.sh      # 基础配置
   ├── config              # image_name配置文件
   │   ├── data_name_list
   |   |   ├── coco_detlist.list
   │   |   ├── imagenet.list
-  │   |   ├── voc_detlist.list
+  │   |   └── voc_detlist.list
   ├── classification      # 分类模型评测
   │   ├── efficientnet_lite0
   │   │   ├── accuracy.sh
@@ -3298,10 +3481,10 @@ profile日志文件产生目录。
   │   │   ├── latency.sh
   │   │   ├── workflow_accuracy.json
   │   │   ├── workflow_fps.json
-  │   │   ├── workflow_latency.json
+  │   │   └── workflow_latency.json
   │   ├── mobilenetv1
   │   ├── .....
-  │   ├── resnet18
+  │   └── resnet18
   ├── detection           # 检测模型
   |   ├── centernet_resnet50
   │   │   ├── accuracy.sh
@@ -3309,19 +3492,22 @@ profile日志文件产生目录。
   │   │   ├── latency.sh
   │   │   ├── workflow_accuracy.json
   │   │   ├── workflow_fps.json
-  │   │   ├── workflow_latency.json
+  │   │   └── workflow_latency.json
   │   ├── yolov2_darknet19
   │   ├── yolov3_darknet53
   │   ├── ...
-  │   ├── efficientdetd0
+  │   └── efficientdetd0
   └── segmentation       # 分割模型
-      └──unet_mobilenet
-          ├── accuracy.sh
-          ├── fps.sh
-          ├── latency.sh
-          ├── workflow_accuracy.json
-          ├── workflow_fps.json
-          ├── workflow_latency.json
+      ├── deeplabv3plus_efficientnetb0
+      │   ├── accuracy.sh
+      │   ├── fps.sh
+      │   ├── latency.sh
+      │   ├── workflow_accuracy.json
+      │   ├── workflow_fps.json
+      │   └── workflow_latency.json
+      ├── fastscnn_efficientnetb0
+      └── unet_mobilenet
+
 ```
 tools目录下是精度评测需要的脚本。主要包括 ``python_tools`` 下的精度计算脚本。
 
@@ -3330,6 +3516,15 @@ tools目录下是精度评测需要的脚本。主要包括 ``python_tools`` 下
 
   python_tools
     └── accuracy_tools
+        ├── cityscapes_metric.py
+        ├── cls_eval.py
+        ├── coco_metric.py
+        ├── coco_det_eval.py
+        ├── config.py
+        ├── parsing_eval.py
+        ├── voc_det_eval.py
+        └── voc_metric.py
+
 ```
 :::caution 注意
 
@@ -3373,18 +3568,6 @@ tools目录下是精度评测需要的脚本。主要包括 ``python_tools`` 下
 
 - 命令行参数说明
 
-``accuracy.sh`` 脚本内容如下：
-
-```shell
-  #!/bin/sh
-
-  source ../../base_config.sh                      # 加载基础配置
-  export SHOW_FPS_LOG=1                            # 设置环境变量，打印fps级别log
-
-  ${app} \                                         # 可执行程序，在accuracy.sh脚本中定义
-    --config_file=workflow_accuracy.json \         # 加载精度测试workflow配置文件
-    --log_level=2                                  # 设置log等级
-```
 ``fps.sh`` 脚本内容如下：
 
 ```shell
@@ -3419,91 +3602,40 @@ tools目录下是精度评测需要的脚本。主要包括 ``python_tools`` 下
 
   注意：max_cache参数生效时会预处理图片并读取到内存中，为保障您的程序稳定运行，请不要设置过大的值，建议您的数值设置不超过30。
 :::
-以fcos_efficientnetb0模型为例，workflow_accuray.json 配置文件内容如下：
+以fcos_efficientnetb0模型为例，workflow_fps.json 配置文件内容如下：
 
 ```
-  {
+ {
     "input_config": {
-      "input_type": "preprocessed_image",
-      "height": 512,
-      "width": 512,
-      "data_type": 1,
-      "image_list_file": "../../../data/coco/coco.lst",
-      "need_pre_load": false,
-      "need_loop": false,
-      "max_cache": 10
-    },
-    "output_config": {
-      "output_type": "eval",
-      "eval_enable": true,
-      "output_file": "./eval.log"
-    },
-    "workflow": [
-      {
-        "method_type": "InferMethod",
-        "unique_name": "InferMethod",
-        "method_config": {
-          "core": 0,
-          "model_file": "../../../model/runtime/fcos_efficientnetb0/fcos_efficientnetb0_512x512_nv12.bin"
-        }
-      },
-      {
-        "thread_count": 2,
-        "method_type": "PTQFcosPostProcessMethod",
-        "unique_name": "PTQFcosPostProcessMethod",
-        "method_config": {
-          "strides": [
-            8,
-            16,
-            32,
-            64,
-            128
-          ],
-          "class_num": 80,
-          "score_threshold": 0.05,
-          "topk": 1000,
-          "det_name_list": "../../config/data_name_list/coco_detlist.list"
-        }
-      }
-    ]
-  }
-```
-
-workflow_fps.json 配置文件内容如下：
-
-```
-  {
-    "input_config": {
-      "input_type": "image",
-      "height": 512,
-      "width": 512,
-      "data_type": 1,
-      "image_list_file": "../../../mini_data/coco/coco.lst",
-      "need_pre_load": true,
+      "input_type": "image",                                    # 输入数据格式，支持图像或者bin文件
+      "height": 512,                                            # 输入数据高度
+      "width": 512,                                             # 输入数据宽度
+      "data_type": 1,                                           # 输入数据类型：HB_DNN_IMG_TYPE_NV12
+      "image_list_file": "../../../mini_data/coco/coco.lst",    # 预处理数据集lst文件所在路径
+      "need_pre_load": true,                                    # 是否使用预加载方式读取数据集
       "limit": 10,
-      "need_loop": true,
+      "need_loop": true,                                        # 是否循环读取数据进行评测
       "max_cache": 10
     },
     "output_config": {
-      "output_type": "image",
+      "output_type": "image",                                   # 可视化输出数据类型
       "image_list_enable": true,
-      "image_output_dir": "./output_images",
-      "in_order": false
+      "in_order": false                                         # 是否按顺序输出
     },
     "workflow": [
       {
-        "method_type": "InferMethod",
+        "method_type": "InferMethod",                           # Infer推理方式
         "unique_name": "InferMethod",
         "method_config": {
-          "core": 0,
-          "model_file": "../../../model/runtime/fcos_efficientnetb0/fcos_efficientnetb0_512x512_nv12.bin"
+          "core": 0,                                            # 推理core id
+          "model_file": "../../../model/runtime/fcos_efficientnetb0/fcos_efficientnetb0_512x512_nv12.bin" # 模型文件
         }
       },
       {
-        "thread_count": 4,
-        "method_type": "PTQFcosPostProcessMethod",
+        "thread_count": 4,                                      # 后处理线程数
+        "method_type": "PTQFcosPostProcessMethod",              # 后处理方法
         "unique_name": "PTQFcosPostProcessMethod",
-        "method_config": {
+        "method_config": {                                      # 后处理参数
           "strides": [
             8,
             16,
@@ -3524,7 +3656,7 @@ workflow_fps.json 配置文件内容如下：
 workflow_latency.json 如下：
 
 ```
-  {
+ {
     "input_config": {
       "input_type": "image",
       "height": 512,
@@ -3538,8 +3670,7 @@ workflow_latency.json 如下：
     },
     "output_config": {
       "output_type": "image",
-      "image_list_enable": true,
-      "image_output_dir": "./output_images"
+      "image_list_enable": true
     },
     "workflow": [
       {
@@ -3738,12 +3869,9 @@ workflow_latency.json 如下：
   /userdata/ptq/script/detection/fcos# sh accuracy.sh
   ../../aarch64/bin/example --config_file=workflow_accuracy.json --log_level=2
   ...
-  I0118 14:02:43.635543 24783 ptq_fcos_post_process_method.cc:157] PTQFcosPostProcessMethod DoProcess finished,
-  predict result: [{"bbox":[-1.518860,71.691170,574.934631,638.294922],"prob":0.750647,"label":21,"class_name":"
-  I0118 14:02:43.635716 24782 ptq_fcos_post_process_method.cc:150] PostProcess success!
-  I0118 14:02:43.636156 24782 ptq_fcos_post_process_method.cc:152] release output tensor success!
-  I0118 14:02:43.636204 24782 ptq_fcos_post_process_method.cc:157] PTQFcosPostProcessMethod DoProcess finished,
-  predict result: [{"bbox":[3.432283,164.936249,157.480042,264.276825],"prob":0.544454,"label":62,"class_name":"
+  I0419 03:14:51.158655 39555 infer_method.cc:107] Predict DoProcess finished.
+  I0419 03:14:51.187361 39556 ptq_fcos_post_process_method.cc:123] PTQFcosPostProcessMethod DoProcess finished, predict result: [{"bbox":[-1.518860,71.691170,574.934631,638.294922],"prob":0.750647,"label":21,"class_name":"
+  I0118 14:02:43.636204 24782 ptq_fcos_post_process_method.cc:123] PTQFcosPostProcessMethod DoProcess finished, predict result: [{"bbox":[3.432283,164.936249,157.480042,264.276825],"prob":0.544454,"label":62,"class_name":"
   ...
 ```
 开发板端程序会在当前目录生成 ``eval.log`` 文件，该文件就是预测结果文件。
@@ -3751,7 +3879,7 @@ workflow_latency.json 如下：
 
 - ###### 精度计算
 
-:::info 备注
+:::caution 注意
 
   精度计算部分请在 ``开发机`` 模型转换的环境下操作
 :::
@@ -3802,7 +3930,7 @@ voc_det_eval.py是用来计算使用VOC数据集评测的检测模型的精度�
 
   - ``eval_result_path``：检测模型的预测结果文件。
   - ``annotation_path``：VOC数据集的标注文件。
-  - ``val_txt_path``：VOC数据集中 ``../ImageSets/Main`` 文件夹下的val.txt文件。
+  - ``val_txt_path``：VOC数据集中ImageSets/Main文件夹下的val.txt文件。
 :::
 - 分割模型
 
@@ -3813,10 +3941,11 @@ voc_det_eval.py是用来计算使用VOC数据集评测的检测模型的精度�
 
   #!/bin/sh
 
-  python3 parsing_eval.py --log_file=eval.log --gt_path=cityscapes/gtFine/val
+  python3 parsing_eval.py --width=output_width --height=output_height --log_file=eval.log --gt_path=cityscapes/gtFine/val
 ```
 :::info 备注
-
+  - ``width``: 分割模型的输出宽度
+  - ``height``: 分割模型的输出高度
   - ``log_file``：分割模型的预测结果文件。
   - ``gt_path``：Cityscapes数据集的标注文件。
 :::
@@ -3839,34 +3968,34 @@ voc_det_eval.py是用来计算使用VOC数据集评测的检测模型的精度�
 .h头文件放置于 ``ai_benchmark/code/include/method/`` 路径下：
 
 ```bash
-  +---ai_benchmark
-  | +---code                                  # 示例源码
-  | | +---include
-  | | | +---method                            # 在此文件夹中添加头文件
-  | | | | +---ptq_centernet_post_process_method.h
-  | | | | +---.....
-  | | | | +---ptq_yolo5_post_process_method.h
-  | | +---src
-  | | | +---method                            # 在此文件夹中添加后处理.cc文件
-  | | | | | +---ptq_centernet_post_process_method.cc
-  | | | | | +---....
-  | | | | | +---ptq_yolo5_post_process_method.cc
+  |--ai_benchmark
+  |  |--code                                                 # 示例源码
+  |  |  |--include
+  |  |  |  |--method                                         # 在此文件夹中添加头文件
+  |  |  |  |  |--ptq_centernet_post_process_method.h
+  |  |  |  |  |--......
+  |  |  |  |  |--ptq_yolo5_post_process_method.h
+  |  |  |--src
+  |  |  |  |--method                                         # 在此文件夹中添加后处理.cc文件
+  |  |  |  |  |--ptq_centernet_post_process_method.cc
+  |  |  |  |  |--......
+  |  |  |  |  |--ptq_yolo5_post_process_method.cc
 ```
 ###### 增加模型运行脚本及配置文件
 
 脚本目录结构如下：
 
 ```bash
-  +---ai_benchmark
-  | +---xj3/ptq/script                                    # 示例脚本文件夹
-  | | +---detection
-  | | | +---centernet_resnet50
-  | | | | +---accuracy.sh                                # 精度测试脚本
-  | | | | +---fps.sh                                     # 性能测试脚本
-  | | | | +---latency.sh                                 # 单帧延时示例脚本
-  | | | | +---workflow_accuracy.json                     # 精度配置文件
-  | | | | +---workflow_fps.json                          # 性能配置文件
-  | | | | +---workflow_latency.json                      # 单帧延时配置文件
+  |--ai_benchmark
+  |  |--xj3/ptq/script                                      # 示例脚本文件夹
+  |  |  |--detection
+  |  |  |  |--centernet_resnet50
+  |  |  |  |  |--accuracy.sh                                # 精度测试脚本
+  |  |  |  |  |--fps.sh                                     # 性能测试脚本
+  |  |  |  |  |--latency.sh                                 # 单帧延时示例脚本
+  |  |  |  |  |--workflow_accuracy.json                     # 精度配置文件
+  |  |  |  |  |--workflow_fps.json                          # 性能配置文件
+  |  |  |  |  |--workflow_latency.json                      # 单帧延时配置文件
 ```
 
 ##### 辅助工具和常用操作

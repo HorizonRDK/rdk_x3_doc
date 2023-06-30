@@ -7,7 +7,7 @@ sidebar_position: 2
 
 ### 程序功能
 
-下图所示为X3M的视频数据通路框图，其中的专业名词解释请查看 [多媒体开发概述-术语约定](./overview_zh_CN#terminology)。
+下图所示为X3M的视频数据通路框图，其中的专业名词解释请查看 [多媒体开发概述-术语约定](./overview#terminology)。
 
 ![image-20220517184132422](./image/multimedia_samples/image-20220517184132422.png)
 
@@ -226,7 +226,7 @@ quit
 
 ### 程序功能
 
-下图所示为X3M的视频数据通路框图，其中的专业名词解释请查看 [多媒体开发概述-术语约定](./overview_zh_CN#terminology)。
+下图所示为X3M的视频数据通路框图，其中的专业名词解释请查看 [多媒体开发概述-术语约定](./overview#terminology)。
 
 ![image-20220517184132422](./image/multimedia_samples/image-20220517184132422.png)
 
@@ -616,7 +616,7 @@ ISP_TEST>
 
 ### 程序功能
 
-`sample_vps` 程序使用一个 `vps grp` 的多个不同通道，对 `YUV` 图像进行裁剪，旋转，缩放等操作，展示 `vps` 的基本用法。更多丰富的 `vps` 图像处理使用请参考[视频处理](./video_processing_zh_CN)章节。
+`sample_vps` 程序使用一个 `vps grp` 的多个不同通道，对 `YUV` 图像进行裁剪，旋转，缩放等操作，展示 `vps` 的基本用法。更多丰富的 `vps` 图像处理使用请参考[视频处理](./video_processing)章节。
 
 ### 程序开发
 
@@ -714,7 +714,7 @@ $ ls
 
 ### 程序功能
 
-`sample_osd` 程序用于给 `vps` 通道输出的 `YUV` 数据叠加时间戳，汉语文字 `osd`。更多丰富的 `osd` 图像处理使用请参考[区域处理](./region_processing_zh_CN)章节。
+`sample_osd` 程序用于给 `vps` 通道输出的 `YUV` 数据叠加时间戳，汉语文字 `osd`。更多丰富的 `osd` 图像处理使用请参考[区域处理](./region_processing)章节。
 
 ### 程序开发
 
