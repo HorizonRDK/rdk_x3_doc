@@ -89,7 +89,7 @@ sidebar_position: 1
 
 - 我们完全开放了操作系统的源代码，包括系统核心模块和功能模块的源代码。开发者可以自由地查看和修改源代码，为定制化和优化提供了更大的灵活性。
 - 详细的代码文档和注释将提供给开发者，以帮助他们更好地理解和使用源代码。
-- 我们欢迎开发者通过开源社区参与代码贡献和讨论，共同推动操作系统的改进和优化，源码在 [rdk-linux](https://github.com/orgs/HorizonRDK/teams/rdk-linux/repositories) 上维护。
+- 我们欢迎开发者通过开源社区参与代码贡献和讨论，共同推动操作系统的改进和优化，源码在 [HorizonRDK](https://github.com/HorizonRDK) 上维护。
 
 支持RDK X3 Module：
 

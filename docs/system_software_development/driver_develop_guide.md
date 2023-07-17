@@ -2647,8 +2647,8 @@ echo 100 > /sys/class/misc/ion/cma_carveout_size
 
 2、确认当前硬件使用的dtb文件
 
-X3Pi 一般是 `hobot-x3-pi.dtb`
-X3CM 是`hobot-x3-cm.dtb`
+RDK X3是 `hobot-x3-pi.dtb`  
+RDK X3 Module是 `hobot-x3-cm.dtb`
 
 可以通过 `cat /sys/firmware/devicetree/base/model`  命令确定
 
