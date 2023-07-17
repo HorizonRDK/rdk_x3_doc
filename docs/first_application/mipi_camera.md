@@ -4,6 +4,8 @@ sidebar_position: 4
 
 # 3.4 MIPI摄像头使用
 
+<iframe src="//player.bilibili.com/player.html?aid=700903305&bvid=BV1rm4y1E73q&cid=1196558356&page=19" scrolling="no" border="0" frameborder="no" framespacing="0" width="960" height="540" allowfullscreen="true"> </iframe>
+
 开发板上安装了`mipi_camera.py`程序用于测试MIPI摄像头的数据通路，该示例会实时采集MIPI摄像头的图像数据，然后运行目标检测算法，最后把图像数据和检测结果融合后通过HDMI接口输出。
 
 - 环境准备：

@@ -86,6 +86,8 @@ USB主从模式切换完全由硬件电路实现，用户只需按照上表的�
 
 **接入U盘**  
 
+<iframe src="//player.bilibili.com/player.html?aid=700903305&bvid=BV1rm4y1E73q&cid=1196553711&page=5" scrolling="no" border="0" frameborder="no" framespacing="0" width="960" height="540" allowfullscreen="true"> </iframe>
+
 开发板USB Type A接口(接口5和6)，支持U盘功能，可自动检测U盘接入并挂载，默认挂载目录为`/media/sda1`。用户可通过touch命令确认U盘工作正常，如下：
 
 ```bash
@@ -101,6 +103,8 @@ sunrise@ubuntu:/media/sda1$
 开发板USB Type A接口(接口5和6)，支持USB串口转接板功能，可自动检测USB串口转接板接入并创建设备节点`/dev/ttyUSB*` 或者 `/dev/ttyACM*`（星号代表0开始的数字）。用户可参考 [使用串口](../python_software_development/40pin_user_guide#40pin_uart_usage) 章节对串口进行使用。
 
 ## USB摄像头
+
+<iframe src="//player.bilibili.com/player.html?aid=700903305&bvid=BV1rm4y1E73q&cid=1196554247&page=6" scrolling="no" border="0" frameborder="no" framespacing="0" width="960" height="540" allowfullscreen="true"> </iframe>
 
 开发板USB Type A接口(接口5和6)，支持USB摄像头功能，可自动检测USB摄像头接入并创建设备节点`/dev/video8`。用户可通过`v4l2`命令确认USB摄像头工作正常，如下：
 
@@ -164,6 +168,8 @@ Streaming Parameters Video Capture:
 
 ## MIPI摄像头{#mipi_port}
 
+<iframe src="//player.bilibili.com/player.html?aid=700903305&bvid=BV1rm4y1E73q&cid=1196554333&page=7" scrolling="no" border="0" frameborder="no" framespacing="0" width="960" height="540" allowfullscreen="true"> </iframe>
+
 开发板提供1路MIPI CSI接口(接口2)，可实现MIPI摄像头的接入。目前开发板适配了多种规格的摄像头模组，模组型号、规格如下：
 
 | 序号 | Sensor |   分辨率  |  FOV  | I2C 设备地址 |
@@ -208,6 +214,9 @@ sunrise@ubuntu:~# sudo i2cdetect -y -r 1
 开发板使用中禁止热插拔TF存储卡，否则会造成系统运行异常，甚至造成存储卡文件系统损坏。
 
 ## Wi-Fi天线接口
+
+<iframe src="//player.bilibili.com/player.html?aid=700903305&bvid=BV1rm4y1E73q&cid=1196557162&page=8" scrolling="no" border="0" frameborder="no" framespacing="0" width="960" height="540" allowfullscreen="true"> </iframe>
+
 开发板的无线网络支持板载和外置天线两种配置，通常情况下板载天线可以满足使用需求。当开发板安装金属材质外壳后，需要连接外置天线到（接口11），以增强信号强度。
 
 ## 40PIN
@@ -223,6 +232,8 @@ RDK X3开发板提供40PIN标准接口，方便用户进行外围扩展，其中
 40PIN各功能的使用方法请查看 [40PIN 功能使用](../python_software_development/40pin_user_guide.md) 章节。
 
 ## 蓝牙
+
+<iframe src="//player.bilibili.com/player.html?aid=700903305&bvid=BV1rm4y1E73q&cid=1196557328&page=9" scrolling="no" border="0" frameborder="no" framespacing="0" width="960" height="540" allowfullscreen="true"> </iframe>
 
 ### 初始化
 
@@ -286,6 +297,8 @@ brcm_patchram_plus
 经过以上操作后，蓝牙的扫描、配对的基本功能就完成了，如需使用更多功能，可查阅 `BlueZ`的官方帮助说明。
 
 ## 音频子板
+
+<iframe src="//player.bilibili.com/player.html?aid=700903305&bvid=BV1rm4y1E73q&cid=1196557429&page=10" scrolling="no" border="0" frameborder="no" framespacing="0" width="960" height="540" allowfullscreen="true"> </iframe>
 
 RDK X3的40PIN接口上有两路i2s接口，通过他们可以外接音频`codec`，实现音频采集和播放。地平线提供音频模块供开发调试使用，该转接板提供I2S的传输通路，实现音频数据在音频子板与RDK X3单板之间的传输；提供DAC与模拟信号接口，实现外置扬声器的接入；并且提供AEC功能需要的参考信号回传。音频模块设计框图、实物图如下：
 
