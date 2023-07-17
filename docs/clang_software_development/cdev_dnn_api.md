@@ -7,7 +7,7 @@ sidebar_position: 3
 
 :::tip 小技巧
 
-  模型推理API接口所用的头文件和lib库文件，请在 `《交付物说明》 <../quant_toolchain_development/horizon_intermediate/env_install.html#id4>`_ 的 package/host/host_package/xj3_aarch64/dnn文件夹获取。 
+  模型推理API接口所用的头文件和lib库文件，请在 [《交付物说明》](../quant_toolchain_development/horizon_intermediate#deliverables_instructions)的 package/host/host_package/xj3_aarch64/dnn文件夹获取。 
 :::
 
 ## 模型推理库版本信息获取 API
@@ -338,9 +338,9 @@ sidebar_position: 3
 
   最多支持同时存在32个模型任务。
 
-  API示例： 可参考 `模型推理DNN API使用示例说明文档 <../quant_toolchain_development/horizon_intermediate/horizon_runtime_samples/dnn_api_user_guide/basic-sample.html#api-tutorial>`_ 的 ``roi_infer.sh`` 说明。
+  API示例： 可参考[模型推理DNN API使用示例说明文档](../quant_toolchain_development/horizon_intermediate#api_tutorial)的 ``roi_infer.sh`` 说明。
 
-  模型限制：在模型转换时，将编译参数 input_source 设置为 {'input_name': 'resizer'}即可生成resizer模型，具体参数配置细节可参考 `PTQ量化原理及步骤说明的转换模型 <../quant_toolchain_development/horizon_intermediate/ptq_user_guide/chapter_model_conversion.html#model-conversion>`_ 中的介绍。
+  模型限制：在模型转换时，将编译参数 input_source 设置为 {'input_name': 'resizer'}即可生成resizer模型，具体参数配置细节可参考[PTQ量化原理及步骤说明的转换模型](../quant_toolchain_development/horizon_intermediate#model_conversion)中的介绍。
 
   ![resizer](./image/cdev_dnn_api/resizer.png)
 
