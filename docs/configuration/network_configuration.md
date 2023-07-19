@@ -8,7 +8,7 @@ sidebar_position: 2
 
 ## 有线网络{#config_ethnet}
 
-<iframe src="//player.bilibili.com/player.html?aid=700903305&bvid=BV1rm4y1E73q&cid=1196557461&page=11" scrolling="no" border="0" frameborder="no" framespacing="0" width="960" height="540" allowfullscreen="true"> </iframe>
+<iframe src="//player.bilibili.com/player.html?aid=700903305&bvid=BV1rm4y1E73q&cid=1196557461&page=11" scrolling="no" border="0" frameborder="no" framespacing="0" width="100%" height="500" allowfullscreen="true"> </iframe>
 
 开发板有线网络默认采用静态IP配置，初始IP地址为192.168.1.10。用户可通过如下方法实现静态、DHCP模式的切换。
 
@@ -76,7 +76,7 @@ iface eth0 inet static
 
 ## 无线网络
 
-<iframe src="//player.bilibili.com/player.html?aid=700903305&bvid=BV1rm4y1E73q&cid=1196557610&page=12" scrolling="no" border="0" frameborder="no" framespacing="0" width="960" height="540" allowfullscreen="true"> </iframe>
+<iframe src="//player.bilibili.com/player.html?aid=700903305&bvid=BV1rm4y1E73q&cid=1196557610&page=12" scrolling="no" border="0" frameborder="no" framespacing="0" width="100%" height="500" allowfullscreen="true"> </iframe>
 
 开发板集成了2.4GHz无线WiFi模块，支持Soft AP和Station两种模式，默认运行在Station模式下。下面介绍两种模式的使用方法。
 
@@ -237,7 +237,7 @@ Station模式下，开发板作为客户端，接入路由器无线热点进行�
 
 ## DNS服务
 
-<iframe src="//player.bilibili.com/player.html?aid=700903305&bvid=BV1rm4y1E73q&cid=1196557655&page=13" scrolling="no" border="0" frameborder="no" framespacing="0" width="960" height="540" allowfullscreen="true"> </iframe>
+<iframe src="//player.bilibili.com/player.html?aid=700903305&bvid=BV1rm4y1E73q&cid=1196557655&page=13" scrolling="no" border="0" frameborder="no" framespacing="0" width="100%" height="500" allowfullscreen="true"> </iframe>
 
 DNS(Domain Name Server)是进行域名(domain name)和与之相对应的IP地址转换的服务器。
 

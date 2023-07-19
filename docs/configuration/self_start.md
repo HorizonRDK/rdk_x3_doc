@@ -4,7 +4,7 @@ sidebar_position: 4
 
 # 2.4 自启动配置
 
-<iframe src="//player.bilibili.com/player.html?aid=700903305&bvid=BV1rm4y1E73q&cid=1196557834&page=15" scrolling="no" border="0" frameborder="no" framespacing="0" width="960" height="540" allowfullscreen="true"> </iframe>
+<iframe src="//player.bilibili.com/player.html?aid=700903305&bvid=BV1rm4y1E73q&cid=1196557834&page=15" scrolling="no" border="0" frameborder="no" framespacing="0" width="100%" height="500" allowfullscreen="true"> </iframe>
 
 Ubuntu系统添加自启动程序的方式有多种方法，本章节提供两种方法作为参考。
 

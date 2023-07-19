@@ -6,8 +6,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: '旭日X3派用户手册',
-  tagline: '最好用的机器人开发平台',
+  title: 'RDK X3用户手册',
   favicon: 'img/logo.png',
 
   // Set the production url of your site here
@@ -72,7 +71,7 @@ const config = {
         },
       },
       navbar: {
-        title: '旭日X3派',
+        title: 'RDK X3',
         logo: {
           alt: 'My Site Logo',
           src: 'img/logo.png',
@@ -85,7 +84,7 @@ const config = {
             label: '用户手册',
           },
           {
-            href: 'https://developer.horizon.ai/',
+            href: 'https://developer.horizon.cc/',
             label: '开发者社区',
             position: 'left',
           },
@@ -113,7 +112,7 @@ const config = {
             items: [
               {
                 label: '地平线开发者社区',
-                href: 'https://developer.horizon.ai/',
+                href: 'https://developer.horizon.cc/',
               },
             ],
           },
