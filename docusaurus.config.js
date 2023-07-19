@@ -98,36 +98,7 @@ const config = {
       },
       footer: {
         style: 'dark',
-        links: [
-          {
-            title: 'Docs',
-            items: [
-              {
-                label: '手册',
-                to: '/',
-              },
-            ],
-          },
-          {
-            title: '社区',
-            items: [
-              {
-                label: '地平线开发者社区',
-                href: 'https://developer.horizon.ai/',
-              },
-            ],
-          },
-          {
-            title: 'More',
-            items: [
-              {
-                label: 'GitHub',
-                href: 'https://github.com/HorizonRDK',
-              },
-            ],
-          },
-        ],
-        copyright: `Copyright © ${new Date().getFullYear()} 地平线机器人`,
+        copyright: `© 版权所有 ${new Date().getFullYear()}, Horizon Robotics`,
       },
       prism: {
         theme: lightCodeTheme,
