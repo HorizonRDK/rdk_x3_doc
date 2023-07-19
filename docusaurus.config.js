@@ -117,6 +117,7 @@ const config = {
           language: ["en", "zh"],
           highlightSearchTermsOnTargetPage: true,
           explicitSearchResultPath: true,
+          docsRouteBasePath: '/'
           // For Docs using Chinese, The `language` is recommended to set to:
           // ```
           // language: ["en", "zh"],
