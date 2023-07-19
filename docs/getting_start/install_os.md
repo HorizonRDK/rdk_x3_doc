@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # 1.2 安装系统
 
-<iframe src="//player.bilibili.com/player.html?aid=700903305&bvid=BV1rm4y1E73q&cid=1196536307&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" width="960" height="540" allowfullscreen="true"> </iframe>
+<iframe src="//player.bilibili.com/player.html?aid=700903305&bvid=BV1rm4y1E73q&cid=1196536307&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" width="100%" height="500" allowfullscreen="true"> </iframe>
 
 开发板支持Ubuntu 20.04 Desktop系统版本，支持图形化交互。
 
