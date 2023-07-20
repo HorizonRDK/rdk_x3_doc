@@ -3,6 +3,7 @@ sidebar_position: 2
 ---
 
 # 7.2 示例程序
+本章简述地平线多媒体应用示例，所涉及源码可以通过 sudo apt install hobot-multimedia-samples 获得，安装在 /app/multimedia_samples 目录下。
 ## get_sif_data 使用说明{#get_sif_data}
 
 ### 程序功能
