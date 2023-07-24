@@ -186,14 +186,14 @@ dtb  Image  Image.lz4  kernel_headers  modules
 
 ## 编译hobot-xxx软件包
 
-hobot-xxx软件包是地平线维护的debian软件包的源码和配置，下载源码后，可以执行 `mk_deb.sh` 重新构建debian包。
+hobot-xxx软件包是地平线维护的debian软件包的源码和配置，下载源码后，可以执行 `mk_debs.sh` 重新构建debian包。
 
 帮助信息如下：
 
 ```shell
 $ ./mk_debs.sh help
 The debian package named by help is not supported, please check the input parameters.
-./mk_deb.sh [all] | [deb_name]
+./mk_debs.sh [all] | [deb_name]
     hobot-multimedia-dev, Version 2.0.0
     hobot-wifi, Version 2.0.0
     hobot-camera, Version 2.0.0
@@ -242,17 +242,17 @@ The debian package named by help is not supported, please check the input parame
 执行以下命令会重新全部构建所有的debian包（需要先完成kernel的编译）：
 
 ```shell
-./mk_deb.sh
+./mk_debs.sh
 ```
 
 构建完成后，会在`deploy/deb_pkgs`目录下生成deb软件包。
 
 ### 单独构建debian包
 
-`mk_deb.sh` 支持单独构建指定的软件包，在执行时带包名参数即可，例如：
+`mk_debs.sh` 支持单独构建指定的软件包，在执行时带包名参数即可，例如：
 
 ```shell
-./mk_deb.sh hobot-configs
+./mk_debs.sh hobot-configs
 ```
 
 ### 使用自定义的debian包
