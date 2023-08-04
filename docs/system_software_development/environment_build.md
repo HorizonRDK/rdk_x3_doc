@@ -48,6 +48,27 @@ curl repo git liblz4-tool apt-cacher-ng libssl-dev checkpolicy autoconf \
 android-sdk-libsparse-utils mtools parted dosfstools udev rsync
 ```
 
+** 安装python **
+
+编译linux内核需要依赖python2环境，ubuntu22.04之后的版本默认不再安装python2，所以需要执行以下命令安装：
+
+```shell
+sudo apt install python2
+```
+
+编译debian包需要依赖python3环境，通过以下命令设置python选择器，并且安装 python3-setuptools和pip，它们是生成wheel包的依赖工具：
+
+
+```shell
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python2 1
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 2
+sudo update-alternatives --list python
+
+apt-get install python3-setuptools
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+python get-pip.py
+```
+
 **安装交叉编译工具链**
 
 执行以下命令下载交叉编译工具链：
