@@ -400,8 +400,7 @@ sudo apt install pulseaudio
 .ifexists module-udev-detect.so
 #load-module module-udev-detect
 load-module module-alsa-source device=hw:0,0
-load-module module-alsa-sink device=hw:0,1 mmap=false tsched=0 fragments=2 fragmm
-ent_size=960 rate=48000 channels=1 rewind_safeguard=960
+load-module module-alsa-sink device=hw:0,1 mmap=false tsched=0 fragments=2 fragmment_size=960 rate=48000 channels=1 rewind_safeguard=960
 .else
 ### Use the static hardware detection module (for systems that lack udev supportt
 )
