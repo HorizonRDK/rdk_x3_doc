@@ -188,9 +188,43 @@ RDK X3 Module载板提供一组40pin header接口（接口9），接口信号电
 
 ## <span id="firmware download"/>系统烧录
 
-RDK X3模组支持eMMC存储方式，当烧录系统到eMMC时，需要使用地平线hbupdate烧录工具，请按照以下步骤进行工具的下载和安装：
+RDK X3 Module支持从eMMC和SD卡两种模式启动系统：
+
+- 当模组上的eMMC没有烧录过系统镜像的情况下，插入制作好系统的SD卡到载板即可通过从SD卡启动系统。
+
+- 如果模组上的eMMC已经烧录过系统镜像，可以按照以下步骤进行eMMC和SD卡启动的切换。
+
+  1、默认情况下会从eMMC启动系统
+
+  2、禁用eMMC的启动切换到使用SD卡启动系统，登录系统后，执行以下命名把eMMC的第二个分区的启动标志删除，并重启系统生效：
+
+  ```
+  sudo parted /dev/mmcblk0 set 2 boot off
+  sudo reboot
+  ```
+
+  3、在uboot下会发现eMMC没有启动分区而去寻找去sd卡启动分区，从SD卡加载系统启动，登录系统后执行`mount`命令可以看到跟文件系统挂载在 SD 卡的 第二个分区，config分区也使用的SD卡的第一个分区。
+
+  ```
+  /dev/mmcblk2p2 on / type ext4 (rw,relatime,data=ordered) 
+  /dev/mmcblk2p1 on /boot/config type vfat
+  ```
+
+- 从SD卡启动切换回从eMMC启动
+
+  当在使用SD卡启动系统时，并且eMMC上已经烧录过系统，执行以下命令恢复回从eMMC启动，重启系统生效。
+
+  ```
+  sudo parted /dev/mmcblk0 set 2 boot on
+  sudo reboot
+  ```
+
+当RDK X3模组需要烧录系统到SD上，不从eMMC模式启动时，请参考[安装系统](../getting_start/install_os.md)完成SD卡系统的烧录。
+
+当RDK X3模组需要烧录系统到eMMC时，需要使用地平线hbupdate烧录工具，请按照以下步骤进行工具的下载和安装，并且参考接下来的`安装USB驱动` 和 `烧录系统`两个章节完成eMMC系统的烧录。
+
 1. 下载hbupdate烧录工具，下载链接：[hbupdate](http://archive.sunrisepi.tech/downloads/hbupdate/)。
-2. 工具分为Windows、Linux两种版本，分别命名为 `hbupdate_win64_vx.x.x_rdk.tar.gz`、 `hbupdate_linux_gui_vx.x.x_rdk.tar.gz。
+2. 工具分为Windows、Linux两种版本，分别命名为 `hbupdate_win64_vx.x.x_rdk.tar.gz`、 `hbupdate_linux_gui_vx.x.x_rdk.tar.gz`。
 3. 解压烧录工具，解压目录需要不包含**空格、中文、特殊字符**。
 
 ### 安装USB驱动
@@ -202,10 +236,10 @@ RDK X3模组支持eMMC存储方式，当烧录系统到eMMC时，需要使用地
 3. 使用跳线帽将`Boot`管脚接地，管脚位置参考[功能控制接口](./rdk_x3_module.md#功能控制接口)。
 4. 将Micro USB接口与电脑通过USB线连接，然后给设备上电。
 5. 如PC设备管理器出现`USB download gadget`未知设备时，需要更新设备驱动，选择解压出的驱动文件夹`andriod_hobot`，然后点击下一步，完成驱动安装，如下图：  
-  ![image-usb-driver1](./image/rdk_x3_module/image-usb-driver1.png)  
-  ![image-usb-driver2](./image/rdk_x3_module/image-usb-driver2.png)
+    ![image-usb-driver1](./image/rdk_x3_module/image-usb-driver1.png)  
+    ![image-usb-driver2](./image/rdk_x3_module/image-usb-driver2.png)
 6. 驱动安装完成后，设备管理器会显示fastboot设备`Android Device`，如下图：
-  ![image-usb-driver3](./image/rdk_x3_module/image-usb-driver3.png)
+    ![image-usb-driver3](./image/rdk_x3_module/image-usb-driver3.png)
 
 ### 烧录系统{#flash_system}
 
