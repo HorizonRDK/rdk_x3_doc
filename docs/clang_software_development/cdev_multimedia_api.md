@@ -15,6 +15,7 @@ sidebar_position: 2
 | sp_init_vio_module | **初始化VIO对象** |
 | sp_release_vio_module | **销毁VIO对象** |
 | sp_open_camera | **打开摄像头** |
+| sp_open_camera_v2 | **指定分辨率打开摄像头** |
 | sp_open_vps | **打开VPS** |
 | sp_vio_close | **关闭摄像头** |
 | sp_vio_get_frame | **获取视频图像帧** |
@@ -77,7 +78,52 @@ sidebar_position: 2
 - `width`：配置输出宽度的数组地址
 - `height`：配置输出高度的数组地址
 
-**【返回类型】**  
+**【返回类型】** 
+
+成功返回 0，失败返回 -1
+
+### sp_open_camera_v2  
+
+**【函数原型】**  
+
+`int32_t sp_open_camera_v2(void *obj, const int32_t pipe_id, const int32_t video_index, int32_t chn_num, sp_sensors_parameters *parameters, int32_t *width, int32_t *height)`
+
+**【功能描述】**  
+
+初始化接入到RDK X3上的MIPI摄像头。  
+支持指定摄像头原始输出RAW的分辨率大小，通过`sp_sensors_parameters`设置。  
+支持设置输出分辨率，支持设置最多5组分辨率，其中只有1组可以放大，4组可以缩小。最大支持放大到原始图像的1.5倍，最小支持缩小到原始图像的1/8。
+
+目前支持的摄像头分辨率见下表：
+
+| camera | 分辨率 |
+| ---- | ----- |
+|IMX219|1920x1080@30fps(default), 640x480@30fps, 1632x1232@30fps, 3264x2464@15fps(max)|
+|IMX477|1920x1080@50fps(default), 1280x960@120fps, 2016x1520@40fps, 4000x3000@10fps(max)|
+|OV5647|1920x1080@30fps(default), 640x480@60fps, 1280x960@30fps, 2592x1944@15fps(max)|
+|F37|1920x1080@30fps(default)|
+|GC4663|2560x1440@30fps(default)|
+
+**【参数】**
+
+- `obj`： 已经初始化的`VIO`对象指针
+- `pipe_id`：支持多组数据输入，建议填0
+- `video_index`：camera对应的host编号，-1表示自动探测，编号可以查看 /etc/board_config.json 配置文件
+- `chn_num`：设置输出多少种不同分辨率的图像，最大为5，最小为1。
+- `parameters`：camera RAW输出相关结构体，用于指定分辨率和帧率
+- `width`：配置输出宽度的数组地址
+- `height`：配置输出高度的数组地址
+
+`sp_sensors_parameters`结构体成员见下表：
+
+| 数据类型 | 成员 | 注释 |
+| ---- | ----- | ----- |
+|int32_t|raw_height|摄像头输出RAW的高度|
+|int32_t|raw_width|摄像头输出RAW的宽度|
+|int32_t|fps|摄像头输出的帧率|
+
+
+**【返回类型】** 
 
 成功返回 0，失败返回 -1
 
