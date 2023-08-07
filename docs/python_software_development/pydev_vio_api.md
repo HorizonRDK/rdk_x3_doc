@@ -29,7 +29,7 @@ display = libsrcampy.Display()
 ## Camera对象{#camera}
 
 Camera对象用于完成MIPI Camera的图像采集和处理功能，包含了`open_cam`、`open_vps`、`get_img`、`set_img`、`close_cam`等几种方法，详细说明如下：
-open_cam
+### open_cam
 
 <font color='Blue'>【功能描述】</font>  
 
@@ -38,7 +38,7 @@ open_cam
 <font color='Blue'>【函数声明】</font>  
 
 ```python
-Camera.open_cam(pipe_id, video_index, fps, width, height)
+Camera.open_cam(pipe_id, video_index, fps, width, height, raw_height, raw_width)
 ```
 
 <font color='Blue'>【参数描述】</font>  
@@ -48,8 +48,10 @@ Camera.open_cam(pipe_id, video_index, fps, width, height)
 | pipe_id     | camera对应的pipeline通道号  | 默认从0开始，范围0~7  |
 | video_index | camera对应的host编号，-1表示自动探测，编号可以查看 /etc/board_config.json 配置文件 | 取值 -1, 0 , 1, 2 |
 | fps         | camera图像输出帧率          | 依据camera型号而定，默认值30   |
-| width       | camera图像输出宽度    |  视camera型号而定，默认值1920   |
-| height      | camera图像输出高度  |    视camera型号而定，默认值1080 |
+| width       | camera最终图像输出宽度    |  视camera型号而定，默认值1920（GC4663为2560）   |
+| height      | camera最终图像输出高度  |    视camera型号而定，默认值1080（GC4663为1440） |
+| raw_height       | camera原始RAW图像输出宽度    |  视camera型号而定，默认值1920（GC4663为2560）   |
+| raw_width      | camera原始RAW图像输出高度  |    视camera型号而定，默认值1080（GC4663为1440） |
 
 <font color='Blue'>【使用方法】</font> 
 
@@ -68,11 +70,29 @@ ret = camera.open_cam(0, -1, 30, 1920, 1080)
 | 0      | 成功  |
 | -1    | 失败 |
 
-<font color='Blue'>【注意事项】</font>  
+<font color='Blue'>【注意事项】</font> 
+
 `width`，`height`参数支持`list`类型输入，表示使能camera多组不同分辨率输出。`list`最多支持4组缩小，1组放大，缩放区间为camera原始分辨率的`1/8~1.5`倍之间。使用方式如下：
+
 ```python
 ret = cam.open_cam(0, -1, 30, [1920, 1280], [1080, 720])
 ```
+
+`raw_height`，`raw_width` 只有在需要摄像头不是默认分辨率的情况下才设置，比如在使用`IMX477`摄像头时，若想同时输出4k分辨率（3840x2160）和1080P分辨率（1920x1080），则可以这样使用：
+```python
+cam.open_cam(0, -1, 10, [3840, 1920], [2160, 1080], 3000, 4000)
+```
+
+目前支持的摄像头分辨率见下表：
+
+| camera | 分辨率 |
+| ---- | ----- |
+|IMX219|1920x1080@30fps(default), 640x480@30fps, 1632x1232@30fps, 3264x2464@15fps(max)|
+|IMX477|1920x1080@50fps(default), 1280x960@120fps, 2016x1520@40fps, 4000x3000@10fps(max)|
+|OV5647|1920x1080@30fps(default), 640x480@60fps, 1280x960@30fps, 2592x1944@15fps(max)|
+|F37|1920x1080@30fps(default)|
+|GC4663|2560x1440@30fps(default)|
+
 
 <font color='Blue'>【参考代码】</font>  
 
