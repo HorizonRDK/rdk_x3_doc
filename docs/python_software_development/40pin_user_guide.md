@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# 4.1 40PIN功能使用
+# 4.1 40PIN管脚使用
 
 开发板上的40PIN功能管脚，接口定义请查看[40PIN管脚定义](#40pin_define)章节。
 
@@ -35,7 +35,7 @@ RDK X3 Module 外扩40PIN管脚及其定义如下：
 
 ![image-20230510155124570](./image/40pin_user_guide/image-20230510155124570.png)
 
-## 使用GPIO功能
+## 使用GPIO
 
 开发板预置了GPIO Python库`Hobot.GPIO`，用户可以通过如下命令导入GPIO库。
 
@@ -448,7 +448,8 @@ Hobot.GPIO 库仅在带有附加硬件 PWM 控制器的引脚上支持 PWM。与
 
 请参阅 `/app/40pin_samples/simple_pwm.py`了解如何使用 PWM 通道的详细信息。
 
-**测试说明：** 打开 `output_pin` 指定的PWM通道，初始占空比 25%， 先每0.25秒增加5%占空比，达到100%之后再每0.25秒减少5%占空比，在正常输出波形时，可以通过示波器或者逻辑分析仪测量输出信号，观察波形。
+### 测试代码
+打开 `output_pin` 指定的PWM通道，初始占空比 25%， 先每0.25秒增加5%占空比，达到100%之后再每0.25秒减少5%占空比，在正常输出波形时，可以通过示波器或者逻辑分析仪测量输出信号，观察波形。
 
 ```python
 #!/usr/bin/env python3
@@ -495,13 +496,14 @@ RDK X3在40PIN上默认使能 UART3，物理管脚号 8 和 10，IO电压 3.3V�
 
 请参阅 `/app/40pin_samples/test_serial.py`了解如何使用串口的详细信息。
 
-**回环测试：** 把TXD和RXD在硬件上进行连接，然后运行测试程序，进行写和读操作，预期结果是读出的数据要完全等于写入的数据
+### 回环测试
+把TXD和RXD在硬件上进行连接，然后运行测试程序，进行写和读操作，预期结果是读出的数据要完全等于写入的数据
 
 **硬件连接：** 把TXD和RXD通过跳线帽直接硬件上连接在一起
 
 ![image-20220512101820743](./image/40pin_user_guide/image-20220512101820743.png)
 
-**回环测试过程：**
+**测试过程：**
 
 - 运行 `python3 /app/40pin_samples/test_serial.py`
 - 从打印的串口设备（其中/dev/ttyS0是系统调试口，不建议对它进行测试，除非你完全明白它的作用）中选择总线号和片选号作为输入选项，例如选则测试 `/dev/ttyS3`，按回车键确认，并输入波特率参数：
@@ -523,7 +525,7 @@ Send:  AA55
 Recv:  AA55
 ```
 
-**实现代码如下：**
+### 测试代码
 
 ```python
 #!/usr/bin/env python3
@@ -579,7 +581,7 @@ RDK X3在40Pin上默认使能 I2C0，物理管脚号 3 和 5，IO电压3.3V。
 
 请参阅 `/app/40pin_samples/test_i2c.py`了解如何使用I2C的详细信息。
 
-**测试方法说明：** 
+### 测试方法
 
 - 运行测试程序 `python3 /app/40pin_samples/test_i2c.py`
 
@@ -608,7 +610,7 @@ Read data from device 40 on I2C bus 1
 read value= b'`'
 ```
 
-**实现代码如下：**
+### 测试代码
 
 ```python
 #!/usr/bin/env python3
@@ -647,13 +649,14 @@ RDK X3在40Pin上物理管脚 `19, 21, 23, 24`引出了旭日X3M芯片的 `SPI2`
 
 请参阅 `/app/40pin_samples/test_spi.py`了解如何使用SPI的详细信息。
 
-**回环测试：** 把MISO和MOSI在硬件上进行连接，然后运行spi测试程序，进行写和读操作，预期结果是读出的数据要完全等于写入的数据
+### 回环测试
+把MISO和MOSI在硬件上进行连接，然后运行spi测试程序，进行写和读操作，预期结果是读出的数据要完全等于写入的数据
 
 **硬件连接：** 把MISO和MOSI通过跳线帽直接硬件上连接在一起
 
 ![image-20220512101915524](./image/40pin_user_guide/image-20220512101915524.png)
 
-**回环测试过程：**
+**测试过程：**
 
 - 运行 `python3 /app/40pin_samples/test_spi.py`
 - 从打印的spi控制器中选择总线号和片选号作为输入选项，例如选择测试 `spidev0.0`，则`bus num` 和 `cs num`都是`0`，按回车键确认：
@@ -673,7 +676,7 @@ Starting demo now! Press CTRL+C to exit
 0x55 0xAA
 ```
 
-**实现代码如下：**
+### 测试代码
 
 ```python
 #!/usr/bin/env python3

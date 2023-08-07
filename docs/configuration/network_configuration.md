@@ -10,9 +10,9 @@ sidebar_position: 2
 
 <iframe src="//player.bilibili.com/player.html?aid=700903305&bvid=BV1rm4y1E73q&cid=1196557461&page=11" scrolling="no" border="0" frameborder="no" framespacing="0" width="100%" height="500" allowfullscreen="true"> </iframe>
 
-开发板有线网络默认采用静态IP配置，初始IP地址为192.168.1.10。用户可通过如下方法实现静态、DHCP模式的切换。
+开发板有线网络默认采用静态IP配置，初始IP地址为`192.168.1.10`。用户可通过如下方法实现静态、DHCP模式的切换。
 
-**修改静态IP配置**  
+### 修改静态IP配置 
 开发板静态网络配置保存在`/etc/network/interfaces`文件中，通过修改`address`、`netmask`、`gateway`等字段，可完成对静态IP配置的修改，`metric`是网络优先级配置，设置为`700`是为了让有线网络的优先级更低，当有线和无线网络同时使能时优先会使用无线网络，例如：
 
 ```shell
@@ -33,7 +33,7 @@ iface eth0 inet static
 
 修改完成后，命令行输入`sudo restart_network`命令让配置生效。
 
-**修改DHCP配置**  
+### 修改DHCP配置
 DHCP(Dynamic Host Configuration Protocol，动态主机配置协议)通常被应用在局域网络环境中，主要作用是集中的管理、分配IP地址，使网络环境中的主机动态的获得IP地址、Gateway地址、DNS服务器地址等信息，并能够提升地址的使用率。
 
 开发板的DHCP网络配置保存在`/etc/network/interfaces`文件，通过修改eth0相关配置，可完成对DHCP模式的修改，例如：
@@ -53,7 +53,7 @@ iface eth0 inet dhcp
 
 修改完成后，命令行输入`sudo restart_network`命令让配置生效。
 
-**修改MAC地址配置**  
+### 修改MAC地址配置
 如需修改开发板默认MAC地址，可通过在`/etc/network/interfaces`文件中增加`pre-up`配置信息，指定用户需要的MAC地址，例如：
 
 ```shell
@@ -88,22 +88,24 @@ Station模式下，开发板作为客户端，接入路由器无线热点进行�
 
 - 对于使用Ubuntu Server版本系统的用户，可通过命令行完成无线网络配置，步骤如下：
 
-    - 使用`sudo nmcli device wifi rescan`命令扫描热点。如返回如下信息，说明扫描过于频繁，需要稍后再试
+1. 使用`sudo nmcli device wifi rescan`命令扫描热点。如返回如下信息，说明扫描过于频繁，需要稍后再试
     ```shell
     root@ubuntu:~# sudo nmcli device wifi rescan
     Error: Scanning not allowed immediately following previous scan.
     ```
-    - 使用`sudo nmcli device wifi list`命令列出扫描到的热点
-    - 使用 `sudo wifi_connect "SSID" "PASSWD"`命令连接热点，返回如下信息，说明网络连接成功
+2. 使用`sudo nmcli device wifi list`命令列出扫描到的热点
+3. 使用 `sudo wifi_connect "SSID" "PASSWD"`命令连接热点，返回如下信息，说明网络连接成功
     ```shell
     root@ubuntu:~# sudo wifi_connect "WiFi-Test" "12345678" 
     Device 'wlan0' successfully activated with 'd7468833-4195-45aa-aa33-3d43da86e1a7'.
     ```
-    - 如果连接热点后，返回如下信息，说明热点没有找到，可以执行`sudo nmcli device wifi rescan`命令重新扫描后再次连接
+:::tip
+如果连接热点后，返回如下信息，说明热点没有找到，可以执行`sudo nmcli device wifi rescan`命令重新扫描后再次连接
     ```shell
     root@ubuntu:~# sudo wifi_connect "WiFi-Test" "12345678" 
     Error: No network with SSID 'WiFi-Test' found.
     ```
+:::
 
 ### Soft AP模式
 

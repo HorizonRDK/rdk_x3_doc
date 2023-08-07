@@ -18,11 +18,12 @@ sudo bash -c 'echo 1 > /sys/devices/system/cpu/cpufreq/boost'
 
 使用以上命令配置的 CPU 频率仅在当前运行中生效，如果设备重启则恢复默认配置。
 
-**注意**
+:::info 注意
 CPU超频会增加芯片的功耗和发热，如出现稳定性问题，可通过如下命令关闭超频功能：
 ```bash
 sudo bash -c 'echo 0 > /sys/devices/system/cpu/cpufreq/boost'
 ```
+:::
 
 如需查看芯片工作频率、温度等状态，可通过`sudo hrut_somstatus`命令查询：  
 ![image-20220714113732289](./image/cpu_speed_modulation/image-20220714113732289.png)
