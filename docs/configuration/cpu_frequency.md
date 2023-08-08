@@ -26,4 +26,4 @@ sudo bash -c 'echo 0 > /sys/devices/system/cpu/cpufreq/boost'
 :::
 
 如需查看芯片工作频率、温度等状态，可通过`sudo hrut_somstatus`命令查询：  
-![image-20220714113732289](./image/cpu_speed_modulation/image-20220714113732289.png)
+![image-20220714113732289](./image/cpu_frequency/image-20220714113732289.png)
