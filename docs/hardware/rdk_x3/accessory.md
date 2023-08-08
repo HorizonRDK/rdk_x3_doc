@@ -1,32 +1,13 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 ---
 
-# 8.1 RDK X3硬件说明
-
-## 硬件资料
-
-### 数据手册
-本章节提供RDK X3（旭日X3派）的规格书，帮助开发者全面理解产品的规格、接口、功能特点等内容。
-
-**规格书**
-- [RDK X3规格书](http://archive.sunrisepi.tech/downloads/hardware/rdk_x3/RDK_X3_Specification.pdf)
-
-### 参考设计资料
-本章节提供X3派开发板（RDK X3）的接口原理图、机械尺寸图等硬件参考设计资料。
-
-**原理图**
-- [RDK X3 原理图](http://archive.sunrisepi.tech/downloads/hardware/rdk_x3/RDK_X3_IO_Schematics.pdf)
-
-**机械尺寸图**
-- [RDK X3 机械尺寸图](http://archive.sunrisepi.tech/downloads/hardware/rdk_x3/RDK_X3_3D_Step_Models.stp)
-
-## 认证配件清单
+# 认证配件清单
 
 认证配件清单是指经过地平线官方认证，可以适配RDK X3开发板的第三方配件配件清单。主要包含基础配件(电源、外壳、散热器)、摄像头、显示屏等类别，清单内容会不定期更新，逐步添加更多的配件型号。
 
 
-### 基础配件{#basic_accessories}
+## 基础配件{#basic_accessories}
 
 | 类型 | 供应商 | 型号 | 描述 | 购买链接 |
 | --- | --------- | -------- | --------------- | --------- |
@@ -40,7 +21,7 @@ sidebar_position: 1
 
 
 
-### 摄像头
+## 摄像头
 
 | 类型 | 供应商 | 型号 | 描述 | 购买链接 |
 | --- | --------- | -------- | --------------- | --------- |
@@ -53,7 +34,7 @@ sidebar_position: 1
 | USB | 轮趣 | USB摄像头 | 免驱USB摄像头，金属外壳，1080p | [购买链接](https://detail.tmall.com/item.htm?abbucket=12&id=666156389569&ns=1&spm=a230r.1.14.1.13e570f3eFF1sJ&skuId=4972914294771)  |
 
 
-### 显示屏
+## 显示屏
 
 | 类型 | 供应商 | 型号 | 描述 | 购买链接 |
 | --- | --------- | -------- | --------------- | --------- |

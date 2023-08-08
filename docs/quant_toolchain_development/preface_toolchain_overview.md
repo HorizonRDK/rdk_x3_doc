@@ -16,7 +16,7 @@ sidebar_position: 1
 
 本章节适用于使用地平线X3处理器的开发者，用于介绍地平线算法工具链的一些使用注意事项。
 
-**浮点模型(FP32)注意事项**
+### 浮点模型(FP32)注意事项
 
 -   支持<font color='Red'>caffe 1.0</font> 版本的caffe浮点模型和<font color='Red'>ir_version≤7</font> 、<font color='Red'>opset10</font> 、<font color='Red'>opset11</font> 版本的onnx浮点模型量化成地平线支持的定点模型；
 
@@ -26,7 +26,6 @@ sidebar_position: 1
 
 -   浮点模型中不要包含有<font color='Red'>后处理算子</font> ,例如：nms计算。
 
-
-**模型算子列表说明**
+### 模型算子列表说明
 
 -   目前提供了X3可支持的所有Caffe和ONNX算子情况，其他未列出的算子因<font color='Red'>X3 bpu硬件限制</font> ，<font color='Red'>暂不支持</font> 。具体算子支持列表，请参考 [模型算子支持列表](./horizon_intermediate#supported_op_list_and_restrictions) 章节内容。
