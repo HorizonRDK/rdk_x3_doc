@@ -75,9 +75,9 @@ sidebar_position: 4
 
   最多支持同时存在32个模型任务。
 
-  API示例： 可参考[模型推理DNN API使用示例说明文档](../quant_toolchain_development/horizon_intermediate#api_tutorial)的 ``roi_infer.sh`` 说明。
+  API示例： 可参考[模型推理DNN API使用示例说明文档](../toolchain_development/intermediate#api_tutorial)的 ``roi_infer.sh`` 说明。
 
-  模型限制：在模型转换时，将编译参数 input_source 设置为 {'input_name': 'resizer'}即可生成resizer模型，具体参数配置细节可参考[PTQ量化原理及步骤说明的转换模型](../quant_toolchain_development/horizon_intermediate#model_conversion)中的介绍。
+  模型限制：在模型转换时，将编译参数 input_source 设置为 {'input_name': 'resizer'}即可生成resizer模型，具体参数配置细节可参考[PTQ量化原理及步骤说明的转换模型](../toolchain_development/intermediate#model_conversion)中的介绍。
 
   ![resizer](./image/cdev_dnn_api/resizer.png)
 

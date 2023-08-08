@@ -8,7 +8,7 @@ Horizon Plugin Pytorch (下称 Plugin ) 参考了 PyTorch 官方的量化接口�
 
 量化训练的整体流程如下图所示：
 
-![qat](./image/horizon_expert/qat.svg)
+![qat](./image/expert/qat.svg)
 
 下面分别介绍各个步骤。
 

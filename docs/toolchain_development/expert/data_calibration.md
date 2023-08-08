@@ -51,7 +51,7 @@ Horizon Plugin Pytorch 于 1.2.1 版本后支持了新的 `calibration` 用法�
 
 calibration 与 QAT 的整体流程如下图所示：
 
-![calibration_v2_workflow](./image/horizon_expert/calibration_v2_workflow.svg)
+![calibration_v2_workflow](./image/expert/calibration_v2_workflow.svg)
 
 下面分别介绍各个步骤：
 

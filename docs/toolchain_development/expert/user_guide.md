@@ -101,13 +101,13 @@ class ExampleNet(nn.Module):
 
 这是一个简单的例子，现实中会比这个复杂很多。
 
-![](./image/horizon_expert/fuse_conv_relu.svg)
+![](./image/expert/fuse_conv_relu.svg)
 
 ### 提高量化精度
 
 如下图所示，如果各个算子独立计算，那么，每个算子的输出都是8bit的数据，而如果是使用算子融合，那么， `Conv0` 的输出是32bit数据。
 
-![](./image/horizon_expert/fuse_conv_relu_add.svg)
+![](./image/expert/fuse_conv_relu_add.svg)
 
 
 ### 可以融合的算子
@@ -146,14 +146,14 @@ import torch.nn.quantized as nnq
 
 通过吸收 `BN` ，把 `Conv2d + BN2d` 变换成了 `Conv2d` 。
 
-![](./image/horizon_expert/absorb_bn.svg)
+![](./image/expert/absorb_bn.svg)
 
 ### 吸收BN的方法
 
 目前工具支持 `Conv -> BN` 的模式吸收 `BN` 。
 
 吸收方法如下：
-![](./image/horizon_expert/fuse_bn.jpg)
+![](./image/expert/fuse_bn.jpg)
 
 ### 算子融合示例
 
@@ -257,7 +257,7 @@ horizon_pytorch_plugin 对异构模型与非异构模型支持的区别如下：
 |---|---|---|
 | 算子 | 与 horizon_nn 对接，以 horizon_nn 支持算子为准，模型可以包括 CPU 算子。 | 直接与编译器对接，以 horizon_pytorch_plugin 支持算子为准，模型不能包括 CPU 算子。 |
 | 接口 | prepare_calibration_fx: 指定hybrid模式, 根据需要设置hybrid_dict。<br/>prepare_qat_fx：指定hybrid模式, 根据需要设置hybrid_dict。<br/>convert_fx: 不需要指定hybrid模式，会根据prepare_qat_fx生成的模型自动选择模式。<br/>export_to_onnx: 非异构模式仅用于可视化，异构模式导出onnx后接hb mapper<br/>compile/perf/check_model: 无。 | 参考非异构模式用法文档。 |
-| 流程 | ![](./image/horizon_expert/hybrid_qat_workflow.svg)<br/>通过 prepare 接口将浮点模型转为 QAT 模型，训练之后导出为 onnx 模型，由 hb_mapper 工具转为 bin 模型。不同于非异构的情况，异构 convert 得到的定点模型仅供评测使用。 | ![](./image/horizon_expert/qat_workflow.svg)<br/>通过 prepare 接口将浮点模型转为 QAT 模型，训练之后使用 convert 方法得到定点模型，定点模型 trace 得到 pt 模型，pt 模型编译得到 hbm 模型。
+| 流程 | ![](./image/expert/hybrid_qat_workflow.svg)<br/>通过 prepare 接口将浮点模型转为 QAT 模型，训练之后导出为 onnx 模型，由 hb_mapper 工具转为 bin 模型。不同于非异构的情况，异构 convert 得到的定点模型仅供评测使用。 | ![](./image/expert/qat_workflow.svg)<br/>通过 prepare 接口将浮点模型转为 QAT 模型，训练之后使用 convert 方法得到定点模型，定点模型 trace 得到 pt 模型，pt 模型编译得到 hbm 模型。
 
 ### 主要接口参数说明
 
@@ -447,7 +447,7 @@ def export_to_onnx(
 
 <div style={{textAlign: 'center'}}>
 
-![image](./image/horizon_expert/hybrid_qat_run_on_cpu.jpg)
+![image](./image/expert/hybrid_qat_run_on_cpu.jpg)
 
 </div>
 
@@ -750,7 +750,7 @@ def forward(self, input):
 
 导出的 onnx 如图所示，红色圈出部分为 CPU 算子。
 
-![](./image/horizon_expert/hybrid_qat_onnx.jpg)
+![](./image/expert/hybrid_qat_onnx.jpg)
 
 ## 搭建量化友好的浮点模型{#build_quantization_friend_float_model}
 
@@ -1087,7 +1087,7 @@ Note:
 
 - similarity.html
 
-![](./image/horizon_expert/similarity.svg)
+![](./image/expert/similarity.svg)
 
 ### 可视化
 
@@ -1439,7 +1439,7 @@ profile_featuremap(get_raw_features(qat_net, (data, data)), True)
 
 - statistic.html
 
-![](./image/horizon_expert/statistic.svg)
+![](./image/expert/statistic.svg)
 
 若设置`with_tensorboard=True`，则会在指定目录下生成 `tensorboard` 的 log 文件，可以使用 `tensorboard` 打开查看。
 
@@ -2707,7 +2707,7 @@ show_cuda_memory_consumption(float_net, data, torch.device("cuda"))
 
 - mem_info.html
 
-![](./image/horizon_expert/mobilenetv1_mem_info.svg)
+![](./image/expert/mobilenetv1_mem_info.svg)
 
 ## 量化精度 DEBUG 思路
 
@@ -2727,7 +2727,7 @@ show_cuda_memory_consumption(float_net, data, torch.device("cuda"))
 
 ### 常规的流程图
 
-![](./image/horizon_expert/quant_debug.svg)
+![](./image/expert/quant_debug.svg)
 
 ### NAN的情况
 

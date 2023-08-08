@@ -61,7 +61,7 @@ sidebar_position: 1
 [硬件开发指南](/category/hardware_development)  
    介绍了RDK X3（旭日X3派）、RDK X3 Module（旭日X3模组）硬件规格接口、设计文件及设计指导，提供规格书、原理图、尺寸图等设计资料。
 
-[算法工具链开发指南](/category/quant_toolchain_development)  
+[算法工具链开发指南](/category/toolchain_development)  
    介绍地平线算法量化工具链的使用方法，涵盖了常用的算法模型、开发工具的使用和优化技巧等内容。  
 
 [常见问题](/category/common_questions)  

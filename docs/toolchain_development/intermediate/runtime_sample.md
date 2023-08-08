@@ -434,7 +434,7 @@ sidebar_position: 4
 在开发板上运行 ``hrt_model_exec`` 、 ``hrt_model_exec -h`` 或 ``hrt_model_exec --help`` 获取工具的使用参数详情。
 如下图中所示：
 
-![hrt_model_exec_help](./image/horizon_intermediate/hrt_model_exec_help.png)
+![hrt_model_exec_help](./image/intermediate/hrt_model_exec_help.png)
 
   | **编号** | **参数**                         | **类型** | **说明**                                             |
   |-----------|-------------|------|------------|
@@ -487,7 +487,7 @@ sidebar_position: 4
 ```
   hrt_model_exec model_info --model_file=xxx.bin --model_name=xx
 ```
-![model_info](./image/horizon_intermediate/model_info.png)
+![model_info](./image/intermediate/model_info.png)
 
 
 #### ``输入参数补充说明``
@@ -525,7 +525,7 @@ sidebar_position: 4
 ```
   hrt_model_exec infer --model_file=xxx.bin,xxx.bin --model_name=xx --input_file=xxx.jpg
 ```
-![infer](./image/horizon_intermediate/infer.png)
+![infer](./image/intermediate/infer.png)
 
 
 - 可选参数
@@ -566,7 +566,7 @@ sidebar_position: 4
 使能分类后处理。子命令为 ``infer`` 时配合使用，目前只支持在PTQ分类模型的后处理时使用，变量为 ``true`` 时打印分类结果。
 参见下图：
 
-![enable_cls_post_process](./image/horizon_intermediate/enable_cls_post_process.png)
+![enable_cls_post_process](./image/intermediate/enable_cls_post_process.png)
 
 
 - ``roi_infer``
@@ -630,7 +630,7 @@ dump模型每一层节点的输入数据和输出数据。 ``dump_intermediate=0
 ```
   hrt_model_exec perf --model_file=xxx.bin,xxx.bin --model_name=xx
 ```
-![perf](./image/horizon_intermediate/perf.png)
+![perf](./image/intermediate/perf.png)
 
 - 可选参数
 
@@ -720,7 +720,7 @@ profile日志文件产生目录。
 直接运行 ``hrt_bin_dump`` 获取工具使用详情。
 参见下图：
 
-![hrt_bin_dump_help](./image/horizon_intermediate/hrt_bin_dump_help.png)
+![hrt_bin_dump_help](./image/intermediate/hrt_bin_dump_help.png)
 
 :::tip 小技巧
   工具也可以通过 ``-v`` 或者 ``--version`` 命令，查看工具的 ``dnn`` 预测库版本号。
@@ -737,11 +737,11 @@ profile日志文件产生目录。
 ```
 运行日志参见以下截图：
 
-![run_log](./image/horizon_intermediate/run_log.png)
+![run_log](./image/intermediate/run_log.png)
 
 在路径 **outputs/** 文件夹下可以查看输出，参见以下截图：
 
-![output](./image/horizon_intermediate/output.png)
+![output](./image/intermediate/output.png)
 
 ## 公版模型性能精度测评说明
 
@@ -749,7 +749,7 @@ profile日志文件产生目录。
 
 下表提供了典型深度神经网络模型在X3处理器上的性能、精度指标。
 
-![model_accuracy](./image/horizon_intermediate/model_accuracy.png)
+![model_accuracy](./image/intermediate/model_accuracy.png)
 
 :::caution 注意
 

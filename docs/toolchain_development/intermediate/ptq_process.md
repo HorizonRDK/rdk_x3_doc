@@ -11,7 +11,7 @@ sidebar_position: 2
 
 配合地平线算法工具链的模型完整开发过程，需要经过 **浮点模型准备**、 **模型验证**、 **模型转换**、 **性能评估** 和 **精度评估** 共五个重要阶段，如下图:
 
-![model_conversion_flowchart](./image/horizon_intermediate/model_conversion_flowchart.png)
+![model_conversion_flowchart](./image/intermediate/model_conversion_flowchart.png)
 
 
 **浮点模型准备** 本阶段用来确保原始浮点模型的格式为地平线模型转换工具支持的格式，原始浮点模型来自于您通过TensorFlow/PyTorch等DL框架训练得到可用模型。具体的浮点模型要求与建议，请阅读[浮点模型准备](#model_preparation)章节内容。
@@ -212,7 +212,7 @@ hb_mapper checker 参数解释：
 如果出现了CPU算子导致拆分多个子图， ``hb_mapper checker`` 工具会给出导致CPU算子出现的具体原因。
 例如：以下Caffe模型的出现了Reshape + Pow + Reshape 的结构, 从算子约束列表中我们可以看到, Reshape 算子目前为在CPU上运行的算子, 而Pow的shape也是非4维的。
 
-![model_reshape](./image/horizon_intermediate/model_reshape.png)
+![model_reshape](./image/intermediate/model_reshape.png)
 
 
 因此模型最终检查结果也会出现分段情况, 如下:
@@ -709,7 +709,7 @@ HzPreprocess内的计算公式为：`((input（取值范围[-128,127]）+ 128) -
 
 经过以上两种方式处理后，模型转换阶段产出的 ``***.bin`` 异构模型的输入部分将变成如下图状态。
 
-![input_data_process](./image/horizon_intermediate/input_data_process.png)
+![input_data_process](./image/intermediate/input_data_process.png)
 
 上图中的数据排布就只有NCHW和NHWC两种数据排布格式，N代表数量、C代表channel、H代表高度、W代表宽度，
 两种不同的排布体现的是不同的内存访问特性。在TensorFlow模型NHWC较常用，Caffe中就都使用NCHW，
@@ -755,7 +755,7 @@ HzPreprocess内的计算公式为：`((input（取值范围[-128,127]）+ 128) -
 
 **模型优化编译** 完成了模型解析、模型优化、模型校准与量化、模型编译几个重要阶段，其内部工作过程如下图所示。
 
-![model_optimization](./image/horizon_intermediate/model_optimization.png)
+![model_optimization](./image/intermediate/model_optimization.png)
 
 :::info 备注
 
@@ -947,7 +947,7 @@ Missing keys: 'caffe_model', 'prototxt'
 ```
 通过浏览器打开 ``mobilenetv1_224x224_nv12.html`` 主页面，其内容如下图：
 
-![hb_mapper_perf_2](./image/horizon_intermediate/hb_mapper_perf_2.png)
+![hb_mapper_perf_2](./image/intermediate/hb_mapper_perf_2.png)
 
 分析结果主要由Model Performance Summary、Details和BIN Model Structure三个部分组成。
 Model Performance Summary是bin模型的整体性能评估结果，其中各项指标为:
@@ -981,7 +981,7 @@ Details是每个模型BPU子图的具体信息，在 ``mobilenetv1_224x224_nv12.
 :::
 Layer Details提供具体算子级别的分析，在模型调试分析阶段可以作为参考，例如：如果是某些BPU算子导致模型性能低，通过分析结果帮助您定位到具体的算子。
 
-![layer_details](./image/horizon_intermediate/layer_details.png)
+![layer_details](./image/intermediate/layer_details.png)
 
 :::caution 注意
   ``hb_perf`` 工具分析的结果可以帮助您了解bin模型的子图结构，以及模型中的BPU计算部分的静态分析指标；需要特别注意分析结果中不含CPU部分的计算评估，如果需要CPU计算的性能情况，请在开发板上实测模型性能。
@@ -1417,7 +1417,7 @@ def your_custom_data_prepare_sample(image_file):
 
 整体精度问题解决流程示意如下图：
 
-![accuracy_problem](./image/horizon_intermediate/accuracy_problem.png)
+![accuracy_problem](./image/intermediate/accuracy_problem.png)
 
 ##### 精度有明显损失（4%以上）
 
@@ -1692,7 +1692,7 @@ deleted nodes: spconvretinanethead0_conv109_fwd_chw_HzDequantize
 :::
 由于删除特定节点后会对模型的输入情况有影响, 因此工具只对模型输入后只有一条通路的情况适用, 若如下图中所示, 同一输入对应了多个节点的情况尚不支持。
 
-![hb_model_modifier](./image/horizon_intermediate/hb_model_modifier.png)
+![hb_model_modifier](./image/intermediate/hb_model_modifier.png)
 
 - 使用方式
 
