@@ -35,7 +35,7 @@ RDK X3 Module支持从eMMC和SD卡两种模式启动系统：
   sudo reboot
   ```
 
-当RDK X3模组需要烧录系统到SD上，不从eMMC模式启动时，请参考[安装系统](../getting_start/install_os.md)完成SD卡系统的烧录。
+当RDK X3模组需要烧录系统到SD上，不从eMMC模式启动时，请参考[安装系统](../installation/install_os.md)完成SD卡系统的烧录。
 
 当RDK X3模组需要烧录系统到eMMC时，需要使用地平线hbupdate烧录工具，请按照以下步骤进行工具的下载和安装，并且参考接下来的`安装USB驱动` 和 `烧录系统`两个章节完成eMMC系统的烧录。
 

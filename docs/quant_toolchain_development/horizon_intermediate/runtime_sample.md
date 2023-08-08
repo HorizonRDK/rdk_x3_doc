@@ -94,7 +94,7 @@ sidebar_position: 4
 
 #### 开发板准备
 
-1. 拿到开发板后，请将开发版镜像更新到最新版本，升级方法请参考[系统更新](../getting_start/install_os#flash_system) 章节内容。
+1. 拿到开发板后，请将开发版镜像更新到最新版本，升级方法请参考[系统更新](../installation/install_os#flash_system) 章节内容。
 
 2. 确保本地开发机和开发板可以远程连接。 
 
@@ -941,7 +941,7 @@ profile日志文件产生目录。
 
 #### 开发板准备
 
-1. 拿到开发板后，请将开发版镜像更新到最新版本，升级方法请参考[安装系统](../getting_start/install_os#flash_system) 章节内容。
+1. 拿到开发板后，请将开发版镜像更新到最新版本，升级方法请参考[安装系统](../installation/install_os#flash_system) 章节内容。
 
 2. 确保本地开发机和开发板可以远程连接。
 
@@ -1367,7 +1367,7 @@ workflow_latency.json 如下：
 
 - #### 模型推理
 
-挂载完数据后，请登录开发板，开发板登录方法，请阅读[开发板登录](../getting_start/remote_login) 章节内容，登录成功后，执行 ``fcos_efficientnetb0/`` 目录下的accuracy.sh脚本，如下所示：
+挂载完数据后，请登录开发板，开发板登录方法，请阅读[开发板登录](../installation/remote_login) 章节内容，登录成功后，执行 ``fcos_efficientnetb0/`` 目录下的accuracy.sh脚本，如下所示：
 
 ```bash
   /userdata/ptq/script/detection/fcos# sh accuracy.sh
