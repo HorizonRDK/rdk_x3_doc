@@ -88,7 +88,7 @@ wlan0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
 
 ![image-20220416110242445](./image/remote_login/image-20220416110242445.png)
 
-如需将开发板有线网络配置为动态获取DHCP模式，可参考[有线网络](../configuration/network_configuration#config_ethnet)章节进行配置。
+如需将开发板有线网络配置为动态获取DHCP模式，可参考[有线网络](../configuration/network#config_ethnet)章节进行配置。
 
 ## VNC登录
 

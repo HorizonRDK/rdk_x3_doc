@@ -43,7 +43,7 @@ sidebar_position: 2
 
 <font color='Green'>【解答】</font> 
 
-- 需要确认网络配置，具体请参考[网络配置](../configuration/network_configuration)章节
+- 需要确认网络配置，具体请参考[网络配置](../configuration/network)章节
 
 <font color='Blue'>【问题】</font> 
 
