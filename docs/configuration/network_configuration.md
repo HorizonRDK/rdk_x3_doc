@@ -99,13 +99,14 @@ Station模式下，开发板作为客户端，接入路由器无线热点进行�
     root@ubuntu:~# sudo wifi_connect "WiFi-Test" "12345678" 
     Device 'wlan0' successfully activated with 'd7468833-4195-45aa-aa33-3d43da86e1a7'.
     ```
-:::tip
-如果连接热点后，返回如下信息，说明热点没有找到，可以执行`sudo nmcli device wifi rescan`命令重新扫描后再次连接
+    :::tip
+    如果连接热点后，返回如下信息，说明热点没有找到，可以执行`sudo nmcli device wifi rescan`命令重新扫描后再次连接
+    
     ```shell
     root@ubuntu:~# sudo wifi_connect "WiFi-Test" "12345678" 
     Error: No network with SSID 'WiFi-Test' found.
     ```
-:::
+    :::
 
 ### Soft AP模式
 

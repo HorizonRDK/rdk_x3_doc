@@ -25,4 +25,8 @@ sidebar_position: 4
 程序执行后，显示器会实时显示摄像头画面及目标检测算法的结果(目标类型、置信度)，如下所示：  
   ![image-20220503221020331](./image/mipi_camera/image-20220511181747071.png)
 
+:::tip
+
 详细代码实现说明请查阅[基于MIPI摄像头推理](../python_software_development/pydev_dnn_demo#mipi)章节。
+
+:::

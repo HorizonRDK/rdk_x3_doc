@@ -6,27 +6,38 @@ sidebar_position: 3
 
 本章节旨在向需要通过个人电脑(PC)远程访问开发板的用户介绍如何通过串口、网络(VNC、SSH)方式进行远程登录。
 
-注意，通过网络方式远程登录前，开发板需要通过有线以太网或者无线WiFi方式接入网络，配置好开发板IP地址。对于两种连接方式下的IP地址信息可参考如下描述：
-- 有线以太网：开发板默认采用静态IP模式，IP地址为`192.168.1.10`,掩码`255.255.255.0`,网关 `192.168.1.1`
+:::tip
+
+通过网络方式远程登录前，开发板需要通过有线以太网或者无线WiFi方式接入网络，配置好开发板IP地址。对于两种连接方式下的IP地址信息可参考如下描述：
+
+- 有线以太网：开发板默认采用静态IP模式，IP地址为`192.168.1.10`，掩码`255.255.255.0`，网关 `192.168.1.1`
 - 无线WiFi：开发板IP地址一般由路由器分配，可在设备命令行中通过`ifconfig`命令查看wlan0网络的IP地址
+
+:::
 
 ## 串口登录{#login_uart}
 
 <iframe src="//player.bilibili.com/player.html?aid=700903305&bvid=BV1rm4y1E73q&cid=1196550506&page=2" scrolling="no" border="0" frameborder="no" framespacing="0" width="100%" height="500" allowfullscreen="true"> </iframe>
 
-在使用串口登录前，需要确认开发板串口线跟电脑正确连接，连接方法可参考[调试串口](#debug_uart)章节。串口登录需要借助PC终端工具，目前常用的工具有`Putty`、`MobaXterm`等，用户可根据自身使用习惯来选择。不同工具的端口配置流程基本类似，下面以`MobaXterm`为例，介绍新建串口连接过程：
+在使用串口登录前，需要确认开发板串口线跟电脑正确连接，连接方法可参考[调试串口](/getting_start/hardware_interface#debug_uart)章节。串口登录需要借助PC终端工具，目前常用的工具有`Putty`、`MobaXterm`等，用户可根据自身使用习惯来选择。不同工具的端口配置流程基本类似，下面以`MobaXterm`为例，介绍新建串口连接过程：
 
 - 当串口USB转接板首次插入电脑时，需要安装串口驱动。驱动程序可从资源中心的[工具子栏目](https://developer.horizon.ai/resource)获取。驱动安装完成后，设备管理器可正常识别串口板端口，如下图：  
 ![image-20220416105939067](./image/remote_login/image-20220416105939067.png)
 
 - 打开`MobaXterm`工具，点击`Session`，然后选择`Serial`
+
 - 配置端口号，例如`COM3`，实际使用的串口号以PC识别到的串口号为准
+
 - 设置串口配置参数，如下：
-  - 波特率（Baud rate）：921600
-  - 数据位（Data bits）：8
-  - 奇偶校验（Parity）：None
-  - 停止位（Stop bits）：1
-  - 流控（Flow Control）：无
+  
+  | 配置项               | 参数值 |
+  | -------------------- | ------ |
+  | 波特率（Baud rate）  | 921600 |
+  | 数据位（Data bits）  | 8      |
+  | 奇偶校验（Parity）   | None   |
+  | 停止位（Stop bits）  | 1      |
+  | 流控（Flow Control） | 无     |
+  
 - 点击`OK`，输入用户名：`root`、密码：`root`登录设备  
 ![image-Uart-Login](./image/remote_login/image-Uart-Login.gif)
 
@@ -100,21 +111,21 @@ wlan0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
 ## SSH登录{#ssh}
 除了VNC登录远程桌面外，还可以通过SSH连接登录开发板。下面分别介绍终端软件、终端命令行两种方法的创建步骤。
 
-**终端软件**  
+### 终端软件
 目前常用终端工具有`Putty`、`MobaXterm`等，用户可根据自身使用习惯来选择。不同工具的端口配置流程基本类似，下面以`MobaXterm`为例，介绍新建SSH连接过程：
 
-- 打开`MobaXterm`工具，点击`Session`，然后选择`SSH`
-- 输入开发板IP地址，例如`192.168.1.10`
-- 选中`specify username`，输入`sunrise`
-- 点击OK后，输入用户名（sunrise）、密码（sunrise）即可完成登录
+1. 打开`MobaXterm`工具，点击`Session`，然后选择`SSH`
+2. 输入开发板IP地址，例如`192.168.1.10`
+3. 选中`specify username`，输入`sunrise`
+4. 点击OK后，输入用户名（sunrise）、密码（sunrise）即可完成登录
 
 ![image-Network-Login](./image/remote_login/image-Network-Login.gif)
 
-**电脑命令行**  
+### 电脑命令行 
 用户也可通过命令行方式进行SSH登录，步骤如下：
 
-- 打开终端窗口，输入SSH登录命令，例如`ssh sunrise@192.168.1.10`
-- 弹出连接确认提示，输入YES
-- 输入密码（sunrise）即可完成登录
+1. 打开终端窗口，输入SSH登录命令，例如`ssh sunrise@192.168.1.10`
+2. 弹出连接确认提示，输入YES
+3. 输入密码（sunrise）即可完成登录
 
 ![image-Cmdline-Linux](./image/remote_login/linux_login_01.gif)

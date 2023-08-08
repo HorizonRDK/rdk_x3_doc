@@ -22,7 +22,13 @@ RDK X3开发板提供了网口、USB、摄像头、LCD、HDMI、40PIN等功能�
 
 开发板提供一路USB Type C接口(接口1)，作为供电接口，需要使用支持**5V/3A**的电源适配器为开发板供电。将电源适配器接入开发板后，**开发板红色电源指示灯亮起**，说明开发板供电正常。
 
-注意，请不要使用电脑USB接口为开发板供电，否则会因供电不足造成开发板**异常断电、反复重启**等情况。
+:::caution
+
+请不要使用电脑USB接口为开发板供电，否则会因供电不足造成开发板**异常断电、反复重启**等情况。
+
+:::
+
+
 
 ## 调试串口{#debug_uart}
 
@@ -84,7 +90,7 @@ USB主从模式切换完全由硬件电路实现，用户只需按照上表的�
 
 开发板USB Host、Device功能互斥，Device接口接入设备后，Host接口会自动失效。
 
-**接入U盘**  
+### 接入U盘
 
 <iframe src="//player.bilibili.com/player.html?aid=700903305&bvid=BV1rm4y1E73q&cid=1196553711&page=5" scrolling="no" border="0" frameborder="no" framespacing="0" width="100%" height="500" allowfullscreen="true"> </iframe>
 
@@ -98,7 +104,7 @@ sunrise@ubuntu:/media/sda1$ ls -l test
 sunrise@ubuntu:/media/sda1$
 ```
 
-**接入USB串口转接板**
+### 接入USB串口转接板
 
 开发板USB Type A接口(接口5和6)，支持USB串口转接板功能，可自动检测USB串口转接板接入并创建设备节点`/dev/ttyUSB*` 或者 `/dev/ttyACM*`（星号代表0开始的数字）。用户可参考 [使用串口](../python_software_development/40pin_user_guide#40pin_uart_usage) 章节对串口进行使用。
 
@@ -182,8 +188,8 @@ Streaming Parameters Video Capture:
 
 摄像头模组通过FPC排线跟开发板连接，注意排线两端蓝面向上插入连接器。
 
-:::caution 注意
-重要提示：严禁在开发板未断电的情况下插拔摄像头，否则非常容易烧坏摄像头模组。
+:::caution
+严禁在开发板未断电的情况下插拔摄像头，否则非常容易烧坏摄像头模组。
 :::
 
 以JXF37摄像头模组为例，安装完成后如下图：  
@@ -211,7 +217,11 @@ sunrise@ubuntu:~# sudo i2cdetect -y -r 1
 
 开发板提供1路Micro SD存储卡接口(接口12)。推荐使用至少8GB容量的存储卡，以便满足Ubuntu操作系统及相关功能包的安装要求。
 
+:::caution
+
 开发板使用中禁止热插拔TF存储卡，否则会造成系统运行异常，甚至造成存储卡文件系统损坏。
+
+:::
 
 ## Wi-Fi天线接口
 
