@@ -15,7 +15,7 @@ sidebar_position: 4
 
 ### 运行方法
 
-请查阅 [MIPI摄像头AI推理](../first_application/mipi_camera) 了解如何快速运行本示例。
+请查阅 [MIPI摄像头AI推理](/first_application/mipi_camera) 了解如何快速运行本示例。
 
 ### 示例代码解析
 
@@ -33,7 +33,7 @@ sidebar_position: 4
 
 - 加载模型文件
 
-    调用[load](./pydev_dnn_api)方法加载模型文件，并返回一个 `hobot_dnn.pyeasy_dnn.Model` 类的 list。
+    调用[load](/python_development/pydev_dnn_api)方法加载模型文件，并返回一个 `hobot_dnn.pyeasy_dnn.Model` 类的 list。
 
     ```shell
     models = dnn.load('../models/fcos_512x512_nv12.bin')

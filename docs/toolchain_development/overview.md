@@ -28,4 +28,4 @@ sidebar_position: 1
 
 ### 模型算子列表说明
 
--   目前提供了X3可支持的所有Caffe和ONNX算子情况，其他未列出的算子因<font color='Red'>X3 bpu硬件限制</font> ，<font color='Red'>暂不支持</font> 。具体算子支持列表，请参考 [模型算子支持列表](./intermediate#supported_op_list_and_restrictions) 章节内容。
+-   目前提供了X3可支持的所有Caffe和ONNX算子情况，其他未列出的算子因<font color='Red'>X3 bpu硬件限制</font> ，<font color='Red'>暂不支持</font> 。具体算子支持列表，请参考 [模型算子支持列表](/toolchain_development/intermediate/supported_op_list) 章节内容。

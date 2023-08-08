@@ -101,7 +101,7 @@ sidebar_position: 2
 
 ## 快速体验{#quick_experiments}
 
-本章节中，我们为您介绍地平线算法工具链PTQ方案的基本使用流程，便于您实现快速上手。 这里我们以 yolov5s 模型为例，为您进行使用演示，地平线算法工具链PTQ方案的更多详细内容，请阅读 [进阶指南-PTQ原理及步骤详解](./intermediate#PTQ_introduction) 章节。
+本章节中，我们为您介绍地平线算法工具链PTQ方案的基本使用流程，便于您实现快速上手。 这里我们以 yolov5s 模型为例，为您进行使用演示，地平线算法工具链PTQ方案的更多详细内容，请阅读 [进阶指南-PTQ原理及步骤详解](/toolchain_development/intermediate/ptq_process) 章节。
 
 ### 开发环境准备
 
@@ -235,7 +235,7 @@ sidebar_position: 2
 
 ![yolov5s-result](./image/beginner/yolov5s-result.png)
 
-常用API示例，请参考 [yolov5目标检测算法](../python_development/pydev_dnn_demo#detection_yolov5) 章节内容。
+常用API示例，请参考 [yolov5目标检测算法](/python_development/pydev_dnn_demo/static_image#detection_yolov5) 章节内容。
 
 更多模型推理API使用说明，请参考 [Python开发指南-模型推理接口使用说明](../python_development/pydev_dnn_api) 和 [C/C++开发指南-模型推理接口使用说明](../clang_development/cdev_dnn_api) 章节内容。
 

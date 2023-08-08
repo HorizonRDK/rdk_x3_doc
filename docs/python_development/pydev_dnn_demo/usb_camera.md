@@ -15,7 +15,7 @@ sidebar_position: 3
 
 ### 运行方法
 
-请查阅 [USB摄像头AI推理](../first_application/usb_camera) 了解如何快速运行本示例。
+请查阅 [USB摄像头AI推理](/first_application/usb_camera) 了解如何快速运行本示例。
 
 ### 示例代码解析
 - 导入算法推理模块hobot_dnn、视频输出模块hobot_vio、numpy、opencv、colorsys等模块
@@ -30,7 +30,7 @@ sidebar_position: 3
 
 - 加载模型文件
 
-    调用[load](./pydev_dnn_api)方法加载模型文件，并返回一个 `hobot_dnn.pyeasy_dnn.Model` 类的 list。
+    调用[load](/python_development/pydev_dnn_api)方法加载模型文件，并返回一个 `hobot_dnn.pyeasy_dnn.Model` 类的 list。
 
     ```shell
     models = dnn.load('../models/fcos_512x512_nv12.bin')
