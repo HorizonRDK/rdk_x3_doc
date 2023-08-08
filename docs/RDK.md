@@ -52,7 +52,7 @@ sidebar_position: 1
 [C/C++开发指南](/category/clang_development)  
     介绍C/C++语言版本视频、图像、算法简易接口和libdnn算法接口库的使用方法，本章节还提供了C/C++在RDK X3开发板上的应用示例，帮助用户更快速的开发。  
 
-[Linux开发指南](/category/system_software_development)  
+[Linux开发指南](/category/linux_development)  
    介绍操作系统软件开发的相关内容，包括开发环境的安装和配置、平台Ubuntu系统的编译和构建方法、驱动程序的开发、系统调试和优化等方面的指引。  
 
 [多媒体开发指南](/category/multimedia_software_development)  
