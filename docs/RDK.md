@@ -46,7 +46,7 @@ sidebar_position: 1
 [第一个应用程序](/category/first_application)  
     介绍系统中预装的功能示例，如io管脚控制、视频采集，算法推理等。  
 
-[Python开发指南](/category/python_software_development)  
+[Python开发指南](/category/python_development)  
    介绍Python语言版本的视频、图像、算法简易接口的使用方法，此接口简单易用，方便用户快速上手，基于更底层的多媒体接口进行了封装。  
 
 [C/C++开发指南](/category/clang_software_development)  

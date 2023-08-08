@@ -27,6 +27,6 @@ sidebar_position: 4
 
 :::tip
 
-详细代码实现说明请查阅[基于MIPI摄像头推理](../python_software_development/pydev_dnn_demo#mipi)章节。
+详细代码实现说明请查阅[基于MIPI摄像头推理](../python_development/pydev_dnn_demo#mipi)章节。
 
 :::

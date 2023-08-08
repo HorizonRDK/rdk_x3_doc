@@ -235,9 +235,9 @@ sidebar_position: 2
 
 ![yolov5s-result](./image/horizon_beginner/yolov5s-result.png)
 
-常用API示例，请参考 [yolov5目标检测算法](../python_software_development/pydev_dnn_demo#detection_yolov5) 章节内容。
+常用API示例，请参考 [yolov5目标检测算法](../python_development/pydev_dnn_demo#detection_yolov5) 章节内容。
 
-更多模型推理API使用说明，请参考 [Python开发指南-模型推理接口使用说明](../python_software_development/pydev_dnn_api) 和 [C/C++开发指南-模型推理接口使用说明](../clang_software_development/cdev_dnn_api) 章节内容。
+更多模型推理API使用说明，请参考 [Python开发指南-模型推理接口使用说明](../python_development/pydev_dnn_api) 和 [C/C++开发指南-模型推理接口使用说明](../clang_software_development/cdev_dnn_api) 章节内容。
 
 
 ### 公版模型性能精度指标

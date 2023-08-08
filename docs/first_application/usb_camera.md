@@ -27,6 +27,6 @@ sidebar_position: 3
 
 :::tip
 
-详细代码实现说明请查阅[基于USB摄像头推理](../python_software_development/pydev_dnn_demo#usb)章节。
+详细代码实现说明请查阅[基于USB摄像头推理](../python_development/pydev_dnn_demo#usb)章节。
 
 :::
