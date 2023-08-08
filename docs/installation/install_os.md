@@ -14,16 +14,21 @@ Ubuntu Desktop版本系统启动完成后，会通过HDMI接口在显示器上�
 
 ## 镜像下载 {#img_download}
 
-下载Ubuntu镜像压缩包，解压出Ubuntu系统镜像文件：`ubuntu-preinstalled-desktop-arm64.img`，1.0版本的系统镜像名为`system_sdcard.img`。
+下载Ubuntu镜像压缩包，解压出Ubuntu系统镜像文件：`ubuntu-preinstalled-desktop-arm64.img`
 
 **版本说明：**
 
 - 2.0版本：基于RDK Linux开源代码包制作，支持RDK X3派、X3模组等全系列硬件
-- 1.0版本：旭日X3派历史版本，仅支持旭日X3派硬件
+- 1.0版本：旭日X3派历史版本，仅支持旭日X3派硬件，系统镜像名为`system_sdcard.img`
 
 点击 [**下载镜像**](http://archive.sunrisepi.tech/downloads/os_images) 进入版本选择页面，选择对应版本目录，进入文件下载页。以下载2.0.0版本的系统镜像为例：
 
 ![image-20230510143353330](./image/install_os/image-20230510143353330.png)
+
+:::tip
+- desktop：带有桌面的Ubuntu系统，可以外接屏幕、鼠标操作
+- server：无桌面的Ubuntu系统，可以通过串口、网络远程连接操作
+:::
 
 ## 烧录系统到Micro SD卡
 
@@ -63,5 +68,5 @@ balenaEtcher是一款支持Windows/Mac/Linux等多平台的PC端启动盘制作�
 
 如果开发板上电后长时间没有显示输出（2分钟以上），说明开发板启动异常。此时用户可通过指示灯确认系统状态，方法如下：
 
-* 绿灯常亮：说明系统启动失败，可检查使用的电源适配器是否满足**5V3A**的要求，可尝试重新制作Micro SD卡系统镜像
-* 绿灯熄灭或闪烁：说明系统启动成功，但显示服务启动失败，请确认连接的显示器符合支持列表规格
+* **<font color='Green'>绿灯</font>**常亮：说明系统启动失败，可检查使用的电源适配器是否满足**5V3A**的要求，可尝试重新制作Micro SD卡系统镜像
+* **<font color='Green'>绿灯</font>**熄灭或闪烁：说明系统启动成功，但显示服务启动失败，请确认连接的显示器符合支持列表规格
