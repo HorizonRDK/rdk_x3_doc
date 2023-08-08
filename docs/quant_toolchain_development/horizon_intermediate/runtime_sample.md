@@ -401,7 +401,7 @@ sidebar_position: 4
 
 #### 模型推理 DNN API日志
 
-关于模型推理 DNN API日志的配置，请阅读[《模型推理DNN API使用说明》](../clang_software_development/cdev_dnn_api#configuration_information) 文档中的 ``配置信息`` 一节内容。
+关于模型推理 DNN API日志的配置，请阅读[《模型推理DNN API使用说明》](../clang_development/cdev_dnn_api#configuration_information) 文档中的 ``配置信息`` 一节内容。
 
 ## 模型上板分析工具说明
 
@@ -1527,7 +1527,7 @@ voc_det_eval.py是用来计算使用VOC数据集评测的检测模型的精度�
 
 - 模型推理API DNN日志
 
-关于模型推理 DNN API日志的配置，请阅读[《模型推理DNN API使用说明》](../clang_software_development/cdev_dnn_api#configuration_information)文档中的 ``配置信息`` 一节内容
+关于模型推理 DNN API日志的配置，请阅读[《模型推理DNN API使用说明》](../clang_development/cdev_dnn_api#configuration_information)文档中的 ``配置信息`` 一节内容
 
 
 #### 算子耗时说明

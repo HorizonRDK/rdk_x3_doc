@@ -49,7 +49,7 @@ sidebar_position: 1
 [Python开发指南](/category/python_development)  
    介绍Python语言版本的视频、图像、算法简易接口的使用方法，此接口简单易用，方便用户快速上手，基于更底层的多媒体接口进行了封装。  
 
-[C/C++开发指南](/category/clang_software_development)  
+[C/C++开发指南](/category/clang_development)  
     介绍C/C++语言版本视频、图像、算法简易接口和libdnn算法接口库的使用方法，本章节还提供了C/C++在RDK X3开发板上的应用示例，帮助用户更快速的开发。  
 
 [Linux开发指南](/category/system_software_development)  
