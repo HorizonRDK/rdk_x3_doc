@@ -55,7 +55,7 @@ sidebar_position: 1
 [Linux开发指南](/category/linux_development)  
    介绍操作系统软件开发的相关内容，包括开发环境的安装和配置、平台Ubuntu系统的编译和构建方法、驱动程序的开发、系统调试和优化等方面的指引。  
 
-[多媒体开发指南](/category/multimedia_software_development)  
+[多媒体开发指南](/category/multimedia_development)  
     介绍了视频、图像、多媒体底层接口的使用方法，涵盖了图像处理、音频处理、视频处理、视频编解码等方面的技术和示例，接口功能丰富，可以实现复杂、灵活的功能需求。
 
 [硬件开发指南](/category/hardware)  
