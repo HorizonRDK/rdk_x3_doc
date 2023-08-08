@@ -58,7 +58,7 @@ sidebar_position: 1
 [多媒体开发指南](/category/multimedia_development)  
     介绍了视频、图像、多媒体底层接口的使用方法，涵盖了图像处理、音频处理、视频处理、视频编解码等方面的技术和示例，接口功能丰富，可以实现复杂、灵活的功能需求。
 
-[硬件开发指南](/category/hardware)  
+[硬件开发指南](/category/hardware_development)  
    介绍了RDK X3（旭日X3派）、RDK X3 Module（旭日X3模组）硬件规格接口、设计文件及设计指导，提供规格书、原理图、尺寸图等设计资料。
 
 [算法工具链开发指南](/category/quant_toolchain_development)  

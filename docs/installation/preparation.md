@@ -8,7 +8,7 @@ sidebar_position: 1
 
 ## 开发准备
 **供电**  
-RDK X3开发板通过USB Type C接口供电，需要使用支持**5V 3A**的电源适配器为开发板供电，推荐使用[基础配件清单](../hardware/rdk_x3#basic_accessories)中推荐的电源适配器型号。
+RDK X3开发板通过USB Type C接口供电，需要使用支持**5V 3A**的电源适配器为开发板供电，推荐使用[基础配件清单](../hardware_development/rdk_x3#basic_accessories)中推荐的电源适配器型号。
 
 :::caution
 
