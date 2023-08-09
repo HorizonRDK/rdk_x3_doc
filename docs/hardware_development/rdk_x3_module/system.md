@@ -45,16 +45,19 @@ RDK X3 Module支持从eMMC和SD卡两种模式启动系统：
 
 ## 安装USB驱动
 
-在使用刷机工具前，需要在PC上安装USB驱动程序，请按照如下步骤进行：
+对于使用Windows系统的PC，在使用刷机工具前，需要确认是否安装过fastboot驱动程序，请按照如下步骤进行确认：
 
-1. 点击 [android_hobot](http://archive.sunrisepi.tech/downloads/hbupdate/android_hobot.zip) 下载驱动程序。
-2. 解压 `android_hobot.zip` ，进入解压后的目录，以管理员身份运行 `5-runasadmin_register-CA-cer.cmd` 完成驱动程序的注册。
-3. 使用跳线帽将`Boot`管脚接地，管脚位置参考[功能控制接口](./rdk_x3_module.md#功能控制接口)。
-4. 将Micro USB接口与电脑通过USB线连接，然后给设备上电。
-5. 如PC设备管理器出现`USB download gadget`未知设备时，需要更新设备驱动，选择解压出的驱动文件夹`andriod_hobot`，然后点击下一步，完成驱动安装，如下图：  
+1. 使用跳线帽将RDK X3载板的`Boot`管脚接地，管脚位置参考下图。    
+   ![image-carrier-board-bootstrap](./image/rdk_x3_module/image-carrier-board-bootstrap.png)  
+2. 将载板的Micro USB接口与电脑通过USB线连接，接口位置参考下图。  
+   ![image-carrier-board-microusb](./image/rdk_x3_module/image-carrier-board-microusb.png)  
+3. 给设备上电，然后观察电脑设备管理器端口状态，如出现`USB download gadget`未知设备时，需要更新设备驱动，否则可跳过下述步骤。  
    ![image-usb-driver1](./image/rdk_x3_module/image-usb-driver1.png)  
+4. 下载并解压驱动包 `android_hobot.zip`，下载链接 [android_hobot](http://archive.sunrisepi.tech/downloads/hbupdate/android_hobot.zip) 。
+5. 进入解压后的目录，以管理员身份运行 `5-runasadmin_register-CA-cer.cmd`，完成驱动程序的注册。
+6. 双击`USB download gadget`未知设备，选择驱动包解压目录，然后点击下一步。   
    ![image-usb-driver2](./image/rdk_x3_module/image-usb-driver2.png)
-6. 驱动安装完成后，设备管理器会显示fastboot设备`Android Device`，如下图：
+7. 驱动安装完成后，设备管理器会显示fastboot设备`Android Device`。   
    ![image-usb-driver3](./image/rdk_x3_module/image-usb-driver3.png)
 
 ## 烧录系统{#flash_system}
