@@ -19,7 +19,7 @@ RDK X3 Module支持从eMMC和SD卡两种模式启动系统：
   sudo reboot
   ```
 
-  3、在uboot下会发现eMMC没有启动分区而去寻找去sd卡启动分区，从SD卡加载系统启动，登录系统后执行`mount`命令可以看到跟文件系统挂载在 SD 卡的 第二个分区，config分区也使用的SD卡的第一个分区。
+  3、在uboot下会发现eMMC没有启动分区而去寻找去sddk_x3_module.md卡启动分区，从SD卡加载系统启动，登录系统后执行`mount`命令可以看到跟文件系统挂载在 SD 卡的 第二个分区，config分区也使用的SD卡的第一个分区。
 
   ```
   /dev/mmcblk2p2 on / type ext4 (rw,relatime,data=ordered) 
@@ -35,7 +35,7 @@ RDK X3 Module支持从eMMC和SD卡两种模式启动系统：
   sudo reboot
   ```
 
-当RDK X3模组需要烧录系统到SD上，不从eMMC模式启动时，请参考[安装系统](../installation/install_os.md)完成SD卡系统的烧录。
+当RDK X3模组需要烧录系统到SD上，不从eMMC模式启动时，请参考[安装系统](../../installation/install_os.md)完成SD卡系统的烧录。
 
 当RDK X3模组需要烧录系统到eMMC时，需要使用地平线hbupdate烧录工具，请按照以下步骤进行工具的下载和安装，并且参考接下来的`安装USB驱动` 和 `烧录系统`两个章节完成eMMC系统的烧录。
 
@@ -86,7 +86,7 @@ RDK X3 Module支持从eMMC和SD卡两种模式启动系统：
 
 ![image-flash-system4](./image/rdk_x3_module/image-flash-system4.png)
 
-- 烧录镜像时，需要通过跳线帽将`BOOT`管脚接地，管脚位置参考[功能控制接口](./rdk_x3_module.md#功能控制接口)
+- 烧录镜像时，需要通过跳线帽将`BOOT`管脚接地，管脚位置参考[功能控制接口](../rdk_x3_module/interface#功能控制接口)
 
 - 将Micro USB接口连接到电脑，电脑设备管理器中会识别出`Android Device`的设备，如上一节安装USB下载驱动所描述
 

@@ -8,7 +8,7 @@ sidebar_position: 4
 
 1. 进入`test_tools/07_spi_test`目录
 2. 测试脚本分成`master`和`salve`两种模式，根据spi驱动配置的模式运行相应模式下的脚本
-3. 可以采用两块RDK X3开发板，一块把spi配置成`master`模式，一块配置成`salve`模式,配置流程可以参考[SPI调试指南](./driver_develop_guide#SPI_debug_guide)。先执行master端测试脚本：`sh spitest_master.sh &`后执行salve端测试脚本：`sh spitest_salve.sh &`,两个脚本执行间隔应尽可能短。
+3. 可以采用两块RDK X3开发板，一块把spi配置成`master`模式，一块配置成`salve`模式,配置流程可以参考[SPI调试指南](../driver_development/driver_spi_dev.md)。先执行master端测试脚本：`sh spitest_master.sh &`后执行salve端测试脚本：`sh spitest_salve.sh &`,两个脚本执行间隔应尽可能短。
 
 ## 测试标准
 

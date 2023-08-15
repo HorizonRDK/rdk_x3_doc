@@ -82,11 +82,11 @@ sidebar_position: 4
     srcampy.bind(cam, disp)
     ```
 
-    关于camera详细使用方法，可以查看[Camera章节](./pydev_vio_api#camera)了解更多信息。
+    关于camera详细使用方法，可以查看[Camera章节](../pydev_multimedia_api/object_camera.md)了解更多信息。
 
 - 模型推理
 
-    调用 [Model](./pydev_dnn_api#model) 类的 `forward` 接口进行推理，模型输出15组数据，用来表示检测到的物体检测框。
+    调用 [Model](../pydev_dnn_api#model) 类的 `forward` 接口进行推理，模型输出15组数据，用来表示检测到的物体检测框。
 
     ```python
     outputs = models[0].forward(nv12_data)
@@ -102,7 +102,7 @@ sidebar_position: 4
 
 - 检测结果可视化
 
-    示例对算法结果和原始视频流进行了渲染，并通过`HDMI`接口输出，用户可在显示器上实时预览效果。显示部分用到了hobot_vio模块的Display功能，该模块详细信息请查看 [Display章节](./pydev_vio_api#display)。
+    示例对算法结果和原始视频流进行了渲染，并通过`HDMI`接口输出，用户可在显示器上实时预览效果。显示部分用到了hobot_vio模块的Display功能，该模块详细信息请查看 [Display章节](../pydev_multimedia_api/object_display.md)。
 
     ```python
     for index, bbox in enumerate(prediction_bbox):
