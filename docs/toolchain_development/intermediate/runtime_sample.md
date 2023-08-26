@@ -94,7 +94,7 @@ sidebar_position: 4
 
 #### 开发板准备
 
-1. 拿到开发板后，请将开发版镜像更新到最新版本，升级方法请参考[系统更新](../installation/install_os#flash_system) 章节内容。
+1. 拿到开发板后，请将开发版镜像更新到最新版本，升级方法请参考[系统更新](../../installation/install_os#flash_system) 章节内容。
 
 2. 确保本地开发机和开发板可以远程连接。 
 
@@ -401,7 +401,7 @@ sidebar_position: 4
 
 #### 模型推理 DNN API日志
 
-关于模型推理 DNN API日志的配置，请阅读[《模型推理DNN API使用说明》](../clang_development/cdev_dnn_api#configuration_information) 文档中的 ``配置信息`` 一节内容。
+关于模型推理 DNN API日志的配置，请阅读[《模型推理DNN API使用说明》](../../clang_development/cdev_dnn_api#configuration_information) 文档中的 ``配置信息`` 一节内容。
 
 ## 模型上板分析工具说明
 
@@ -753,7 +753,7 @@ profile日志文件产生目录。
 
 :::caution 注意
 
-  1. 表格中的数据均为在地平线RDK X3开发板的实测结果，测试模型均来自于[horizon_model_convert_sample](./horizon_beginner#env_install) 模型示例包；
+  1. 表格中的数据均为在地平线RDK X3开发板的实测结果，测试模型均来自于[horizon_model_convert_sample](../beginner.md#env_install) 模型示例包；
 
   2. 对于模型示例包中的 BPU/CPU 混合异构模型，单帧的耗时主要由输入量化CPU节点、模型BPU算子、模型CPU算子、输出反量化CPU节点、CPU后处理等模块构成，具体说明如下：
 
@@ -889,7 +889,7 @@ profile日志文件产生目录。
 我们提供了开源的模型库，里面包含常用的分类、检测和分割模型，模型的命名规则为：{model_name}_{backbone}_{input_size}_{input_type}，开发者可以直接使用。
 
 :::tip 小技巧
-  以下表格中的bin模型都是通过 horizon_model_convert_sample 模型转换示例包转换编译出来的，请阅读 [horizon_model_convert_sample](./horizon_beginner#env_install) 章节内容进行获取。 
+  以下表格中的bin模型都是通过 horizon_model_convert_sample 模型转换示例包转换编译出来的，请阅读 [horizon_model_convert_sample](../beginner.md#env_install) 章节内容进行获取。 
 :::
 
   | MODEL              | MODEL NAME                                   |
@@ -941,7 +941,7 @@ profile日志文件产生目录。
 
 #### 开发板准备
 
-1. 拿到开发板后，请将开发版镜像更新到最新版本，升级方法请参考[安装系统](../installation/install_os#flash_system) 章节内容。
+1. 拿到开发板后，请将开发版镜像更新到最新版本，升级方法请参考[安装系统](../../installation/install_os#flash_system) 章节内容。
 
 2. 确保本地开发机和开发板可以远程连接。
 
@@ -1367,7 +1367,7 @@ workflow_latency.json 如下：
 
 - #### 模型推理
 
-挂载完数据后，请登录开发板，开发板登录方法，请阅读[开发板登录](../installation/remote_login) 章节内容，登录成功后，执行 ``fcos_efficientnetb0/`` 目录下的accuracy.sh脚本，如下所示：
+挂载完数据后，请登录开发板，开发板登录方法，请阅读[开发板登录](../../installation/remote_login) 章节内容，登录成功后，执行 ``fcos_efficientnetb0/`` 目录下的accuracy.sh脚本，如下所示：
 
 ```bash
   /userdata/ptq/script/detection/fcos# sh accuracy.sh
@@ -1527,7 +1527,7 @@ voc_det_eval.py是用来计算使用VOC数据集评测的检测模型的精度�
 
 - 模型推理API DNN日志
 
-关于模型推理 DNN API日志的配置，请阅读[《模型推理DNN API使用说明》](../clang_development/cdev_dnn_api#configuration_information)文档中的 ``配置信息`` 一节内容
+关于模型推理 DNN API日志的配置，请阅读[《模型推理DNN API使用说明》](../../clang_development/cdev_dnn_api#configuration_information)文档中的 ``配置信息`` 一节内容
 
 
 #### 算子耗时说明

@@ -1495,7 +1495,7 @@ hb_model_verifier工具（详细介绍可参考）的使用方法，请参考PTQ
 
 ##### caffe模型量化yaml文件模板{#caffe_yaml_template}
 
-请新建 caffe_config.yaml 文件，并直接拷贝以下内容，然后只需填写标记为 **``必选参数``** 的参数即可进行模型转换，若需了解更多参数的使用说明，可参考 [yaml配置文件详解](../toolchain_development/intermediate#yaml_config) 章节内容。
+请新建 caffe_config.yaml 文件，并直接拷贝以下内容，然后只需填写标记为 **``必选参数``** 的参数即可进行模型转换，若需了解更多参数的使用说明，可参考 [yaml配置文件详解](../toolchain_development/intermediate/ptq_process#yaml_config) 章节内容。
 
 ```python
 
@@ -1577,7 +1577,7 @@ compiler_parameters:
 
 ##### onnx模型量化yaml文件模板{#onnx_yaml_template}
 
-请新建 onnx_config.yaml 文件，并直接拷贝以下内容，然后只需填写标记为 **``必选参数``** 的参数即可进行模型转换，若需了解更多参数的使用说明，可参考 [yaml配置文件详解](../toolchain_development/intermediate#yaml_config) 章节内容。
+请新建 onnx_config.yaml 文件，并直接拷贝以下内容，然后只需填写标记为 **``必选参数``** 的参数即可进行模型转换，若需了解更多参数的使用说明，可参考 [yaml配置文件详解](../toolchain_development/intermediate/ptq_process#yaml_config) 章节内容。
 
 ```python
 

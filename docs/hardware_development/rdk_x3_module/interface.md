@@ -64,7 +64,7 @@ RDK X3 Module载板提供CAM 0/1/2三组MIPI CSI接口，可以满足3路Camera�
 | 4    | IMX477 | 1200W  | H:62  V:37 D:68  | 0x1a         |
 | 5    | OV5647 | 500W   | H:62  V:37 D:68  | 0x36         |
 
-上述Camera模组的购买方式可参考[购买链接](./rdk_x3_module.md#认证配件清单)。
+上述Camera模组的购买方式可参考[购买链接](./accessory.md)。
 
 :::caution 注意
 重要提示：严禁在开发板未断电的情况下插拔摄像头，否则非常容易烧坏摄像头模组。
@@ -74,7 +74,7 @@ RDK X3 Module载板提供CAM 0/1/2三组MIPI CSI接口，可以满足3路Camera�
 
 RDK X3 Module载板提供一路MIPI DSI接口（接口10），可以用于LCD显示屏等接入。接口采用15pin FPC连接器，可直接接入树莓派多款LCD显示屏。
 
-对于MIPI DSI接口的详细使用方法，可参考[MIPI DSI显示屏使用](./rdk_x3_module.md#mipi-dsi显示屏使用)。
+对于MIPI DSI接口的详细使用方法，可参考[MIPI DSI显示屏使用](./display.md)。
 
 ## USB接口
 
@@ -144,7 +144,7 @@ RDK X3 Module载板提供IO电平切换功能，用于控制40pin header电平�
 默认情况下，RDK X3 Module核心模组固件、载板电平配置为3.3V，如需要切换IO电平时，需要按如下步骤进行：
 
 1. 下载支持1.8V电平配置的启动固件，[固件下载地址](http://archive.sunrisepi.tech/downloads/miniboot)。
-2. 使用官方烧录工具`hbupdate`，更新核心板启动固件，具体方法请参考[镜像烧录](./rdk_x3_module.md#系统烧录)。
+2. 使用官方烧录工具`hbupdate`，更新核心板启动固件，具体方法请参考[镜像烧录](./system.md)。
 3. 设备断电，使用跳线帽将`vref`、`1.8V`信号短接后重新上电。
    :::
 
@@ -155,5 +155,5 @@ RDK X3 Module载板提供一组40pin header接口（接口9），接口信号电
 ![image-40pin-header](./image/rdk_x3_module/image-40pin-header.png)
 
 :::caution 注意
-默认情况下，RDK X3 Module核心模组固件、载板电平配置为3.3V，如需要切换IO电平时，请参考[IO电平选择header接口](./rdk_x3_module.md#io电平选择header接口)。
+默认情况下，RDK X3 Module核心模组固件、载板电平配置为3.3V，如需要切换IO电平时，请参考[IO电平选择header接口](#io电平切换接口)。
 :::

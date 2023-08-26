@@ -106,7 +106,7 @@ sunrise@ubuntu:/media/sda1$
 
 ### 接入USB串口转接板
 
-开发板USB Type A接口(接口5和6)，支持USB串口转接板功能，可自动检测USB串口转接板接入并创建设备节点`/dev/ttyUSB*` 或者 `/dev/ttyACM*`（星号代表0开始的数字）。用户可参考 [使用串口](../python_development/40pin_user_guide#40pin_uart_usage) 章节对串口进行使用。
+开发板USB Type A接口(接口5和6)，支持USB串口转接板功能，可自动检测USB串口转接板接入并创建设备节点`/dev/ttyUSB*` 或者 `/dev/ttyACM*`（星号代表0开始的数字）。用户可参考 [使用串口](../python_development/40pin_user_guide/uart.md#40pin_uart_usage) 章节对串口进行使用。
 
 ## USB摄像头
 
@@ -239,7 +239,7 @@ RDK X3开发板提供40pin header接口，IO信号采用3.3V电平设计。管�
 
 ![image-X3-PI-40Pin_Index](./image/hardware_interface/image-X3-PI-40Pin_Index.png)
 
-40PIN各功能的使用方法请查看 [40PIN 功能使用](../python_development/40pin_user_guide.md) 章节。
+40PIN各功能的使用方法请查看 [40PIN 功能使用](../python_development/40pin_user_guide/40pin_define.md) 章节。
 
 ## 蓝牙
 
