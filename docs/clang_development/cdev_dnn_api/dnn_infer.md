@@ -64,6 +64,7 @@ sidebar_position: 4
 
 :::info 备注
 
+  若使用 **RDK X3** ,请遵循如下规则：
   | 该接口支持批处理操作，假设需要推理的数据批数为 ``batch``，模型输入个数为 ``input_count``，其中resizer输入源的数量为 ``resizer_count``。
   | 准备输入参数 ``input``：第i个 ``batch`` 对应的 ``input`` 数组下标范围是 :math:`[i * input\_count`, :math:`(i + 1) * input\_count)，i=[0,batch)`;
   | 准备输入参数 ``rois``：每个resizer输入源的输入都应匹配一个roi，第i个 ``batch`` 对应的 ``rois`` 数组下标范围是 :math:`[i * resizer\_count`, :math:`(i + 1) * resizer\_count)，i=[0,batch)`; 每个batch的roi顺序应和输入的顺序保持一致；
@@ -72,6 +73,12 @@ sidebar_position: 4
   模型限制：模型需要在编译时将编译参数 ``input_source`` 设置为 ``resizer``, 模型的 h*w 要小于18432;
 
   使用该接口提交任务时应提前将 ``taskHandle`` 置为 ``nullptr``，除非是给指定 ``taskHandle`` 追加任务（即使用 ``inferCtrlParam::more`` 功能）。
+
+  ``roi`` 的 ``left`` 和 ``top`` 必须是偶数， ``right`` 和 ``bottom`` 必须是奇数。
+
+  ``roi`` 大小要求是 :math:`16 <= width < 256`, :math:`16 <= height < 256`。
+
+  缩放范围是 :math:`0.5 < roi / src <=8`。
 
   最多支持同时存在32个模型任务。
 
@@ -82,6 +89,65 @@ sidebar_position: 4
   ![resizer](./image/cdev_dnn_api/resizer.png)
 
   目前也支持多输入的nv12数据，resizer常用的输出尺寸(HxW)：128x128、128x64、64x128、160x96
+:::
+
+:::info 备注
+
+  若使用 **RDK Ultra** ,请遵循如下规则：
+
+  - ``input_count`` : 模型输入分支数量
+  - ``output_count`` : 模型输出分支数量
+  - ``resizer_count`` : 模型输入源为 resizer 的分支数量（≤input_count），模型处理一批数据时，一个 resizer 输入源分支处理一个 roi
+  - ``roiCount`` : roi 总数，其数值为 ``batch * resizer_count``
+  - ``data_batch`` : 模型需要推理的数据批数，其数值为 ``roiCount / resizer_count``
+  - ``model_batch`` : 模型内部的 batch 数量。即模型实际推理时，输入给模型的 batch_size。地平线工具链支持将模型编译为 batch model
+
+  输入/输出示例说明：
+
+  以较为复杂的多输入模型为例，假设模型有 3 个输入分支（2个resizer输入源，1个ddr输入源）和 1 个输出分支，并以 ``batch=2`` 编译，模型共需处理 3 批数据共 6 个 roi（即每批数据有2个roi），那么现有如下信息：
+
+  - ``input_count`` = 3
+  - ``output_count`` = 1
+  - ``resizer_count`` = 2
+  - ``roiCount`` = 6
+  - ``data_batch`` = 3
+  - ``model_batch`` = 2
+
+  所以模型推理这 3 批数据需要准备独立地址的 input_tensor 数量为 ``input_count * data_batch = 9``。
+
+  另假设模型输入/输出的静态信息如下：
+
+  - 模型输入（model_info）：
+
+    - tensor_0_resizer: [2, 3, 128, 128]
+    - tensor_1_resizer: [2, 3, 256, 256]
+    - tensor_2_ddr: [2, 80, 1, 100]
+
+  - 模型输出（model_info）：
+
+    - tensor_out：[2, 100, 1, 56]
+
+  那么模型在推理时的动态信息则为：
+
+  - 模型输入（input_tensors）：
+
+    - [1x3x128x128, 1x3x256x256, 1x80x1x100, 1x3x128x128, 1x3x256x256, 1x80x1x100, 1x3x128x128, 1x3x256x256, 1x80x1x100]
+
+  - 模型输出（output_tensors）：
+  
+    - [4x100x1x56]
+
+  其中，因为 ``model_batch = 2``，所以底层 BPU 单次执行可处理 2 批数据；又因为 ``data_batch = 3``，所以 output_tensor 最高维的计算公式为 ``ceil[(data_batch) / model_batch] * model_batch``，可见其一定为 ``model_batch`` 的整数倍，这也是 BPU 硬件指令要求，缺少的输入会自动忽略计算。
+
+  接口限制说明：
+
+  - 关于 ``batch`` 数量限制：其范围应该在[1, 255]。
+  - 使用该接口提交任务时应提前将 ``taskHandle`` 置为 ``nullptr``，除非是给指定 ``taskHandle`` 追加任务（即使用 ``inferCtrlParam::more`` 功能）。
+  - ``roi`` 大小要求是 :math:`2 <= width <= 4096`, :math:`2 <= height <= 4096`。
+  - 原图尺寸要求是 :math:`1 <= W <= 4096`, :math:`16 <= stride <= 131072`， ``stride`` 必须是16的倍数。
+  - 输出尺寸要求是 :math:`2 <= Wout`, :math:`2 <= Hout`。
+  - roi缩放倍数限制 :math:`0 <= step <= 262143`，step计算公式 :math:`step = ((src\_len - 1)*65536 + (dst\_len - 1)/2)/(dst\_len - 1)`，其中src_len为roi的W或H，dst_len为模型要求的W或H。
+  - 最多支持同时存在32个模型任务。
 :::
 
 ## hbDNNWaitTaskDone()

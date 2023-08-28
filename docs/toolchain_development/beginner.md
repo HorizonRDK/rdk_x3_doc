@@ -27,8 +27,8 @@ sidebar_position: 2
   |---------------|--------------------------------------|
   | CPU           | CPU I3以上或者同级别E3/E5的处理器    |
   | 内存          | 16G或以上级别                        |
-  | GPU(可选)     | CUDA11、驱动版本Linux:>= 450.80.02*<br/>适配显卡包括但不限于：<br/>1)GeForce RTX 3090<br/>2)GeForce RTX 2080 Ti<br/>3)NVIDIA TITAN V<br/>4)Tesla V100S-PCIE-32GB              
-  | 系统          | CentOS 7、Ubuntu 18.04及以上         |
+  | GPU(可选)     | CUDA11.6、驱动版本Linux:>= 510.39.01*<br/>适配显卡包括但不限于：<br/>1)GeForce RTX 3090<br/>2)GeForce RTX 2080 Ti<br/>3)NVIDIA TITAN V<br/>4)Tesla V100S-PCIE-32GB              
+  | 系统          | Ubuntu 20.04                        |
 
 
 **开发机部署**
@@ -46,7 +46,8 @@ sidebar_position: 2
 ```
 
 :::tip 小技巧
-  若需更多公版模型转换示例，可执行命令： ``wget -c ftp://xj3ftp@vrftp.horizon.ai/model_convert_sample/horizon_model_convert_sample.tar.gz --ftp-password=xj3ftp@123$%`` 获取。
+  1. 若需更多公版模型转换示例，可执行命令： ``wget -c ftp://xj3ftp@vrftp.horizon.ai/model_convert_sample/horizon_model_convert_sample.tar.gz --ftp-password=xj3ftp@123$%`` 获取。
+  2. 地平线同时提供有支持模型转换的Docker镜像，若需使用Docker环境，请阅读 [进阶指南-使用docker环境](./intermediate/environment_config#使用docker环境) 章节。
 :::
 
 - 2.创建模型转换环境：
@@ -96,12 +97,15 @@ sidebar_position: 2
 
   后续进行模型转换时，请首先使用命令 ``source activate horizon_bpu`` 或 ``conda activate horizon_bpu`` 进入模型转换环境!
 
-  地平线算法工具链环境安装包整体大小 ``50M`` 左右，下载安装包和安装依赖包受网络速率影响，整个安装过程耗时大约10分钟左右，请您耐心等候安装完成。
+  地平线算法工具链环境安装包整体大小 ``200M`` 左右，下载安装包和安装依赖包受网络速率影响，整个安装过程耗时大约20分钟左右，请您耐心等候安装完成。
 :::
 
 ## 快速体验{#quick_experiments}
 
-本章节中，我们为您介绍地平线算法工具链PTQ方案的基本使用流程，便于您实现快速上手。 这里我们以 yolov5s 模型为例，为您进行使用演示，地平线算法工具链PTQ方案的更多详细内容，请阅读 [进阶指南-PTQ原理及步骤详解](/toolchain_development/intermediate/ptq_process) 章节。
+本章节中，我们为您介绍地平线算法工具链PTQ方案的基本使用流程，便于您实现快速上手。 这里我们以 **RDK X3** 开发板上运行的 yolov5s 模型为例，为您进行使用演示，地平线算法工具链PTQ方案的更多详细内容，请阅读 [进阶指南-PTQ原理及步骤详解](/toolchain_development/intermediate/ptq_process) 章节。
+:::tip 小技巧
+  若要转换RDK Ultra支持的模型，请将以下章节步骤中的``0x_xx_X3.sh``脚本命令替换为 ``0x_xx_Ultra.sh`` 脚本命令进行模型转换即可。
+:::
 
 ### 开发环境准备
 
@@ -120,14 +124,18 @@ sidebar_position: 2
 命令执行完毕后，若出现以下日志，说明模型已准备完成：
 
 ```bash
-    -rwxr-xr-x 1 regular-engineer      645 Mar  9 14:01 01_check.sh
-    -rwxr-xr-x 1 regular-engineer      661 Mar  9 11:34 02_preprocess.sh
-    -rwxr-xr-x 1 regular-engineer      603 Mar  9 11:34 03_build.sh
-    -rwxr-xr-x 1 regular-engineer    13039 Mar  9 11:34 postprocess.py
-    -rwxr-xr-x 1 regular-engineer     3133 Mar  9 11:34 preprocess.py
-    -rwxr-xr-x 1 regular-engineer     2752 Mar  9 11:34 README.cn.md
-    -rwxr-xr-x 1 regular-engineer    10776 Mar  9 14:02 yolov5s_config.yaml
-    -rwxr-xr-x 1 regular-engineer 29999538 Mar  9 14:01 YOLOv5s.onnx
+    -rwxr-xr-x 1 10488 10501      640 Jul 31 18:35 01_check_Ultra.sh
+    -rwxr-xr-x 1 10488 10501      645 Jul 31 18:35 01_check_X3.sh
+    -rwxr-xr-x 1 10488 10501      661 Jul 31 18:24 02_preprocess.sh
+    -rwxr-xr-x 1 10488 10501      609 Jul 31 18:34 03_build_Ultra.sh
+    -rwxr-xr-x 1 10488 10501      606 Aug 14 16:49 03_build_X3.sh
+    -rwxr-xr-x 1 10488 10501     2752 Mar  9 11:34 README.cn.md
+    -rwxr-xr-x 1 10488 10501     1422 Jul 31 18:24 README.md
+    -rwxr-xr-x 1 10488 10501 29999538 Mar  9 14:01 YOLOv5s.onnx
+    -rwxr-xr-x 1 10488 10501    13039 Jul 31 18:24 postprocess.py
+    -rwxr-xr-x 1 10488 10501     3133 Jul 31 18:24 preprocess.py
+    -rwxr-xr-x 1 10488 10501    11304 Jul 31 18:34 yolov5s_config_Ultra.yaml
+    -rwxr-xr-x 1 10488 10501    11275 Jul 31 18:25 yolov5s_config_X3.yaml
 
 ```
 
@@ -135,7 +143,7 @@ sidebar_position: 2
 
 ### 模型验证
 
-若示例浮点模型已准备完成，根据以下步骤进行模型验证，确保其符合地平线X3处理器的支持约束。
+若示例浮点模型已准备完成，根据以下步骤进行模型验证，确保其符合地平线RDK X3处理器的支持约束。
 
 -   进入浮点模型转换示例yolov5s模型目录
 
@@ -146,8 +154,8 @@ sidebar_position: 2
 -   模型检查
 
 ```bash
-    #确认模型结构及算子是否支持，并提供每个算子执行硬件的分配情况（BPU/CPU）
-    bash 01_check.sh
+    #确认模型结构及算子是否支持，并提供每个算子执行硬件的分配情况（BPU/CPU），RDK X3 执行脚本：01_check_X3.sh ； RDK Ultra 执行脚本：01_check_Ultra.sh
+    bash 01_check_X3.sh
 ```
 
 命令执行完毕后，若出现以下日志，说明模型校验成功
@@ -179,8 +187,8 @@ sidebar_position: 2
 -   模型转换
 
 ```bash
-    #转换时所需的配置文件 yolov5s_config.yaml，已存放在03_build.sh脚本同级文件夹下
-    bash 03_build.sh
+    #转换时所需的配置文件 yolov5s_config_X3.yaml，已存放在03_build_X3.sh脚本同级文件夹下，RDK X3 执行脚本：03_build_X3.sh ； RDK Ultra 执行脚本：03_build_Ultra.sh
+    bash 03_build_X3.sh
 ```
 
 命令执行完毕后，若出现以下日志并无任何报错，说明模型转换成功
@@ -242,7 +250,7 @@ sidebar_position: 2
 
 ### 公版模型性能精度指标
 
-下表提供了典型深度神经网络模型在地平线X3处理器上的性能、精度指标。
+下表提供了典型深度神经网络模型在地平线 ``RDK X3`` 开发板上的性能、精度指标。
 
 ![model_accuracy](./image/beginner/model_accuracy.png)
 

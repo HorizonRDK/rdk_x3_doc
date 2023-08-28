@@ -9,8 +9,8 @@ sidebar_position: 1
 |             | gpu                      | cpu         |
 | ----------- | ------------------------ | ----------- |
 | os          | Ubuntu20.04              | Ubuntu20.04 |
-| cuda        | 11.1                     | N/A         |
+| cuda        | 11.6                     | N/A         |
 | python      | 3.8                      | 3.8         |
-| torch       | 1.10.2+cuda-11.1         | 1.10.2+cpu  |
-| torchvision | 0.11.3+cuda-11.1         | 0.11.3+cpu  |
-| 推荐显卡    | titan v/2080ti/v100/3090 | N/A         |
+| torch       | 1.13.0+cu116             | 1.13.0+cpu  |
+| torchvision | 0.14.0+cu116             | 0.14.0+cpu  |
+| 推荐显卡    | titan v/2080ti/v100/3090 | N/A          |
