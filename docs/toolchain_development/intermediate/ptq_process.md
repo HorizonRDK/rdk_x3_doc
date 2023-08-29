@@ -14,15 +14,15 @@ sidebar_position: 2
 ![model_conversion_flowchart](./image/intermediate/model_conversion_flowchart.png)
 
 
-**浮点模型准备** 本阶段用来确保原始浮点模型的格式为地平线模型转换工具支持的格式，原始浮点模型来自于您通过TensorFlow/PyTorch等DL框架训练得到可用模型。具体的浮点模型要求与建议，请阅读[浮点模型准备](#model_preparation)章节内容。
+**浮点模型准备** 本阶段用来确保原始浮点模型的格式为地平线模型转换工具支持的格式，原始浮点模型来自于您通过TensorFlow/PyTorch等DL框架训练得到可用模型。具体的浮点模型要求与建议，请阅读[**浮点模型准备**](#model_preparation)章节内容。
 
-**模型验证** 本阶段用来校验原始浮点模型是否满足地平线算法工具链的要求。地平线提供 ``hb_mapper checker`` 检查工具来完成浮点模型的检查。具体使用方法，请阅读[验证模型](#model_check) 章节内容。
+**模型验证** 本阶段用来校验原始浮点模型是否满足地平线算法工具链的要求。地平线提供 ``hb_mapper checker`` 检查工具来完成浮点模型的检查。具体使用方法，请阅读[**验证模型**](#model_check) 章节内容。
 
-**模型转换** 本阶段用来完成浮点模型到地平线混合异构模型的转换，经过这个阶段，您将得到一个可以在地平线处理器上运行的模型。地平线提供 ``hb_mapper makertbin`` 转换工具来完成模型优化、量化和编译等关键步骤。具体使用方法，请阅读[模型转换](#model_conversion)章节内容。
+**模型转换** 本阶段用来完成浮点模型到地平线混合异构模型的转换，经过这个阶段，您将得到一个可以在地平线处理器上运行的模型。地平线提供 ``hb_mapper makertbin`` 转换工具来完成模型优化、量化和编译等关键步骤。具体使用方法，请阅读[**模型转换**](#model_conversion)章节内容。
 
-**性能评估** 本阶段主要用于测评地平线混合异构模型的推理性能情况，地平线提供了模型性能评估的工具，您可以使用这些工具验证模型性能是否达到应用要求。具体使用说明，请阅读 [模型性能分析与调优](#performance_evaluation)章节内容。
+**性能评估** 本阶段主要用于测评地平线混合异构模型的推理性能情况，地平线提供了模型性能评估的工具，您可以使用这些工具验证模型性能是否达到应用要求。具体使用说明，请阅读 [**模型性能分析与调优**](#performance_evaluation)章节内容。
 
-**精度评估** 本阶段主要用于测评地平线混合异构模型的推理精度情况，地平线提供了模型精度评估的工具。具体使用说明，请阅读[模型精度分析与调优](#accuracy_evaluation)章节内容。
+**精度评估** 本阶段主要用于测评地平线混合异构模型的推理精度情况，地平线提供了模型精度评估的工具。具体使用说明，请阅读[**模型精度分析与调优**](#accuracy_evaluation)章节内容。
 
 
 
@@ -58,20 +58,20 @@ sidebar_position: 2
 
   关于Pytorch、PaddlePaddle、TensorFlow2框架的模型，我们也提供了如何导出ONNX及模型可视化的教程，请参考：
 
-  - [Pytorch导出ONNX及模型可视化教程](https://developer.horizon.ai/forumDetail/146177165367615499) ；
+  - [**Pytorch导出ONNX及模型可视化教程**](https://developer.horizon.ai/forumDetail/146177165367615499) ；
 
-  - [PaddlePaddle导出ONNX及模型可视化教程](https://developer.horizon.ai/forumDetail/146177165367615500) ；
+  - [**PaddlePaddle导出ONNX及模型可视化教程**](https://developer.horizon.ai/forumDetail/146177165367615500) ；
 
-  - [TensorFlow2导出ONNX及模型可视化教程](https://developer.horizon.ai/forumDetail/146177165367615501) ；
+  - [**TensorFlow2导出ONNX及模型可视化教程**](https://developer.horizon.ai/forumDetail/146177165367615501) ；
 :::
 
 :::caution 注意
 
-  - 浮点模型中所使用的算子需要符合地平线算法工具链的算子约束条件，具体请阅读[模型算子支持列表](#supported_op_list_and_restrictions) 章节进行查询。
+  - 浮点模型中所使用的算子需要符合地平线算法工具链的算子约束条件，具体请阅读 [**模型算子支持列表**](./supported_op_list) 章节进行查询。
 
   - 目前转换工具仅支持输出个数小于或等于32的模型进行转换。
   
-  - 支持 ``caffe 1.0`` 版本的caffe浮点模型和 ``ir_version≤7`` , ``opset=10`` 、 ``opset=11`` 版本的onnx浮点模型量化成地平线支持的定点模型, onnx模型的ir_version与onnx版本的对应关系请参考[onnx官方文档](https://github.com/onnx/onnx/blob/main/docs/Versioning.md) ；
+  - 支持 ``caffe 1.0`` 版本的caffe浮点模型和 ``ir_version≤7`` , ``opset=10`` 、 ``opset=11`` 版本的onnx浮点模型量化成地平线支持的定点模型, onnx模型的ir_version与onnx版本的对应关系请参考[**onnx官方文档**](https://github.com/onnx/onnx/blob/main/docs/Versioning.md) ；
 
   - 模型输入维度只支持 ``固定4维`` 输入NCHW或NHWC（N维度只能为1），例如：1x3x224x224或1x224x224x3， 不支持动态维度及非4维输入；
 
@@ -181,7 +181,7 @@ hb_mapper checker 参数解释：
 
 :::caution 注意
 
-  - 如果模型检查步骤异常终止或者出现报错信息，则说明模型验证不通过，请根据终端打印或在当前路径下生成的 ``hb_mapper_checker.log`` 日志文件确认报错信息和修改建议，错误信息可以在 [模型量化错误及解决方法](../../common_questions/toolchain#model_convert_errors_and_solutions) 章节来查找错误的解决方法，若以上步骤仍不能排除问题，请联系地平线技术支持团队或在[地平线官方技术社区](https://developer.horizon.ai/)提出您的问题，我们将在24小时内给您提供支持。
+  - 如果模型检查步骤异常终止或者出现报错信息，则说明模型验证不通过，请根据终端打印或在当前路径下生成的 ``hb_mapper_checker.log`` 日志文件确认报错信息和修改建议，错误信息可以在 [**模型量化错误及解决方法**](../../common_questions/toolchain#model_convert_errors_and_solutions) 章节来查找错误的解决方法，若以上步骤仍不能排除问题，请联系地平线技术支持团队或在[**地平线官方技术社区**](https://developer.horizon.ai/)提出您的问题，我们将在24小时内给您提供支持。
 :::
 
 
@@ -332,7 +332,7 @@ layout( ``input_layout_train`` )，对于featuremap输入的模型，您可以�
 
 针对上述举例模型的样本处理代码如下：
 
-为避免过长代码篇幅，各种简单transformer实现代码未贴出，具体使用请参考[transformer使用方法](../../common_questions/toolchain#transposetransformer) 章节内容。
+为避免过长代码篇幅，各种简单transformer实现代码未贴出，具体使用请参考[**transformer使用方法**](../../common_questions/toolchain#transposetransformer) 章节内容。
 
 :::tip 小技巧
 
@@ -457,10 +457,10 @@ hb_mapper makertbin参数解释：
 
 :::caution 注意
 
-  - ``RDK X3 yaml配置文件``，可直接使用[RDK X3 Caffe模型量化yaml文件模板](../../common_questions/toolchain#rdk_x3_caffe_yaml_template) 和[RDK X3 ONNX模型量化yaml文件模板](../../common_questions/toolchain#rdk_x3_onnx_yaml_template)模板文件进行填写。
+  - ``RDK X3 yaml配置文件``，可直接使用[**RDK X3 Caffe模型量化yaml文件模板**](../../common_questions/toolchain#rdk_x3_caffe_yaml_template) 和[**RDK X3 ONNX模型量化yaml文件模板**](../../common_questions/toolchain#rdk_x3_onnx_yaml_template)模板文件进行填写。
 
-  - ``RDK Ultra yaml配置文件``，可直接使用[RDK Ultra Caffe模型量化yaml文件模板](../../common_questions/toolchain#rdk_ultra_caffe_yaml_template) 和[RDK Ultra ONNX模型量化yaml文件模板](../../common_questions/toolchain#rdk_ultra_onnx_yaml_template)模板文件进行填写。 
-  - 若 hb_mapper makertbin 步骤异常终止或者出现报错信息，则说明模型转换失败，请根据终端打印或在当前路径下生成的 ``hb_mapper_makertbin.log`` 日志文件确认报错信息和修改建议，错误信息可以在 [模型量化错误及解决方法](../../common_questions/toolchain#model_convert_errors_and_solutions)章节来查找错误的解决方法，若以上步骤仍不能排除问题，请联系地平线技术支持团队或在[地平线官方技术社区](https://developer.horizon.ai/)提出您的问题，我们将在24小时内给您提供支持。
+  - ``RDK Ultra yaml配置文件``，可直接使用[**RDK Ultra Caffe模型量化yaml文件模板**](../../common_questions/toolchain#rdk_ultra_caffe_yaml_template) 和[**RDK Ultra ONNX模型量化yaml文件模板**](../../common_questions/toolchain#rdk_ultra_onnx_yaml_template)模板文件进行填写。 
+  - 若 hb_mapper makertbin 步骤异常终止或者出现报错信息，则说明模型转换失败，请根据终端打印或在当前路径下生成的 ``hb_mapper_makertbin.log`` 日志文件确认报错信息和修改建议，错误信息可以在 [**模型量化错误及解决方法**](../../common_questions/toolchain#model_convert_errors_and_solutions)章节来查找错误的解决方法，若以上步骤仍不能排除问题，请联系地平线技术支持团队或在[**地平线官方技术社区**](https://developer.horizon.ai/)提出您的问题，我们将在24小时内给您提供支持。
 :::
 
 #### 模型转换yaml配置参数说明{#yaml_config}
@@ -618,6 +618,7 @@ hb_mapper makertbin参数解释：
 
   - 请注意，如果设置 ``input_type_rt`` 为 ``nv12`` 或 ``yuv444`` ，则模型的输入尺寸中不能出现奇数。
   - 请注意，目前RDK X3上暂不支持 ``input_type_rt`` 为 ``yuv444`` 且 ``input_layout_rt`` 为 ``NCHW`` 组合的场景。
+  - 模型转换成功后，若出现符合地平线BPU算子约束条件的OP仍然运行在CPU上，其主要原因是该OP属于被动量化OP，关于被动量化相关内容，请阅读 [**算法工具链中的主动量化和被动量化逻辑**](https://developer.horizon.ai/forumDetail/118364000835765793) 章节。
 :::
 
 以下是具体参数信息，参数会比较多，我们依照上述的参数组次序介绍。
@@ -637,9 +638,9 @@ hb_mapper makertbin参数解释：
 |``output_nodes``| **参数作用**：指定模型的输出节点。<br/>**参数说明**：一般情况下，转换工具会自动识别模型的输出节点。此参数用于支持您指定一些中间层次作为输出。设置值为模型中的具体节点名称，多个值的配置方法请参考前文对 ``param_value`` 配置描述。需要您注意的是，一旦设置此参数后，工具将不再自动识别输出节点，您通过此参数指定的节点就是全部的输出。| **取值范围**：无。<br/> **默认配置**：无。|可选 |
 |``remove_node_type``| **参数作用**：设置删除节点的类型。<br/>**参数说明**：该参数为隐藏参数，不设置或设置为空不影响模型转换过程。此参数用于支持您设置待删除节点的类型信息。被删除的节点必须在模型的开头或者末尾, 与模型的输入或输出连接。注意：待删除节点会按顺序依次删除，并动态更新模型结构；同时在节点删除前还会判断该节点是否位于模型的输入输出处。因此节点的删除顺序很重要。| **取值范围**：”Quantize”, “Transpose”, “Dequantize”, “Cast”, “Reshape”。不同类型用”;”分割。<br/> **默认配置**：无。|可选 |
 |``remove_node_name``| **参数作用**：设置删除节点的名称。<br/>**参数说明**：该参数为隐藏参数， 不设置或设置为空不影响模型转换过程。 此参数用于支持您设置待删除节点的名称。被删除的节点必须在模型的开头或者末尾, 与模型的输入或输出连接。注意：待删除节点会按顺序依次删除，并动态更新模型结构；同时在节点删除前还会判断该节点是否位于模型的输入输出处。因此节点的删除顺序很重要。| **取值范围**：无。不同类型用";"分割。<br/> **默认配置**：无。|可选 |
-|``set_node_data_type``| **参数作用**：配置指定op的输出数据类型为int16，此参数 **只支持RDK Ultra配置！** <br/> **参数说明**：在模型转换过程中，大多数op的默认输入输出数据类型为int8，通过该参数可以指定特定op的输出数据类型为int16（在满足一定的约束条件下）。int16相关说明详见：[int16配置说明](#int16_config)部分的描述。 <br/> **注意：** 该参数相关功能已合并至 ``node_info`` 参数中，后续版本计划废弃。 | **取值范围**：支持配置int16的算子范围您可参考[模型算子支持列表](#supported_op_list_and_restrictions)中RDK Ultra算子支持约束列表。<br/> **默认配置**：无。|可选 |
+|``set_node_data_type``| **参数作用**：配置指定op的输出数据类型为int16，此参数 **只支持RDK Ultra配置！** <br/> **参数说明**：在模型转换过程中，大多数op的默认输入输出数据类型为int8，通过该参数可以指定特定op的输出数据类型为int16（在满足一定的约束条件下）。int16相关说明详见：[**int16配置说明**](#int16_config)部分的描述。 <br/> **注意：** 该参数相关功能已合并至 ``node_info`` 参数中，后续版本计划废弃。 | **取值范围**：支持配置int16的算子范围您可参考[**模型算子支持列表**](./supported_op_list)中RDK Ultra算子支持约束列表。<br/> **默认配置**：无。|可选 |
 |``debug_mode``| **参数作用**：保存用于精度debug分析的校准数据。<br/>**参数说明**：该参数作用为保存用于精度debug分析的校准数据，数据格式为.npy。该数据通过np.load()可直接送入模型进行推理。若不设置此参数，您也可自行保存数据并使用精度debug工具进行精度分析。 | **取值范围**：``"dump_calibration_data"``<br/> **默认配置**：无。|可选 |
-|``node_info``| **参数作用**：支持配置指定OP的输入输出数据类型为int16以及强制指定算子在CPU或BPU上运行。此参数 **只支持RDK Ultra配置！** <br/>**参数说明**：基于减少yaml中的参数的原则，我们将 ``set_node_data_type`` 、``run_on_cpu`` 和 ``run_on_bpu`` 三个参数的能力融合到本参数中，并在此基础上扩充支持配置指定op输入数据类型为int16的能力。<br/> ``node_info`` 参数使用方式：  <br/>- 仅指定OP运行在BPU/CPU上（下以BPU为例，CPU方法一致）：<br/> node_info: { <br/>"node_name":<br/> { 'ON': 'BPU', <br/>}  <br/>} <br/> - 仅配置节点数据类型： <br/> node_info: 'node_name1:int16;node_name2:int16' <br/>  多个值的配置方法请参考 `param_value配置 <param_value>`。 <br/> - 指定OP运行在BPU上，同时配置OP的输入输出数据类型：<br/> node_info: { <br/>"node_name": { <br/>'ON': 'BPU', <br/>'InputType': 'int16', <br/>'OutputType': 'int16'<br/> } <br/>  } <br/> 'InputType': 'int16'代表指定算子的所有输入数据类型为int16。 <br/>如需指定算子特定输入的InputType，可在InputType后通过指定数字来进行配置。如：<br/>'InputType0': 'int16'代表指定算子的第一个输入数据类型为int16，<br/>'InputType1': 'int16'代表指定算子的第二个输入数据类型为int16，以此类推。<br/>**注意：** 'OutputType' 不支持指定算子特定输出的OutputType，配置后对算子的所有输出生效，不支持配置 'OutputType0' 、 'OutputType1'等。 | **取值范围**：支持配置int16的算子范围您可参考[模型算子支持列表](#supported_op_list_and_restrictions)中RDK Ultra算子支持约束列表。可指定在CPU或BPU运行的算子需为模型中包含的算子。<br/> **默认配置**：无。|可选 |
+|``node_info``| **参数作用**：支持配置指定OP的输入输出数据类型为int16以及强制指定算子在CPU或BPU上运行。此参数 **只支持RDK Ultra配置！** <br/>**参数说明**：基于减少yaml中的参数的原则，我们将 ``set_node_data_type`` 、``run_on_cpu`` 和 ``run_on_bpu`` 三个参数的能力融合到本参数中，并在此基础上扩充支持配置指定op输入数据类型为int16的能力。<br/> ``node_info`` 参数使用方式：  <br/>- 仅指定OP运行在BPU/CPU上（下以BPU为例，CPU方法一致）：<br/> node_info: { <br/>"node_name":<br/> { 'ON': 'BPU', <br/>}  <br/>} <br/> - 仅配置节点数据类型： <br/> node_info: 'node_name1:int16;node_name2:int16' <br/>  多个值的配置方法请参考 `param_value配置 <param_value>`。 <br/> - 指定OP运行在BPU上，同时配置OP的输入输出数据类型：<br/> node_info: { <br/>"node_name": { <br/>'ON': 'BPU', <br/>'InputType': 'int16', <br/>'OutputType': 'int16'<br/> } <br/>  } <br/> 'InputType': 'int16'代表指定算子的所有输入数据类型为int16。 <br/>如需指定算子特定输入的InputType，可在InputType后通过指定数字来进行配置。如：<br/>'InputType0': 'int16'代表指定算子的第一个输入数据类型为int16，<br/>'InputType1': 'int16'代表指定算子的第二个输入数据类型为int16，以此类推。<br/>**注意：** 'OutputType' 不支持指定算子特定输出的OutputType，配置后对算子的所有输出生效，不支持配置 'OutputType0' 、 'OutputType1'等。 | **取值范围**：支持配置int16的算子范围您可参考[模型算子支持列表](./supported_op_list)中RDK Ultra算子支持约束列表。可指定在CPU或BPU运行的算子需为模型中包含的算子。<br/> **默认配置**：无。|可选 |
 
 - ###### 输入信息参数组
 
@@ -699,7 +700,7 @@ hb_mapper makertbin参数解释：
 ##### RDK Ultra int16配置说明{#int16_config}
   
 在模型转换的过程中，模型中的大部分算子都会被量化到int8进行计算，而通过配置 ``node_info`` 参数，
-可以详细指定某个op的输入/输出数据类型为int16计算（具体支持的算子范围可参考[模型算子支持列表](#supported_op_list_and_restrictions)章节中的RDK Ultra算子支持列表内容。
+可以详细指定某个op的输入/输出数据类型为int16计算（具体支持的算子范围可参考[**模型算子支持列表**](./supported_op_list)章节中的RDK Ultra算子支持列表内容。
 基本原理如下：
 
 在您配置了某个op输入/输出数据类型为int16后，模型转换内部会自动进行op输入输出上下文（context）int16配置的更新和检查。
@@ -953,14 +954,14 @@ HzPreprocess内的计算公式为：`((input（取值范围[-128,127]）+ 128) -
   ...    ...     ...     ...       0.996656           4.495638
 ```
 上面列举的输出内容中，Node、ON、Subgraph、Type与 ``hb_mapper checker`` 工具的解读是一致的，
-请参考前文 [检查结果解读](#check_result)；
+请参考前文 [**检查结果解读**](#check_result)；
 Threshold是每个层次的校准阈值，用于异常状态下向地平线技术支持反馈信息，正常状况下不需要关注；
 Cosine Similarity一列反映的是Node列中对应算子的原始浮点模型与量化模型输出结果的余弦相似度。
 
 :::tip 小技巧
 
   一般情况下， **模型的输出节点 Cosine Similarity >= 0.99 可认为此模型量化正常**，输出节点的相似度低于0.8就有了较明显的精度损失， 当然Cosine Similarity只是指明量化后数据稳定性的一种参考方式，对于模型精度的影响不存在明显的直接关联关系，
-  完全准确的精度情况还需要您阅读[模型精度分析与调优](#accuracy_evaluation)的内容。
+  完全准确的精度情况还需要您阅读[**模型精度分析与调优**](#accuracy_evaluation)的内容。
 :::
 
 转换产出存放在转换配置参数 ``working_dir`` 指定的路径中，成功完成模型转换后，
@@ -971,10 +972,10 @@ Cosine Similarity一列反映的是Node列中对应算子的原始浮点模型�
 - \*\*\*_quantized_model.onnx
 - \*\*\*.bin
 
-[转换产出物解读](#conversion_output)介绍了每个产出物的用途。
+[**转换产出物解读**](#conversion_output)介绍了每个产出物的用途。
 
 :::caution 注意
-  在上板运行前，我们建议您完成[模型性能分析与调优](#performance_evaluation)介绍的模型性能&精度评测过程，避免将模型转换问题延伸到后续嵌入式端。
+  在上板运行前，我们建议您完成[**模型性能分析与调优**](#performance_evaluation)介绍的模型性能&精度评测过程，避免将模型转换问题延伸到后续嵌入式端。
 :::
 
 如果以上验证模型转换成功的三个方面中，有任一个出现缺失都说明模型转换出现了错误。
@@ -987,7 +988,7 @@ Missing keys: 'caffe_model', 'prototxt'
 2021-04-21 14:45:34,085 ERROR yaml file parse failed. Please double check your input
 2021-04-21 14:45:34,085 ERROR exception in command: makertbin
 ```
-如果控制台输出日志信息不能帮助您发现问题，请参考[模型量化错误及解决方法](../../common_questions/toolchain#model_convert_errors_and_solutions)章节内容进行查找，若以上步骤仍不能排除问题，请联系地平线技术支持团队或在[地平线官方技术社区](https://developer.horizon.ai/)提出您的问题，我们将在24小时内给您提供支持。
+如果控制台输出日志信息不能帮助您发现问题，请参考[**模型量化错误及解决方法**](../../common_questions/toolchain#model_convert_errors_and_solutions)章节内容进行查找，若以上步骤仍不能排除问题，请联系地平线技术支持团队或在[**地平线官方技术社区**](https://developer.horizon.ai/)提出您的问题，我们将在24小时内给您提供支持。
 
 
 #### 转换产出物解读{#conversion_output}
@@ -999,23 +1000,23 @@ Missing keys: 'caffe_model', 'prototxt'
 - \*\*\*_quantized_model.onnx
 - \*\*\*.bin
 
-\*\*\*_original_float_model.onnx的产出过程可以参考[转换内部过程解读](#conversion_interpretation)的介绍，
-这个模型计算精度与转换输入的原始浮点模型是一模一样的，有个重要的变化就是为了适配地平线平台添加了一些数据预处理计算（增加了一个预处理算子节点 ``HzPreprocess``, 可以使用netron工具打开onnx模型查看,此算子的详情可查看[预处理HzPreprocess算子说明](#pre_process) 内容）。
-一般情况下，您不需要使用这个模型，若在转换结果出现异常时，通过上文介绍的定位方法仍不能解决您的问题，请将这个模型提供给地平线的技术支持团队或在[地平线官方技术社区](https://developer.horizon.ai/)提出您的问题，将有助于帮助您快速解决问题。
+\*\*\*_original_float_model.onnx的产出过程可以参考[**转换内部过程解读**](#conversion_interpretation)的介绍，
+这个模型计算精度与转换输入的原始浮点模型是一模一样的，有个重要的变化就是为了适配地平线平台添加了一些数据预处理计算（增加了一个预处理算子节点 ``HzPreprocess``, 可以使用netron工具打开onnx模型查看,此算子的详情可查看[**预处理HzPreprocess算子说明**](#pre_process) 内容）。
+一般情况下，您不需要使用这个模型，若在转换结果出现异常时，通过上文介绍的定位方法仍不能解决您的问题，请将这个模型提供给地平线的技术支持团队或在[**地平线官方技术社区**](https://developer.horizon.ai/)提出您的问题，将有助于帮助您快速解决问题。
 
-\*\*\*_optimized_float_model.onnx的产出过程可以参考[转换内部过程解读](#conversion_interpretation) 的介绍，
+\*\*\*_optimized_float_model.onnx的产出过程可以参考[**转换内部过程解读**](#conversion_interpretation) 的介绍，
 这个模型经过一些算子级别的优化操作，常见的就是算子融合。
 通过与original_float模型的可视化对比，您可以明显看到一些算子结构级别的变化，不过这些都不影响模型的计算精度。
-一般情况下，您不需要使用这个模型，若在转换结果出现异常时，通过上文介绍的定位方法仍不能解决您的问题，请将这个模型提供给地平线的技术支持团队或在[地平线官方技术社区](https://developer.horizon.ai/)提出您的问题，将有助于帮助您快速解决问题。
+一般情况下，您不需要使用这个模型，若在转换结果出现异常时，通过上文介绍的定位方法仍不能解决您的问题，请将这个模型提供给地平线的技术支持团队或在[**地平线官方技术社区**](https://developer.horizon.ai/)提出您的问题，将有助于帮助您快速解决问题。
 
-\*\*\*_quantized_model.onnx的产出过程可以参考[转换内部过程解读](#conversion_interpretation) 的介绍，
+\*\*\*_quantized_model.onnx的产出过程可以参考[**转换内部过程解读**](#conversion_interpretation) 的介绍，
 这个模型已经完成了校准和量化过程，量化后的模型精度损失情况，可以阅读下文模型精度分析与调优内容来评估此模型。
-这个模型是精度验证过程中必须要使用的模型，具体使用方式请参考[模型精度分析与调优](#accuracy_evaluation)的介绍。
+这个模型是精度验证过程中必须要使用的模型，具体使用方式请参考[**模型精度分析与调优**](#accuracy_evaluation)的介绍。
 
 \*\*\*.bin就是可以用于在地平线处理器上加载运行的模型，
 配合 上板运行(runtime)应用开发说明 章节介绍的内容，
 您就可以将模型快速在地平线处理器上部署运行。不过为了确保模型的性能与精度效果是符合您的预期的，
-我们建议完成[模型转换](#model_conversion)和[模型精度分析与调优](#accuracy_evaluation)
+我们建议完成[**模型转换**](#model_conversion)和[**模型精度分析与调优**](#accuracy_evaluation)
 介绍的性能和精度分析过程后再进入到应用开发和部署。
 
 :::caution 注意
@@ -1071,7 +1072,7 @@ BIN Model Structure部分提供的是bin模型的子图级可视化结果，图�
 
 在查看Details和BIN Model Structure时，您需要了解子图（subgraph）的概念。
 如果模型网络结构中出现CPU计算的算子，模型转换工具会将CPU算子前后连续在BPU计算的部分拆分为两个独立的子图（subgraph）。
-具体可以参考 [验证模型](#model_check) 部分的介绍。
+具体可以参考 [**验证模型**](#model_check) 部分的介绍。
 
 Details是每个模型BPU子图的具体信息，在 ``mobilenetv1_224x224_nv12.html`` 主页面中，子图的各项指标为：
 
@@ -1086,7 +1087,7 @@ Details是每个模型BPU子图的具体信息，在 ``mobilenetv1_224x224_nv12.
 
   参考信息说明页面会根据您是否启用调试配置，从而有所区别，
   下图中的Layer Details仅当在yaml配置文件中设置 ``debug`` 参数为 ``True`` 时才可以拿到，
-  这个 ``debug`` 参数配置方法请参考[使用 hb_mapper makertbin 工具转换模型](#makertbin)部分的介绍。
+  这个 ``debug`` 参数配置方法请参考[**使用 hb_mapper makertbin 工具转换模型**](#makertbin)部分的介绍。
 :::
 Layer Details提供具体算子级别的分析，在模型调试分析阶段可以作为参考，例如：如果是某些BPU算子导致模型性能低，通过分析结果帮助您定位到具体的算子。
 
@@ -1271,13 +1272,22 @@ Perf result:
   }
 }
 ```
-上述日志内容对应到[使用hb_perf工具估计性能](#hb_perf)中的BIN Model Structure部分介绍的bin可视化图中，
+上述日志内容对应到[**使用hb_perf工具估计性能**](#hb_perf)中的BIN Model Structure部分介绍的bin可视化图中，
 图中每个节点都有对应的节点在profiler.log文件中，可以通过 ``name`` 对应起来，另外，profiler.log文件中也记录出每个节点的执行时间，对优化模型算子提供参考，由于模型中的BPU节点对输入输出有特殊要求，如特殊的layout和padding对齐要求，因此需要对BPU节点的输入、输出数据进行处理。
 
 - ``Preprocess``：表示对模型输入数据进行padding和layout转换操作，其耗时统计在Preprocess中。
 - ``xxxx_input_layout_convert``： 表示对BPU节点的输入数据进行padding和layout转换的操作，其耗时统计在xxxx_input_layout_convert中。
 - ``xxxx_output_layout_convert``： 表示对BPU节点输出数据进行去掉padding和layout转换的操作，其耗时统计在xxxx_output_layout_convert中。
-``profiler`` 分析是模型性能调优中经常使用的操作，前文 [检查结果解读](#check_result) 部分提到检查阶段不用过于关注CPU算子，此阶段可以看到CPU算子的具体耗时情况，可以根据对应算子的耗时情况来进行模型性能调优。
+``profiler`` 分析是模型性能调优中经常使用的操作，前文 [**检查结果解读**](#check_result) 部分提到检查阶段不用过于关注CPU算子，此阶段可以看到CPU算子的具体耗时情况，可以根据对应算子的耗时情况来进行模型性能调优。
+
+:::tip 小技巧
+
+  若模型耗时比较严重，也可以通过以下几种方法来进行性能优化：
+  1. 单帧单核：一帧数据进来，在一个核上启用模型去运行推理；
+  2. 单帧双核：模型在编译时就指定为双核模型（yaml配置文件中的 core_num：2），运行后会自动占用两个核的资源，然后一帧数据进来，会拆成两部分分别计算，最后再拼起来。这种模式在一些大模型上优化效果才有比较明显，会降低一定的延迟，小模型反而可能会因为这种双核的调度变慢；
+  3. 双帧双核：两个核分别启用一个模型，独立处理各自的数据帧，时延不会降低，但帧率差不多可以达到2倍
+:::
+
 
 
 #### 模型性能优化
@@ -1291,7 +1301,7 @@ Perf result:
 ##### 检查影响模型性能的yaml参数
 
 在模型转换的yaml配置文件中，部分参数会实际影响模型的最终性能，请先检查是否已正确按照模型预期配置，
-各参数的具体含义和作用，请参考[编译参数组](#compiler_parameters)章节内容。
+各参数的具体含义和作用，请参考[**编译参数组**](#compiler_parameters)章节内容。
 
 - ``layer_out_dump``：指定模型转换过程中是否输出模型的中间结果，一般仅用于调试功能。
   如果将其配置为 ``True``，则会为每个卷积算子增加一个反量化输出节点，它会显著的降低模型上板后的性能。
@@ -1306,10 +1316,10 @@ Perf result:
 
 ##### 处理CPU算子
 
-根据 ``hrt_model_exec perf`` 工具的评估，若可以确认模型的性能瓶颈是CPU算子导致的，此种情况下，建议您查看[模型算子支持列表](#supported_op_list_and_restrictions)的内容，确认当前运行在CPU上的算子是否具备BPU支持的能力。
+根据 ``hrt_model_exec perf`` 工具的评估，若可以确认模型的性能瓶颈是CPU算子导致的，此种情况下，建议您查看[**模型算子支持列表**](./supported_op_list)的内容，确认当前运行在CPU上的算子是否具备BPU支持的能力。
 
 如果该算子在模型算子支持列表中具备BPU支持能力，应该是该算子参数超过了BPU支持的参数约束范围，建议您将相应原始浮点模型计算参数调整到约束范围内。
-为了方便您快速知晓超出约束的具体参数，建议您再使用 [验证模型](#model_check) 部分介绍的方法做一遍检查，工具将会直接给出超出BPU支持范围的参数提示。
+为了方便您快速知晓超出约束的具体参数，建议您再使用 [**验证模型**](#model_check) 部分介绍的方法做一遍检查，工具将会直接给出超出BPU支持范围的参数提示。
 
 :::info 备注
   修改原始浮点模型参数对模型计算精度的影响需要您自己把控，例如：Convolution的 ``input_channel`` 或 ``output_channel`` 超出范围就是一种较典型的情况，减少channel后，使该算子被BPU支持，但只做这一处修改也可能对模型精度产生影响。
@@ -1376,7 +1386,7 @@ Perf result:
   地平线处理器的BPU对于 ``Depthwise Convolution`` 和 ``Group Convolution`` 都做了针对性的优化，所以我们更推荐采用Depthwise+Pointwise 结构的MobileNetv2、EfficientNet_lite， 以及地平线基于 GroupConv 手工设计自研的 VarGNet 作为模型的 Backbone，以便获得更高的性能收益。
 
   更多的模型结构和业务模型都在持续探索中，我们将提供更加丰富的模型给您作为直接的参考，这些产出将不定期更新至 https://github.com/HorizonRobotics-Platform/ModelZoo/tree/master。
-  如果以上依然不能满足您的需要，欢迎在[地平线官方技术社区](https://developer.horizon.ai)发帖与我们取得联系，我们将根据您的具体问题提供更具针对性的指导建议。
+  如果以上依然不能满足您的需要，欢迎在[**地平线官方技术社区**](https://developer.horizon.ai)发帖与我们取得联系，我们将根据您的具体问题提供更具针对性的指导建议。
 
 
 ### 模型精度分析{#accuracy_evaluation}
@@ -1455,7 +1465,7 @@ if __name__ == '__main__':
 :::
 此外, ``your_custom_data_prepare`` 函数所代表的输入数据准备过程是最容易出现误操作的部分。
 相对于您设计&训练原始浮点模型的精度验证过程，建议您在数据预处理后将推理输入数据进行调整：主要是数据格式（RGB、NV12等）、数据精度（int8、float32等）和数据排布（NCHW或NHWC）。
-调整方法是您在模型转换时yaml配置文件中设置的 ``input_type_train``、 ``input_layout_train``、 ``input_type_rt`` 和 ``input_layout_rt`` 四个参数共同决定，其详细规则请参考[转换内部过程解读](#conversion_interpretation) 章节介绍。
+调整方法是您在模型转换时yaml配置文件中设置的 ``input_type_train``、 ``input_layout_train``、 ``input_type_rt`` 和 ``input_layout_rt`` 四个参数共同决定，其详细规则请参考[**转换内部过程解读**](#conversion_interpretation) 章节介绍。
 
 例如：使用ImageNet训练的用于分类的原始浮点模型，它只有一个输入节点。这个节点接受BGR顺序的三通道图片，输入数据排布为NCHW。
 那么，在原始浮点模型设计&训练阶段，验证集推理模型前做的数据预处理如下：
@@ -1468,7 +1478,7 @@ if __name__ == '__main__':
 使用地平线转换这个原始浮点模型时，
 ``input_type_train`` 设置 ``bgr``、 ``input_layout_train`` 设置 ``NCHW``、 ``input_type_rt`` 设置 ``bgr``、
 ``input_layout_rt`` 设置 ``NHWC``。
-根据[转换内部过程解读](#conversion_interpretation) 部分介绍的规则， \*\*\*_quantized_model.onnx接受的输入应该为bgr_128、NHWC排布。
+根据[**转换内部过程解读**](#conversion_interpretation) 部分介绍的规则， \*\*\*_quantized_model.onnx接受的输入应该为bgr_128、NHWC排布。
 对应到前文的示例代码， ``your_custom_data_prepare`` 部分提供的数据处理过程如下：
 
 ```
@@ -1541,7 +1551,7 @@ pipeline是指您完成数据预处理、模型转换、模型推理、后处理
   此外，为方便用户设置校准数据的解析方式，在X3算法工具链v2.2.3a版本之后，在yaml中新增了参数 ``cal_data_type`` 来设置二进制文件的数据存储类型。
 
 - transformer实现方式不一致：地平线提供了一系列常见预处理函数，存放在 ``/horizon_model_convert_sample/01_common/python/data/transformer.py`` 文件中，部分预处理操作的实现方式可能会有所区别，例如ResizeTransformer，采用的是opencv默认插值方式（linear），
-  若为其他插值方式可直接修改transformer.py源码，确保与训练时预处理代码保持一致, 具体使用请参考[transformer使用方法](../../common_questions/toolchain#transposetransformer)章节内容。
+  若为其他插值方式可直接修改transformer.py源码，确保与训练时预处理代码保持一致, 具体使用请参考[**transformer使用方法**](../../common_questions/toolchain#transposetransformer)章节内容。
 
 - 建议您在地平线算法工具链使用过程中，依然使用原始浮点模型训练验证阶段依赖的数据处理库。
   对于鲁棒性较差的模型，不同库实现的功能resize、crop等典型功能都可能引起扰动，进而影响模型精度。
@@ -1591,7 +1601,7 @@ pipeline是指您完成数据预处理、模型转换、模型推理、后处理
 
   在模型转换过程中，大部分op默认会以int8的数据计算，在一些场景下部分op使用int8计算会导致精度损失明显。
   针对 **RDK Ultra** 产品，目前算法工具链已经提供了指定特定op以int16 bit计算的能力，
-  详情可参考 [int16配置说明](#int16_config) 参数配置的说明。
+  详情可参考 [**int16配置说明**](#int16_config) 参数配置的说明。
   通过配置量化精度损失敏感op（以余弦相似度为参考）以int16 bit计算，一些场景下可以解决精度损失问题。
 :::
 
@@ -2366,7 +2376,7 @@ runall流程：
 
 根据以往的使用调优经验，以上策略已经可以应对各种实际问题。
 
-如果经过以上尝试仍然未能解决您的问题，请根据[精度调优checklist](../../common_questions/toolchain#checklist)文档步骤填写模型配置的具体信息来进行检查，确保每一步排查都已完成，并根据checklist锁定是在模型转换的那个具体步骤出现异常，然后将填写完整的 **精度调优checklist** 信息、原始f浮点模型文件、模型量化相关的配置文件等一起反馈给地平线技术支持团队或在[地平线官方技术社区](https://developer.horizon.ai/)提出您的问题，我们将在24小时内给您提供支持。
+如果经过以上尝试仍然未能解决您的问题，请根据[**精度调优checklist**](../../common_questions/toolchain#checklist)文档步骤填写模型配置的具体信息来进行检查，确保每一步排查都已完成，并根据checklist锁定是在模型转换的那个具体步骤出现异常，然后将填写完整的 **精度调优checklist** 信息、原始f浮点模型文件、模型量化相关的配置文件等一起反馈给地平线技术支持团队或在[**地平线官方技术社区**](https://developer.horizon.ai/)提出您的问题，我们将在24小时内给您提供支持。
 
 
 ### 其它工具使用说明
@@ -2689,7 +2699,7 @@ deleted nodes: data_res2a_branch1_HzQuantize_TransposeInput0
 若无则可以使用工具链SDK包中 ``package/host`` 下的 ``install.sh`` 脚本进行安装)， 并对其三方的结果进行两两比较，给出是否通过的结论。 若未指定图片，则工具会用默认图片进行推理(featuremap模型会随机生成tensor数据)。
 
 :::caution 注意
-  ``package`` 资料包获取方式，请参考[交付物说明](#deliverables_instructions)。
+  ``package`` 资料包获取方式，请参考[**交付物说明**](#deliverables_instructions)。
 :::
 - 使用方式
 
@@ -2798,5 +2808,5 @@ hb_eval_preprocess的命令行参数
 
 :::tip 小技巧
   更多关于 ``hb_eval_preprocess`` 工具在上板模型精度评估中的应用示例请参见嵌入式应用开发《公版模型评测说明》中的
-  [数据预处理](#data_preprocess) 一节内容。
+  [**数据预处理**](./runtime_sample#data_preprocess) 一节内容。
 :::

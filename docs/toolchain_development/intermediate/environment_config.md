@@ -9,7 +9,7 @@ sidebar_position: 1
 ## 交付物使用说明{#deliverables_instructions}
 
 
-在进行算法工具链使用环境部署前，请下载地平线提供的[嵌入式应用开发Sample交付包](https://pan.horizon.ai/index.php/s/iZwyzXoJLs8Btme)到Linux开发机环境中。
+在进行算法工具链使用环境部署前，请下载地平线提供的[**嵌入式应用开发Sample交付包**](https://pan.horizon.ai/index.php/s/iZwyzXoJLs8Btme)到Linux开发机环境中。
 
 ### 示例包源码目录结构说明
 
@@ -49,7 +49,7 @@ sidebar_position: 1
   | GPU(可选)     | CUDA11.6、驱动版本Linux:>= 510.39.01*<br/>适配显卡包括但不限于：<br/>1)GeForce RTX 3090<br/>2)GeForce RTX 2080 Ti<br/>3)NVIDIA TITAN V<br/>4)Tesla V100S-PCIE-32GB
   | 系统          | Ubuntu 20.04         |
 
-更多关于CUDA与显卡的兼容性问题请参考[NVIDIA官网信息](https://docs.nvidia.com/deploy/cuda-compatibility/) 。
+更多关于CUDA与显卡的兼容性问题请参考[**NVIDIA官网信息**](https://docs.nvidia.com/deploy/cuda-compatibility/) 。
 
 ### 使用Docker环境
 
@@ -59,7 +59,7 @@ sidebar_position: 1
 地平线要求的Docker基础环境信息如下：
 
 - Docker（>=1.12 建议安装18.03.0-ce）, 安装手册 https://docs.docker.com/install/。
-- NVIDIA Docker（2.0.3），安装手册[NVIDIA/nvidia-docker](https://github.com/nvidia/nvidia-docker/wiki)。
+- NVIDIA Docker（2.0.3），安装手册[**NVIDIA/nvidia-docker**](https://github.com/nvidia/nvidia-docker/wiki)。
 
 完成Docker环境安装后，需要将无root权限的用户添加到Docker用户组中。参考如下命令：
 
@@ -72,7 +72,7 @@ sidebar_position: 1
 
 获取本节需要使用的Docker镜像的地址如下：
 
-- [地平线 Docker Hub GPU Docker](https://hub.docker.com/r/openexplorer/ai_toolchain_ubuntu_20_x3j5_gpu)
+- [**地平线 Docker Hub GPU Docker**](https://hub.docker.com/r/openexplorer/ai_toolchain_ubuntu_20_x3j5_gpu)
 
 镜像文件命名形式为：
 
@@ -81,7 +81,7 @@ sidebar_position: 1
 
 :::tip 小技巧
 
-  执行命令时将 ``{version}`` 替换为您获取到的 **最新版本的Docker镜像** ，例如： [地平线 docker hub GPU Docker](https://hub.docker.com/r/openexplorer/ai_toolchain_ubuntu_20_x3j5_gpu) 中目前的最新版本为 ``openexplorer/ai_toolchain_ubuntu_20_x3j5_gpu:v1.0.0``。
+  执行命令时将 ``{version}`` 替换为您获取到的 **最新版本的Docker镜像** ，例如： [**地平线 docker hub GPU Docker**](https://hub.docker.com/r/openexplorer/ai_toolchain_ubuntu_20_x3j5_gpu) 中目前的最新版本为 ``openexplorer/ai_toolchain_ubuntu_20_x3j5_gpu:v1.0.0``。
 
   本地Docker镜像包版本，可以联系地平线技术支持团队获取。
 
@@ -180,7 +180,7 @@ sidebar_position: 1
 ## 开发板部署
 
 
-开发板部署需要您按照刷机说明，将开发版镜像更新到最新版本，升级方法请参考[安装系统](../../installation/install_os#flash_system) 章节内容， 升级完成后，再将相关补充文件拷贝到开发板中即可。
+开发板部署需要您按照刷机说明，将开发版镜像更新到最新版本，升级方法请参考[**安装系统**](../../installation/install_os#flash_system) 章节内容， 升级完成后，再将相关补充文件拷贝到开发板中即可。
 
 
 ### 补充文件准备

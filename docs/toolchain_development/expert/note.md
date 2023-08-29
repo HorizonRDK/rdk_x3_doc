@@ -7,7 +7,7 @@ sidebar_position: 6
 ## Eager 模式
 
 和 PyTorch 官方一样，我们推荐用户优先使用的 fx 量化模式。horizon_plugin_pytorch 目前支持采用 eager 模式进行量化。
-Eager 模式的整体流程同样参考了 PyTorch 官方的量化接口和思路，因此，建议您先阅读 [PyTorch 官方文档](https://pytorch.org/docs/stable/quantization.html#quantization)中 Eager 模式相关部分。
+Eager 模式的整体流程同样参考了 PyTorch 官方的量化接口和思路，因此，建议您先阅读 [**PyTorch 官方文档**](https://pytorch.org/docs/stable/quantization.html#quantization)中 Eager 模式相关部分。
 
 ### 与 fx 模式的区别
 
@@ -427,7 +427,7 @@ compile_quantized_model(torch.device('cuda'))
 
 1. 除特别说明，Bernoulli2 架构限制算子的输入输出均为 4 维。
 2. 在 eager 模式中，部分算子需要手动替换，fx 模式无需手动替换算子。
-3. 以下支持的算子默认为不进行算子融合，对于可进行融合的算子（如 (conv,bn),relu)），参考[算子融合](./advanced_content.md#op_fusion)章节。
+3. 以下支持的算子默认为不进行算子融合，对于可进行融合的算子（如 (conv,bn),relu)），参考[**算子融合**](./advanced_content.md#op_fusion)章节。
 4. 在预测阶段，透传的算子（例如 Identity，Dropout），在部署时会被优化掉。
 
 ### torch function 类

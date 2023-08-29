@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # 快速上手{#quick_start} 
 
-Horizon Plugin Pytorch (下称 Plugin ) 参考了 PyTorch 官方的量化接口和思路，Plugin 采用的是 Quantization Aware Training(QAT) 方案，因此建议用户先阅读 [PyTorch 官方文档](https://pytorch.org/docs/stable/quantization.html#quantization)中和 QAT 相关部分，熟悉 PyTorch 提供的量化训练和部署工具的使用方法。
+Horizon Plugin Pytorch (下称 Plugin ) 参考了 PyTorch 官方的量化接口和思路，Plugin 采用的是 Quantization Aware Training(QAT) 方案，因此建议用户先阅读 [**PyTorch 官方文档**](https://pytorch.org/docs/stable/quantization.html#quantization)中和 QAT 相关部分，熟悉 PyTorch 提供的量化训练和部署工具的使用方法。
 
 ## 基本流程
 
@@ -88,7 +88,7 @@ Horizon Plugin Pytorch (下称 Plugin ) 参考了 PyTorch 官方的量化接口�
 :::caution 注意
 
   模型上板时的输入图像数据一般为 centered_yuv444 格式，因此模型训练时需要把图像转换成 centered_yuv444 格式（注意下面代码中对 ``rgb2centered_yuv`` 的使用）。
-  如果无法转换成 centered_yuv444 格式进行模型训练，请参考 **RGB888 数据部署** 章节中的介绍，对模型做相应的改造。（注意，该方法可能导致模型精度降低）
+  如果无法转换成 centered_yuv444 格式进行模型训练，请参考 [**RGB888 数据部署**](./advanced_content#rgb888-数据部署) 章节中的介绍，对模型做相应的改造。（注意，该方法可能导致模型精度降低）
   本示例中浮点和 QAT 训练的 epoch 较少，仅为说明训练工具使用流程，精度不代表模型最好水平。
 :::
 

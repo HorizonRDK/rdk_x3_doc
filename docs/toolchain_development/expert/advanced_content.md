@@ -8,7 +8,7 @@ sidebar_position: 4
 
 自定义 qconfig 要求用户对具体的处理器限制认知清晰，详细了解训练工具的工作原理，详细了解如何通过 qconfig 体现处理器的限制。量化训练需要一定的训练成本，qconfig 定义出错可能导致模型无法正常收敛、模型无法编译等问题，因此，对于普通用户不推荐自定义 qconfig。
 
-horizon_plugin_pytorch 采用 PyTorch 提供的 partial function 的方法实现 qcofnig 的定义，关于该方法的使用见[官方说明](https://github.com/pytorch/pytorch/blob/v2.0.0/torch/ao/quantization/observer.py#L77)，对该方法不了解的用户在继续阅读之前，请先自行学习该方法。
+horizon_plugin_pytorch 采用 PyTorch 提供的 partial function 的方法实现 qcofnig 的定义，关于该方法的使用见[**官方说明**](https://github.com/pytorch/pytorch/blob/v2.0.0/torch/ao/quantization/observer.py#L77)，对该方法不了解的用户在继续阅读之前，请先自行学习该方法。
 
 目前，qconfig 处理两类信息：
 

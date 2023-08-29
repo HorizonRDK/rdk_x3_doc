@@ -7,8 +7,8 @@ sidebar_position: 2
 ## 概述
 
 
-本指南用于介绍地平线算法工具链中训练后量化PTQ方法的使用流程，若您是第一次使用地平线算法工具链的用户，建议您根据本指南章节步骤进行学习；若您已完成入门指南章节内容的学习，下一步可以参考本指南的[快速体验](#quick_experiments)章节步骤来进行私有模型的模型转换及上板运行；
-如果需要了解地平线算法工具链的更多内容，请跳转至[进阶指南](./intermediate) 章节。
+本指南用于介绍地平线算法工具链中训练后量化PTQ方法的使用流程，若您是第一次使用地平线算法工具链的用户，建议您根据本指南章节步骤进行学习；若您已完成入门指南章节内容的学习，下一步可以参考本指南的[**快速体验**](#quick_experiments)章节步骤来进行私有模型的模型转换及上板运行；
+如果需要了解地平线算法工具链的更多内容，请跳转至[**进阶指南**](./intermediate) 章节。
 
 
 ## 环境安装{#env_install}
@@ -47,7 +47,7 @@ sidebar_position: 2
 
 :::tip 小技巧
   1. 若需更多公版模型转换示例，可执行命令： ``wget -c ftp://xj3ftp@vrftp.horizon.ai/model_convert_sample/horizon_model_convert_sample.tar.gz --ftp-password=xj3ftp@123$%`` 获取。
-  2. 地平线同时提供有支持模型转换的Docker镜像，若需使用Docker环境，请阅读 [进阶指南-使用docker环境](./intermediate/environment_config#使用docker环境) 章节。
+  2. 地平线同时提供有支持模型转换的Docker镜像，若需使用Docker环境，请阅读 [**进阶指南-使用docker环境**](./intermediate/environment_config#使用docker环境) 章节。
 :::
 
 - 2.创建模型转换环境：
@@ -102,14 +102,14 @@ sidebar_position: 2
 
 ## 快速体验{#quick_experiments}
 
-本章节中，我们为您介绍地平线算法工具链PTQ方案的基本使用流程，便于您实现快速上手。 这里我们以 **RDK X3** 开发板上运行的 yolov5s 模型为例，为您进行使用演示，地平线算法工具链PTQ方案的更多详细内容，请阅读 [进阶指南-PTQ原理及步骤详解](/toolchain_development/intermediate/ptq_process) 章节。
+本章节中，我们为您介绍地平线算法工具链PTQ方案的基本使用流程，便于您实现快速上手。 这里我们以 **RDK X3** 开发板上运行的 yolov5s 模型为例，为您进行使用演示，地平线算法工具链PTQ方案的更多详细内容，请阅读 [**进阶指南-PTQ原理及步骤详解**](/toolchain_development/intermediate/ptq_process) 章节。
 :::tip 小技巧
   若要转换RDK Ultra支持的模型，请将以下章节步骤中的``0x_xx_X3.sh``脚本命令替换为 ``0x_xx_Ultra.sh`` 脚本命令进行模型转换即可。
 :::
 
 ### 开发环境准备
 
-若未准备开发环境，请参考 [环境安装](#env_install) 章节进行环境安装。
+若未准备开发环境，请参考 [**环境安装**](#env_install) 章节进行环境安装。
 
 ### 模型准备
 
@@ -139,7 +139,7 @@ sidebar_position: 2
 
 ```
 
-若执行命令后，未出现以上日志，请阅读 [环境安装](#env_install) 章节下载模型示例包。
+若执行命令后，未出现以上日志，请阅读 [**环境安装**](#env_install) 章节下载模型示例包。
 
 ### 模型验证
 
@@ -210,7 +210,7 @@ sidebar_position: 2
 
 ### 模型上板运行
 
-**注意事项**：模型上板运行前，请确保已按照 [安装系统](../installation/install_os) 章节完成 开发板  端的环境部署。
+**注意事项**：模型上板运行前，请确保已按照 [**安装系统**](../installation/install_os) 章节完成 开发板  端的环境部署。
 将 ``yolov5s_672x672_nv12.bin`` 定点模型拷贝 **替换** 至开发板的 `/app/pydev_demo/models` 目录下，调用以下命令运行
 
 ```bash
@@ -243,9 +243,9 @@ sidebar_position: 2
 
 ![yolov5s-result](./image/beginner/yolov5s-result.png)
 
-常用API示例，请参考 [yolov5目标检测算法](/python_development/pydev_dnn_demo/static_image#detection_yolov5) 章节内容。
+常用API示例，请参考 [**yolov5目标检测算法**](/python_development/pydev_dnn_demo/static_image#detection_yolov5) 章节内容。
 
-更多模型推理API使用说明，请参考 [Python开发指南-模型推理接口使用说明](../python_development/pydev_dnn_api) 和 [C/C++开发指南-模型推理接口使用说明](../clang_development/cdev_dnn_api) 章节内容。
+更多模型推理API使用说明，请参考 [**Python开发指南-模型推理接口使用说明**](../python_development/pydev_dnn_api) 和 [**C/C++开发指南-模型推理接口使用说明**](../clang_development/cdev_dnn_api) 章节内容。
 
 
 ### 公版模型性能精度指标

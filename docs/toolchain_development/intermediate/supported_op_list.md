@@ -22,7 +22,7 @@ sidebar_position: 3
 
 -   RDK X3所有BPU上运行的算子均遵守一般限制：input_batch ≤ 128。 
 
--   RDK Ultra所有BPU上运行的算子均遵守一般限制：1. 输入输出维度均为4，对于支持非四维情况的op，会在约束中显性标识； 2. shape：H,W,C ∈ [1, 65536]，N <= 4096；3. N*C*H*W <= 1G bytes。
+-   RDK Ultra所有BPU上运行的算子均遵守一般限制：1. 输入输出维度均为4，对于支持非四维情况的op，会在约束中显性标识； 2. shape：H,W,C ∈ [1, 65536]，N <= 4096；3. N x C x H x W <= 1G bytes。
 
 -   支持 ``Caffe 1.0`` 基础算子以及常用扩展算子，支持onnx ``opset10`` 和 ``opset11`` 算子，对于无法满足BPU加速约束条件的算子将会退化到ARM CPU进行计算。
 
@@ -32,7 +32,7 @@ sidebar_position: 3
 
 -   基于tensorlfow-onnx（https://github.com/onnx/tensorflow-onnx）转换工具，支持将 ``tensorlfow1.*`` 版本的算子稳定的转换到opset6-opset11版本的ONNX模型格式，但是 ``Tensroflow2.*`` 当前支持还属于实验版本。
 
--   关于OP主动量化被动量化的说明：一个符合本章节约束条件的OP仍然运行在CPU的主要原因是该OP属于被动量化OP，算法工具链会根据OP的计算特性和BPU底层逻辑等多方面考虑设计量化逻辑，当前量化逻辑分为：主动量化，被动量化，手动量化。量化逻辑更多信息请阅读：[算法工具链中的主动量化和被动量化逻辑](https://developer.horizon.ai/forumDetail/118364000835765793) 章节。
+-   关于OP主动量化被动量化的说明：一个符合本章节约束条件的OP仍然运行在CPU的主要原因是该OP属于被动量化OP，算法工具链会根据OP的计算特性和BPU底层逻辑等多方面考虑设计量化逻辑，当前量化逻辑分为：主动量化，被动量化，手动量化。量化逻辑更多信息请阅读：[**算法工具链中的主动量化和被动量化逻辑**](https://developer.horizon.ai/forumDetail/118364000835765793) 章节。
 
 
 ## RDK X3支持的Caffe算子列表

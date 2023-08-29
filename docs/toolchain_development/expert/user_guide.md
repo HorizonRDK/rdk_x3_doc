@@ -27,9 +27,9 @@ Calibration 与 QAT 的整体流程如下图所示：
 
 下面分别介绍各个步骤：
 
-1. 构建并训练浮点模型。参考 horizon_plugin_pytorch 快速入门章节中的 [获取浮点模型](#Float-Model) 小节内容。
+1. 构建并训练浮点模型。参考 horizon_plugin_pytorch 快速入门章节中的 [**获取浮点模型**](./quick_start#Float-Model) 小节内容。
 
-2. 在浮点模型上插入 Observer 节点。参考 horizon_plugin_pytorch 快速入门章节中的 [Calibration](#Calibration) 小节内容。使用 `prepare_qat_fx` 方法转化浮点模型前，需要为模型设置 `qconfig` 。
+2. 在浮点模型上插入 Observer 节点。参考 horizon_plugin_pytorch 快速入门章节中的 [**Calibration**](./quick_start#Calibration) 小节内容。使用 `prepare_qat_fx` 方法转化浮点模型前，需要为模型设置 `qconfig` 。
 
     ```python
         model.qconfig = horizon.quantization.get_default_qconfig()
@@ -601,7 +601,7 @@ def round_ste(x: Tensor):
 
 在工具中的使用方法请参考 `default_qat_8bit_lsq_quant_qconfig` 及其相关接口。
 
-有兴趣进一步了解的用户可以参考如下论文：[Learned Step Size Quantization](<https://arxiv.org/abs/1902.08153>)
+有兴趣进一步了解的用户可以参考如下论文：[**Learned Step Size Quantization**](<https://arxiv.org/abs/1902.08153>)
 
 ## 异构模型指南
 
@@ -776,9 +776,9 @@ def convert_fx(
 
 4. 设置 `hybrid_dict` 。可选，具体用法见接口参数说明，如果没有主动指定的 CPU 算子，可以不设置 `hybrid_dict` 。
 
-5. 调用 `prepare_qat_fx` 并进行 `calibration` 。参考 horizon_plugin_pytorch 开发指南章节中的 [Calibration](#Calibration) 小节内容。
+5. 调用 `prepare_qat_fx` 并进行 `calibration` 。参考 horizon_plugin_pytorch 开发指南章节中的 [**Calibration**](#Calibration) 小节内容。
 
-6. 调用 `prepare_qat_fx` ，加载 `calibration` 模型并进行 QAT 训练。参考 horizon_plugin_pytorch 开发指南章节中的 [量化训练](#quantization) 小节内容。
+6. 调用 `prepare_qat_fx` ，加载 `calibration` 模型并进行 QAT 训练。参考 horizon_plugin_pytorch 开发指南章节中的 [**量化训练**](#quantization) 小节内容。
 
 7. 调用 `convert_fx` 。可选，没有评测定点模型精度的需求时可以跳过。
 
@@ -1028,20 +1028,20 @@ def forward(self, input):
 
 | **工具** | **使用接口/方式** | **使用场景** |
 |----------|------------------|-------------|
-| [集成接口](#a-name-integration-a) | model_profiler | 调用其它 debug 工具并将结果集中显示到一个 html 页面;<br/>目前会调用相似度、统计量、共享 op 检查、fuse 检查、weight 比较和量化配置检查这几个工具 |
-| [fuse 检查](#fuse-a-name-fuse-check-a) | check_unfused_operations | 检查**浮点模型**中是否有可以 fuse 但是没有 fuse 的 op pattern |
-| [共享 op 检查](#op-a-name-shared-op-check-a) | get_module_called_count | 检查模型中是否有共享使用的 op |
-| [量化配置检查](#a-name-qconfig-check-a) | check_qconfig | 检查 QAT 模型中量化配置是否符合预期 |
-| [模型可视化](#onnx-a-name-onnx-a) | export_to_onnx <br/>export_quantized_onnx | 导出 onnx 模型以查看模型结构，**不支持 onnx run** |
-| [相似度对比](#a-name-similarity-a) | featuremap_similarity | 当量化模型精度降低时，定位出现问题的 op |
-| [统计量](#a-name-statistic-a) | get_raw_features /<br/>profile_featuremap | 输出模型中每一层输出的数值特征，用于评估当前的数据分布和量化精度是否适合量化 |
-| [模型 weight 比较](#weight-a-name-weight-comparison-a) | compare_weights | 比较模型中每一层 weight 的相似度 |
-| [分步量化](#a-name-step-quantization-a) | qconfig=None | 当 QAT 模型训练困难时，通过将模型中的某一部分设置为浮点来寻找精度损失的瓶颈 |
-| [单算子转换精度调试](#a-name-single-op-error-a) | set_preserve_qat_mode | 当出现 QAT 模型转定点精度降低时，通过此接口将定点模型中的部分 op 替换为 QAT 的形式来寻找精度损失的瓶颈 |
-| [异构模型部署 device 检查](#device-a-name-hybrid-device-check-a) | check_deploy_device | 检查异构模型部署时每个 op 是否按照预期运行在 BPU 或者 CPU 上 |
-| [torchscript 和 hbdk 结果对比](#torchscript-hbdk) | script_profile | 比较 horizon_plugin_pytorch 生成的定点 pt 中每一个 op 和 hbdk 的解析结果是否一致 |
-| [不同版本 torchscript 的结果对比](#torchscript) | compare_script_models | 比较相同模型，使用不同版本的 horizon_plugin_pytorch 生成的定点 pt 中每一个 op 的结果 |
-| [模型显存占用分析工具](#a-name-cuda-memory-a) | show_cuda_memory_consumption | 分析模型显存占用情况，定位显存瓶颈 |
+| [**集成接口**](#a-name-integration-a) | model_profiler | 调用其它 debug 工具并将结果集中显示到一个 html 页面;<br/>目前会调用相似度、统计量、共享 op 检查、fuse 检查、weight 比较和量化配置检查这几个工具 |
+| [**fuse 检查**](#fuse-a-name-fuse-check-a) | check_unfused_operations | 检查**浮点模型**中是否有可以 fuse 但是没有 fuse 的 op pattern |
+| [**共享 op 检查**](#op-a-name-shared-op-check-a) | get_module_called_count | 检查模型中是否有共享使用的 op |
+| [**量化配置检查**](#a-name-qconfig-check-a) | check_qconfig | 检查 QAT 模型中量化配置是否符合预期 |
+| [**模型可视化**](#onnx-a-name-onnx-a) | export_to_onnx <br/>export_quantized_onnx | 导出 onnx 模型以查看模型结构，**不支持 onnx run** |
+| [**相似度对比**](#a-name-similarity-a) | featuremap_similarity | 当量化模型精度降低时，定位出现问题的 op |
+| [**统计量**](#a-name-statistic-a) | get_raw_features /<br/>profile_featuremap | 输出模型中每一层输出的数值特征，用于评估当前的数据分布和量化精度是否适合量化 |
+| [**模型 weight 比较**](#weight-a-name-weight-comparison-a) | compare_weights | 比较模型中每一层 weight 的相似度 |
+| [**分步量化**](#a-name-step-quantization-a) | qconfig=None | 当 QAT 模型训练困难时，通过将模型中的某一部分设置为浮点来寻找精度损失的瓶颈 |
+| [**单算子转换精度调试**](#a-name-single-op-error-a) | set_preserve_qat_mode | 当出现 QAT 模型转定点精度降低时，通过此接口将定点模型中的部分 op 替换为 QAT 的形式来寻找精度损失的瓶颈 |
+| [**异构模型部署 device 检查**](#device-a-name-hybrid-device-check-a) | check_deploy_device | 检查异构模型部署时每个 op 是否按照预期运行在 BPU 或者 CPU 上 |
+| [**torchscript 和 hbdk 结果对比**](#torchscript-hbdk) | script_profile | 比较 horizon_plugin_pytorch 生成的定点 pt 中每一个 op 和 hbdk 的解析结果是否一致 |
+| [**不同版本 torchscript 的结果对比**](#torchscript) | compare_script_models | 比较相同模型，使用不同版本的 horizon_plugin_pytorch 生成的定点 pt 中每一个 op 的结果 |
+| [**模型显存占用分析工具**](#a-name-cuda-memory-a) | show_cuda_memory_consumption | 分析模型显存占用情况，定位显存瓶颈 |
 
 
 ### 集成接口{#a-name-integration-a}
@@ -2597,7 +2597,7 @@ compare_weights(float_net, qat_net)
 
 :::info 备注
 
-若您使用 fx 进行量化，可以直接参考 API 文档中的 [prepare_qat_fx](../api_reference/apis/qat.html#horizon_plugin_pytorch.quantization.prepare_qat_fx)，通过 `hybrid` 和 `hybrid_dict` 参数进行开启分步量化。
+若您使用 fx 进行量化，可以直接参考 API 文档中的 [**prepare_qat_fx**](../api_reference/apis/qat.html#horizon_plugin_pytorch.quantization.prepare_qat_fx)，通过 `hybrid` 和 `hybrid_dict` 参数进行开启分步量化。
 :::
 
 ```python
@@ -3392,7 +3392,7 @@ QAT 训练或 quantized 模型部署时，常见的几种异常现象如下：
 
 1. QAT 精度未达预期，但相对 float 损失不大；
 
-   这种情况建议您根据[调参策略](#a-name-para-policy-a)来提升精度。
+   这种情况建议您根据[**调参策略**](#a-name-para-policy-a)来提升精度。
 
 2. 出现 NAN
 
@@ -3406,11 +3406,11 @@ QAT 训练或 quantized 模型部署时，常见的几种异常现象如下：
 
    4. 使用 torch.nn.utils.clip_grad_norm_ 进行梯度截断。
 
-   以上均不行的话，建议 [Debug 量化异常层](#debug-a-name-quantization-exception-a)。
+   以上均不行的话，建议 [**Debug 量化异常层**](#debug-a-name-quantization-exception-a)。
 
 3. QAT 初始 loss 相对 float 明显异常
 
-   如果出现 QAT 初始的 loss 相比 float 的明显异常，并且没有很快降低的现象，建议 [Debug 量化异常层](#debug-a-name-quantization-exception-a)。
+   如果出现 QAT 初始的 loss 相比 float 的明显异常，并且没有很快降低的现象，建议 [**Debug 量化异常层**](#debug-a-name-quantization-exception-a)。
 
 4. Quantized 相对 QAT 精度损失偏大
 
@@ -3418,15 +3418,15 @@ QAT 训练或 quantized 模型部署时，常见的几种异常现象如下：
 
    - 首先明确是模型导致的精度损失，而不是前后处理的不一致导致；
 
-   - 确认是模型层面的精度损失，建议 [Debug 量化异常层](#debug-a-name-quantization-exception-a)。
+   - 确认是模型层面的精度损失，建议 [**Debug 量化异常层**](#debug-a-name-quantization-exception-a)。
 
 5. Calibration 精度偏低
 
-   这种情况建议 [Debug 量化异常层](#debug-a-name-quantization-exception-a)。
+   这种情况建议 [**Debug 量化异常层**](#debug-a-name-quantization-exception-a)。
 
 ### 调参策略{#a-name-para-policy-a}
 
-除[推荐超参配置](#a-name-recommended-configuration-a)中 learning rate 调整外，建议考虑从以下几个方面来提升量化训练精度：
+除[**推荐超参配置**](#a-name-recommended-configuration-a)中 learning rate 调整外，建议考虑从以下几个方面来提升量化训练精度：
 
 - 量化参数初始化
 
@@ -3434,7 +3434,7 @@ QAT 训练或 quantized 模型部署时，常见的几种异常现象如下：
 
   :::info 备注
 
-    如果 Calibration 的精度跟浮点相差不大时，最好不再调整 activation scale，即设置 activation  averaging_constant=0.0；具体设置方法见 [自定义 qconfig](../advanced_content/custom_qconfig)。
+    如果 Calibration 的精度跟浮点相差不大时，最好不再调整 activation scale，即设置 activation  averaging_constant=0.0；具体设置方法见 [**自定义 qconfig**](../advanced_content/custom_qconfig)。
   :::
 
 - Transform（数据增强）
@@ -3445,7 +3445,7 @@ QAT 训练或 quantized 模型部署时，常见的几种异常现象如下：
 
   默认情况 QAT 时保持跟浮点一致，也可以尝试 SGD，如果浮点训练采用的是 OneCycle 等会影响 LR 设置的优化器，建议不要与浮点保持一致，使用 SGD 替换。
 
-如果以上策略还是不能有效提升量化精度，请尝试 [Debug 量化异常层](#debug-a-name-quantization-exception-a)。
+如果以上策略还是不能有效提升量化精度，请尝试 [**Debug 量化异常层**](#debug-a-name-quantization-exception-a)。
 
 ### Debug 量化异常层{#debug-a-name-quantization-exception-a}
 
@@ -3456,11 +3456,11 @@ QAT 训练或 quantized 模型部署时，常见的几种异常现象如下：
 
    量化配置决定了某层的量化策略，非常关键。一般情况下，建议使用默认 int8 量化配置，某些特殊情况才需要使用特殊的量化配置，比如网络输出不量化。
 
-   建议使用 [量化配置检查](#a-name-qconfig-check-a) 检查量化配置是否符合预期（目前还不支持 calibration 模型的检查）。
+   建议使用 [**量化配置检查**](#a-name-qconfig-check-a) 检查量化配置是否符合预期（目前还不支持 calibration 模型的检查）。
 
 2. 通过 Debug 工具找到量化异常层
 
-   典型的量化异常层有以下几个现象，可以通过[统计量工具](#a-name-statistic-a)和[相似度对比工具](#a-name-similarity-a)发现：
+   典型的量化异常层有以下几个现象，可以通过[**统计量工具**](#a-name-statistic-a)和[**相似度对比工具**](#a-name-similarity-a)发现：
 
    1. 模型中某些层的统计量异常，具体为数值范围较大，或者直方图分布不均匀（有离群点）；
 
@@ -3608,7 +3608,7 @@ QAT 训练或 quantized 模型部署时，常见的几种异常现象如下：
 
 3. 通过分模块量化方式找到量化异常层
 
-   如果通过 Debug 工具无法定位到量化异常层，需要使用分模块量化的方式来分析具体哪一模块量化导致的量化精度误差。定位到相关的模块或算子之后，说明此模块量化之后的数值分辨率不足，建议尝试使用 int16 量化。具体如何做分模块量化请参考[分步量化工具](#a-name-step-quantization-a)（Calibration 或 QAT 模型精度异常时使用）和[单算子精度调试工具](#a-name-single-op-error-a)（定点模型精度异常时使用）。
+   如果通过 Debug 工具无法定位到量化异常层，需要使用分模块量化的方式来分析具体哪一模块量化导致的量化精度误差。定位到相关的模块或算子之后，说明此模块量化之后的数值分辨率不足，建议尝试使用 int16 量化。具体如何做分模块量化请参考[**分步量化工具**](#a-name-step-quantization-a)（Calibration 或 QAT 模型精度异常时使用）和[**单算子精度调试工具**](#a-name-single-op-error-a)（定点模型精度异常时使用）。
 
   :::caution 注意
 
@@ -3631,7 +3631,7 @@ QAT 训练或 quantized 模型部署时，常见的几种异常现象如下：
 
 量化部署的 pt 模型要求 trace 时使用的 device 和后续 infer 时使用的 device 一致。
 
-若用户试图直接通过 `to(device)` 操作修改 pt 模型的 device，可能会出现模型 forward 报错的问题，torch 官方对此进行了解释，见 [TorchScript-Frequently Asked Questions — PyTorch documentation](https://pytorch.org/docs/stable/jit.html#frequently-asked-questions)。
+若用户试图直接通过 `to(device)` 操作修改 pt 模型的 device，可能会出现模型 forward 报错的问题，torch 官方对此进行了解释，见 [**TorchScript-Frequently Asked Questions — PyTorch documentation**](https://pytorch.org/docs/stable/jit.html#frequently-asked-questions)。
 
 下面举例说明：
 
@@ -3773,7 +3773,7 @@ def launch(device_ids):
 launch([0, 1, 2, 3])
 ```
 
-上述操作对 pt 模型的处理和 `torch.nn.parallel.DistributedDataParallel` 的做法一致，数据加载和模型精度计算相关内容请参考 [Getting Started with Distributed Data Parallel — PyTorch Tutorials](https://pytorch.org/tutorials/intermediate/ddp_tutorial.html)。
+上述操作对 pt 模型的处理和 `torch.nn.parallel.DistributedDataParallel` 的做法一致，数据加载和模型精度计算相关内容请参考 [**Getting Started with Distributed Data Parallel — PyTorch Tutorials**](https://pytorch.org/tutorials/intermediate/ddp_tutorial.html)。
 
 
 ## 常见问题
@@ -3826,7 +3826,7 @@ launch([0, 1, 2, 3])
 
 QAT/Quantized 精度不符合预期、出现 NAN 或 QAT 初始 loss 相对 float 明显异常
 
-解决方法：请参考 [量化训练精度调优指南](#debug_precision)
+解决方法：请参考 [**量化训练精度调优指南**](#debug_precision)
 
 ------------------------------------------------------------------------
 
@@ -3834,7 +3834,7 @@ QAT/Quantized 精度不符合预期、出现 NAN 或 QAT 初始 loss 相对 floa
 
 `RuntimeError: Unknown builtin op: horizon::bpu_scale_quantization`
 
-解决方法：请检查在使用 `torch.jit.load` 前是否有 `import horizon_plugin_pytorch`。否则，加载时找不到对应的 horizon 算子。推荐使用 [horizon.jit.save/load](../api_reference/apis/save_load) 保存和加载 pt 文件，避免这样的错误。此外，`horizon.jit.save` 在保存 pt 时还会额外保存 horizon_plugin_pytorch 的版本号，`horizon.jit.load` 会检查当前 horizon_plugin_pytorch 的版本是否和保存 pt 时的兼容，若不兼容，会输出相应的警告。
+解决方法：请检查在使用 `torch.jit.load` 前是否有 `import horizon_plugin_pytorch`。否则，加载时找不到对应的 horizon 算子。推荐使用 [**horizon.jit.save/load**](../api_reference/apis/save_load) 保存和加载 pt 文件，避免这样的错误。此外，`horizon.jit.save` 在保存 pt 时还会额外保存 horizon_plugin_pytorch 的版本号，`horizon.jit.load` 会检查当前 horizon_plugin_pytorch 的版本是否和保存 pt 时的兼容，若不兼容，会输出相应的警告。
 
 
 ## 常见使用误区
