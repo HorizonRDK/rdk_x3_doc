@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# 官方载板接口说明
+# 接口说明
 
 本章节介绍RDK X3 Module官方载板的接口功能和使用方法。载板提供了以太网口、USB、HDMI、MIPI CSI、MIPI DSI、40PIN等多种外围接口，方便用户对RDK X3 Module进行功能验证、开发测试等工作。
 
@@ -101,7 +101,7 @@ RDK X3 Module载板提供一路Micro SD存储卡接口（接口18）。推荐使
 
 ## 调试接口{#debug_uart}
 
-RDK X3 Module载板提供一路调试（接口15），使用CH340芯片将核心模组调试串口转换为USB接口。用户可使用该接口进行设备修复、故障调试等工作。如需使用串口，电脑串口工具的参数需按如下方式配置：
+RDK X3 Module载板提供一路调试（接口15），硬件上通过`CH340`芯片将核心模组调试串口转换为USB接口，用户可使用该接口进行各种调试工作。电脑串口工具的参数需按如下方式配置：
 
 - 波特率（Baud rate）：921600
 - 数据位（Data bits）：8
@@ -146,7 +146,7 @@ RDK X3 Module载板提供IO电平切换功能，用于控制40pin header电平�
 1. 下载支持1.8V电平配置的启动固件，[固件下载地址](http://archive.sunrisepi.tech/downloads/miniboot)。
 2. 使用官方烧录工具`hbupdate`，更新核心板启动固件，具体方法请参考[镜像烧录](./system.md)。
 3. 设备断电，使用跳线帽将`vref`、`1.8V`信号短接后重新上电。
-   :::
+:::
 
 ## 40pin header接口
 

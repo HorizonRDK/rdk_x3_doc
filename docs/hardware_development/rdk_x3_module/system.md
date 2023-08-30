@@ -37,11 +37,11 @@ RDK X3 Module支持从eMMC和SD卡两种模式启动系统：
 
 当RDK X3模组需要烧录系统到SD上，不从eMMC模式启动时，请参考[安装系统](../../installation/install_os.md)完成SD卡系统的烧录。
 
-当RDK X3模组需要烧录系统到eMMC时，需要使用地平线hbupdate烧录工具，请按照以下步骤进行工具的下载和安装，并且参考接下来的`安装USB驱动` 和 `烧录系统`两个章节完成eMMC系统的烧录。
+RDK X3模组烧录eMMC系统镜像时，需要使用地平线`hbupdate`烧录工具。目前工具支持Windows、Linux两种版本，分别以 `hbupdate_win64`、 `hbupdate_linux` 开头，工具下载链接：[hbupdate](http://archive.sunrisepi.tech/downloads/hbupdate/)。
 
-1. 下载hbupdate烧录工具，下载链接：[hbupdate](http://archive.sunrisepi.tech/downloads/hbupdate/)。
-2. 工具分为Windows、Linux两种版本，分别命名为 `hbupdate_win64_vx.x.x_rdk.tar.gz`、 `hbupdate_linux_gui_vx.x.x_rdk.tar.gz`。
-3. 解压烧录工具，解压目录需要不包含**空格、中文、特殊字符**。
+工具使用注意事项如下：
+- 解压工具压缩包，注意解压路径中不要包含**空格、中文、特殊字符**等内容。
+- 工具通过USB口跟RDK X3模组通讯，需要提前安装USB驱动，具体方法见下文描述。
 
 ## 安装USB驱动
 
