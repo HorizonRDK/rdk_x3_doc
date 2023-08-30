@@ -31,6 +31,12 @@ sudo srpi-config
 开发板40PIN接口位置提供了丝印网表，方便用户对照操作，PIN1、PIN40位置如下：  
 ![image-20220828203207798](./image/40pin_user_guide/image-20220828203207798.png)
 
+:::info
 RDK X3 Module 外扩40PIN管脚及其定义如下：
-
+:::
 ![image-20230510155124570](./image/40pin_user_guide/image-20230510155124570.png)
+
+:::info
+RDK Ultra 外扩40PIN管脚及其定义如下：
+:::
+![image-20230510155124570](./image/40pin_user_guide/image-20230830194924570.png)
