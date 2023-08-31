@@ -2,7 +2,7 @@
 sidebar_position: 5
 ---
 
-# MIPI显示屏使用
+# 显示屏使用
 
 RDK X3 Module载板提供一路MIPI DSI接口，支持多种LCD屏幕的接入。下文以4.3英寸MIPI LCD为例，介绍显示屏接入和使用方法。
 
