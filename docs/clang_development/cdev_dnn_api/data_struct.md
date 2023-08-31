@@ -191,6 +191,12 @@ DNN句柄，指向单一模型。
 
 **对于输出：** 若推理结果 ``data[i]``, 对应的移位数据是 ``shift[i]``， 则最终的推理结果为： :math:`data[i] / (1 << shift[i])`。
 
+:::caution 注意
+
+  其中 ``shiftLen`` 由数据 ``data`` 按照 ``per-axis`` 或 ``per-tensor`` （反）量化方式决定。
+  当数据 ``data`` 按 ``per-tensor`` （反）量化时， ``shiftLen`` 等于 ``1``，此时不需要关注 ``quantizeAxis`` 数值；否则等于数据 ``data`` 的第 ``quantizeAxis`` 维度大小。
+:::
+
 + 成员
 
     | 成员名称  | 描述           |
@@ -212,6 +218,14 @@ DNN句柄，指向单一模型。
 **对于输入：** 若采集到浮点数据 ``data[i]``, 对应的缩放数据是 ``scale[i]``， 零点偏移数据是 ``zeroPoint[i]``，则送入模型的推理数据为: :math:`g((data[i] / scale[i]) + zeroPoint[i])` , 其中： :math:`g(x) = clip(nearbyint(x))`, 使用fesetround(FE_TONEAREST)舍入方法, 截断到：U8: :math:`g(x)∈[0, 255]`, S8: :math:`g(x)∈[-128, 127]`;
 
 **对于输出：** 若推理结果 ``data[i]``, 对应的缩放数据是 ``scale[i]``， 零点偏移数据是 ``zeroPoint[i]``，则最终的推理结果为： :math:`(data[i] - zeroPoint[i])* scale[i]`。
+
+:::caution 注意
+
+  其中 ``scaleLen`` 由数据 ``data`` 按照 ``per-axis`` 或 ``per-tensor`` （反）量化方式决定。
+  当数据 ``data`` 按 ``per-tensor`` （反）量化时， ``scaleLen`` 等于 ``1``，此时不需要关注 ``quantizeAxis`` 数值；
+  否则等于数据 ``data`` 第 ``quantizeAxis`` 维度大小。 ``zeroPointLen`` 与 ``scaleLen`` 保持一致。
+:::
+
 
 + 成员
 
@@ -274,9 +288,25 @@ DNN句柄，指向单一模型。
     |``shift``          |   量化偏移量。|
     |``scale``          |   量化缩放量。|
     |``quantiType``     |   量化类型。|
-    |``quantizeAxis``   |   量化通道。|
+    |``quantizeAxis``   |   量化通道，仅按per-axis量化时生效。|
     |``alignedByteSize``|   张量对齐内容的内存大小。|
-    |``stride``         |   张量中各维度的步长。|
+    |``stride``         |   张量中validShape各维度步长|
+
+:::info 备注
+
+  通过接口获取的张量信息为模型要求的，您可以根据实际输入修改对应的张量信息，目前只允许修改 ``alignedShape`` 和 ``tensorType`` 的信息，而且必须符合要求。
+  
+  ``alignedShape``： 
+  
+  1. 若您根据 ``alignedShape`` 准备输入，则无需更改 ``alignedShape`` 。
+
+  2. 若您根据 ``validShape`` 准备输入，则需更改 ``alignedShape`` 为  ``validShape`` ，推理库内部会对数据进行padding操作。
+  
+  ``tensorType``：
+
+  推理NV12输入的模型时，您可根据实际情况更改张量的 ``tensorType`` 属性为 ``HB_DNN_IMG_TYPE_NV12`` 或 ``HB_DNN_IMG_TYPE_NV12_SEPARATE`` 。
+:::
+
 
 ``hbDNNTaskPriority``
 
@@ -339,7 +369,7 @@ Task优先级配置，提供默认参数。
 模型推理的控制参数。
 ``bpuCoreId`` 与 ``dspCoreId`` 用于控制推理模型BPU和DSP节点使用的核；X3不支持DSP推理，``dspCoreId`` 仅作为占位符使用。
 其中 ``more`` 参数用于小模型批量处理场景，当希望所有任务都执行完再获得输出时，除最后一个任务设置 ``more`` 为 ``0`` 外，
-之前的任务 ``more`` 都设置为 ``1``，最多支持255个小模型的推理。
+之前的任务 ``more`` 都设置为 ``1``，最多支持255个小模型的推理，小模型为resizer模型时，每一个roi都可能会被算作一个小模型。
 ``customId`` 参数用于用户自定义优先级，定义task的优先级大小，例如：时间戳、frame id等，数值越小优先级越高。优先级：priority > customId。
 
 + 成员

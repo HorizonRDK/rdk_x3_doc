@@ -7,27 +7,28 @@ sidebar_position: 8
 
 ## 错误码
 
-    HB_DNN_SUCCESS = 0                   // 执行成功
-    HB_DNN_INVALID_ARGUMENT              // 非法参数
-    HB_DNN_INVALID_MODEL                 // 非法模型
-    HB_DNN_MODEL_NUMBER_EXCEED_LIMIT     // 模型个数超过限制
-    HB_DNN_INVALID_PACKED_DNN_HANDLE     // 非法packed handle
-    HB_DNN_INVALID_DNN_HANDLE            // 非法handle
-    HB_DNN_CAN_NOT_OPEN_FILE             // 文件不存在
-    HB_DNN_OUT_OF_MEMORY                 // 没有足够的内存
-    HB_DNN_TIMEOUT                       // 超时
-    HB_DNN_TASK_NUM_EXCEED_LIMIT         // 任务数量超限制
-    HB_DNN_TASK_BATCH_SIZE_EXCEED_LIMIT  // 多任务处理数量超限制
-    HB_DNN_INVALID_TASK_HANDLE           // 非法task handle
-    HB_DNN_RUN_TASK_FAILED               // 任务执行失败
-    HB_DNN_MODEL_IS_RUNNING              // 任务执行中
-    HB_DNN_INCOMPATIBLE_MODEL            // 不兼容的模型
-    HB_DNN_API_USE_ERROR                 // 接口使用错误
-    
-    HB_SYS_SUCCESS                       // 执行成功
-    HB_SYS_INVALID_ARGUMENT              // 非法参数
-    HB_SYS_OUT_OF_MEMORY                 // 没有足够的内存
-    HB_SYS_REGISTER_MEM_FAILED           // 注册内存失败
+    HB_DNN_SUCCESS = 0                              // 执行成功
+    HB_DNN_INVALID_ARGUMENT = -6000001              // 非法参数
+    HB_DNN_INVALID_MODEL = -6000002                 // 非法模型
+    HB_DNN_MODEL_NUMBER_EXCEED_LIMIT = -6000003     // 模型个数超过限制
+    HB_DNN_INVALID_PACKED_DNN_HANDLE = -6000004     // 非法packed handle
+    HB_DNN_INVALID_DNN_HANDLE = -6000005            // 非法handle
+    HB_DNN_CAN_NOT_OPEN_FILE = -6000006             // 文件不存在
+    HB_DNN_OUT_OF_MEMORY = -6000007                 // 没有足够的内存
+    HB_DNN_TIMEOUT = -6000008                       // 超时
+    HB_DNN_TASK_NUM_EXCEED_LIMIT = -6000009         // 任务数量超限制
+    HB_DNN_TASK_BATCH_SIZE_EXCEED_LIMIT = -6000010  // 多任务处理数量超限制
+    HB_DNN_INVALID_TASK_HANDLE = -6000011           // 非法task handle
+    HB_DNN_RUN_TASK_FAILED = -6000012               // 任务执行失败
+    HB_DNN_MODEL_IS_RUNNING = -6000013              // 任务执行中
+    HB_DNN_INCOMPATIBLE_MODEL = -6000014            // 不兼容的模型
+    HB_DNN_API_USE_ERROR = -6000015                 // 接口使用错误
+    HB_DNN_MULTI_PROGRESS_USE_ERROR = -6000016      // 多进程使用错误
+
+    HB_SYS_SUCCESS = 0                              // 执行成功
+    HB_SYS_INVALID_ARGUMENT = -6000129              // 非法参数
+    HB_SYS_OUT_OF_MEMORY = -6000130                 // 没有足够的内存
+    HB_SYS_REGISTER_MEM_FAILED = -6000131           // 注册内存失败
 
 ## 配置信息{#configuration_information}
 
@@ -58,6 +59,7 @@ sidebar_position: 8
         HB_DNN_PROFILER_LOG_PATH        // 模型运行各阶段耗时统计信息dump路径。
         HB_DNN_SIM_PLATFORM             // x86模拟器模拟平台设置，可设置为BERNOULLI、BERNOULLI2、BAYES。
         HB_DNN_SIM_BPU_MEM_SIZE         // x86模拟器设置BPU内存大小，单位MB。
+        HB_DNN_ENABLE_DSP               // 使能DSP模块，仅 RDK Ultra 可用。
 
 ## 开发机模拟器使用注意事项
 
@@ -65,8 +67,8 @@ sidebar_position: 8
 1. 开发机模拟器在使用时，可以通过设置环境变量 ``HB_DNN_SIM_PLATFORM`` 来指定需要模拟的处理器架构，可执行如下命令：
 
    - ``export HB_DNN_SIM_PLATFORM=BERNOULLI``，为 ``BERNOULLI`` 架构，模拟地平线 ``xj2`` 平台；
-   - ``export HB_DNN_SIM_PLATFORM=BERNOULLI2``，为 ``BERNOULLI2`` 架构，模拟地平线 ``x3`` 平台；
-   - ``export HB_DNN_SIM_PLATFORM=BAYES``，为 ``BAYES`` 架构，模拟地平线 ``j5`` 平台。
+   - ``export HB_DNN_SIM_PLATFORM=BERNOULLI2``，为 ``BERNOULLI2`` 架构，模拟地平线 ``x3`` 平台, **RDK X3** 可使用；
+   - ``export HB_DNN_SIM_PLATFORM=BAYES``，为 ``BAYES`` 架构，模拟地平线 ``xj5`` 平台， **RDK Ultra** 可使用。
 
 2. 如果不设置 ``HB_DNN_SIM_PLATFORM`` 环境变量，会根据第一次加载的模型架构来设置模拟器平台，例如：第一次加载的模型是 ``BERNOULLI2`` 架构，则程序默认设置的平台为 ``x3``。
 
