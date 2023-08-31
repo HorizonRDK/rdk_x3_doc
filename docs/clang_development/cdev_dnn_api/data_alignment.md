@@ -8,7 +8,7 @@ sidebar_position: 8
 ## 数据排布
 
 硬件内部为了提高计算效率，其数据使用特殊的排布方式以使得卷积运算中同一批次乘加用到的feature map和kernel在内存中相邻排放。
-下面简要介绍X3中数据排布（layout）的概念。
+下面简要介绍地平线处理器中数据排布（layout）的概念。
 
 神经网络模型中的变量可以用一个4维的张量表示，每个数字是这个张量中的元素，我们称之为自然排布。
 将不同维度的不同元素按一定规则紧密排列在一起，形成一个独立的小块（block），然后将这些小块看成新的元素，组成新的4维张量，
@@ -64,12 +64,17 @@ sidebar_position: 8
 BPU不限制模型输入大小或者奇偶。既像YOLO这种416x416的输入可以支持，对于像SqueezeNet这种227x227的输入也可以支持。
 对于NV12输入比较特别，要求HW都是偶数，是为了满足UV是Y的一半的要求。
 
-### stride要求
+### 对齐和有效数据
 
+BPU对数据有对齐限制。对齐要求和真实的数据排布用 ``hbDNNTensorProperties`` 中的 ``validShape`` , ``alignedShape`` 和 ``stride`` 表示。
 
-BPU有 ``stride`` 要求。通常可以在 ``hbDNNTensorProperties`` 中根据 ``validShape`` 和 ``alignedShape`` 来确定。
-``alignedShape`` 就是 ``stride`` 对齐的要求。对于NV12或Y输入的有些特别，只要求W的 ``stride`` 是16的倍数，不需要完全按照 ``alignedShape`` 进行对齐。
-在后续场景使用时，考虑到对齐要求，建议按照 ``alignedByteSize`` 大小来申请内存空间。
+- ``validShape`` 是有效的shape； 
+
+- ``alignedShape`` 是满足对齐要求的shape, 由于硬件特性， ``alignedShape`` 均由四维数据表示；
+
+- ``stride`` 表示 ``validShape`` 各维度的步长，其中，NV12输入的模型比较特殊，其 ``stride`` 均为0，因为NV12输入的模型只要求W 16对齐。
+
+目前四维模型的张量可以通过 ``validShape`` 和 ``alignedShape`` 获取正确的数据排布，若使用 **RDK Ultra** 模型中大于四维模型的张量可以通过 ``validShape`` 和 ``stride`` 获取正确的数据排布。
 
 ## NV12介绍
 
