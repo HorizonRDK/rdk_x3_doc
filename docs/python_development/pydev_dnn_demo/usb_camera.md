@@ -87,7 +87,7 @@ sidebar_position: 3
 
 - 检测结果可视化
 
-    示例对算法结果和原始视频流进行了渲染，并通过`HDMI`接口输出，用户可在显示器上实时预览效果。显示部分用到了hobot_vio模块的Display功能，该模块详细信息请查看 [Display章节](../pydev_multimedia_api_x3/object_display.md)。
+    示例对算法结果和原始视频流进行了渲染，并通过`HDMI`接口输出，用户可在显示器上实时预览效果。显示部分用到了hobot_vio模块的Display功能，该模块详细信息请查看 [Display章节](../pydev_multimedia_api/object_display.md)。
 
     ```python
     # create display object
