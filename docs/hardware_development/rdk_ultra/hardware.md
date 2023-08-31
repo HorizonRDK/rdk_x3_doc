@@ -22,14 +22,14 @@ RDK Ultra开发套件包含了开发板和常用的外设配件，以达到开�
 
 **规格书**
 
-- [RDK Ultra开发套件规格书](http://archive.sunrisepi.tech/downloads/hardware/rdk_x3_module/RDK_X3_Module_Product_Brief.pdf)
+- [RDK Ultra开发套件规格书](http://archive.sunrisepi.tech/downloads/hardware/rdk_ultra/RDK_Ultra_Product_Brief.pdf)
 
 **数据手册**
 
-- [RDK Ultra数据手册](http://archive.sunrisepi.tech/downloads/hardware/rdk_x3_module/RDK_X3_Module_Datasheet.pdf)
+- [RDK Ultra数据手册](http://archive.sunrisepi.tech/downloads/hardware/rdk_ultra/RDK_Ultra_Datasheet.pdf)
 
 ## 参考设计资料
 
 主要包含原理图、PCB、3d模型、BOM list、gerber等资料内容，下载链接如下：
 
-- [RDK Ultra参考设计资料](http://archive.sunrisepi.tech/downloads/hardware/rdk_x3_module/reference_design)
+- [RDK Ultra参考设计资料](http://archive.sunrisepi.tech/downloads/hardware/rdk_ultra/reference_design)
