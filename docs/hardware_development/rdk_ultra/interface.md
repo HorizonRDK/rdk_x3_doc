@@ -89,4 +89,4 @@ RDK Ultra开发板提供了一组功能控制接口（接口10），可实现对
 
 RDK Ultra开发板提供一组40pin header接口（接口7），支持GPIO、UART、I2C、SPI、I2S等多种接口，详细管脚定义、复用关系如下：
 
-![image-40pin-header](./image/rdk_ultra/image-rdk-ultra-interface-40pin.jpg)
+![image-40pin-header](./image/rdk_ultra/image-interface-40pin.png)

@@ -28,9 +28,9 @@ RDK Ultra开发套件烧录Ubuntu系统时，需要使用地平线`hbupdate`烧�
 
 ![image-flash-system2](./image/rdk_ultra/image-rdk-ultra-system2.jpg)
 
-5）点击`Start`按钮开始刷机，点击`OK`关闭弹窗，并给开发板上电：
+5）点击`Start`按钮开始刷机，根据提示信息确认操作无误后，点击`OK`按钮：
 
-![image-flash-system3](./image/rdk_ultra/image-rdk-ultra-system3.png)
+![image-flash-system3](./image/rdk_ultra/image-system-download3.jpg)
 
 6）当工具显示如下打印时，说明进入烧写过程，该过程耗时依赖于网络传输速度，请耐心等待。
 
