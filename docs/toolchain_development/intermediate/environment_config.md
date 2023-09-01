@@ -9,7 +9,7 @@ sidebar_position: 1
 ## 交付物使用说明{#deliverables_instructions}
 
 
-在进行算法工具链使用环境部署前，请下载地平线提供的[嵌入式应用开发Sample交付包](https://pan.horizon.ai/index.php/s/iZwyzXoJLs8Btme)到Linux开发机环境中。
+在进行算法工具链使用环境部署前，请下载地平线提供的[**嵌入式应用开发Sample交付包**](https://pan.horizon.ai/index.php/s/iZwyzXoJLs8Btme)到Linux开发机环境中。
 
 ### 示例包源码目录结构说明
 
@@ -46,10 +46,10 @@ sidebar_position: 1
   |---------------|------|
   | CPU           | CPU I3以上或者同级别E3/E5的处理器    |
   | 内存          | 16G或以上级别                        |
-  | GPU(可选)     | CUDA11、驱动版本Linux:>= 450.80.02*<br/>适配显卡包括但不限于：<br/>1)GeForce RTX 3090<br/>2)GeForce RTX 2080 Ti<br/>3)NVIDIA TITAN V<br/>4)Tesla V100S-PCIE-32GB              
-  | 系统          | CentOS 7、Ubuntu 18.04及以上         |
+  | GPU(可选)     | CUDA11.6、驱动版本Linux:>= 510.39.01*<br/>适配显卡包括但不限于：<br/>1)GeForce RTX 3090<br/>2)GeForce RTX 2080 Ti<br/>3)NVIDIA TITAN V<br/>4)Tesla V100S-PCIE-32GB
+  | 系统          | Ubuntu 20.04         |
 
-更多关于CUDA与显卡的兼容性问题请参考[NVIDIA官网信息](https://docs.nvidia.com/deploy/cuda-compatibility/) 。
+更多关于CUDA与显卡的兼容性问题请参考[**NVIDIA官网信息**](https://docs.nvidia.com/deploy/cuda-compatibility/) 。
 
 ### 使用Docker环境
 
@@ -59,7 +59,7 @@ sidebar_position: 1
 地平线要求的Docker基础环境信息如下：
 
 - Docker（>=1.12 建议安装18.03.0-ce）, 安装手册 https://docs.docker.com/install/。
-- NVIDIA Docker（2.0.3），安装手册[NVIDIA/nvidia-docker](https://github.com/nvidia/nvidia-docker/wiki)。
+- NVIDIA Docker（2.0.3），安装手册[**NVIDIA/nvidia-docker**](https://github.com/nvidia/nvidia-docker/wiki)。
 
 完成Docker环境安装后，需要将无root权限的用户添加到Docker用户组中。参考如下命令：
 
@@ -72,20 +72,16 @@ sidebar_position: 1
 
 获取本节需要使用的Docker镜像的地址如下：
 
-- `地平线 Docker Hub GPU Docker <https://hub.docker.com/r/openexplorer/ai_toolchain_ubuntu_20_xj3_gpu>`_
-
-- `地平线 Docker Hub CPU Docker <https://hub.docker.com/r/openexplorer/ai_toolchain_ubuntu_20_xj3_cpu>`_
+- [**地平线 Docker Hub GPU Docker**](https://hub.docker.com/r/openexplorer/ai_toolchain_ubuntu_20_x3j5_gpu)
 
 镜像文件命名形式为：
 
-- GPU版本docker： ``openexplorer/ai_toolchain_ubuntu_20_xj3_gpu:{version}``
-
-- CPU版本docker： ``openexplorer/ai_toolchain_ubuntu_20_xj3_cpu:{version}``
+- GPU版本docker： ``openexplorer/ai_toolchain_ubuntu_20_x3j5_gpu:{version}``
 
 
 :::tip 小技巧
 
-  执行命令时将 ``{version}`` 替换为您获取到的 **最新版本的Docker镜像** ，例如： `地平线 docker hub CPU Docker <https://hub.docker.com/r/openexplorer/ai_toolchain_ubuntu_20_xj3_cpu>`_ 中目前的最新版本为 ``openexplorer/ai_toolchain_ubuntu_20_xj3_cpu:v2.6.2b``。
+  执行命令时将 ``{version}`` 替换为您获取到的 **最新版本的Docker镜像** ，例如： [**地平线 docker hub GPU Docker**](https://hub.docker.com/r/openexplorer/ai_toolchain_ubuntu_20_x3j5_gpu) 中目前的最新版本为 ``openexplorer/ai_toolchain_ubuntu_20_x3j5_gpu:v1.0.0``。
 
   本地Docker镜像包版本，可以联系地平线技术支持团队获取。
 
@@ -97,7 +93,7 @@ sidebar_position: 1
 - 镜像拉取命令为：
 
   ```bash
-    docker pull openexplorer/ai_toolchain_ubuntu_20_xj3_cpu:v2.6.2b
+    docker pull openexplorer/ai_toolchain_ubuntu_20_x3j5_gpu:v1.0.0
   ```
 然后执行以下命令运行Docker容器。
 
@@ -106,7 +102,7 @@ sidebar_position: 1
   ```bash
     // 运行 docker 镜像的命令
   
-    export version=v2.6.2b
+    export version=v1.0.0
   
     export ai_toolchain_package_path=/home/users/xxx/ai_toolchain_package
   
@@ -115,14 +111,14 @@ sidebar_position: 1
     docker run -it --rm \
       -v "$ai_toolchain_package_path":/open_explorer \
       -v "$dataset_path":/data \
-      openexplorer/ai_toolchain_ubuntu_20_xj3_cpu:"${version}"
+      openexplorer/ai_toolchain_ubuntu_20_x3j5_gpu:"${version}"
   ```
 - GPU开发机 Docker容器执行以下命令：
 
   ```bash
     // 运行 docker 镜像的命令
 
-    export version=v2.6.2b
+    export version=v1.0.0
 
     export ai_toolchain_package_path=/home/users/xxx/ai_toolchain_package
 
@@ -132,7 +128,7 @@ sidebar_position: 1
       -e NVIDIA_VISIBLE_DEVICES=all --rm --shm-size="15g" \
       -v "$ai_toolchain_package_path":/open_explorer \
       -v "$dataset_path":/data \
-      openexplorer/ai_toolchain_ubuntu_20_xj3_gpu:"${version}"
+      openexplorer/ai_toolchain_ubuntu_20_x3j5_gpu:"${version}"
   ```
 :::info 备注
 
@@ -140,15 +136,25 @@ sidebar_position: 1
 
   - ``dataset_path`` 为数据集文件目录，如果该目录不存在会导致加载问题，需要创建好后再运行命令。
   
-  - 公共数据集可以参考以下链接下载：    
+  - 公共数据集可参考以下链接下载：    
 
       VOC：http://host.robots.ox.ac.uk/pascal/VOC/  （使用VOC2012版本）
 
       COCO：https://cocodataset.org/#download
 
       ImageNet：https://www.image-net.org/download.php
-      
+
       Cityscapes：https://github.com/mcordts/cityscapesScripts
+
+      CIFAR-10: http://www.cs.toronto.edu/~kriz/cifar.html
+
+      FlyingChairs: https://lmb.informatik.uni-freiburg.de/resources/datasets/FlyingChairs.en.html
+
+      KITTI3D: https://www.cvlibs.net/datasets/kitti/eval_object.php?obj_benchmark=3d
+
+      CULane: https://xingangpan.github.io/projects/CULane.html
+
+      nuScenes: https://www.nuscenes.org/nuscenes
 :::
 至此，您已经成功通过Docker镜像进入完整的算法工具链开发环境。
 您可以键入 ``hb_mapper --help`` 命令验证是否可以正常得到帮助信息：
@@ -174,7 +180,7 @@ sidebar_position: 1
 ## 开发板部署
 
 
-开发板部署需要您按照刷机说明，将开发版镜像更新到最新版本，升级方法请参考[安装系统](../../installation/install_os#flash_system) 章节内容， 升级完成后，再将相关补充文件拷贝到开发板中即可。
+开发板部署需要您按照刷机说明，将开发版镜像更新到最新版本，升级方法请参考[**安装系统**](../../installation/install_os#flash_system) 章节内容， 升级完成后，再将相关补充文件拷贝到开发板中即可。
 
 
 ### 补充文件准备
@@ -184,7 +190,11 @@ sidebar_position: 1
 执行命令如下：
 
 ```bash
-  bash install.sh ${board_ip}
+  // 若使用RDK X3开发板，执行命令 
+  bash install_xj3.sh ${board_ip}
+
+  // 若使用RDK Ultra开发板，执行命令 
+  bash install_ultra.sh ${board_ip}
 ```
 :::info 备注
 

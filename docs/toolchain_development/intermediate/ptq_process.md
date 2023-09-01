@@ -14,15 +14,15 @@ sidebar_position: 2
 ![model_conversion_flowchart](./image/intermediate/model_conversion_flowchart.png)
 
 
-**浮点模型准备** 本阶段用来确保原始浮点模型的格式为地平线模型转换工具支持的格式，原始浮点模型来自于您通过TensorFlow/PyTorch等DL框架训练得到可用模型。具体的浮点模型要求与建议，请阅读[浮点模型准备](#model_preparation)章节内容。
+**浮点模型准备** 本阶段用来确保原始浮点模型的格式为地平线模型转换工具支持的格式，原始浮点模型来自于您通过TensorFlow/PyTorch等DL框架训练得到可用模型。具体的浮点模型要求与建议，请阅读[**浮点模型准备**](#model_preparation)章节内容。
 
-**模型验证** 本阶段用来校验原始浮点模型是否满足地平线算法工具链的要求。地平线提供 ``hb_mapper checker`` 检查工具来完成浮点模型的检查。具体使用方法，请阅读[验证模型](#model_check) 章节内容。
+**模型验证** 本阶段用来校验原始浮点模型是否满足地平线算法工具链的要求。地平线提供 ``hb_mapper checker`` 检查工具来完成浮点模型的检查。具体使用方法，请阅读[**验证模型**](#model_check) 章节内容。
 
-**模型转换** 本阶段用来完成浮点模型到地平线混合异构模型的转换，经过这个阶段，您将得到一个可以在地平线处理器上运行的模型。地平线提供 ``hb_mapper makertbin`` 转换工具来完成模型优化、量化和编译等关键步骤。具体使用方法，请阅读[模型转换](#model_conversion)章节内容。
+**模型转换** 本阶段用来完成浮点模型到地平线混合异构模型的转换，经过这个阶段，您将得到一个可以在地平线处理器上运行的模型。地平线提供 ``hb_mapper makertbin`` 转换工具来完成模型优化、量化和编译等关键步骤。具体使用方法，请阅读[**模型转换**](#model_conversion)章节内容。
 
-**性能评估** 本阶段主要用于测评地平线混合异构模型的推理性能情况，地平线提供了模型性能评估的工具，您可以使用这些工具验证模型性能是否达到应用要求。具体使用说明，请阅读 [模型性能分析与调优](#performance_evaluation)章节内容。
+**性能评估** 本阶段主要用于测评地平线混合异构模型的推理性能情况，地平线提供了模型性能评估的工具，您可以使用这些工具验证模型性能是否达到应用要求。具体使用说明，请阅读 [**模型性能分析与调优**](#performance_evaluation)章节内容。
 
-**精度评估** 本阶段主要用于测评地平线混合异构模型的推理精度情况，地平线提供了模型精度评估的工具。具体使用说明，请阅读[模型精度分析与调优](#accuracy_evaluation)章节内容。
+**精度评估** 本阶段主要用于测评地平线混合异构模型的推理精度情况，地平线提供了模型精度评估的工具。具体使用说明，请阅读[**模型精度分析与调优**](#accuracy_evaluation)章节内容。
 
 
 
@@ -58,20 +58,20 @@ sidebar_position: 2
 
   关于Pytorch、PaddlePaddle、TensorFlow2框架的模型，我们也提供了如何导出ONNX及模型可视化的教程，请参考：
 
-  - [Pytorch导出ONNX及模型可视化教程](https://developer.horizon.ai/forumDetail/146177165367615499) ；
+  - [**Pytorch导出ONNX及模型可视化教程**](https://developer.horizon.ai/forumDetail/146177165367615499) ；
 
-  - [PaddlePaddle导出ONNX及模型可视化教程](https://developer.horizon.ai/forumDetail/146177165367615500) ；
+  - [**PaddlePaddle导出ONNX及模型可视化教程**](https://developer.horizon.ai/forumDetail/146177165367615500) ；
 
-  - [TensorFlow2导出ONNX及模型可视化教程](https://developer.horizon.ai/forumDetail/146177165367615501) ；
+  - [**TensorFlow2导出ONNX及模型可视化教程**](https://developer.horizon.ai/forumDetail/146177165367615501) ；
 :::
 
 :::caution 注意
 
-  - 浮点模型中所使用的算子需要符合地平线算法工具链的算子约束条件，具体请阅读[模型算子支持列表](#supported_op_list_and_restrictions) 章节进行查询。
+  - 浮点模型中所使用的算子需要符合地平线算法工具链的算子约束条件，具体请阅读 [**模型算子支持列表**](./supported_op_list) 章节进行查询。
 
   - 目前转换工具仅支持输出个数小于或等于32的模型进行转换。
   
-  - 支持 ``caffe 1.0`` 版本的caffe浮点模型和 ``ir_version≤7`` , ``opset=10`` 、 ``opset=11`` 版本的onnx浮点模型量化成地平线支持的定点模型, onnx模型的ir_version与onnx版本的对应关系请参考[onnx官方文档](https://github.com/onnx/onnx/blob/main/docs/Versioning.md) ；
+  - 支持 ``caffe 1.0`` 版本的caffe浮点模型和 ``ir_version≤7`` , ``opset=10`` 、 ``opset=11`` 版本的onnx浮点模型量化成地平线支持的定点模型, onnx模型的ir_version与onnx版本的对应关系请参考[**onnx官方文档**](https://github.com/onnx/onnx/blob/main/docs/Versioning.md) ；
 
   - 模型输入维度只支持 ``固定4维`` 输入NCHW或NHWC（N维度只能为1），例如：1x3x224x224或1x224x224x3， 不支持动态维度及非4维输入；
 
@@ -82,11 +82,11 @@ sidebar_position: 2
 ### 模型验证{#model_check}
 
 
-模型正式转换前，请先使用 ``hb_mapper checker`` 工具进行模型验证，确保其符合地平线X3处理器的支持约束。
+模型正式转换前，请先使用 ``hb_mapper checker`` 工具进行模型验证，确保其符合地平线处理器的支持约束。
 
 :::tip 小技巧
 
-  建议参考使用地平线模型转换 ``horizon_model_convert_sample`` 示例包中的caffe、onnx等示例模型的脚本方法: ``01_check.sh``。
+  建议参考使用地平线模型转换 ``horizon_model_convert_sample`` 示例包中的caffe、onnx等示例模型的脚本方法: ``01_check_X3.sh`` 或 ``01_check_Ultra.sh``。
 :::
 #### 使用 ``hb_mapper checker`` 工具验证模型
 ```
@@ -107,7 +107,7 @@ hb_mapper checker 参数解释：
   用于指定检查输入的模型类型，目前只支持设置 ``caffe`` 或者 ``onnx``。
 
 --march
-  用于指定需要适配的地平线处理器类型，可设置值为 ``bernoulli2`` 和 ``bayes``；X3处理器应设置为 ``bernoulli2``，J5处理器应设置为 ``bayes``。
+  用于指定需要适配的地平线处理器类型，可设置值为 ``bernoulli2`` 和 ``bayes``；RDK X3设置为 ``bernoulli2``，RDK Ultra设置为 ``bayes``。
 
 --proto<br/>
   此参数仅在 ``model-type`` 指定 ``caffe`` 时有效，取值为Caffe模型的prototxt文件名称。
@@ -128,14 +128,14 @@ hb_mapper checker 参数解释：
 :::
 
 :::caution
-  -\-output参数已经废弃，log信息默认存储于 ``hb_mapper_checker_{date_time}.log`` 中。
+  -\-output参数已经废弃，log信息默认存储于 ``hb_mapper_checker.log`` 中。
 :::
 
 
 
 #### 检查异常处理
 
-如果模型检查步骤异常终止或者出现报错信息，则说明模型验证不通过，请根据终端打印或在当前路径下生成的 ``hb_mapper_checker_{date_time}.log`` 日志文件确认报错信息和修改建议。
+如果模型检查步骤异常终止或者出现报错信息，则说明模型验证不通过，请根据终端打印或在当前路径下生成的 ``hb_mapper_checker.log`` 日志文件确认报错信息和修改建议。
 
 例如：以下配置中含不可识别算子类型 ``Accuracy``：
 
@@ -173,7 +173,7 @@ hb_mapper checker 参数解释：
     }
   }
 ```
-使用 ``hb_mapper checker`` 检查这个模型，您会在 ``hb_mapper_checker_{date_time}.log`` 中得到如下信息：
+使用 ``hb_mapper checker`` 检查这个模型，您会在 ``hb_mapper_checker.log`` 中得到如下信息：
 
 ```bash
   ValueError: Not support layer name=accuracy type=Accuracy
@@ -181,7 +181,7 @@ hb_mapper checker 参数解释：
 
 :::caution 注意
 
-  - 如果模型检查步骤异常终止或者出现报错信息，则说明模型验证不通过，请根据终端打印或在当前路径下生成的 ``hb_mapper_checker.log`` 日志文件确认报错信息和修改建议，错误信息可以在 [模型量化错误及解决方法](../../common_questions/toolchain#model_convert_errors_and_solutions) 章节来查找错误的解决方法，若以上步骤仍不能排除问题，请联系地平线技术支持团队或在[地平线官方技术社区](https://developer.horizon.ai/)提出您的问题，我们将在24小时内给您提供支持。
+  - 如果模型检查步骤异常终止或者出现报错信息，则说明模型验证不通过，请根据终端打印或在当前路径下生成的 ``hb_mapper_checker.log`` 日志文件确认报错信息和修改建议，错误信息可以在 [**模型量化错误及解决方法**](../../common_questions/toolchain#model_convert_errors_and_solutions) 章节来查找错误的解决方法，若以上步骤仍不能排除问题，请联系地平线技术支持团队或在[**地平线官方技术社区**](https://developer.horizon.ai/)提出您的问题，我们将在24小时内给您提供支持。
 :::
 
 
@@ -208,9 +208,9 @@ hb_mapper checker 参数解释：
 
 #### 检查结果的调优指导
 
-在最理想的情况下，模型网络结构中的算子都应该在BPU上运行，也就是只有一个子图。
-如果出现了CPU算子导致拆分多个子图， ``hb_mapper checker`` 工具会给出导致CPU算子出现的具体原因。
-例如：以下Caffe模型的出现了Reshape + Pow + Reshape 的结构, 从算子约束列表中我们可以看到, Reshape 算子目前为在CPU上运行的算子, 而Pow的shape也是非4维的。
+在最理想的情况下，模型网络结构中的算子都应该在BPU上运行，也就是只有一个子图。 如果出现了CPU算子导致拆分多个子图， ``hb_mapper checker`` 工具会给出导致CPU算子出现的具体原因，以下给出了分别在RDK X3 和 RDK Ultra上示例模型验证的情况；
+
+- 以下在 **RDK X3** 上运行的Caffe模型出现了Reshape + Pow + Reshape 的结构, 从 **RDK X3** 的算子约束列表中我们可以看到, Reshape 算子目前为在CPU上运行的算子, 而Pow的shape也是非4维的，不符合X3 BPU算子约束条件。
 
 ![model_reshape](./image/intermediate/model_reshape.png)
 
@@ -241,9 +241,60 @@ hb_mapper checker 参数解释：
   fc_output/op                            CPU  --        Mul
 
 ```
+
+- 以下在 **RDK Ultra** 上运行的ONNX模型出现了Mul + Add + Mul的结构，从 **RDK Ultra** 的算子约束列表中我们可以看到，Mul和Add算子在五维上是支持BPU运行的，但前提要符合Ultra BPU算子约束条件，不然就会回退到CPU计算。
+
+![model_reshape](./image/intermediate/model_reshape_ONNX.png)
+
+因此模型最终检查结果也会出现分段情况，如下:
+
+```
+  ====================================================================================
+  Node                                    ON   Subgraph  Type
+  -------------------------------------------------------------------------------------
+  Reshape_199                             BPU  id(0)     Reshape
+  Transpose_200                           BPU  id(0)     Transpose
+  Sigmoid_201                             BPU  id(0)     HzLut
+  Split_202                               BPU  id(0)     Split
+  Mul_204                                 CPU  --        Mul
+  Add_206                                 CPU  --        Add
+  Mul_208                                 CPU  --        Mul
+  Mul_210                                 CPU  --        Mul
+  Pow_211                                 BPU  id(1)     HzLut
+  Mul_213                                 CPU  --        Mul
+  Concat_214                              CPU  --        Concat
+  Reshape_215                             CPU  --        Reshape
+  Conv_216                                BPU  id(0)     HzSQuantizedConv
+  Reshape_217                             BPU  id(0)     Reshape
+  Transpose_218                           BPU  id(0)     Transpose
+  Sigmoid_219                             BPU  id(0)     HzLut
+  Split_220                               BPU  id(0)     Split
+  Mul_222                                 CPU  --        Mul
+  Add_224                                 CPU  --        Add
+  Mul_226                                 CPU  --        Mul
+  Mul_228                                 CPU  --        Mul
+  Pow_229                                 BPU  id(2)     HzLut
+  Mul_231                                 CPU  --        Mul
+  Concat_232                              CPU  --        Concat
+  Reshape_233                             CPU  --        Reshape
+  Conv_234                                BPU  id(0)     HzSQuantizedConv
+  Reshape_235                             BPU  id(0)     Reshape
+  Transpose_236                           BPU  id(0)     Transpose
+  Sigmoid_237                             BPU  id(0)     HzLut
+  Split_238                               BPU  id(0)     Split
+  Mul_240                                 CPU  --        Mul
+  Add_242                                 CPU  --        Add
+  Mul_244                                 CPU  --        Mul
+  Mul_246                                 CPU  --        Mul
+  Pow_247                                 BPU  id(3)     HzLut
+  Mul_249                                 CPU  --        Mul
+  Concat_250                              CPU  --        Concat
+  Reshape_251                             CPU  --        Reshape
+```
+
 根据 hb_mapper checker 给出的提示，一般来说算子运行在BPU上会有更好的性能表现，这里可以将pow、reshape 这类CPU算子从模型中移除，将对应算子的功能放入后处理中计算，从而减少子图数量。
 
-当然，多个子图也不会影响整个转换流程，但会较大程度地影响模型性能，建议尽量调整模型算子到BPU上执行，可参考X3算子支持列表中的BPU算子支持列表来做同功能的算子替换或者将模型中的CPU算子移到模型推理的前、后处理中去做CPU计算。
+当然，多个子图也不会影响整个转换流程，但会较大程度地影响模型性能，建议尽量调整模型算子到BPU上执行，可参考地平线处理器算子支持列表中的BPU算子支持列表来做同功能的算子替换或者将模型中的CPU算子移到模型推理的前、后处理中去做CPU计算。
 
 
 ### 模型转换{#model_conversion}
@@ -281,7 +332,7 @@ layout( ``input_layout_train`` )，对于featuremap输入的模型，您可以�
 
 针对上述举例模型的样本处理代码如下：
 
-为避免过长代码篇幅，各种简单transformer实现代码未贴出，具体使用请参考[transformer使用方法](../../common_questions/toolchain#transposetransformer) 章节内容。
+为避免过长代码篇幅，各种简单transformer实现代码未贴出，具体使用请参考[**transformer使用方法**](../../common_questions/toolchain#transposetransformer) 章节内容。
 
 :::tip 小技巧
 
@@ -335,38 +386,81 @@ layout( ``input_layout_train`` )，对于featuremap输入的模型，您可以�
   这样的操作会简单，但是对于量化的精度没有保障，因此我们强烈建议您使用关闭 ``preprocess_on`` 的方式。
 
 :::caution 注意
-  请注意，您所准备的每份校准数据大小，都应与原始模型输入大小保持一致。
+  请注意，yaml文件中input_shape参数作用为指定原始浮点模型的输入数据尺寸。若为动态输入模型则可通过这个参数设置转换后的输入大小，而校准数据的shape大小应与input_shape保持一致。
+  
+  例如：若原始浮点模型输入节点shape为?x3x224x224（“?”号代表占位符，即该模型第一维为动态输入）, 转换配置文件中设置input_shape: 8x3x224x224，则用户需要准备的每份校准数据大小为 8x3x224x224。
+  （请知悉，此类输入shape第一维不等于1的模型，不支持通过input_batch参数修改模型batch信息。）
 :::
 
 
 #### 使用 hb_mapper makertbin 工具转换模型{#makertbin}
 
+hb_mapper makertbin提供两种模式，开启 ``fast-perf`` 模式和不开启 ``fast-perf`` 模式。
+
+``fast-perf`` 模式开启后，会在转换过程中生成可以在板端运行最高性能的bin模型，工具内部主要进行以下操作：
+
+- 将BPU可执行算子尽可能运行在BPU上（若使用 ``RDK Ultra`` 则可以通过yaml文件中node_info参数指定在BPU上运行的算子， ``RDK X3`` 是自动优化，无法通过yaml配置文件指定算子）。
+
+- 删除模型首尾不可删除的CPU算子，包括：Quantize/Dequantize、Transpose、Cast、Reshape等。
+
+- 以性能最高的O3优化等级编译模型。
+
 :::tip 小技巧
 
-  建议参考使用地平线模型转换 ``horizon_model_convert_sample`` 示例包中的caffe、onnx等示例模型的脚本方法: ``03_build.sh``。
+  建议参考使用地平线模型转换 ``horizon_model_convert_sample`` 示例包中的caffe、onnx等示例模型的脚本方法: ``03_build_X3.sh`` 或 ``03_build_Ultra.sh``。
 :::
-```
-hb_mapper makertbin命令使用方式如下：
-```
-  ```bash
 
-    hb_mapper makertbin --config ${config_file}  \
-                        --model-type  ${model_type}
-  ```
+hb_mapper makertbin命令使用方式如下：
+
+不开启 ``fast-perf`` 模式：
+
+```bash
+
+  hb_mapper makertbin --config ${config_file}  \
+                      --model-type  ${model_type}
+```
+
+开启 ``fast-perf`` 模式：
+
+```bash
+
+  hb_mapper makertbin --fast-perf --model ${caffe_model/onnx_model} --model-type ${model_type} \
+                      --proto ${caffe_proto} \
+                      --march ${march}
+```
+
 hb_mapper makertbin参数解释：
+
+--help<br/>
+  显示帮助信息并退出。
+
+-c, --config<br/>
+  模型编译的配置文件，为yaml格式，文件名使用.yaml后缀，完整的配置文件模板参考如下章节内容。
 
 --model-type<br/>
   用于指定转换输入的模型类型，目前支持设置 ``caffe`` 或者 ``onnx``。
 
---config<br/>
-  模型编译的配置文件，内容采用yaml格式，文件名使用.yaml后缀。完整的配置文件模板参考如下章节内容。
+--fast-perf<br/>
+  开启fast-perf模式，该模式开启后，会在转换过程中生成可以在板端运行最高性能的bin模型，方便您用于后续的模型性能评测。
+
+  如您开启了fast-perf模式，还需要进行如下配置：
+
+  ``--model``<br/>
+  Caffe或ONNX浮点模型文件。
+
+  ``--proto``<br/>
+  用于指定Caffe模型prototxt文件。
+
+  ``--march``<br/>
+  BPU的微架构。若使用 ``RDK X3`` 则设置为 ``bernoulli2``，若使用 ``RDK Ultra`` 则设置为 ``bayes``。
 
 
 :::caution 注意
 
-  - ``yaml配置文件``，可直接使用[caffe模型量化yaml文件模板](../../common_questions/toolchain#caffe_yaml_template) 和[onnx模型量化yaml文件模板](../../common_questions/toolchain#onnx_yaml_template)模板文件进行填写。
+  - ``RDK X3 yaml配置文件``，可直接使用[**RDK X3 Caffe模型量化yaml文件模板**](../../common_questions/toolchain#rdk_x3_caffe_yaml_template) 和[**RDK X3 ONNX模型量化yaml文件模板**](../../common_questions/toolchain#rdk_x3_onnx_yaml_template)模板文件进行填写。
 
-  - 若 hb_mapper makertbin 步骤异常终止或者出现报错信息，则说明模型转换失败，请根据终端打印或在当前路径下生成的 ``hb_mapper_makertbin.log`` 日志文件确认报错信息和修改建议，错误信息可以在 [模型量化错误及解决方法](../../common_questions/toolchain#model_convert_errors_and_solutions)章节来查找错误的解决方法，若以上步骤仍不能排除问题，请联系地平线技术支持团队或在[地平线官方技术社区](https://developer.horizon.ai/)提出您的问题，我们将在24小时内给您提供支持。
+  - ``RDK Ultra yaml配置文件``，可直接使用[**RDK Ultra Caffe模型量化yaml文件模板**](../../common_questions/toolchain#rdk_ultra_caffe_yaml_template) 和[**RDK Ultra ONNX模型量化yaml文件模板**](../../common_questions/toolchain#rdk_ultra_onnx_yaml_template)模板文件进行填写。 
+  - 若 hb_mapper makertbin 步骤异常终止或者出现报错信息，则说明模型转换失败，请根据终端打印或在当前路径下生成的 ``hb_mapper_makertbin.log`` 日志文件确认报错信息和修改建议，错误信息可以在 [**模型量化错误及解决方法**](../../common_questions/toolchain#model_convert_errors_and_solutions)章节来查找错误的解决方法，若以上步骤仍不能排除问题，请联系地平线技术支持团队或在[**地平线官方技术社区**](https://developer.horizon.ai/)提出您的问题，我们将在24小时内给您提供支持。
 :::
 
 #### 模型转换yaml配置参数说明{#yaml_config}
@@ -387,7 +481,7 @@ hb_mapper makertbin参数解释：
     # 原始Onnx浮点模型文件
     onnx_model: '****.onnx'
 
-    # 转换的目标处理器架构，保持默认，X3处理器使用的是bernoulli2架构
+    # 转换的目标处理器架构，保持默认，地平线RDK X3使用的是bernoulli2架构， RDK Ultra使用的是bayes架构。march: 'bayes'
     march: 'bernoulli2'
 
     # 模型转换输出的用于上板执行的模型文件的名称前缀
@@ -514,13 +608,17 @@ hb_mapper makertbin参数解释：
 若参数存在多个值时，每个值之间使用 ``';'`` 符号进行分隔： ``param_name:  'param_value1; param_value2; param_value3'`` ；具体配置方法可参考：``run_on_cpu: 'conv_0; conv_1; conv12'`` 。
 
 :::tip 小技巧
-  当模型为多输入模型时, 建议用户将可选参数（ ``input_name``, ``input_shape`` 等）显式的写出, 以免造成参数对应顺序上的错误。
+  
+  - 当模型为多输入模型时, 建议用户将可选参数（ ``input_name``, ``input_shape`` 等）显式的写出, 以免造成参数对应顺序上的错误。
+
+  - 在配置march为bayes，即在进行RDK Ultra模型转换时，如您将优化等级optimize_level配置为O3，hb_mapper makerbin默认提供缓存能力。即在您第一次使用hb_mapper makerbin对模型进行编译时，会自动创建缓存文件，后续在您的working_dir不变的情况下，在重复编译时会自动调用此文件，降低您的编译时间。
 :::
 
 :::caution 注意
 
   - 请注意，如果设置 ``input_type_rt`` 为 ``nv12`` 或 ``yuv444`` ，则模型的输入尺寸中不能出现奇数。
-  - 请注意，目前X3上暂不支持 ``input_type_rt`` 为 ``yuv444`` 且 ``input_layout_rt`` 为 ``NCHW`` 组合的场景。
+  - 请注意，目前RDK X3上暂不支持 ``input_type_rt`` 为 ``yuv444`` 且 ``input_layout_rt`` 为 ``NCHW`` 组合的场景。
+  - 模型转换成功后，若出现符合地平线BPU算子约束条件的OP仍然运行在CPU上，其主要原因是该OP属于被动量化OP，关于被动量化相关内容，请阅读 [**算法工具链中的主动量化和被动量化逻辑**](https://developer.horizon.ai/forumDetail/118364000835765793) 章节。
 :::
 
 以下是具体参数信息，参数会比较多，我们依照上述的参数组次序介绍。
@@ -533,14 +631,16 @@ hb_mapper makertbin参数解释：
 |``prototxt``| **参数作用**：指定Caffe浮点模型的prototxt文件名称。<br/>**参数说明**：在 ``hb_mapper makertbin``的``model-type`` 为 ``caffe`` 时必须配置。| **取值范围**：无。<br/> **默认配置**：无。|可选 |
 |``caffe_model``| **参数作用**：指定Caffe浮点模型的caffemodel文件名称。<br/>**参数说明**：在 ``hb_mapper makertbin`` 的``model-type`` 为 ``caffe`` 时必须配置。| **取值范围**：无。<br/> **默认配置**：无。|可选 |
 |``onnx_model``| **参数作用**：指定ONNX浮点模型的onnx文件名称。<br/>**参数说明**：在 ``hb_mapper makertbin`` 的``model-type`` 为 ``onnx`` 时必须配置。| **取值范围**：无。<br/> **默认配置**：无。|可选 |
-|``march``| **参数作用**：指定产出混合异构模型需要支持的平台架构。<br/>**参数说明**：X3处理器对应的微框架。根据您使用的平台选择。| **取值范围**：``bernoulli2``。<br/> **默认配置**：``bernoulli2``。|必选 |
+|``march``| **参数作用**：指定产出混合异构模型需要支持的平台架构。<br/>**参数说明**：两个可选配置值依次对应RDK X3 和 RDK Ultra 对应的BPU微框架。根据您使用的平台选择。| **取值范围**：``bernoulli2`` 或 ``bayes``。<br/> **默认配置**：无。|必选 |
 |``output_model_file_prefix``| **参数作用**：指定转换产出混合异构模型的名称前缀。<br/>**参数说明**：输出的定点模型文件的名称前缀。| **取值范围**：无。<br/> **默认配置**：无。|必选 |
 |``working_dir``| **参数作用**：指定模型转换输出的结果的存放目录。<br/>**参数说明**：若该目录不存在, 则工具会自动创建目录。| **取值范围**：无。<br/> **默认配置**：``model_output``。|可选 |
 |``layer_out_dump``| **参数作用**：指定混合异构模型是否保留输出中间层值的能力。<br/>**参数说明**：输出中间层的值是调试需要用到的手段，常规状态下请不要开启。| **取值范围**：``True`` 、 ``False``。<br/> **默认配置**：``False``。|可选 |
 |``output_nodes``| **参数作用**：指定模型的输出节点。<br/>**参数说明**：一般情况下，转换工具会自动识别模型的输出节点。此参数用于支持您指定一些中间层次作为输出。设置值为模型中的具体节点名称，多个值的配置方法请参考前文对 ``param_value`` 配置描述。需要您注意的是，一旦设置此参数后，工具将不再自动识别输出节点，您通过此参数指定的节点就是全部的输出。| **取值范围**：无。<br/> **默认配置**：无。|可选 |
 |``remove_node_type``| **参数作用**：设置删除节点的类型。<br/>**参数说明**：该参数为隐藏参数，不设置或设置为空不影响模型转换过程。此参数用于支持您设置待删除节点的类型信息。被删除的节点必须在模型的开头或者末尾, 与模型的输入或输出连接。注意：待删除节点会按顺序依次删除，并动态更新模型结构；同时在节点删除前还会判断该节点是否位于模型的输入输出处。因此节点的删除顺序很重要。| **取值范围**：”Quantize”, “Transpose”, “Dequantize”, “Cast”, “Reshape”。不同类型用”;”分割。<br/> **默认配置**：无。|可选 |
 |``remove_node_name``| **参数作用**：设置删除节点的名称。<br/>**参数说明**：该参数为隐藏参数， 不设置或设置为空不影响模型转换过程。 此参数用于支持您设置待删除节点的名称。被删除的节点必须在模型的开头或者末尾, 与模型的输入或输出连接。注意：待删除节点会按顺序依次删除，并动态更新模型结构；同时在节点删除前还会判断该节点是否位于模型的输入输出处。因此节点的删除顺序很重要。| **取值范围**：无。不同类型用";"分割。<br/> **默认配置**：无。|可选 |
-
+|``set_node_data_type``| **参数作用**：配置指定op的输出数据类型为int16，此参数 **只支持RDK Ultra配置！** <br/> **参数说明**：在模型转换过程中，大多数op的默认输入输出数据类型为int8，通过该参数可以指定特定op的输出数据类型为int16（在满足一定的约束条件下）。int16相关说明详见：[**int16配置说明**](#int16_config)部分的描述。 <br/> **注意：** 该参数相关功能已合并至 ``node_info`` 参数中，后续版本计划废弃。 | **取值范围**：支持配置int16的算子范围您可参考[**模型算子支持列表**](./supported_op_list)中RDK Ultra算子支持约束列表。<br/> **默认配置**：无。|可选 |
+|``debug_mode``| **参数作用**：保存用于精度debug分析的校准数据。<br/>**参数说明**：该参数作用为保存用于精度debug分析的校准数据，数据格式为.npy。该数据通过np.load()可直接送入模型进行推理。若不设置此参数，您也可自行保存数据并使用精度debug工具进行精度分析。 | **取值范围**：``"dump_calibration_data"``<br/> **默认配置**：无。|可选 |
+|``node_info``| **参数作用**：支持配置指定OP的输入输出数据类型为int16以及强制指定算子在CPU或BPU上运行。此参数 **只支持RDK Ultra配置！** <br/>**参数说明**：基于减少yaml中的参数的原则，我们将 ``set_node_data_type`` 、``run_on_cpu`` 和 ``run_on_bpu`` 三个参数的能力融合到本参数中，并在此基础上扩充支持配置指定op输入数据类型为int16的能力。<br/> ``node_info`` 参数使用方式：  <br/>- 仅指定OP运行在BPU/CPU上（下以BPU为例，CPU方法一致）：<br/> node_info: { <br/>"node_name":<br/> { 'ON': 'BPU', <br/>}  <br/>} <br/> - 仅配置节点数据类型： <br/> node_info: 'node_name1:int16;node_name2:int16' <br/>  多个值的配置方法请参考 `param_value配置 <param_value>`。 <br/> - 指定OP运行在BPU上，同时配置OP的输入输出数据类型：<br/> node_info: { <br/>"node_name": { <br/>'ON': 'BPU', <br/>'InputType': 'int16', <br/>'OutputType': 'int16'<br/> } <br/>  } <br/> 'InputType': 'int16'代表指定算子的所有输入数据类型为int16。 <br/>如需指定算子特定输入的InputType，可在InputType后通过指定数字来进行配置。如：<br/>'InputType0': 'int16'代表指定算子的第一个输入数据类型为int16，<br/>'InputType1': 'int16'代表指定算子的第二个输入数据类型为int16，以此类推。<br/>**注意：** 'OutputType' 不支持指定算子特定输出的OutputType，配置后对算子的所有输出生效，不支持配置 'OutputType0' 、 'OutputType1'等。 | **取值范围**：支持配置int16的算子范围您可参考[模型算子支持列表](./supported_op_list)中RDK Ultra算子支持约束列表。可指定在CPU或BPU运行的算子需为模型中包含的算子。<br/> **默认配置**：无。|可选 |
 
 - ###### 输入信息参数组
 
@@ -565,14 +665,14 @@ hb_mapper makertbin参数解释：
 | 参数名称 | 参数配置说明   | 取值范围说明 |    可选/必选     |
 |------------|----------|----------|--------|
 |``cal_data_dir``| **参数作用**：指定模型校准使用的标定样本的存放目录。<br/>**参数说明**：目录内校准数据需要符合输入配置的要求。具体请参考 准备校准数据 部分的介绍。配置多个输入节点时， 设置的节点顺序需要与 ``input_name`` 里的顺序严格保持一致。多个值的配置方法请参考前文对 ``param_value`` 配置描述。当calibration_type为 ``load``, ``skip`` 时，cal_data_dir不用填。注意： 为了方便您的使用，如果未发现cal_data_type的配置，我们将根据文件夹 后缀对数据类型进行配置。如果文件夹后缀以 ``_f32`` 结尾，则认为数据 类型是float32，否则认为数据类型是uint8。当然，我们强烈建议您通过cal_data_type参数对数据类型进行约束。| **取值范围**：无。<br/> **默认配置**：无。|可选 |
+|``cal_data_type``| **参数作用**：指定校准数据二进制文件的数据存储类型。<br/>**参数说明**：指定模型校准时使用的二进制文件的数据存储类型。没有指定值的情况下将会使用文件夹名字后缀来做判断。| **取值范围**：``float32``、``uint8``。<br/> **默认配置**：无。|可选 |
 |``preprocess_on``| **参数作用**：开启图片校准样本自动处理。<br/>**参数说明**：该选项仅适用于4维图像输入的模型， 非4维模型不要打开该选项。在启动该功能时，cal_data_dir 目录下存放的都是jpg/bmp/png 等图片数据，工具会使用skimage读取图片， 并resize到输入节点需要的尺寸。为了保证校准的效果，建议您保持该参数关闭。使用的影响请参考 准备校准数据 部分的介绍。| **取值范围**：``True`` 、 ``False``。<br/> **默认配置**： ``False``。|可选 |
 |``calibration_type``| **参数作用**：校准使用的算法类型。<br/>**参数说明**：每 ``kl`` 和 ``max`` 都是公开的校准量化算法， 其基本原理可以通过网络资料查阅。使用 ``load`` 方式校准时, qat模型必须是通过plugin导出的的模型。``mix`` 是一个集成多种校准方法的搜索策略，能够自动确定量化敏感节点，并在节点粒度上从不同的校准方法中挑选出最佳方法，最终构建一个融合了多种校准方法优势的组合校准方式。``default`` 是一个自动搜索的策略， 会尝试从系列校准量化参数中获得一个相对效果较好的组合。建议您先尝试 ``default``， 如果最终的精度结果不满足预期， 再根据 精度调优 部分建议配置不同的校准参数。若您只想尝试对模型性能进行验证，但对精度没有要求， 则可以尝试 “skip” 方式进行校准。该方式会使用随机数进行校准， 不需要您准备校准数据，比较适合初次尝试对模型结构进行验证。注意： 使用skip方式时，因使用随机数校准, 得到的模型不可用于精度验证。| **取值范围**：``default``、``mix`、```kl``、``max``、``load`` 和 ``skip``。<br/> **默认配置**：``default``。|必选 |
 |``max_percentile``| **参数作用**：该参数为 ``max`` 校准方法的参数，用以调整 ``max`` 校准的截取点。<br/>**参数说明**：此参数仅在 ``calibration_type`` 为 ``max`` 时有效。常用配置选项有：0.99999/0.99995/0.99990/0.99950/0.99900。建议您先尝试 ``calibration_type`` 配置 ``default``， 如果最终的精度结果不满足预期， 再根据 精度调优 部分建议调整该参数。| **取值范围**：``0.0``~``1.0`` 。<br/> **默认配置**：``1.0`` 。|可选 |
 |``per_channel``| **参数作用**：控制是否针对featuremap的每个channel进行校准。<br/>**参数说明**：``calibration_type`` 设置非default时有效。建议您先尝试 ``default``， 如果最终的精度结果不满足预期， 再根据 精度调优 部分建议调整该参数。| **取值范围**：``True`` 、 ``False``。<br/> **默认配置**：``False``。|可选 |
-|``run_on_cpu``| **参数作用**：强制指定算子在CPU上运行。<br/>**参数说明**：CPU上虽然性能不及BPU，但是提供的是float精度计算。如果您确定某些算子需要在CPU上计算， 可以通过该参数指定。 设置值为模型中的具体节点名称，多个值的配置方法请参考前文对 ``param_value`` 配置描述。| **取值范围**：无。<br/> **默认配置**：无。|可选 |
-|``run_on_bpu``| **参数作用**：强制指定OP在BPU上运行。<br/>**参数说明**：为了保证最终量化模型的精度，少部分情况下， 转换工具会将一些具备BPU计算条件的算子放在CPU上运行。如果您对性能有较高的要求，愿意以更多一些量化损失为代价， 则可以通过该参数明确指定算子运行在BPU上。设置值为模型中的具体节点名称， 多个值的配置方法请参考前文对 ``param_value`` 配置描述。| **取值范围**：无。<br/> **默认配置**：无。|可选 |
-|``cal_data_type``| **参数作用**：指定校准数据二进制文件的数据存储类型。<br/>**参数说明**：指定模型校准时使用的二进制文件的数据存储类型。没有指定值的情况下将会使用文件夹名字后缀来做判断。| **取值范围**：``float32``、``uint8``。<br/> **默认配置**：无。|可选 |
-|``optimization``| **参数作用**：使模型以 int8 格式输出。<br/>**参数说明**：指定值为set_model_output_int8时，设置模型为 int8 格式低精度输出。|**取值范围**：[‘set_model_output_int8’]<br/> **默认配置**：无。|可选 |
+|``run_on_cpu``| **参数作用**：强制指定算子在CPU上运行。<br/>**参数说明**：CPU上虽然性能不及BPU，但是提供的是float精度计算。如果您确定某些算子需要在CPU上计算， 可以通过该参数指定。 设置值为模型中的具体节点名称，多个值的配置方法请参考前文对 ``param_value`` 配置描述。<br/> **注意：** **RDK Ultra** 中该参数相关功能已合并至 ``node_info`` 参数中，后续版本计划废弃。**RDK X3** 仍继续使用。 | **取值范围**：无。<br/> **默认配置**：无。|可选 |
+|``run_on_bpu``| **参数作用**：强制指定OP在BPU上运行。<br/>**参数说明**：为了保证最终量化模型的精度，少部分情况下， 转换工具会将一些具备BPU计算条件的算子放在CPU上运行。如果您对性能有较高的要求，愿意以更多一些量化损失为代价， 则可以通过该参数明确指定算子运行在BPU上。设置值为模型中的具体节点名称， 多个值的配置方法请参考前文对 ``param_value`` 配置描述。<br/> **注意：** **RDK Ultra** 中该参数相关功能已合并至 ``node_info`` 参数中，后续版本计划废弃。**RDK X3** 仍继续使用。| **取值范围**：无。<br/> **默认配置**：无。|可选 |
+|``optimization``| **参数作用**：使模型以 int8/int16 格式输出。<br/>**参数说明**：指定值为set_model_output_int8时，设置模型为 int8 格式低精度输出；指定值为set_model_output_int16时，设置模型为 int16 格式低精度输出。<br/> **注意：**  **RDK X3** 只支持设置set_model_output_int8， <br/>**RDK Ultra** 可设置set_model_output_int8或者set_model_output_int16。|**取值范围**：``set_model_output_int8`` 或者 ``set_model_output_int16`` 。<br/> **默认配置**：无。|可选 |
 
 
 - ###### 编译参数组 {#compiler_parameters}
@@ -580,8 +680,8 @@ hb_mapper makertbin参数解释：
 | 参数名称 | 参数配置说明   | 取值范围说明 |    可选/必选     |
 |------------|----------|----------|--------|
 |``compile_mode``| **参数作用**：编译策略选择。<br/>**参数说明**：``latency`` 以优化推理时间为目标；bandwidth 以优化ddr的访问带宽为目标。如果模型没有严重超过预期的带宽占用，建议您使用 ``latency`` 策略。| **取值范围**：``latency``、 ``bandwidth``。<br/> **默认配置**：``latency``。|必选 |
-|``debug``| **参数作用**：是否打开编译的debug信息。<br/>**参数说明**：开启该参数情况下， 编译后模型将附带一些调试信息， 用于支持后续的调优分析过程。默认情况下，建议您保持该参数关闭。| **取值范围**：``True`` 、 ``False``。<br/> **默认配置**： ``False``。|可选 |
-|``core_num``| **参数作用**：模型运行核心数。<br/>**参数说明**：地平线平台支持利用多个AI加速器核心同时完成一个推理任务， 多核心适用于输入尺寸较大的情况， 理想状态下的双核速度可以达到单核的1.5倍左右。如果您的模型输入尺寸较大，对于模型速度有极致追求， 可以配置 ``core_num=2``。| **取值范围**：``1``、 ``2`` 。<br/> **默认配置**：``1``。|可选 |=
+|``debug``| **参数作用**：是否打开编译的debug信息。<br/>**参数说明**：开启该参数的场景下，模型的静态分析的性能结果将保存在模型中，您可以在模型成功转换后生成的静态性能评估文件html页和hb_perf时产生的html页内，在Layer Details选项卡中查看模型逐层BPU算子的性能信息（包括计算量、计算耗时和数据搬运耗时）。 默认情况下，建议您保持该参数关闭。| **取值范围**：``True`` 、 ``False``。<br/> **默认配置**： ``False``。|可选 |
+|``core_num``| **参数作用**：模型运行核心数。<br/>**参数说明**：地平线平台支持利用多个AI加速器核心同时完成一个推理任务， 多核心适用于输入尺寸较大的情况， 理想状态下的双核速度可以达到单核的1.5倍左右。如果您的模型输入尺寸较大，对于模型速度有极致追求， 可以配置 ``core_num=2``。<br/> **注意：** **RDK Ultra** 该选项尚不支持, 请勿配置! | **取值范围**：``1``、 ``2`` 。<br/> **默认配置**：``1``。|可选 |=
 |``optimize_level``| **参数作用**：模型编译的优化等级选择。<br/>**参数说明**：优化等级可选范围为 ``O0`` ~ ``O3``。``O0`` 不做任何优化, 编译速度最快，优化程度最低。``O1`` - ``O3`` 随着优化等级提高， 预期编译后的模型的执行速度会更快， 但是所需编译时间也会变长。正常用于生成和验证性能的模型， 必须使用 ``O3`` 级别优化才能保证得到最优性能。某些流程验证或精度调试过程中， 可以尝试使用更低级别优化加快过程速度。| **取值范围**：``O0`` 、 ``O1`` 、 ``O2`` 、 ``O3``。<br/> **默认配置**：无。|必选 |
 |``input_source``| **参数作用**：设置上板bin模型的输入数据来源。<br/>**参数说明**：这个参数是适配工程环境的选项， 建议您已经全部完成模型验证后再配置。``ddr`` 表示数据来自内存，``pyramid`` 和 ``resizer`` 表示来自处理器上的固定硬件。注意：如果设置为resizer，模型的 h*w 要小于18432。具体在工程环境中如何适配 ``pyramid`` 和 ``resizer`` 数据源， 此参数配置有点特殊，例如模型输入名称为 data, 数据源为内存(ddr), 则此处应该配置值为 ``{"data": "ddr"}``。| **取值范围**：``ddr``, ``pyramid``, ``resizer``<br/> **默认配置**：无，默认会根据input_type_rt的值从可选范围中自动选择。|可选 |
 |``max_time_per_fc``| **参数作用**：指定模型的每个function-call的最大可连续执行时间(单位us)。<br/>**参数说明**：编译后的数据指令模型在BPU上进行推理计算时， 它将表现为1个或者多个function-call（BPU的执行粒度）的调用，取值为0代表不做限制。该参数用来限制每个function-call最大的执行时间, 模型只有在单个function-call执行完时才有机会被抢占。详情参见 模型优先级控制 部分的介绍。- 此参数仅用于实现模型抢占功能，如无需实现该功能则可以忽略。<br/> - 模型抢占功能仅支持在开发板端实现，不支持PC端模拟器实现。| **取值范围**：``0或1000-4294967295``。<br/> **默认配置**：``0``。|可选 |
@@ -594,8 +694,18 @@ hb_mapper makertbin参数解释：
 |------------|----------|----------|--------|
 |``custom_op_method``| **参数作用**：自定义算子策略选择。<br/>**参数说明**：目前仅支持register策略。| **取值范围**：``register``。<br/> **默认配置**：无。|可选 |
 |``op_register_files``| **参数作用**：自定义算子的Python实现文件名称。<br/>**参数说明**：多个文件可用 ``;`` 分隔| **取值范围**：无。<br/> **默认配置**： 无。|可选 |
-|``core_num``| **参数作用**：自定义算子的Python实现文件存放路径。<br/>**参数说明**：设置路径时，请使用相对路径。| **取值范围**：无 。<br/> **默认配置**：无。|可选 |
+|``custom_op_dir``| **参数作用**：自定义算子的Python实现文件存放路径。<br/>**参数说明**：设置路径时，请使用相对路径。| **取值范围**：无 。<br/> **默认配置**：无。|可选 |
 
+
+##### RDK Ultra int16配置说明{#int16_config}
+  
+在模型转换的过程中，模型中的大部分算子都会被量化到int8进行计算，而通过配置 ``node_info`` 参数，
+可以详细指定某个op的输入/输出数据类型为int16计算（具体支持的算子范围可参考[**模型算子支持列表**](./supported_op_list)章节中的RDK Ultra算子支持列表内容。
+基本原理如下：
+
+在您配置了某个op输入/输出数据类型为int16后，模型转换内部会自动进行op输入输出上下文（context）int16配置的更新和检查。
+例如，当配置op_1输入/输出数据类型为int16时，实际上潜在同时指定了op_1的上/下一个op需要支持以int16计算。
+对于不支持的场景，模型转换工具会打印log提示该int16配置组合暂时不被支持并回退到int8计算。
 
 ##### 预处理HzPreprocess算子说明{#pre_process}
 预处理HzPreprocess算子是地平线模型转换工具在模型转换过程中根据yaml配置文件生成的一个插在模型输入节点后的预处理算子节点，用来给模型的输入数据做归一化操作，本节主要介绍 ``norm_type`` 、 ``mean_value`` 、 ``scale_value`` 参数变量和模型预处理 HzPreprocess 算子节点生成的说明。
@@ -734,9 +844,9 @@ HzPreprocess内的计算公式为：`((input（取值范围[-128,127]）+ 128) -
   **正确理解每种** ``input_type_rt`` **的要求，对于嵌入式应用准备推理数据很重要，以下是对**
   ``input_type_rt`` **每种格式的说明：**
 
-  - rgb、bgr和gray都是比较常见的图像数据，注意每个数值都采用UINT8表示。
+  - rgb、bgr和gray都是比较常见的图像格式，注意每个数值都采用UINT8表示。
   - yuv444是一种常见的图像格式，注意每个数值都采用UINT8表示。
-  - nv12是常见的yuv420图像数据，每个数值都采用UINT8表示。
+  - nv12是常见的yuv420图像格式，每个数值都采用UINT8表示。
   - nv12有个比较特别的情况是 ``input_space_and_range`` 设置 ``bt601_video``
     （参考前文对 ``input_space_and_range`` 参数的介绍），较于常规nv12情况，它的数值范围由[0,255]变成了[16,235]，
     每个数值仍然采用UINT8表示。
@@ -801,7 +911,7 @@ HzPreprocess内的计算公式为：`((input（取值范围[-128,127]）+ 128) -
 这个模型要求输入的基本数据格式仍然与 ``original_float_model`` 一样，不过layout和数值表示已经发生了变化，
 整体较于 ``original_float_model`` 输入的变化情况描述如下：
 
-- 数据layout均使用NHWC。
+- ``RDK X3`` 的数据layout均使用NHWC。
 - 当 ``input_type_rt`` 的取值为非 ``featuremap`` 时，则输入的数据类型均使用INT8，
   反之， 当 ``input_type_rt`` 取值为 ``featuremap`` 时，则输入的数据类型则为float32。
 
@@ -844,14 +954,14 @@ HzPreprocess内的计算公式为：`((input（取值范围[-128,127]）+ 128) -
   ...    ...     ...     ...       0.996656           4.495638
 ```
 上面列举的输出内容中，Node、ON、Subgraph、Type与 ``hb_mapper checker`` 工具的解读是一致的，
-请参考前文 [检查结果解读](#check_result)；
+请参考前文 [**检查结果解读**](#check_result)；
 Threshold是每个层次的校准阈值，用于异常状态下向地平线技术支持反馈信息，正常状况下不需要关注；
 Cosine Similarity一列反映的是Node列中对应算子的原始浮点模型与量化模型输出结果的余弦相似度。
 
 :::tip 小技巧
 
   一般情况下， **模型的输出节点 Cosine Similarity >= 0.99 可认为此模型量化正常**，输出节点的相似度低于0.8就有了较明显的精度损失， 当然Cosine Similarity只是指明量化后数据稳定性的一种参考方式，对于模型精度的影响不存在明显的直接关联关系，
-  完全准确的精度情况还需要您阅读[模型精度分析与调优](#accuracy_evaluation)的内容。
+  完全准确的精度情况还需要您阅读[**模型精度分析与调优**](#accuracy_evaluation)的内容。
 :::
 
 转换产出存放在转换配置参数 ``working_dir`` 指定的路径中，成功完成模型转换后，
@@ -862,10 +972,10 @@ Cosine Similarity一列反映的是Node列中对应算子的原始浮点模型�
 - \*\*\*_quantized_model.onnx
 - \*\*\*.bin
 
-[转换产出物解读](#conversion_output)介绍了每个产出物的用途。
+[**转换产出物解读**](#conversion_output)介绍了每个产出物的用途。
 
 :::caution 注意
-  在上板运行前，我们建议您完成[模型性能分析与调优](#performance_evaluation)介绍的模型性能&精度评测过程，避免将模型转换问题延伸到后续嵌入式端。
+  在上板运行前，我们建议您完成[**模型性能分析与调优**](#performance_evaluation)介绍的模型性能&精度评测过程，避免将模型转换问题延伸到后续嵌入式端。
 :::
 
 如果以上验证模型转换成功的三个方面中，有任一个出现缺失都说明模型转换出现了错误。
@@ -878,7 +988,7 @@ Missing keys: 'caffe_model', 'prototxt'
 2021-04-21 14:45:34,085 ERROR yaml file parse failed. Please double check your input
 2021-04-21 14:45:34,085 ERROR exception in command: makertbin
 ```
-如果控制台输出日志信息不能帮助您发现问题，请参考[模型量化错误及解决方法](../../common_questions/toolchain#model_convert_errors_and_solutions)章节内容进行查找，若以上步骤仍不能排除问题，请联系地平线技术支持团队或在[地平线官方技术社区](https://developer.horizon.ai/)提出您的问题，我们将在24小时内给您提供支持。
+如果控制台输出日志信息不能帮助您发现问题，请参考[**模型量化错误及解决方法**](../../common_questions/toolchain#model_convert_errors_and_solutions)章节内容进行查找，若以上步骤仍不能排除问题，请联系地平线技术支持团队或在[**地平线官方技术社区**](https://developer.horizon.ai/)提出您的问题，我们将在24小时内给您提供支持。
 
 
 #### 转换产出物解读{#conversion_output}
@@ -890,23 +1000,23 @@ Missing keys: 'caffe_model', 'prototxt'
 - \*\*\*_quantized_model.onnx
 - \*\*\*.bin
 
-\*\*\*_original_float_model.onnx的产出过程可以参考[转换内部过程解读](#conversion_interpretation)的介绍，
-这个模型计算精度与转换输入的原始浮点模型是一模一样的，有个重要的变化就是为了适配地平线平台添加了一些数据预处理计算（增加了一个预处理算子节点 ``HzPreprocess``, 可以使用netron工具打开onnx模型查看,此算子的详情可查看[预处理HzPreprocess算子说明](#pre_process) 内容）。
-一般情况下，您不需要使用这个模型，若在转换结果出现异常时，通过上文介绍的定位方法仍不能解决您的问题，请将这个模型提供给地平线的技术支持团队或在[地平线官方技术社区](https://developer.horizon.ai/)提出您的问题，将有助于帮助您快速解决问题。
+\*\*\*_original_float_model.onnx的产出过程可以参考[**转换内部过程解读**](#conversion_interpretation)的介绍，
+这个模型计算精度与转换输入的原始浮点模型是一模一样的，有个重要的变化就是为了适配地平线平台添加了一些数据预处理计算（增加了一个预处理算子节点 ``HzPreprocess``, 可以使用netron工具打开onnx模型查看,此算子的详情可查看[**预处理HzPreprocess算子说明**](#pre_process) 内容）。
+一般情况下，您不需要使用这个模型，若在转换结果出现异常时，通过上文介绍的定位方法仍不能解决您的问题，请将这个模型提供给地平线的技术支持团队或在[**地平线官方技术社区**](https://developer.horizon.ai/)提出您的问题，将有助于帮助您快速解决问题。
 
-\*\*\*_optimized_float_model.onnx的产出过程可以参考[转换内部过程解读](#conversion_interpretation) 的介绍，
+\*\*\*_optimized_float_model.onnx的产出过程可以参考[**转换内部过程解读**](#conversion_interpretation) 的介绍，
 这个模型经过一些算子级别的优化操作，常见的就是算子融合。
 通过与original_float模型的可视化对比，您可以明显看到一些算子结构级别的变化，不过这些都不影响模型的计算精度。
-一般情况下，您不需要使用这个模型，若在转换结果出现异常时，通过上文介绍的定位方法仍不能解决您的问题，请将这个模型提供给地平线的技术支持团队或在[地平线官方技术社区](https://developer.horizon.ai/)提出您的问题，将有助于帮助您快速解决问题。
+一般情况下，您不需要使用这个模型，若在转换结果出现异常时，通过上文介绍的定位方法仍不能解决您的问题，请将这个模型提供给地平线的技术支持团队或在[**地平线官方技术社区**](https://developer.horizon.ai/)提出您的问题，将有助于帮助您快速解决问题。
 
-\*\*\*_quantized_model.onnx的产出过程可以参考[转换内部过程解读](#conversion_interpretation) 的介绍，
+\*\*\*_quantized_model.onnx的产出过程可以参考[**转换内部过程解读**](#conversion_interpretation) 的介绍，
 这个模型已经完成了校准和量化过程，量化后的模型精度损失情况，可以阅读下文模型精度分析与调优内容来评估此模型。
-这个模型是精度验证过程中必须要使用的模型，具体使用方式请参考[模型精度分析与调优](#accuracy_evaluation)的介绍。
+这个模型是精度验证过程中必须要使用的模型，具体使用方式请参考[**模型精度分析与调优**](#accuracy_evaluation)的介绍。
 
 \*\*\*.bin就是可以用于在地平线处理器上加载运行的模型，
 配合 上板运行(runtime)应用开发说明 章节介绍的内容，
 您就可以将模型快速在地平线处理器上部署运行。不过为了确保模型的性能与精度效果是符合您的预期的，
-我们建议完成[模型转换](#model_conversion)和[模型精度分析与调优](#accuracy_evaluation)
+我们建议完成[**模型转换**](#model_conversion)和[**模型精度分析与调优**](#accuracy_evaluation)
 介绍的性能和精度分析过程后再进入到应用开发和部署。
 
 :::caution 注意
@@ -962,7 +1072,7 @@ BIN Model Structure部分提供的是bin模型的子图级可视化结果，图�
 
 在查看Details和BIN Model Structure时，您需要了解子图（subgraph）的概念。
 如果模型网络结构中出现CPU计算的算子，模型转换工具会将CPU算子前后连续在BPU计算的部分拆分为两个独立的子图（subgraph）。
-具体可以参考 [验证模型](#model_check) 部分的介绍。
+具体可以参考 [**验证模型**](#model_check) 部分的介绍。
 
 Details是每个模型BPU子图的具体信息，在 ``mobilenetv1_224x224_nv12.html`` 主页面中，子图的各项指标为：
 
@@ -977,7 +1087,7 @@ Details是每个模型BPU子图的具体信息，在 ``mobilenetv1_224x224_nv12.
 
   参考信息说明页面会根据您是否启用调试配置，从而有所区别，
   下图中的Layer Details仅当在yaml配置文件中设置 ``debug`` 参数为 ``True`` 时才可以拿到，
-  这个 ``debug`` 参数配置方法请参考[使用 hb_mapper makertbin 工具转换模型](#makertbin)部分的介绍。
+  这个 ``debug`` 参数配置方法请参考[**使用 hb_mapper makertbin 工具转换模型**](#makertbin)部分的介绍。
 :::
 Layer Details提供具体算子级别的分析，在模型调试分析阶段可以作为参考，例如：如果是某些BPU算子导致模型性能低，通过分析结果帮助您定位到具体的算子。
 
@@ -996,7 +1106,7 @@ Layer Details提供具体算子级别的分析，在模型调试分析阶段可�
 
 1. 确保您已经参考系统更新章节完成了开发板系统的更新。
 
-2. 需要将Ubuntu/CentOS开发机上得到的bin模型拷贝到开发板上（建议放在/userdata目录），
+2. 需要将Ubuntu开发机上得到的bin模型拷贝到开发板上（建议放在/userdata目录），
    开发板上是一个Linux系统，可以通过 ``scp`` 等Linux系统常用方式完成这个拷贝过程。
 
 ``hrt_model_exec perf`` 工具命令如下（**注意是在开发板上执行**）：
@@ -1033,7 +1143,7 @@ hrt_model_exec perf参数解析：
   profile_path：<br/>
     默认关闭，统计工具日志产生路径。该参数引入的分析结果会存放在指定目录下的profiler.log和profiler.csv文件中。
 
-命令执行完成后，您将在控制台得到如下结果：
+下述示例是在 **RDK X3** 开发板实测结果，命令执行完成后，您将在控制台得到如下日志：
 
 ```bash
 Running condition:
@@ -1162,13 +1272,22 @@ Perf result:
   }
 }
 ```
-上述日志内容对应到[使用hb_perf工具估计性能](#hb_perf)中的BIN Model Structure部分介绍的bin可视化图中，
+上述日志内容对应到[**使用hb_perf工具估计性能**](#hb_perf)中的BIN Model Structure部分介绍的bin可视化图中，
 图中每个节点都有对应的节点在profiler.log文件中，可以通过 ``name`` 对应起来，另外，profiler.log文件中也记录出每个节点的执行时间，对优化模型算子提供参考，由于模型中的BPU节点对输入输出有特殊要求，如特殊的layout和padding对齐要求，因此需要对BPU节点的输入、输出数据进行处理。
 
 - ``Preprocess``：表示对模型输入数据进行padding和layout转换操作，其耗时统计在Preprocess中。
 - ``xxxx_input_layout_convert``： 表示对BPU节点的输入数据进行padding和layout转换的操作，其耗时统计在xxxx_input_layout_convert中。
 - ``xxxx_output_layout_convert``： 表示对BPU节点输出数据进行去掉padding和layout转换的操作，其耗时统计在xxxx_output_layout_convert中。
-``profiler`` 分析是模型性能调优中经常使用的操作，前文 [检查结果解读](#check_result) 部分提到检查阶段不用过于关注CPU算子，此阶段可以看到CPU算子的具体耗时情况，可以根据对应算子的耗时情况来进行模型性能调优。
+``profiler`` 分析是模型性能调优中经常使用的操作，前文 [**检查结果解读**](#check_result) 部分提到检查阶段不用过于关注CPU算子，此阶段可以看到CPU算子的具体耗时情况，可以根据对应算子的耗时情况来进行模型性能调优。
+
+:::tip 小技巧
+
+  若模型耗时比较严重，也可以通过以下几种方法来进行性能优化：
+  1. 单帧单核：一帧数据进来，在一个核上启用模型去运行推理；
+  2. 单帧双核：模型在编译时就指定为双核模型（yaml配置文件中的 core_num：2），运行后会自动占用两个核的资源，然后一帧数据进来，会拆成两部分分别计算，最后再拼起来。这种模式在一些大模型上优化效果才有比较明显，会降低一定的延迟，小模型反而可能会因为这种双核的调度变慢；
+  3. 双帧双核：两个核分别启用一个模型，独立处理各自的数据帧，时延不会降低，但帧率差不多可以达到2倍
+:::
+
 
 
 #### 模型性能优化
@@ -1182,14 +1301,14 @@ Perf result:
 ##### 检查影响模型性能的yaml参数
 
 在模型转换的yaml配置文件中，部分参数会实际影响模型的最终性能，请先检查是否已正确按照模型预期配置，
-各参数的具体含义和作用，请参考[编译参数组](#compiler_parameters)章节内容。
+各参数的具体含义和作用，请参考[**编译参数组**](#compiler_parameters)章节内容。
 
 - ``layer_out_dump``：指定模型转换过程中是否输出模型的中间结果，一般仅用于调试功能。
   如果将其配置为 ``True``，则会为每个卷积算子增加一个反量化输出节点，它会显著的降低模型上板后的性能。
   所以在性能评测时，务必要将该参数配置为 ``False``。
 - ``compile_mode``：该参数用于选择模型编译时的优化方向为带宽还是时延，关注性能时请配置为 ``latency``。
 - ``optimize_level``：该参数用于选择编译器的优化等级，实际使用中应配置为 ``O3`` 获取最佳性能。
-- ``core_num``：配置为 ``2`` 时可同时调用两个核运行，降低单帧推理延迟，但是也会影响整体的吞吐率。
+- ``core_num``：**注意：** 此参数只适用于 **RDK X3**，配置为 ``2`` 时可同时调用两个核运行，降低单帧推理延迟，但是也会影响整体的吞吐率。
 - ``debug``：配置为 ``True`` 将打开编译器的debug模式，能够输出性能仿真的相关信息，如帧率、DDR 带宽占用等。
   一般用于性能评估阶段，在产品化交付时候，可关闭该参数减小模型大小，提高模型执行效率。
 - ``max_time_per_fc``：该参数用于控制编译后的模型数据指令的function-call的执行时长，从而实现模型优先级抢占功能。
@@ -1197,10 +1316,10 @@ Perf result:
 
 ##### 处理CPU算子
 
-根据 ``hrt_model_exec perf`` 工具的评估，若可以确认模型的性能瓶颈是CPU算子导致的，此种情况下，建议您查看[模型算子支持列表](#supported_op_list_and_restrictions)的内容，确认当前运行在CPU上的算子是否具备BPU支持的能力。
+根据 ``hrt_model_exec perf`` 工具的评估，若可以确认模型的性能瓶颈是CPU算子导致的，此种情况下，建议您查看[**模型算子支持列表**](./supported_op_list)的内容，确认当前运行在CPU上的算子是否具备BPU支持的能力。
 
 如果该算子在模型算子支持列表中具备BPU支持能力，应该是该算子参数超过了BPU支持的参数约束范围，建议您将相应原始浮点模型计算参数调整到约束范围内。
-为了方便您快速知晓超出约束的具体参数，建议您再使用 [验证模型](#model_check) 部分介绍的方法做一遍检查，工具将会直接给出超出BPU支持范围的参数提示。
+为了方便您快速知晓超出约束的具体参数，建议您再使用 [**验证模型**](#model_check) 部分介绍的方法做一遍检查，工具将会直接给出超出BPU支持范围的参数提示。
 
 :::info 备注
   修改原始浮点模型参数对模型计算精度的影响需要您自己把控，例如：Convolution的 ``input_channel`` 或 ``output_channel`` 超出范围就是一种较典型的情况，减少channel后，使该算子被BPU支持，但只做这一处修改也可能对模型精度产生影响。
@@ -1218,29 +1337,30 @@ Perf result:
 
   - 对于与模型输入输出相连的节点，可以在yaml文件model_parameters配置组（模型参数组）中增加 ``remove_node_type`` 参数，并重新编译模型。
 
-    .. code-block::
+    ```bash
 
       remove_node_type: "Quantize; Dequantize"
+    ```
 
     或使用hb_model_modifier 工具对bin模型进行修改：
 
-    .. code-block::
+    ```bash
 
       hb_model_modifier x.bin -a Quantize -a Dequantize
+    ```
 
   - 对于下图这种没有与输入输出节点相连的模型，则需要使用hb_model_modifier工具判断相连节点是否支持删除后按照顺序逐个进行删除。
 
-    .. image:: _static/nodes_connected.png
-      :align: center
-      :scale: 80%
+    ![nodes_connected](./image/intermediate/nodes_connected.png)
 
-    先使用hb_perf工具获取模型结构图片，然后使用以下两条命令可以自上而下移除Quantize节点， 
+    先使用hb_perf工具获取模型结构图片，然后使用以下两条命令可以自上而下移除Quantize节点,
     对于Dequantize节点自下而上逐个删除即可，每一步可删除节点的名称可以通过 ``hb_model_modifier x.bin`` 进行查看。
 
-    .. code-block::
+    ```bash
 
       hb_model_modifier x.bin -r res2a_branch1_NCHW2NHWC_LayoutConvert_Input0
       hb_model_modifier x_modified.bin -r data_res2a_branch1_HzQuantize
+    ```
 
 
 ##### 高性能模型设计建议
@@ -1263,15 +1383,10 @@ Perf result:
 
 - **BPU面向高效率模型优化**
 
-  地平线X3处理器对于 ``Depthwise Convolution`` 和 ``Group Convolution`` 都有专门的优化，若网络模型结构中含有这类算子，那可以使得用户获得最高的计算效率、参数效率。
-
-  作为这两类算子的模型参考示例，算法工具链 ``model_zoo`` 发布物中提供：
-
-  - ``efficientnet[-lite]`` 系列，追求极致的计算效率、参数效率。地平线X3处理器能够高效支持，以 ``EfficientNet Lite0`` 为例，X3处理器帧率为某端侧30TOPS GPU帧率6倍。
-  - ``vargnet`` 系列，地平线自主设计模型，充分利用 ``Group Convolution`` 的高效率，同时针对地平线X3处理器做了优化，因此对于训练超参数相对鲁棒，能够以较低的调参代价切换到不同的任务。
+  地平线处理器的BPU对于 ``Depthwise Convolution`` 和 ``Group Convolution`` 都做了针对性的优化，所以我们更推荐采用Depthwise+Pointwise 结构的MobileNetv2、EfficientNet_lite， 以及地平线基于 GroupConv 手工设计自研的 VarGNet 作为模型的 Backbone，以便获得更高的性能收益。
 
   更多的模型结构和业务模型都在持续探索中，我们将提供更加丰富的模型给您作为直接的参考，这些产出将不定期更新至 https://github.com/HorizonRobotics-Platform/ModelZoo/tree/master。
-  如果以上依然不能满足您的需要，欢迎在[地平线官方技术社区](https://developer.horizon.ai)发帖与我们取得联系，我们将根据您的具体问题提供更具针对性的指导建议。
+  如果以上依然不能满足您的需要，欢迎在[**地平线官方技术社区**](https://developer.horizon.ai)发帖与我们取得联系，我们将根据您的具体问题提供更具针对性的指导建议。
 
 
 ### 模型精度分析{#accuracy_evaluation}
@@ -1299,6 +1414,7 @@ Perf result:
 
   2. 建议参考使用地平线模型转换 ``horizon_model_convert_sample`` 示例包中的caffe、onnx等示例模型的精度验证方法: ``04_inference.sh`` 和 ``postprocess.py`` 。
 :::
+
 ```
 # 加载地平线依赖库
 from horizon_tc_ui import HB_ONNXRuntime
@@ -1334,35 +1450,22 @@ if __name__ == '__main__':
   # 输入数据的类型范围为（FEATURE）
   outputs = sess.run_feature(output_names, feed_dict, input_offset=0)
 
-  """
-  Modification  history:
-    工具链版本： 1.3 ~ 1.6
-        outputs = sess.run(output_names, feed_dict, input_type_rt=None, float_offset=0)
-        outputs = sess.run_feature(output_names, feed_dict, {input_name: "featuremap"}, float_offset=0)
-    工具链版本： 1.7
-        outputs = sess.run(output_names, feed_dict, input_type_rt=None, float_offset=None, input_offset=128)
-        outputs = sess.run_feature(output_names, feed_dict, {input_name: "featuremap"}, float_offset=0)
-    工具链版本： 1.8 ~ 1.9
-        outputs = sess.run(output_names, feed_dict, input_offset=128)
-        outputs = sess.run_feature(output_names, feed_dict, input_offset=128)
-
-    note: 工具链版本： 1.5 后架构上的调整，如果更新 工具链版本 需要重新编译模型
-  """
 ```
+
 上述代码中，``input_offset`` 参数默认值为128。 对于有前处理节点的模型, 这里都需要做-128的操作。 如果模型输入前并未添加前处理节点, 则需要将 ``input_offset`` 设置为0。
 
 :::info 备注
   对于多输入模型：
 
-  - 如果输入 input_type 均属于 （ RGB/BGR/NV12/YUV444/GRAY ），可以采用 sess.run 方法做推理。
-  
-  - 如果输入 input_type 均属于 （ FEATURE ），可以采用 sess.run_feature 方法做推理。
-  
-  - 请注意，目前暂不支持输入 input_type 为混合类型。
+  - 如果输入input_type_rt均属于（RGB/BGR/NV12/YUV444/GRAY），可以采用 sess.run 方法做推理。
+
+  - 如果输入input_type_rt均属于（FEATUREMAP），可以采用 sess.run_feature 方法做推理。
+
+  - 请注意，目前暂不支持输入input_type_rt为FEATUREMAP与非FEATUREMAP的混合类型使用 sess.* 方法做推理。
 :::
 此外, ``your_custom_data_prepare`` 函数所代表的输入数据准备过程是最容易出现误操作的部分。
 相对于您设计&训练原始浮点模型的精度验证过程，建议您在数据预处理后将推理输入数据进行调整：主要是数据格式（RGB、NV12等）、数据精度（int8、float32等）和数据排布（NCHW或NHWC）。
-调整方法是您在模型转换时yaml配置文件中设置的 ``input_type_train``、 ``input_layout_train``、 ``input_type_rt`` 和 ``input_layout_rt`` 四个参数共同决定，其详细规则请参考[转换内部过程解读](#conversion_interpretation) 章节介绍。
+调整方法是您在模型转换时yaml配置文件中设置的 ``input_type_train``、 ``input_layout_train``、 ``input_type_rt`` 和 ``input_layout_rt`` 四个参数共同决定，其详细规则请参考[**转换内部过程解读**](#conversion_interpretation) 章节介绍。
 
 例如：使用ImageNet训练的用于分类的原始浮点模型，它只有一个输入节点。这个节点接受BGR顺序的三通道图片，输入数据排布为NCHW。
 那么，在原始浮点模型设计&训练阶段，验证集推理模型前做的数据预处理如下：
@@ -1375,7 +1478,7 @@ if __name__ == '__main__':
 使用地平线转换这个原始浮点模型时，
 ``input_type_train`` 设置 ``bgr``、 ``input_layout_train`` 设置 ``NCHW``、 ``input_type_rt`` 设置 ``bgr``、
 ``input_layout_rt`` 设置 ``NHWC``。
-根据[转换内部过程解读](#conversion_interpretation) 部分介绍的规则， \*\*\*_quantized_model.onnx接受的输入应该为bgr_128、NHWC排布。
+根据[**转换内部过程解读**](#conversion_interpretation) 部分介绍的规则， \*\*\*_quantized_model.onnx接受的输入应该为bgr_128、NHWC排布。
 对应到前文的示例代码， ``your_custom_data_prepare`` 部分提供的数据处理过程如下：
 
 ```
@@ -1409,11 +1512,13 @@ def your_custom_data_prepare_sample(image_file):
 
 基于前文的精度分析工作，如果确定模型的量化精度不符合预期，则主要可分为以下两种情况进行解决：
 
-- 精度有较明显损失（损失大于4%）。
+- 1. 精度有较明显损失（损失大于4%）。
   这种问题往往是由于yaml配置不当，校验数据集不均衡等导致的，建议根据地平线接下来提供的建议逐一排查。
 
-- 精度损失较小（1.5%~3%）。
+- 2. 精度损失较小（1.5%~3%）。
   排除1导致的精度问题后，如果仍然出现精度有小幅度损失，往往是由于模型自身的敏感性导致，建议使用地平线提供的精度调优工具进行调优。
+
+- 3. 在尝试1和2后，如果精度仍无法满足预期，可以尝试使用我们提供的精度debug工具进行进一步尝试。
 
 整体精度问题解决流程示意如下图：
 
@@ -1446,7 +1551,7 @@ pipeline是指您完成数据预处理、模型转换、模型推理、后处理
   此外，为方便用户设置校准数据的解析方式，在X3算法工具链v2.2.3a版本之后，在yaml中新增了参数 ``cal_data_type`` 来设置二进制文件的数据存储类型。
 
 - transformer实现方式不一致：地平线提供了一系列常见预处理函数，存放在 ``/horizon_model_convert_sample/01_common/python/data/transformer.py`` 文件中，部分预处理操作的实现方式可能会有所区别，例如ResizeTransformer，采用的是opencv默认插值方式（linear），
-  若为其他插值方式可直接修改transformer.py源码，确保与训练时预处理代码保持一致, 具体使用请参考[transformer使用方法](../../common_questions/toolchain#transposetransformer)章节内容。
+  若为其他插值方式可直接修改transformer.py源码，确保与训练时预处理代码保持一致, 具体使用请参考[**transformer使用方法**](../../common_questions/toolchain#transposetransformer)章节内容。
 
 - 建议您在地平线算法工具链使用过程中，依然使用原始浮点模型训练验证阶段依赖的数据处理库。
   对于鲁棒性较差的模型，不同库实现的功能resize、crop等典型功能都可能引起扰动，进而影响模型精度。
@@ -1459,8 +1564,7 @@ pipeline是指您完成数据预处理、模型转换、模型推理、后处理
 
 ##### 较小精度损失提升
 
-
-为降低模型精度调优的难度，建议您优先尝试将 ``calibration_type`` 配置为 ``default``。default为自动搜索功能，以第一张校准数据输出节点余弦相似度为依据，从max、max-Percentile 0.99995和KL等校准方法中选取最优的方案，
+一般情况下，为降低模型精度调优的难度，建议您优先尝试将 ``calibration_type`` 配置为 ``default``。default为自动搜索功能，以第一张校准数据输出节点余弦相似度为依据，从max、max-Percentile 0.99995和KL等校准方法中选取最优的方案，
 最终选取的校准方法可关注转换日志中类似 ``“Select kl method.”`` 的提示。若自动搜索的精度结果仍然与预期有差距，可尝试以下建议进行调优：
 
 **调整校准方式**
@@ -1486,10 +1590,793 @@ pipeline是指您完成数据预处理、模型转换、模型推理、后处理
 - 若run_on_cpu之后模型编译报错，请联系地平线技术支持团队。
 
 
+##### 精度Debug工具
+
+在尝试了上述两种精度调优方法后，如果您的精度仍无法满足预期，为了方便您定位问题，我们提供了精度debug工具用于协助您定位问题。
+该工具能够协助您对校准模型进行节点粒度的量化误差分析，快速定位出现精度异常的节点。
+
+:::tip 小技巧
+
+  若您使用的是 **RDK Ultra** 产品，那么您也可以通过配置部分op以int16计算来进行尝试精度调优（**RDK X3** 不支持算子int16计算）：
+
+  在模型转换过程中，大部分op默认会以int8的数据计算，在一些场景下部分op使用int8计算会导致精度损失明显。
+  针对 **RDK Ultra** 产品，目前算法工具链已经提供了指定特定op以int16 bit计算的能力，
+  详情可参考 [**int16配置说明**](#int16_config) 参数配置的说明。
+  通过配置量化精度损失敏感op（以余弦相似度为参考）以int16 bit计算，一些场景下可以解决精度损失问题。
+:::
+
+在模型转换的过程中，难免会因为浮点到定点的量化过程而引入精度损失，通常情况下造成精度损失的主要原因可能有以下几点：
+
+1. 模型中的一部分节点对量化比较敏感会引入较大误差，即敏感节点量化问题。
+
+2. 模型中各个节点的误差累积导致模型整体出现较大的校准误差，主要包含：权重量化导致的误差累积、激活量化导致的误差累积以及全量量化导致的误差累积。
+
+针对该情况，地平线提供了精度debug工具用以协助您自主定位模型量化过程中产生的精度问题。
+该工具能够协助您对校准模型进行节点粒度的量化误差分析，最终帮助您快速定位出现精度异常的节点。
+
+精度debug工具提供多种分析功能供您使用，例如：
+
+- 获取节点量化敏感度。
+
+- 获取模型累积误差曲线。
+
+- 获取指定节点的数据分布。
+
+- 获取指定节点输入数据通道间数据分布箱线图等。
+
+###### 使用方法说明
+
+使用精度debug工具主要有以下几个步骤：
+
+1. 在yaml中的 **模型参数组(model_parameters)** 配置参数 ``debug_mode="dump_calibration_data"`` ，保存校准数据。
+
+2. 导入debug模块，加载校准模型和数据。
+
+3. 通过精度debug工具提供的API或命令行，对精度损失明显的模型进行分析。
+
+:::caution 注意
+
+  对于当前版本的精度debug调试工具： **RDK Ultra** 对应的 ``bayes`` 架构模型支持命令行和API方式， **RDK X3** 对应的 ``bernoulli2`` 架构模型只支持API方式进行debug调试。
+:::
+
+整体流程如下图所示：
+
+![accuracy_debug_process](./image/intermediate/accuracy_debug_process.png)
+
+- **校准模型与数据的保存**
+
+首先需要在yaml文件中配置 ``debug_mode="dump_calibration_data"`` ，以开启精度debug功能，
+并保存校准数据(calibration_data)，对应的校准模型(calibrated_model.onnx)为常态化保存。其中：
+
+1. 校准数据(calibration_data)：在校准阶段，模型通过对这些数据进行前向推理来获取每个被量化节点的量化参数，包括：缩放因子(scale)和阈值(threshold)。
+
+2. 校准模型(calibrated_model.onnx)：将在校准阶段计算得到的每个被量化节点的量化参数保存在校准节点中，从而得到校准模型。
+
+:::caution 注意
+
+  **此处保存的校准数据与02_preprocess.sh生成的校准数据的区别？**
+
+  ``02_preprocess.sh`` 得到的校准数据是bgr颜色空间的数据，在工具链内部会将数据从bgr转换到yuv444/gray等模型实际输入的格式。
+  而此处保存的校准数据则是经过颜色空间转换以及预处理之后保存的.npy格式的数据，该数据可以通过np.load()直接送入模型进行推理。
+:::
+
+:::caution 注意
+
+  **校准模型(calibrated_model.onnx)解读**
+
+  校准模型是模型转换工具链将浮点模型经过结构优化后，通过校准数据计算得到的每个节点对应的量化参数并将其保存在校准节点中得到的中间产物。
+  校准模型的主要特点是模型中包含校准节点，校准节点的节点类型为HzCalibration。
+  这些校准节点主要分为两类： **激活(activation)校准节点** 和 **权重(weight)校准节点** 。
+
+  **激活校准节点** 的输入是当前节点的上一个节点的输出，并基于当前激活校准节点中保存的量化参数(scales和thresholds)对输入数据进行量化及反量化后输出。
+
+  **权重校准节点** 的输入为模型的原始浮点权重，基于当前权重校准节点中保存的量化参数(scales和thresholds)对输入的原始浮点权重进行量化及反量化后输出。
+
+  除却上述的校准节点，校准模型中的其他节点，精度debug工具将其称为 **普通节点(node)** 。
+  **普通节点** 的类型包括：Conv、Mul、Add等。
+:::
+
+![debug_node](./image/intermediate/debug_node.png)
+
+calibration_data的文件夹结构如下：
+
+```shell
+
+  |--calibration_data ：校准数据
+  |----input.1 ：文件夹名为模型的输入节点并保存对应的输入数据
+  |--------0.npy
+  |--------1.npy
+  |-------- ...
+  |----input.2 ：对于多输入模型将保存多个文件夹
+  |--------0.npy
+  |--------1.npy
+  |-------- ...
+```
+
+- **精度debug模块导入与使用**
+
+接下来需要在代码中导入debug模块，并通过 ``get_sensitivity_of_nodes`` 接口获取节点量化敏感度（默认使用模型输出的余弦相似度）。
+``get_sensitivity_of_nodes`` 的详细参数说明可见 ``get_sensitivity_of_nodes`` 章节内容。
+
+```shell
+
+  # 导入debug模块
+  import horizon_nn.debug as dbg
+  # 导入log日志模块
+  import logging
+
+  # 若verbose=True时，需要先设置log level为INFO
+  logging.getLogger().setLevel(logging.INFO)
+  # 获取节点量化敏感度
+  node_message = dbg.get_sensitivity_of_nodes(
+          model_or_file='./calibrated_model.onnx',
+          metrics=['cosine-similarity', 'mse'],
+          calibrated_data='./calibration_data/',
+          output_node=None,
+          node_type='node',
+          data_num=None,
+          verbose=True,
+          interested_nodes=None)
+```
+
+- **分析结果展示**
+
+下方为 ``verbose=True`` 时的打印结果：
+
+```shell
+
+  ==========================node==========================
+  Node        cosine-similarity   mse
+  --------------------------------------------------------
+  Conv_3      0.999009567957658   0.027825591154396534
+  MaxPool_2   0.9993462241612948  0.017706592209064044
+  Conv_6      0.9998359175828787  0.004541242333988731
+  MaxPool_5   0.9998616805443397  0.0038416787014844325
+  Conv_0      0.9999297948984     0.0019312848587735342
+  Gemm_19     0.9999609772975628  0.0010773885699633795
+  Conv_8      0.9999629625907311  0.0010301886404004807
+  Gemm_15     0.9999847687207736  0.00041888411550854263
+  MaxPool_12  0.9999853235024673  0.0004039733791544747
+  Conv_10     0.999985763659844   0.0004040437432614943
+  Gemm_17     0.9999913985912616  0.0002379088904350423
+```
+
+除此之外，该API会以字典(Dict)的形式将节点量化敏感度信息返回给您以供后续使用分析。
+
+```shell
+
+  Out: 
+  {'Conv_3': {'cosine-similarity': '0.999009567957658', 'mse': '0.027825591154396534'}, 
+   'MaxPool_2': {'cosine-similarity': '0.9993462241612948', 'mse': '0.017706592209064044'}, 
+   'Conv_6': {'cosine-similarity': '0.9998359175828787', 'mse': '0.004541242333988731'}, 
+   'MaxPool_5': {'cosine-similarity': '0.9998616805443397', 'mse': '0.0038416787014844325'}, 
+   'Conv_0': {'cosine-similarity': '0.9999297948984', 'mse': '0.0019312848587735342'}, 
+   'Gemm_19': {'cosine-similarity': '0.9999609772975628', 'mse': '0.0010773885699633795'}, 
+   'Conv_8': {'cosine-similarity': '0.9999629625907311', 'mse': '0.0010301886404004807'}, 
+   'Gemm_15': {'cosine-similarity': '0.9999847687207736', 'mse': '0.00041888411550854263'}, 
+   'MaxPool_12': {'cosine-similarity': '0.9999853235024673', 'mse': '0.0004039733791544747'}, 
+   'Conv_10': {'cosine-similarity': '0.999985763659844', 'mse': '0.0004040437432614943'}, 
+   'Gemm_17': {'cosine-similarity': '0.9999913985912616', 'mse': '0.0002379088904350423'}}
+```
+
+更多功能请参考 **功能说明** 章节。
+
+:::tip 小技巧
+
+  精度debug工具还可以通过命令行 ``hmct-debugger -h/--help`` 查看每个功能对应的子命令。
+  各个子命令的详细参数和用法详见 **功能说明** 章节。
+:::
+
+###### 功能说明
+
+- **get_sensitivity_of_nodes**
+
+**功能**：获取节点量化敏感度。
+
+**命令行格式**：
+
+```shell
+
+  hmct-debugger get-sensitivity-of-nodes MODEL_OR_FILE CALIBRATION_DATA --other options
+```
+
+可通过 ``hmct-debugger get-sensitivity-of-nodes -h/--help`` 查看相关参数。
+
+**参数组**：
+
+| 参数名称 | 参数配置说明   | 取值范围说明 |    可选/必选     |
+|------------|----------|----------|--------|
+|``model_or_file``| **参数作用**：指定校准模型。<br/>**参数说明**：必选，指定需要分析的校准模型。| **取值范围**：无。<br/> **默认配置**：无。|必选 |
+|``metrics 或 - m``| **参数作用**：节点量化敏感度的度量方式。   <br/>**参数说明**：指定节点量化敏感度的计算方式，该参数可以为列表(List)，即以多种方式计算量化敏感度，但是输出结果仅以列表中第一位的计算方式进行排序，排名越靠前说明量化该节点引入的误差越大。| **取值范围**：``'cosine-similarity'`` , ``'mse'`` , ``'mre'`` , ``'sqnr'`` , ``'chebyshev'`` 。<br/> **默认配置**：``'cosine-similarity'``。|可选 |
+|``calibrated_data``| **参数作用**：指定校准数据。<br/>**参数说明**：必选，指定分析所需要的校准数据。| **取值范围**：无 。<br/> **默认配置**：无。|必选 |
+|``output_node 或 -o``| **参数作用**：指定输出节点。<br/>**参数说明**：此参数支持您指定中间节点作为输出并计算节点量化敏感度。若保持默认参数None，则精度debug工具会获取模型的最终输出，并在此基础上计算节点的量化敏感度。| **取值范围**：校准模型中的具有对应校准节点的普通节点。<br/> **默认配置**：None。|可选 |
+|``node_type 或 -n``| **参数作用**：节点类型。<br/>**参数说明**：需要计算量化敏感度的节点类型，包括：node（普通节点）、weight（权重校准节点）、activation（激活校准节点）。| **取值范围**：``'node'`` , ``'weight'`` , ``'activation'``。<br/> **默认配置**：``'node'``。 |可选 |
+|``data_num 或 -d``| **参数作用**：计算量化敏感度需要的数据数量。<br/>**参数说明**：设置计算节点量化敏感度时所需要的数据数量。默认为None，此时默认使用calibration_data中的所有数据进行计算。最小设置为1，最大为 calibration_data中的数据数量。| **取值范围**：大于0，小于等于calibration_data中数据的总数。 <br/> **默认配置**：None|可选 |
+|``verbose 或 -v``| **参数作用**：选择是否将信息打印在终端上。<br/>**参数说明**：若为True，则将量化敏感度信息打印在终端上。若metrics包含多种度量方式，则按照第一位进行排序。| **取值范围**：``True`` 、 ``False``。<br/> **默认配置**：``False``。|可选 |
+|``interested_nodes 或 -i``| **参数作用**：设置感兴趣节点。<br/>**参数说明**：若指定则只获取该节点的量化敏感度，其余节点不获取。同时，若该参数被指定，将忽视node_type指定的节点类型，也就是说该参数的优先级要高于node_type。若保持默认参数None，则计算模型中所有可被量化节点的量化敏感度。| **取值范围**：校准模型中的所有节点。<br/> **默认配置**：None。|可选 |
+
+函数使用方法：
+
+```shell
+
+  # 导入debug模块
+  import horizon_nn.debug as dbg
+  # 导入log日志模块
+  import logging
+
+  # 若verbose=True时，需要先设置log level为INFO
+  logging.getLogger().setLevel(logging.INFO)
+  # 获取节点量化敏感度
+  node_message = dbg.get_sensitivity_of_nodes(
+          model_or_file='./calibrated_model.onnx',
+          metrics=['cosine-similarity', 'mse'],
+          calibrated_data='./calibration_data/',
+          output_node=None,
+          node_type='node',
+          data_num=None,
+          verbose=True,
+          interested_nodes=None)
+```
+
+命令行使用方法：
+
+```shell
+
+  hmct-debugger get-sensitivity-of-nodes calibrated_model.onnx calibration_data -m ['cosine-similarity','mse'] -v True
+```
+
+**分析结果展示**：
+
+**描述**：首先您通过node_type设置需要计算敏感度的节点类型，然后工具获取校准模型中所有符合node_type的节点，并获取这些节点的量化敏感度。
+当verbose设置为True时，工具会将节点量化敏感度进行排序后打印在终端，排序越靠前，说明该节点量化引入的量化误差越大。
+
+verbose=True时，打印结果如下：
+
+```shell
+
+  ==========================node==========================
+  Node        cosine-similarity   mse
+  --------------------------------------------------------
+  Conv_3      0.999009567957658   0.027825591154396534
+  MaxPool_2   0.9993462241612948  0.017706592209064044
+  Conv_6      0.9998359175828787  0.004541242333988731
+  MaxPool_5   0.9998616805443397  0.0038416787014844325
+  Conv_0      0.9999297948984     0.0019312848587735342
+  Gemm_19     0.9999609772975628  0.0010773885699633795
+  Conv_8      0.9999629625907311  0.0010301886404004807
+  Gemm_15     0.9999847687207736  0.00041888411550854263
+  MaxPool_12  0.9999853235024673  0.0004039733791544747
+  Conv_10     0.999985763659844   0.0004040437432614943
+  Gemm_17     0.9999913985912616  0.0002379088904350423
+```
+
+函数返回值：
+
+  函数返回值为以字典格式（Key为节点名称，Value为节点的量化敏感度信息）保存的量化敏感度，格式如下：
+
+```shell
+
+  Out: 
+  {'Conv_3': {'cosine-similarity': '0.999009567957658', 'mse': '0.027825591154396534'}, 
+   'MaxPool_2': {'cosine-similarity': '0.9993462241612948', 'mse': '0.017706592209064044'}, 
+   'Conv_6': {'cosine-similarity': '0.9998359175828787', 'mse': '0.004541242333988731'}, 
+   'MaxPool_5': {'cosine-similarity': '0.9998616805443397', 'mse': '0.0038416787014844325'}, 
+   'Conv_0': {'cosine-similarity': '0.9999297948984', 'mse': '0.0019312848587735342'}, 
+   'Gemm_19': {'cosine-similarity': '0.9999609772975628', 'mse': '0.0010773885699633795'}, 
+   'Conv_8': {'cosine-similarity': '0.9999629625907311', 'mse': '0.0010301886404004807'}, 
+   'Gemm_15': {'cosine-similarity': '0.9999847687207736', 'mse': '0.00041888411550854263'}, 
+   'MaxPool_12': {'cosine-similarity': '0.9999853235024673', 'mse': '0.0004039733791544747'}, 
+   'Conv_10': {'cosine-similarity': '0.999985763659844', 'mse': '0.0004040437432614943'}, 
+   'Gemm_17': {'cosine-similarity': '0.9999913985912616', 'mse': '0.0002379088904350423'}} ...}
+```
+
+- **plot_acc_error**
+
+**功能**：只量化浮点模型中的某一个节点，并依次计算该模型与浮点模型中节点输出的误差，获得累积误差曲线。
+
+**命令行格式**:
+
+```shell
+
+  hmct-debugger plot-acc-error MODEL_OR_FILE CALIBRATION_DATA --other options
+```
+
+可通过 ``hmct-debugger plot-acc-error -h/--help`` 查看相关参数。
+
+**参数组**：
+
+| 参数名称 | 参数配置说明   | 取值范围说明 |    可选/必选     |
+|------------|----------|----------|--------|
+|``save_dir 或 -s``| **参数作用**：保存路径。<br/>**参数说明**：可选，指定分析结果的保存路径。 | **取值范围**：无。<br/> **默认配置**：无。|可选 |
+|``calibrated_data``| **参数作用**：指定校准数据。 <br/>**参数说明**：必选，指定需要分析的校准数据。| **取值范围**：无。<br/> **默认配置**： 无。|必选 |
+|``model_or_file``| **参数作用**：指定校准模型。<br/>**参数说明**：必选，指定需要分析的校准模型。 | **取值范围**：无 。<br/> **默认配置**：无。|必选 |
+|``quantize_node 或 -q``| **参数作用**：只量化模型中指定的节点，查看误差累积曲线。<br/>**参数说明**：可选参数。指定模型中需要量化的节点，同时保证其余节点均不量化。<br/>通过判断该参数是否为嵌套列表进而决定是单节点量化还是部分量化。<br/>例如：<br/>- quantize_node=['Conv_2','Conv_9']：分别只量化Conv_2和Conv_9，同时保证其余节点不量化。<br/>- quantize_node=[['Conv_2'],['Conv_9','Conv_2']]：只量化Conv_2以及同时量化Conv_2和Conv_9，分别测试模型累积误差。<br/>- quantize_node 包含两个特殊参数：'weight' 和 'activation'。<br/>当：<br/>- quantize_node = ['weight']：只量化权重，不量化激活。<br/>- quantize_node = ['activation']：只量化激活，不量化权重。<br/>- quantize_node = ['weight','activation']：权重和激活分别量化。<br/>注：quantize_node和non_quantize_node不可同时为None，必须指定其一。| **取值范围**：校准模型中的所有节点。<br/> **默认配置**：None。|可选 |
+|``non_quantize_node 或 -nq``| **参数作用**：指定累积误差的类型。<br/>**参数说明**：可选参数。指定模型中不量化的节点，同时保证其余节点全都量化。<br/>通过判断该参数是否为嵌套列表进而决定是单节点不量化还是部分量化。<br/>例如：<br/>- non_quantize_node=['Conv_2','Conv_9']：分别解除Conv_2和Conv_9节点的量化，同时保证其余节点全部量化。<br/>- non_quantize_node=[['Conv_2'],['Conv_9','Conv_2']]：只解除Conv_2量化以及同时解除Conv_2和Conv_9量化，分别测试模型累积误差。 <br/>注：quantize_node和non_quantize_node不可同时为None，必须指定其一。| **取值范围**：校准模型中的所有节点。<br/> **默认配置**：None。|可选 |
+|``metric 或 -m``| **参数作用**：误差度量方式。<br/>**参数说明**：设置计算模型误差的计算方式。| **取值范围**：``'cosine-similarity'`` , ``'mse'`` , ``'mre'`` , ``'sqnr'`` , ``'chebyshev'``<br/> **默认配置**：``'cosine-similarity'``。|可选 |
+|``average_mode 或 -a``| **参数作用**：指定累积误差曲线的输出模式。<br/>**参数说明**：默认为False。若为True，那么获取累积误差的平均值作为结果。| **取值范围**：``True`` 、 ``False``。<br/> **默认配置**：``False``。|可选 |
+
+```shell
+
+  # 导入debug模块
+  import horizon_nn.debug as dbg
+
+  dbg.plot_acc_error(
+          save_dir: str,
+          calibrated_data: str or CalibrationDataSet,
+          model_or_file: ModelProto or str,
+          quantize_node: List or str,
+          non_quantize_node: List or str,
+          metric: str = 'cosine-similarity',
+          average_mode: bool = False)
+```
+
+**分析结果展示**
+
+**1.指定节点量化累积误差测试**
+
+- 指定单节点量化
+
+**配置方式**：quantize_node=['Conv_2', 'Conv_90']，quantize_node为单列表。
+
+API函数使用方法：
+
+```shell
+
+  # 导入debug模块
+  import horizon_nn.debug as dbg
+
+  dbg.plot_acc_error(
+          save_dir='./',
+          calibrated_data='./calibration_data/',
+          model_or_file='./calibrated_model.onnx',
+          quantize_node=['Conv_2', 'Conv_90'],
+          metric='cosine-similarity',
+          average_mode=False)
+```
+
+命令行使用方法：
+
+```shell
+
+  hmct-debugger plot-acc-error calibrated_model.onnx calibrated_data -q ['Conv_2','Conv_90']
+```
+
+**描述**：当quantize_node为单列表时，针对您设置的quantize_node，
+分别单独量化quantize_node中的节点并保持模型中其他节点不量化，得到对应的模型后，
+对该模型中每个节点的输出计算其与浮点模型中对应节点输出的之间的误差，并得到对应的累积误差曲线。
+
+average_mode = False时：
+
+![average_mode_false_1](./image/intermediate/average_mode_false_1.png)
+
+average_mode = True时：
+
+![average_mode_true_1](./image/intermediate/average_mode_true_1.png)
+
+:::caution 注意
+
+  **average_mode**
+
+  average_mode默认为False。对于一些模型，此时无法通过累积误差曲线判断哪种量化策略更加有效，
+  因此需要将average_mode设置为True，此时会对前n个节点的累积误差求均值作为第n个节点的累积误差。
+
+  具体计算方式如下，例如：
+
+  average_mode=False时，accumulate_error=[1.0, 0.9, 0.9, 0.8]。
+
+  而将average_mode=True后，accumulate_error=[1.0, 0.95, 0.933, 0.9]。
+:::
+
+- 指定多个节点量化
+
+**配置方式**：quantize_node=[['Conv_2'], ['Conv_2', 'Conv_90']]，quantize_node为嵌套列表
+
+API使用方法：
+
+```shell
+
+  # 导入debug模块
+  import horizon_nn.debug as dbg
+
+  dbg.plot_acc_error(
+          save_dir='./',
+          calibrated_data='./calibration_data/',
+          model_or_file='./calibrated_model.onnx',
+          quantize_node=[['Conv_2'], ['Conv_2', 'Conv_90']],
+          metric='cosine-similarity',
+          average_mode=False)
+```
+
+命令行使用方法：
+
+```shell
+
+  hmct-debugger plot-acc-error calibrated_model.onnx calibration_data -q [['Conv_2'],['Conv_2','Conv_90']]
+```
+
+**描述**：当quantize_node为嵌套列表时，针对您设置的quantize_node，分别量化quantize_node中的
+每个单列表指定的节点并保持模型中其他节点不量化，得到对应的模型后，对该模型中每个节点的输出计算
+其与浮点模型中对应节点输出的之间的误差，并得到对应的累积误差曲线。
+
+- partial_qmodel_0：只量化Conv_2节点，其余节点不量化；
+
+- partial_qmodel_1：只量化Conv_2和Conv_90节点，其余节点不量化。
+
+average_mode=False时：
+
+![new_average_mode_false_1](./image/intermediate/new_average_mode_false_1.png)
+
+average_mode=True时：
+
+![new_average_mode_true_1](./image/intermediate/new_average_mode_true_1.png)
+
+**2.解除模型部分节点量化后累积误差测试**
+
+- 指定单节点不量化
+
+**配置方式**：non_quantize_node=['Conv_2', 'Conv_90']，non_quantize_node为单列表。
+
+API使用方法：
+
+```shell
+
+  # 导入debug模块
+  import horizon_nn.debug as dbg
+
+  dbg.plot_acc_error(
+          save_dir='./',
+          calibrated_data='./calibration_data/',
+          model_or_file='./calibrated_model.onnx',
+          non_quantize_node=['Conv_2', 'Conv_90'],
+          metric='cosine-similarity',
+          average_mode=True)
+```
+
+命令行使用方法：
+
+```shell
+
+  hmct-debugger plot-acc-error calibrated_model.onnx calibration_data -nq ['Conv_2','Conv_90'] -a True
+```
+
+**描述**：当non_quantize_node为单列表时，针对您设置的non_quantize_node，
+分别解除non_quantize_node中各个节点的量化同时保持其他节点全部量化，得到对应的模型后，
+对该模型中每个节点的输出计算其与浮点模型中对应节点输出的之间的误差，并得到对应的累积误差曲线。
+
+average_mode = False时：
+
+![average_mode_false_2](./image/intermediate/average_mode_false_2.png)
+
+average_mode = True时：
+
+![average_mode_true_2](./image/intermediate/average_mode_true_2.png)
+
+- 指定多个节点不量化
+
+**配置方式**：non_quantize_node=[['Conv_2'], ['Conv_2', 'Conv_90']]，non_quantize_node为嵌套列表。
+
+API使用方法：
+
+```shell
+
+  # 导入debug模块
+  import horizon_nn.debug as dbg
+
+  dbg.plot_acc_error(
+          save_dir='./',
+          calibrated_data='./calibration_data/',
+          model_or_file='./calibrated_model.onnx',
+          non_quantize_node=[['Conv_2'], ['Conv_2', 'Conv_90']],
+          metric='cosine-similarity',
+          average_mode=False)
+```
+
+命令行使用方法：
+
+```shell
+
+  hmct-debugger plot-acc-error calibrated_model.onnx calibration_data -nq [['Conv_2'],['Conv_2','Conv_90']]
+```
+
+**描述**：当non_quantize_node为嵌套列表时，针对您设置的non_quantize_node，
+分别不量化non_quantize_node中的每个单列表指定的节点并保持模型中其他节点均量化，
+得到对应的模型后，对该模型中每个节点的输出计算其与浮点模型中对应节点输出的之间的误差，
+并得到对应的累积误差曲线。
+
+- partial_qmodel_0：不量化Conv_2节点，其余节点量化；
+
+- partial_qmodel_1：不量化Conv_2和Conv_90节点，其余节点量化。
+
+average_mode = False时：
+
+![new_average_mode_false_2](./image/intermediate/new_average_mode_false_2.png)
+
+average_mode = True时：
+
+![new_average_mode_true_2](./image/intermediate/new_average_mode_true_2.png)
+
+**测试技巧**：
+
+测试部分量化精度时，您可能会按照量化敏感度排序进行多组量化策略的精度对比，此时可以参考以下用法：
+
+```shell
+
+  # 导入debug模块
+  import horizon_nn.debug as dbg
+
+  # 首先使用量化敏感度排序函数获取模型中节点的量化敏感度排序
+  node_message = dbg.get_sensitivity_of_nodes(
+          model_or_file='./calibrated_model.onnx',
+          metrics='cosine-similarity',
+          calibrated_data='./calibration_data/',
+          output_node=None,
+          node_type='node',
+          verbose=False,
+          interested_nodes=None)
+        
+  # node_message为字典类型，其key值为节点名称
+  nodes = list(node_message.keys())
+
+  # 通过nodes来指定不量化节点，可以方便使用
+  dbg.plot_acc_error(
+          save_dir='./',
+          calibrated_data='./calibration_data/',
+          model_or_file='./calibrated_model.onnx',
+          non_quantize_node=[nodes[:1],nodes[:2]],
+          metric='cosine-similarity',
+          average_mode=True)
+```
+
+**3.激活权重分别量化**
+
+**配置方式**：quantize_node=['weight','activation']。
+
+API使用方法：
+
+```shell
+
+  import horizon_nn.debug as dbg
+
+  dbg.plot_acc_error(
+          save_dir='./',
+          calibrated_data='./calibration_data/',
+          model_or_file='./calibrated_model.onnx',
+          quantize_node=['weight','activation'],
+          metric='cosine-similarity',
+          average_mode=False)
+```
+
+命令行使用方法：
+
+```shell
+
+  hmct-debugger plot_acc_error calibrated_model.onnx calibration_data -q ['weight','activation']
+```
+
+**描述**：quantize_node也可直接指定'weight'或者'activation'。当：
+
+- quantize_node = ['weight']：只量化权重，不量化激活。
+
+- quantize_node = ['activation']：只量化激活，不量化权重。
+
+- quantize_node = ['weight', 'activation']：权重和激活分别量化。
+
+![weight_activation_quantized](./image/intermediate/weight_activation_quantized.png)
+
+- **plot_distribution**
+
+**功能**：选取节点，分别获取该节点在浮点模型和校准模型中的输出，得到输出数据分布。另外，将两个输出结果做差，获取两个输出之间的误差分布。
+
+**命令行格式**：
+
+```shell
+
+  hmct-debugger plot-distribution MODEL_OR_FILE CALIBRATION_DATA --other options
+```
+
+可通过 ``hmct-debugger plot-distribution -h/--help`` 查看相关参数。
+
+**参数组**：
+
+| 参数名称 | 参数配置说明   | 取值范围说明 |    可选/必选     |
+|------------|----------|----------|--------|
+|``save_dir 或 -s``| **参数作用**：保存路径。<br/>**参数说明**：可选，指定分析结果的保存路径。| **取值范围**：无。<br/> **默认配置**：无。|可选 |
+|``model_or_file``| **参数作用**：指定校准模型。<br/>**参数说明**：必选，指定需要分析的校准模型。| **取值范围**：无。<br/> **默认配置**： 无。|必选 |
+|``calibrated_data``| **参数作用**：指定校准数据。<br/>**参数说明**：必选，指定分析所需要的校准数据。| **取值范围**：无 。<br/> **默认配置**：无。|必选 |
+|``nodes_list 或 -n``| **参数作用**：指定需要分析的节点。<br/>**参数说明**：必选，指定需要分析的节点。<br/>若nodes_list中的节点类型为：<br/>- 权重校准节点：绘制原始权重和经过校准之后的权重的数据分布。 <br/>- 激活校准节点：绘制激活校准节点的输入数据分布。<br/>- 普通节点：绘制该节点在量化前后的输出数据分布，同时绘制二者之间的误差分布。<br/>注：nodes_list为 list 类型，可指定一系列节点，并且上述三种类型节点可同时指定。| **取值范围**：校准模型中的所有节点。<br/> **默认配置**：无。|必选 |
+
+```shell
+
+  # 导入debug模块
+  import horizon_nn.debug as dbg
+
+  dbg.plot_distribution(
+          save_dir: str, 
+          model_or_file: ModelProto or str,
+          calibrated_data: str or CalibrationDataSet,
+          nodes_list: List[str] or str) 
+```
+
+**分析结果展示**：
+
+API使用方法：
+
+```shell
+
+  # 导入debug模块
+  import horizon_nn.debug as dbg
+
+  dbg.plot_distribution(
+          save_dir='./',
+          model_or_file='./calibrated_model.onnx',
+          calibrated_data='./calibration_data',
+          nodes_list=['317_HzCalibration', # 激活节点
+                      '471_HzCalibration', # 权重节点
+                      'Conv_2']) # 普通节点
+```
+
+命令行使用方法：
+
+```shell
+
+  hmct-debugger plot-distribution calibrated_model.onnx calibration_data -n ['317_HzCalibration','471_HzCalibration','Conv_2']
+```
+
+node_output：
+
+![node_output](./image/intermediate/node_output.png)
+
+weight：
+
+![weight](./image/intermediate/weight.png)
+
+activation：
+
+![activation](./image/intermediate/activation.png)
+
+:::caution 注意
+
+  上方三幅图中，蓝色三角表示：数据绝对值的最大值。红色虚线表示：最小的校准阈值。
+:::
+
+- **get_channelwise_data_distribution**
+
+**功能**：绘制指定校准节点输入数据通道间数据分布的箱线图。
+
+**命令行格式**：
+
+```shell
+
+  hmct-debugger get-channelwise-data-distribution MODEL_OR_FILE CALIBRATION_DATA --other options
+```
+
+可通过 ``hmct-debugger get-channelwise-data-distribution -h/--help`` 查看相关参数。
+
+**参数组**：
+
+| 参数名称 | 参数配置说明   | 取值范围说明 |    可选/必选     |
+|------------|----------|----------|--------|
+|``save_dir 或 -s``| **参数作用**：保存路径。<br/>**参数说明**：可选，指定分析结果的保存路径。| **取值范围**：无。<br/> **默认配置**：无。|可选 |
+|``model_or_file``| **参数作用**：指定校准模型。 <br/>**参数说明**：必选，指定需要分析的校准模型。| **取值范围**：无。<br/> **默认配置**： 无。|必选 |
+|``calibrated_data``| **参数作用**：指定校准数据。<br/>**参数说明**：必选，指定分析所需要的校准数据。 | **取值范围**：无 。<br/> **默认配置**：无。|必选 |
+|``nodes_list 或 -n``| **参数作用**：指定校准节点。<br/>**参数说明**：必选，指定校准节点。| **取值范围**：校准模型中的所有权重校准节点和激活校准节点。<br/> **默认配置**：无。|必选 |
+|``axis 或 -a``| **参数作用**：指定channel所在的维度。<br/>**参数说明**：channel信息所在shape中的位置。参数默认为None，此时对于激活校准节点，默认认为节点输入数据的第二个维度表示channel信息，即axis=1；对于权重校准节点，会读取该节点属性中的axis参数作为channel信息。 | **取值范围**：小于节点输入数据的维度。 <br/> **默认配置**：None。|可选 |
+
+```shell
+
+  # 导入debug模块
+  import horizon_nn.debug as dbg
+
+  dbg.get_channelwise_data_distribution(
+          save_dir: str, 
+          model_or_file: ModelProto or str,
+          calibrated_data: str or CalibrationDataSet,
+          nodes_list: List[str],
+          axis: int = None)
+```
+
+**分析结果展示**：
+
+**描述**：针对用户设置的校准节点列表node_list，从参数axis中获取channel所在的维度，获取节点输入数据通道间的数据分布。
+其中axis默认为None，此时若节点为权重校准节点，则channel所在的维度默认为0；若节点为激活校准节点，则channel所在的维度默认为1。
+
+权重校准节点：
+
+![weight_calibration_node](./image/intermediate/weight_calibration_node.png)
+
+激活校准节点：
+
+![activate_calibration_node](./image/intermediate/activate_calibration_node.png)
+
+输出结果如下图所示：
+
+![box_plot](./image/intermediate/box_plot.png)
+
+图中：
+
+  - 横坐标表示节点输入数据的通道数，图例中输入数据有96个通道。
+
+  - 纵坐标表示每个channel的数据分布范围，其中红色实线表示该channel数据的中位数，蓝色虚线表示均值。
+
+
+- **runall**
+
+:::caution 注意
+
+  当前版本 runall 功能只适用于 **RDK Ultra** 产品。
+:::
+
+**功能**：一键运行原本debug工具中的所有功能。
+
+**命令行格式**：
+
+```shell
+
+  hmct-debugger runall MODEL_OR_FILE CALIBRATION_DATA --other options
+```
+
+可通过 ``hmct-debugger runall -h/--help`` 查看相关参数。
+ 
+**参数组**：
+
+| 参数名称 | 参数配置说明   | 取值范围说明 |    可选/必选     |
+|------------|----------|----------|--------|
+|``model_or_file``| **参数作用**：指定校准模型。<br/>**参数说明**：必选，指定需要分析的校准模型。| **取值范围**：无。<br/> **默认配置**：无。|必选 |
+|``calibrated_data``| **参数作用**：指定校准数据。<br/>**参数说明**：必选，指定分析所需要的校准数据。| **取值范围**：无。<br/> **默认配置**： 无。|必选 |
+|``save_dir 或 -s``| **参数作用**：保存路径。<br/>**参数说明**：指定分析结果的保存路径。| **取值范围**：无 。<br/> **默认配置**：无。|可选 |
+|``ns_metrics 或 -nm``| **参数作用**：节点量化敏感度的度量方式。<br/>**参数说明**：指定节点量化敏感度的计算方式，该参数可以为列表(List)，即以多种方式计算量化敏感度，但是输出结果仅以列表中第一位的计算方式进行排序，排名越靠前说明量化该节点引入的误差越大。| **取值范围**：``'cosine-similarity'`` , ``'mse'`` , ``'mre'`` , ``'sqnr'`` , ``'chebyshev'`` 。<br/> **默认配置**：``'cosine-similarity'``。|可选 |
+|``output_node 或 -o``| **参数作用**：指定输出节点。<br/>**参数说明**：此参数支持您指定中间节点作为输出并计算节点量化敏感度。若保持默认参数None，则精度debug工具会获取模型的最终输出, 并在此基础上计算节点的量化敏感度。| **取值范围**：校准模型中的具有对应校准节点的普通节点。<br/> **默认配置**：None。|可选 |
+|``node_type 或 -nt``| **参数作用**：节点类型。<br/>**参数说明**：需要计算量化敏感度的节点类型，包括：node（普通节点）、weight（权重校准节点）、activation（激活校准节点）。| **取值范围**：``'node'`` , ``'weight'`` , ``'activation'``。<br/> **默认配置**：``'node'``。|可选 |
+|``data_num 或 -dn``| **参数作用**：计算量化敏感度需要的数据数量。<br/>**参数说明**：设置计算节点量化敏感度时所需要的数据数量。默认为None，此时默认使用calibration_data中的所有数据进行计算。 最小设置为1，最大为 calibration_data中的数据数量。| **取值范围**：大于0，小于等于calibration_data中数据的总数。<br/> **默认配置**：None 。|可选 |
+|``verbose 或 -v``| **参数作用**：选择是否将信息打印在终端上。<br/>**参数说明**：若为True，则将量化敏感度信息打印在终端上。若metrics包含多种度量方式，则按照第一位进行排序。| **取值范围**：``True`` 、 ``False``。<br/> **默认配置**：``False``。|可选 |
+|``interested_nodes 或 -i``| **参数作用**：设置感兴趣节点。<br/>**参数说明**：若指定则只获取该节点的量化敏感度，其余节点不获取。同时，若该参数被指定，将忽视node_type指定的节点类型，也就是说该参数的优先级要高于node_type。若保持默认参数None，则计算模型中所有可被量化节点的量化敏感度。| **取值范围**：校准模型中的所有节点。<br/> **默认配置**：None。|可选 |
+|``dis_nodes_list 或 -dnl``| **参数作用**：指定需要分析的节点。<br/>**参数说明**：指定需要分析的节点。<br/>若nodes_list中的节点类型为： <br/>- 权重校准节点：绘制原始权重和经过校准之后的权重的数据分布。<br/>- 激活校准节点：绘制激活校准节点的输入数据分布。<br/>- 普通节点：绘制该节点在量化前后的输出数据分布，同时绘制二者之间的误差分布。 <br/>注：nodes_list为 list 类型，可指定一系列节点，并且上述三种类型节点可同时指定。| **取值范围**：校准模型中的所有节点。<br/> **默认配置**：无。|可选 |
+|``cw_nodes_list 或 -cn``| **参数作用**：指定校准节点。<br/>**参数说明**：指定校准节点。| **取值范围**：校准模型中的所有权重校准节点和激活校准节点。<br/> **默认配置**：无。|可选 |
+|``axis 或 -a``| **参数作用**：指定channel所在的维度。 <br/>**参数说明**：channel信息所在shape中的位置。参数默认为None，此时对于激活校准节点，默认认为节点输入数据的第二个维度表示channel信息，即axis=1；对于权重校准节点，会读取该节点属性中的axis参数作为channel信息。| **取值范围**：小于节点输入数据的维度。<br/> **默认配置**：None。|可选 |
+|``quantize_node 或 -qn``| **参数作用**：只量化模型中指定的节点，查看误差累积曲线。<br/>**参数说明**：可选参数。指定模型中需要量化的节点，同时保证其余节点均不量化。<br/>通过判断该参数是否为嵌套列表进而决定是单节点量化还是部分量化。<br/>例如：<br/>- quantize_node=['Conv_2','Conv_9']：分别只量化Conv_2和Conv_9，同时保证其余节点不量化。<br/>- quantize_node=[['Conv_2'],['Conv_9','Conv_2']]：只量化Conv_2以及同时量化Conv_2和Conv_9，分别测试模型累积误差。 <br/>- quantize_node 包含两个特殊参数：'weight' 和 'activation'。<br/>当：<br/>- quantize_node = ['weight']：只量化权重，不量化激活。<br/>- quantize_node = ['activation']：只量化激活，不量化权重。<br/>- quantize_node = ['weight','activation']：权重和激活分别量化。<br/>注：quantize_node和non_quantize_node不可同时为None，必须指定其一。| **取值范围**：校准模型中的所有节点。<br/> **默认配置**：None。|可选 |
+|``non_quantize_node 或 -nqn``| **参数作用**：指定累积误差的类型。<br/>**参数说明**：可选参数。指定模型中不量化的节点，同时保证其余节点全都量化。<br/>通过判断该参数是否为嵌套列表进而决定是单节点不量化还是部分量化。<br/>例如：<br/>- non_quantize_node=['Conv_2','Conv_9']：分别解除Conv_2和Conv_9节点的量化，同时保证其余节点全部量化。<br/>- non_quantize_node=[['Conv_2'],['Conv_9','Conv_2']]：只解除Conv_2量化以及同时解除Conv_2和Conv_9量化，分别测试模型累积误差。 <br/>注：quantize_node和non_quantize_node不可同时为None，必须指定其一。| **取值范围**：校准模型中的所有节点。<br/> **默认配置**：None。|可选 |
+|``ae_metric 或 -am``| **参数作用**：累积误差度量方式。<br/>**参数说明**：设置计算模型误差的计算方式。| **取值范围**：``'cosine-similarity'`` , ``'mse'`` , ``'mre'`` , ``'sqnr'`` , ``'chebyshev'`` <br/> **默认配置**：``'cosine-similarity'``。|可选 |
+|``average_mode 或 -avm``| **参数作用**：指定累积误差曲线的输出模式。<br/>**参数说明**：默认为False。若为True，那么获取累积误差的平均值作为结果。| **取值范围**：``True`` 、 ``False``。<br/> **默认配置**：``False``。|可选 |
+
+
+API使用方法：
+
+```shell
+
+  # 导入debug模块
+  import horizon_nn.debug as dbg
+  
+  dbg.runall(model_or_file='calibrated_model.onnx',
+             calibrated_data='calibration_data')
+```
+
+命令行使用方法：
+
+```shell
+
+  hmct-debugger runall calibrated_model.onnx calibration_data
+```
+
+runall流程：
+
+![runall](./image/intermediate/runall.png)
+
+当所有参数保持默认时，工具会依次执行以下功能：
+
+1.分别获取权重校准节点和激活校准节点的量化敏感度.
+
+2.根据step1的结果，分别取权重校准节点的top5和激活校准节点的top5绘制其数据分布。
+
+3.针对step2获取的节点，分别绘制其通道间数据分布的箱线图。
+
+4.绘制分别只量化权重和只量化激活的累积误差曲线。
+
+当指定 ``node_type='node'`` 时，工具会获取top5节点，并分别找到每个节点对应的校准节点，并获取校准节点的数据分布和箱线图。
+
+
 根据以往的使用调优经验，以上策略已经可以应对各种实际问题。
 
-如果经过以上尝试仍然未能解决您的问题，请根据[精度调优checklist](../../common_questions/toolchain#checklist)文档步骤填写模型配置的具体信息来进行检查，确保每一步排查都已完成；
-若已根据checklist步骤完成排查，但精度仍不满足需求，可将填写完整的 **精度调优checklist** 信息反馈给地平线技术支持团队或在[地平线官方技术社区](https://developer.horizon.ai/)提出您的问题，我们将在24小时内给您提供支持。
+如果经过以上尝试仍然未能解决您的问题，请根据[**精度调优checklist**](../../common_questions/toolchain#checklist)文档步骤填写模型配置的具体信息来进行检查，确保每一步排查都已完成，并根据checklist锁定是在模型转换的那个具体步骤出现异常，然后将填写完整的 **精度调优checklist** 信息、原始f浮点模型文件、模型量化相关的配置文件等一起反馈给地平线技术支持团队或在[**地平线官方技术社区**](https://developer.horizon.ai/)提出您的问题，我们将在24小时内给您提供支持。
 
 
 ### 其它工具使用说明
@@ -1812,7 +2699,7 @@ deleted nodes: data_res2a_branch1_HzQuantize_TransposeInput0
 若无则可以使用工具链SDK包中 ``package/host`` 下的 ``install.sh`` 脚本进行安装)， 并对其三方的结果进行两两比较，给出是否通过的结论。 若未指定图片，则工具会用默认图片进行推理(featuremap模型会随机生成tensor数据)。
 
 :::caution 注意
-  ``package`` 资料包获取方式，请参考[交付物说明](#deliverables_instructions)。
+  ``package`` 资料包获取方式，请参考[**交付物说明**](#deliverables_instructions)。
 :::
 - 使用方式
 
@@ -1921,5 +2808,5 @@ hb_eval_preprocess的命令行参数
 
 :::tip 小技巧
   更多关于 ``hb_eval_preprocess`` 工具在上板模型精度评估中的应用示例请参见嵌入式应用开发《公版模型评测说明》中的
-  [数据预处理](#data_preprocess) 一节内容。
+  [**数据预处理**](./runtime_sample#data_preprocess) 一节内容。
 :::
