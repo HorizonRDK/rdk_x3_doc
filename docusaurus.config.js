@@ -71,7 +71,7 @@ const config = {
         },
       },
       navbar: {
-        title: 'RDK X3',
+        title: 'RDK',
         logo: {
           alt: 'My Site Logo',
           src: 'img/logo.png',
