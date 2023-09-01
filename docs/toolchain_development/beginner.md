@@ -202,7 +202,10 @@ sidebar_position: 2
 
 -   torch-jit-export_subgraph_0.html        # 静态性能评估文件（可读性更好）
 -   torch-jit-export_subgraph_0.json        # 静态性能评估文件
+-   hb_model_modifier.log                   # 模型转换步骤生成日志信息
+-   cache.json                              # 缓存文件（RDK Ultra 优化等级optimize_level配置为O3场景下会自动生成）
 -   yolov5s_672x672_nv12.bin     # 用于在地平线处理器上加载运行的模型
+-   yolov5s_672x672_nv12_calibrated_model.onnx      # 中间过程模型文件，可用于后续模型的精度校验
 -   yolov5s_672x672_nv12_optimized_float_model.onnx # 中间过程模型文件，可用于后续模型的精度校验
 -   yolov5s_672x672_nv12_original_float_model.onnx # 中间过程模型文件，可用于后续模型的精度校验
 -   yolov5s_672x672_nv12_quantized_model.onnx # 中间过程模型文件，可用于后续模型的精度校验

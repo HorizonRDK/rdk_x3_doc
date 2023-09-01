@@ -380,6 +380,7 @@ layout( ``input_layout_train`` )，对于featuremap输入的模型，您可以�
     for src_image, dst_file in zip(src_images, dst_files):
     convert_image(src_image, dst_file, transformers)
 ```
+
 :::info
   ``preprocess_on`` 启用状态下，标定样本使用skimage支持读取的图片格式文件即可。
   转换工具读取这些图片后，会将其缩放到模型输入节点要求的尺寸大小，以此结果作为校准的输入。
@@ -908,7 +909,7 @@ HzPreprocess内的计算公式为：`((input（取值范围[-128,127]）+ 128) -
 
 **模型量化阶段** 使用校准得到的参数完成模型量化，此阶段的产出是一个quantized_model.onnx。
 这个模型的计算精度已经是int8，使用这个模型可以评估到模型量化带来的精度损失情况。
-这个模型要求输入的基本数据格式仍然与 ``original_float_model`` 一样，不过layout和数值表示已经发生了变化，
+这个模型要求输入的基本数据格式和layout仍然与 ``original_float_model`` 一样，不过layout和数值表示已经发生了变化，
 整体较于 ``original_float_model`` 输入的变化情况描述如下：
 
 - ``RDK X3`` 的数据layout均使用NHWC。
@@ -920,9 +921,10 @@ HzPreprocess内的计算公式为：`((input（取值范围[-128,127]）+ 128) -
 - 原模型输入layout：NCHW。
 - input_layout_train： NCHW。
 - origin.onnx输入layout：NCHW。
-- quanti.onnx输入layout：NCHW。
+- calibrated_model.onnx输入layout：NCHW。
+- quanti.onnx输入layout：NHWC。
 
-即：input_layout_train、origin.onnx、quanti.onnx输入的layout与原模型输入的layout一致。
+即：input_layout_train、origin.onnx、calibrated_model.onnx输入的layout与原模型输入的layout一致。
 
 :::caution 注意
   请注意，如果input_type_rt为nv12时，对应quanti.onnx的输入layout都是NHWC。
@@ -969,6 +971,7 @@ Cosine Similarity一列反映的是Node列中对应算子的原始浮点模型�
 
 - \*\*\*_original_float_model.onnx
 - \*\*\*_optimized_float_model.onnx
+- \*\*\*_calibrated_model.onnx
 - \*\*\*_quantized_model.onnx
 - \*\*\*.bin
 
@@ -997,12 +1000,16 @@ Missing keys: 'caffe_model', 'prototxt'
 
 - \*\*\*_original_float_model.onnx
 - \*\*\*_optimized_float_model.onnx
+- \*\*\*_calibrated_model.onnx
 - \*\*\*_quantized_model.onnx
 - \*\*\*.bin
 
 \*\*\*_original_float_model.onnx的产出过程可以参考[**转换内部过程解读**](#conversion_interpretation)的介绍，
 这个模型计算精度与转换输入的原始浮点模型是一模一样的，有个重要的变化就是为了适配地平线平台添加了一些数据预处理计算（增加了一个预处理算子节点 ``HzPreprocess``, 可以使用netron工具打开onnx模型查看,此算子的详情可查看[**预处理HzPreprocess算子说明**](#pre_process) 内容）。
 一般情况下，您不需要使用这个模型，若在转换结果出现异常时，通过上文介绍的定位方法仍不能解决您的问题，请将这个模型提供给地平线的技术支持团队或在[**地平线官方技术社区**](https://developer.horizon.ai/)提出您的问题，将有助于帮助您快速解决问题。
+
+\*\*\*_calibrated_model.onnx的产出过程可以参考[**转换内部过程解读**](#conversion_interpretation)的介绍，
+这个模型是模型转换工具链将浮点模型经过结构优化后，通过校准数据计算得到的每个节点对应的量化参数并将其保存在校准节点中得到的中间产物。
 
 \*\*\*_optimized_float_model.onnx的产出过程可以参考[**转换内部过程解读**](#conversion_interpretation) 的介绍，
 这个模型经过一些算子级别的优化操作，常见的就是算子融合。
