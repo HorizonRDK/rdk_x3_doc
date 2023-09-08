@@ -146,7 +146,7 @@ sidebar_position: 1
  - **预期效果：** 
     程序正确运行后，视频画面会通过开发板的`HDMI`接口输出，用户可以通过显示器预览视频画面。运行log如下：
     ```bash
-    sunrise@ubuntu:/app/cdev_demo/decode2display$ sudo./decoder2display -w 1920 -h 1080 -i stream.h264
+    sunrise@ubuntu:/app/cdev_demo/decode2display$ sudo ./decoder2display -w 1920 -h 1080 -i stream.h264
     disp_w=1024, disp_h=600
     [x3_av_open_stream]:[380]:probesize: 5000000
     sp_start_decode success!
