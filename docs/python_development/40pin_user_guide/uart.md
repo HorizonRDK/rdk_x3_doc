@@ -6,6 +6,8 @@ sidebar_position: 4
 
 RDK X3在40PIN上默认使能 UART3，物理管脚号 8 和 10，IO电压 3.3V。
 
+RDK Ultra在40PIN上默认使能 UART2，物理管脚号 8 和 10，IO电压 3.3V。
+
 请参阅 `/app/40pin_samples/test_serial.py`了解如何使用串口的详细信息。
 
 ## 回环测试

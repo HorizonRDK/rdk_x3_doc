@@ -6,6 +6,8 @@ sidebar_position: 6
 
 RDK X3在40Pin上物理管脚 `19, 21, 23, 24`引出了旭日X3M芯片的 `SPI2` 总线，支持一个片选，IO电压3.3V。
 
+RDK Ultra在40Pin上物理管脚 `19, 21, 23, 24, 26`引出了的 `SPI0` 总线，支持两个片选，IO电压3.3V。
+
 请参阅 `/app/40pin_samples/test_spi.py`了解如何使用SPI的详细信息。
 
 ## 回环测试
