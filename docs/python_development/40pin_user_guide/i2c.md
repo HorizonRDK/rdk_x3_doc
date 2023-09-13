@@ -6,6 +6,8 @@ sidebar_position: 5
 
 RDK X3在40Pin上默认使能 I2C0，物理管脚号 3 和 5，IO电压3.3V。
 
+RDX Ultra则使能了I2C4和I2C6，物理管脚为3、5和27、28，IO电压3.3V
+
 请参阅 `/app/40pin_samples/test_i2c.py`了解如何使用I2C的详细信息。
 
 ## 测试方法

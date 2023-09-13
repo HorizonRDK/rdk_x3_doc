@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # 使用PWM
 
-Hobot.GPIO 库仅在带有附加硬件 PWM 控制器的引脚上支持 PWM。与 RPi.GPIO 库不同，Hobot.GPIO 库不实现软件模拟 PWM。RDK X3支持2个PWM通道。
+Hobot.GPIO 库仅在带有附加硬件 PWM 控制器的引脚上支持 PWM。与 RPi.GPIO 库不同，Hobot.GPIO 库不实现软件模拟 PWM。RDK X3和RDK Ultra都支持2个PWM通道。
 
 请参阅 `/app/40pin_samples/simple_pwm.py`了解如何使用 PWM 通道的详细信息。
 
@@ -24,7 +24,8 @@ def main():
     # Pin Setup:
     # Board pin-numbering scheme
     GPIO.setmode(GPIO.BOARD)
-    # 支持的频率范围： 48KHz ~ 192MHz
+    # RDK X3支持的频率范围： 48KHz ~ 192MHz
+    # RDK Ultra支持的频率范围： 1Hz ~ 12MHz
     p = GPIO.PWM(output_pin, 48000)
     # 初始占空比 25%， 先每0.25秒增加5%占空比，达到100%之后再每0.25秒减少5%占空比
     val = 25

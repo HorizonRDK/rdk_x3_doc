@@ -41,7 +41,7 @@ sidebar_position: 1
     Press 'q' to Exit !
     ```
 
-## 摄像头图像本地保存
+## 摄像头图像本地保存 (RDK X3)
 
 本示例`vio_capture`示例实现了`MIPI`摄像头图像采集，并将`RAW`和`YUV`两种格式的图像本地保存的功能。示例流程框图如下：  
 ![image-capture](./image/cdev_demo/image-capture.png)
@@ -61,7 +61,7 @@ sidebar_position: 1
     参数说明：
     - -b: RAW图bit数，IMX477：12，others：10
     - -c: 保存图像的数量
-    - -w: 保持图像的宽度
+    - -w: 保存图像的宽度
     - -h: 保存图像的高度
 
 
@@ -84,6 +84,59 @@ sidebar_position: 1
     capture time :9
     sensor_name imx477, setting_size = 1
     [  701.213210]hb_isp_algo_stop@main_user.c:389 GENERIC(ERR) :g_mutex destroy.
+    ```
+
+## 摄像头图像本地保存 (RDK Ultra)
+
+本示例`vio_capture`示例实现了`MIPI`摄像头图像采集，并提供`RAW`和`YUV`两种格式的图像本地保存的功能（两者互斥）。示例流程框图如下：  
+![image-capture](./image/cdev_demo/image-capture.png)
+
+ - **环境准备：** 
+   - 开发板断电状态下，将`MIPI`摄像头接入开发板，连接方法可参考[MIPI摄像头连接教程](../installation/hardware_interface#mipi_port)
+   - 通过HDMI线缆连接开发板和显示器
+   - 开发板上电，并通过命令行登录
+   - **如果需要获取raw数据，请先按照以下步骤进行配置**：
+      - 编辑摄像头对应的配置文件，以`IMX219`为例，编辑`/etc/camera_configs/Ultra/imx219/1080/vpm.json`
+      - 将`isp_dma_output_format`字段修改成`4`，保存更改
+   - **如果需要获取`NV12`格式的图片，请先按照以下步骤进行配置**：
+      - 编辑摄像头对应的配置文件，以`IMX219`为例，编辑`/etc/camera_configs/Ultra/imx219/1080/vpm.json`
+      - 将`isp_stream_output_format`字段修改为`0`；将`isp_dma_output_format`字段修改为`9`；将`pym_mode`字段修改为`0`；保存更改
+
+ - **运行方式：**
+    示例代码以源码形式提供，需要使用`make`命令进行编译后运行，步骤如下：
+    ```bash
+    sunrise@ubuntu:~$ cd /app/cdev_demo/vio_capture/
+    sunrise@ubuntu:/app/cdev_demo/vio_capture$ sudo make
+    sunrise@ubuntu:/app/cdev_demo/vio_capture$ sudo ./capture -b 12 -c 10 -h 1080 -w 1920 -m 0
+    ```
+    参数说明：
+    - -b: RAW图bit数，目前都是**12**
+    - -c: 保存图像的数量
+    - -w: 保存图像的宽度
+    - -h: 保存图像的高度
+    - -m: 保存图像的类型，0:yuv，1:raw
+
+
+ - **预期效果：**
+    程序正确运行后，当前目录保存指定数量的图片文件，`RAW`格式以`raw_*.raw`方式命名，`YUV`格式以`yuv_*.yuv`方式命名。运行log如下：
+    ```bash
+    root@ubuntu:/app/cdev_demo/media_cdev/vio_capture# sudo ./capture -b 12 -c 10 -h 1080 -w 1920 -m 0
+    Camera: gpio_num=432, active=low, i2c_bus=6, mipi_host=3
+    Camera: gpio_num=293, active=low, i2c_bus=5, mipi_host=1
+    Camera: gpio_num=290, active=low, i2c_bus=4, mipi_host=2
+    Camera: gpio_num=289, active=low, i2c_bus=2, mipi_host=0
+    cmd=i2ctransfer -y -f 6 w2@0x10 0x0 0x0 r1 2>&1, result=0x02
+    capture time :0
+    capture time :1
+    capture time :2
+    capture time :3
+    capture time :4
+    capture time :5
+    capture time :6
+    capture time :7
+    capture time :8
+    capture time :9
+    sensor_name imx219, setting_size = 1
     ```
 
 ## 摄像头图像采集并编码
