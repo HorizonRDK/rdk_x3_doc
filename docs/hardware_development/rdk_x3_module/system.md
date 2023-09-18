@@ -19,7 +19,7 @@ RDK X3 Module支持从eMMC和SD卡两种模式启动系统：
   sudo reboot
   ```
 
-  3、在uboot下会发现eMMC没有启动分区而去寻找去sddk_x3_module.md卡启动分区，从SD卡加载系统启动，登录系统后执行`mount`命令可以看到跟文件系统挂载在 SD 卡的 第二个分区，config分区也使用的SD卡的第一个分区。
+  3、在uboot下会发现eMMC没有启动分区而去寻找SD卡的启动分区，从SD卡加载系统启动，登录系统后执行`mount`命令可以看到跟文件系统挂载在 SD 卡的 第二个分区，config分区也使用的SD卡的第一个分区。
 
   ```
   /dev/mmcblk2p2 on / type ext4 (rw,relatime,data=ordered) 
