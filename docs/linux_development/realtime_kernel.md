@@ -11,6 +11,7 @@ sidebar_position: 5
 要在RDK X3上启用实时内核，请执行以下命令：
 
 ```bash
+sudo apt update
 sudo apt install hobot-kernel-headers=2.0.0-01~rt hobot-boot=2.0.2-01~rt hobot-bpu-drivers=2.0.0-01~rt
 sudo reboot
 ```
