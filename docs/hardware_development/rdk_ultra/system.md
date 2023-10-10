@@ -4,6 +4,14 @@ sidebar_position: 3
 
 # 系统烧录
 
+:::tip
+
+系统镜像下载与烧录的完整步骤，请[**点击查看该章节**](/installation/install_os)。
+
+:::
+
+
+
 RDK Ultra开发套件烧录Ubuntu系统时，需要使用地平线`hbupdate`烧录工具。目前工具支持Windows、Linux两种版本，分别以 `hbupdate_win64`、 `hbupdate_linux` 开头，工具下载链接：[hbupdate](http://archive.sunrisepi.tech/downloads/hbupdate/)。
 
 工具使用注意事项如下：
@@ -48,3 +56,4 @@ RDK Ultra开发套件烧录Ubuntu系统时，需要使用地平线`hbupdate`烧�
 
 - 工具提示如下错误时，说明网络传输速度过慢，建议更换性能更好的PC后重新升级。
 ![image-flash-system8](./image/rdk_ultra/image-rdk-ultra-system8.jpg)
+

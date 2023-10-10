@@ -4,6 +4,12 @@ sidebar_position: 3
 
 # 系统烧录
 
+:::tip
+
+系统镜像下载与烧录的完整步骤，请[**点击查看该章节**](/installation/install_os)。
+
+:::
+
 RDK X3 Module支持从eMMC和SD卡两种模式启动系统：
 
 - 当模组上的eMMC没有烧录过系统镜像的情况下，插入制作好系统的SD卡到载板即可通过从SD卡启动系统。
