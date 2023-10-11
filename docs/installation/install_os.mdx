@@ -157,7 +157,7 @@ RDK X3 Module支持从eMMC和SD卡两种模式启动系统：
 
    ![image-flash-system4](./image/install_os/image-flash-system4.png)
 
-   - 烧录镜像时，需要通过跳线帽将`BOOT`管脚接地，管脚位置参考[功能控制接口](hardware_development/rdk_x3_module/interface#功能控制接口)
+   - 烧录镜像时，需要通过跳线帽将`BOOT`管脚接地，管脚位置参考[功能控制接口](/hardware_development/rdk_x3_module/interface#功能控制接口)
 
    - 将Micro USB接口连接到电脑，电脑设备管理器中会识别出`Android Device`的设备，如上一节安装USB下载驱动所描述
 
@@ -194,6 +194,9 @@ RDK Ultra开发套件烧录Ubuntu系统时，需要使用地平线`hbupdate`烧�
 1. 通过网线将RDK Ultra和PC机直连，并确保网络可以ping通。
 
 2. 将功能控制接口（接口10）的`FC_REC`和`GND`信号短接。
+
+![image-ultra-fc-rec](image/install_os/image-ultra-fc-rec.jpg)
+
 
 3. 运行`hbupdate`主程序，打开下载工具并选择开发板型号为`RDK_ULTRA`，必选项。
 
