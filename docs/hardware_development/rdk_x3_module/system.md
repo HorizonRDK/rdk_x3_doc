@@ -4,9 +4,9 @@ sidebar_position: 3
 
 # 系统烧录
 
-:::tip
+:::info 注意
 
-系统镜像下载与烧录的完整步骤，请[**点击查看该章节**](/installation/install_os)。
+**RDK X3 Module**出厂已经烧写测试版本系统镜像，为确保使用最新版本的系统，<font color='Red'>建议参考本文档完成[最新版本系统镜像的烧写](/installation/install_os)</font>。
 
 :::
 
