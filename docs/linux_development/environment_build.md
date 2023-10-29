@@ -192,7 +192,7 @@ source
 执行以下命令编译linux内核：
 
 ```shell
-./mk_kernel.sh
+sudo ./mk_kernel.sh
 ```
 
 编译完成后，会在`deploy/kernel`目录下生成内核镜像、驱动模块、设备树、内核头文件。
