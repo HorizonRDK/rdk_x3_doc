@@ -10,7 +10,7 @@ apt 命令提供了查找、安装、升级、删除某一个、一组甚至全�
 
 apt 命令执行需要超级管理员权限(root)。
 
-## apt 语法
+## 语法说明
 
 ```
   apt [options] [command] [package ...]
@@ -22,7 +22,7 @@ apt 命令执行需要超级管理员权限(root)。
 
 ------
 
-## apt 常用命令
+## 常用命令
 
 - 更新apt软件源数据库：**sudo apt update**
 
