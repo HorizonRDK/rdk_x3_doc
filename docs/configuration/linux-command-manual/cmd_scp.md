@@ -10,7 +10,7 @@ scp 是 secure copy 的缩写, scp 是 linux 系统下基于 ssh 登陆进行安
 
 scp 是加密的，[rcp](https://www.runoob.com/linux/linux-comm-rcp.html) 是不加密的，scp 是 rcp 的加强版。
 
-## 语法
+## 语法说明
 
 ```
 scp [-346BCpqrTv] [-c cipher] [-F ssh_config] [-i identity_file]
