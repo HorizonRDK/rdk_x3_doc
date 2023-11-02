@@ -1,8 +1,8 @@
 ---
-sidebar_position: 3
+sidebar_position: 1
 ---
 
-# rsync命令
+# rsync
 
 Rsync 是一个快速且功能强大的文件复制工具。它可以在本地复制文件，也可以通过任何远程 shell 从另一台主机复制文件，还可以与远程的 rsync 守护程序进行文件复制。它提供了大量选项，可以控制其行为的各个方面，并允许非常灵活地指定要复制的文件集合。Rsync 以其增量传输算法而闻名，该算法通过仅发送源文件与目标中现有文件之间的差异来减少通过网络发送的数据量。Rsync 广泛用于备份和镜像操作，同时也作为日常使用的改进型复制命令。
 
@@ -29,7 +29,7 @@ to an rsync daemon, and require SRC or DEST to start with a module name.
 rsync [OPTION...] SRC... [DEST]
 ```
 
-## 参数说明
+## 选项说明
 
 - -v, --verbose：增加详细信息输出
   - --info=FLAGS：指定详细信息输出的标志
