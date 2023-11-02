@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# apt 命令
+# apt
 
 apt（Advanced Packaging Tool）是一个在 Debian 和 Ubuntu 中的 Shell 前端软件包管理器。
 
@@ -19,8 +19,6 @@ apt 命令执行需要超级管理员权限(root)。
 - **options：**可选，选项包括 -h（帮助），-y（当安装过程提示选择全部为"yes"），-q（不显示安装的过程）等等。
 - **command：**要进行的操作。
 - **package**：安装的包名。
-
-------
 
 ## 常用命令
 
