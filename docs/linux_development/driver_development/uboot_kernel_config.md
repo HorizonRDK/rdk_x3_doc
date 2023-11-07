@@ -79,8 +79,3 @@ diff .config arch/arm64/configs/xj3_perf_ubuntu_defconfig
 cp .config arch/arm64/configs/xj3_perf_ubuntu_defconfig
 ```
 
-- 在进入到 `build` 目录执行编译
-
-```
-./xbuild.sh boot
-```
