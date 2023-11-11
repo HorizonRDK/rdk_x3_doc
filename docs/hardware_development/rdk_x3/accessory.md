@@ -1,8 +1,8 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 ---
 
-# 认证配件清单
+# 配件清单
 
 认证配件清单是指经过地平线官方认证，可以适配RDK X3开发板的第三方配件配件清单。主要包含基础配件(电源、外壳、散热器)、摄像头、显示屏等类别，清单内容会不定期更新，逐步添加更多的配件型号。
 
@@ -43,3 +43,10 @@ sidebar_position: 2
 | HDMI | 微雪 | 10英寸触控屏 | 分辨率1280x800，钢化玻璃面板，高色域触控屏 | [购买链接](https://www.waveshare.net/shop/10.1HP-CAPLCD-Monitor.htm)  |
 | HDMI | 微雪 | 13.3英寸触控屏 | 分辨率1920x1080，钢化玻璃面板，高色域触控屏 | [购买链接](https://www.waveshare.net/shop/13.3inch-HDMI-LCD-H-with-Holder-V2.htm)  |
 | MIPI | 微雪 | 4.3英寸MIPI LCD | 分辨率800×480，IPS广视角，MIPI DSI接口  | [购买链接](https://www.waveshare.net/shop/4.3inch-DSI-LCD.htm)  |
+
+## 转接板
+
+| 类型 | 供应商 | 型号 | 描述 | 购买链接 |
+| --- | --------- | -------- | --------------- | --------- |
+| 音频转接板 | 微雪 | Audio Driver HAT  | 支持环形4MIC录音，双通道播放，音频回采 | [购买链接](https://www.waveshare.net/shop/Audio-Driver-HAT.htm)  |
+| 音频转接板 | 微雪 | WM8960 Audio HAT | 支持双通道录音、播放，适用于RDK X3 2.0、RDK X3 Module | [购买链接](https://www.waveshare.net/shop/WM8960-Audio-HAT.htm)  |
