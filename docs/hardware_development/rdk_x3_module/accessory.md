@@ -2,7 +2,7 @@
 sidebar_position: 7
 ---
 
-# 认证配件清单
+# 配件清单
 
 ## 基础配件
 
@@ -37,8 +37,9 @@ sidebar_position: 7
 | HDMI | 微雪   | 13.3英寸触控屏  | 分辨率1920x1080，钢化玻璃面板，高色域触控屏 | [购买链接](https://www.waveshare.net/shop/13.3inch-HDMI-LCD-H-with-Holder-V2.htm) |
 | MIPI | 微雪   | 4.3英寸MIPI LCD | 分辨率800×480，IPS广视角，MIPI DSI接口      | [购买链接](https://www.waveshare.net/shop/4.3inch-DSI-LCD.htm) |
 
-## 扩展板
-| 类型       | 供应商 | 型号            | 描述                     | 购买链接  |
-| --------- | ------ | --------------- | ---------------------------------- | ---------------- |
-| 音频板 | 微雪   | WM8960 Audio HAT     | 采用WM8960低功耗立体声编解码      | [购买链接](https://www.waveshare.net/shop/WM8960-Audio-HAT.htm) |
-| 音频板 | 微雪   | ES7210+ES8156 Audio HAT     | 采用ES7210四通道编码芯片、ES8156立体声解码芯片    | [购买链接](https://www.waveshare.net/shop/Audio-Driver-HAT.htm) |
+## 转接板
+
+| 类型 | 供应商 | 型号 | 描述 | 购买链接 |
+| --- | --------- | -------- | --------------- | --------- |
+| 音频转接板 | 微雪 | Audio Driver HAT  | 支持环形4MIC录音，双通道播放，音频回采 | [购买链接](https://www.waveshare.net/shop/Audio-Driver-HAT.htm)  |
+| 音频转接板 | 微雪 | WM8960 Audio HAT | 支持双通道录音、播放，适用于RDK X3 2.0、RDK X3 Module | [购买链接](https://www.waveshare.net/shop/WM8960-Audio-HAT.htm)  |
