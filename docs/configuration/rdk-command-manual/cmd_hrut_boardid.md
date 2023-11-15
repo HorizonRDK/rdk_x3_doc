@@ -41,14 +41,14 @@ Options:
 | :------------------ | :------------------ | :--------------- | :----------------------------------------------------------- |
 | **auto detect**     | DDR 自动探测功能    | 1bit<br/>[31]    | 0x0：auto detection<br/>0x1：不使用LPDDR4 auto detection功能 |
 | **model**           | DDR厂商信息         | 3bit<br/>[30:28] | 0x0： auto detection<br/>0x1： hynix，海力士<br/>0x2： micron，镁光<br/>0x3： samsung，三星 |
-| **ddr_type**        | DDR类型             | 4bit<br/>[27:24] | 0x0： auto detection<br/>0x1： LPDDR4<br/>0x2： LPDDR4X<br/>0x3： DDR40x4： DDR3L |
-| **frequency**       | DDR频率             | 4bit<br/>[23:20] | 0x0： auto detection<br/>0x1： 6670x2： 1600<br/>0x3： 2133<br/>0x4： 2666<br/>0x5： 3200<br/>0x6： 3733<br/>0x7： 4266<br/>0x8:  1866<br/>0x9:  2400<br/>0xa:  100<br/>0xb:  3600 |
+| **ddr_type**        | DDR类型             | 4bit<br/>[27:24] | 0x0： auto detection<br/>0x1： LPDDR4<br/>0x2： LPDDR4X<br/>0x3： DDR4<br/>0x4： DDR3L |
+| **frequency**       | DDR频率             | 4bit<br/>[23:20] | 0x0： auto detection<br/>0x1： 667<br/>0x2： 1600<br/>0x3： 2133<br/>0x4： 2666<br/>0x5： 3200<br/>0x6： 3733<br/>0x7： 4266<br/>0x8： 1866<br/>0x9： 2400<br/>0xa： 100<br/>0xb： 3600 |
 | **capacity**        | DDR容量             | 4bit<br/>[19:16] | 0x0： auto detection<br/>0x1： 1GB<br/>0x2： 2GB<br/>0x4： 4GB |
 | **ecc**             |                     | 4bit<br/>[15:12] | 0x0： default ECC config<br/>0x1： inline ECC all<br/>0x2： inline ecc option1<br/>0x3： inline ecc option2 |
-| **som_type**        | SOM类型             | 4bit<br/>[11:8]  | 0x0： auto detection<br/>0x3：sdb v3<br/>0x4：sdb v4<br/>0x5：RDK X3 v1<br/>0x6：RDK X3 v1.2<br/>0x8：RDK X3 v2<br/>0xb：RDK Module<br/>0xF:  X3E |
+| **som_type**        | SOM类型             | 4bit<br/>[11:8]  | 0x0： auto detection<br/>0x3：sdb v3<br/>0x4：sdb v4<br/>0x5：RDK X3 v1<br/>0x6：RDK X3 v1.2<br/>0x8：RDK X3 v2<br/>0xb：RDK Module<br/>0xF： X3E |
 | **DFS EN**          | 调频使能位          | 1bit<br/>[7]     | 1：使能调频功能<br/>0：不使能调频功能                        |
 | **alternative**     | alternaive paramter | 3bit<br/>[6:4]   | 0x0： default configure<br/>0x1： config1                    |
-| **base_board_type** | 底板类型            | 4bit<br/>[3:0]   | 0x0： auto detection<br/>0x1： X3 DVB<br/>0x4： X3 SDB<br/>0x5: customer board |
+| **base_board_type** | 底板类型            | 4bit<br/>[3:0]   | 0x0： auto detection<br/>0x1： X3 DVB<br/>0x4： X3 SDB<br/>0x5： customer board |
 
 **各字段定义如下：**
 
