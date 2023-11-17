@@ -11,9 +11,9 @@ RDK X3 Module目前提供对**Audio Driver HAT**、**WM8960 Audio HAT**两款音
 
 Audio Driver HAT REV2是由微雪电子生产的一款音频转接板，采用ES7210+ES8156双Codec方案，可实现环形4MIC录音、双通道音频播放、音频信号回采功能，转接板外观如下图：
 
-![image-audio-driver-hat](./image/image-Audio-Driver-HAT.jpg)
+![image-audio-driver-hat](./image/image-audio-driver-hat.jpg)
 
-关于音频转接板的详细介绍，请参考[Audio Driver HAT](https://www.waveshare.net/shop/Audio-Driver-HAT.htm)。
+关于音频转接板的详细介绍，请参考[Audio Driver HAT](https://www.waveshare.net/shop/audio-driver-hat.htm)。
 
 ### 安装方法
 

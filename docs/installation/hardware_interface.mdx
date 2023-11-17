@@ -592,6 +592,10 @@ RDK X3 Module载板提供一路Micro SD存储卡接口（接口18）。推荐使
 
 开发板的无线网络支持板载和外置天线两种配置，通常情况下板载天线可以满足使用需求。当开发板安装金属材质外壳后，需要连接外置天线到（接口11），以增强信号强度。
 
+:::tip 
+通过以下命令可以将板载天线转化为外置天线 sed -i 's/trace/cable/g' /etc/init.d/hobot-wifi ，重启后生效。
+:::
+
 </TabItem>
 
 <TabItem value="x3md" label="RDK X3 Module">
