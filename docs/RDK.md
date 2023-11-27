@@ -11,7 +11,7 @@ sidebar_position: 1
 
 - 本文档中**RDK X3**均使用2.0版本Ubuntu操作系统，对于仍需使用**旭日X3派1.0版本系统**的用户，可从下述链接中获取资料：<br/>
      [旭日X3派用户手册](https://developer.horizon.ai/api/v1/fileData/documents_pi/index.html)<br/>
-     [旭日X3派Ubuntu镜像](https://pan.horizon.ai/index.php/s/xtGGeQ25HEFXXWb)<br/>
+     [旭日X3派Ubuntu镜像](http://sunrise.horizon.cc/downloads/os_images/)，选择1.x.x 版本目录下的镜像<br/>
      [旭日X3派资料包](https://developer.horizon.ai/api/v1/static/fileData/X3%E6%B4%BE%E8%B5%84%E6%96%99%E5%8C%85_20220711175326.zip)<br/>
 
 -  **RDK X3 Module**出厂已经烧写测试版本系统镜像，为确保使用最新版本的系统，建议参考本文档完成[最新版本系统镜像的烧写](/installation/install_os)。
@@ -41,10 +41,10 @@ sidebar_position: 1
 
 ## 文档使用指引
 
-下面将对本文的整体内容划分进行介绍，帮助用户快速了解文档的结构和内容，以便更好地利用文档进行开发工作。
+下面将对用户手册的整体内容划分进行介绍，帮助用户快速了解文档的结构和内容，以便更好地利用文档进行开发、学习工作。
 
 **[系统安装与登录](/category/installation)**  
-介绍系统安装，示例使用的入门说明，帮助用户快速上手使用开发板。  
+介绍系统安装，硬件接口使用的入门说明，帮助用户快速上手使用开发板。  
 
 **[系统配置](/category/configuration)**  
 介绍一系列配置步骤和技巧，以确保系统能够正常工作并满足特定的需求，引导用户进行系统的配置，包括系统升级、网络、蓝牙的配置。  
@@ -74,6 +74,36 @@ sidebar_position: 1
 本章节回答了用户在使用开发者套件过程中可能遇到的常见问题和疑惑。它提供了解决方案和技巧，帮助用户解决常见问题并顺利进行开发工作。
 
 ## 版本发布记录
+
+### 版本号：2.1.0
+
+新增功能：
+
+- 完善srpi-config系统配置工具，支持Wi-Fi连接，开/关SSH、VNC，使能/禁用40pin上的外设总线，本地化语言配置，设置CPU超频，设置ION内存大小等系统配置。
+- 支持了/boot/config.txt系统配置文件，支持设置dtoverlay、cpu超频、io启动状态配置等选项。
+- 添加yolov5s v6/v7 模型示例。
+
+优化改进：
+
+- 支持在hdmi显示器上输出启动日志和进入用户命令行，方便用户使用。
+- 支持更多的hdmi显示分辨率，极大的增强了兼容性。
+- 优化了Desktop和server版本的预装软件清单，删除冗余项，补充必要软件，如添加vlc。
+- 优化了Desktop菜单栏的布局，精简选项。
+- 默认开启蓝牙功能。
+- 增加后处理的C++接口，提高后处理效率。
+- 使用udisk2自动挂载U盘，解决NTFS文件系统自动挂载后不能访问的问题。
+- 支持用户保留vnc密码文件。
+- VNC服务默认不自动开启，可以减少系统的资源消耗。用户可以通过srpi-config工具打开。
+- RDK X3 v2.1和RDK Module开发板CPU正常模式下最高运行在1.5GHz频率，超频后最高运行频率1.8GHz
+
+问题修复：
+
+- 删除Wi-Fi驱动的冗余内核日志。
+- 修改apt源域名为sunrise.horizon.cc
+
+其他更新：
+
+- 支持 chromium 浏览器，用户可以使用 `sudo apt install chromium` 安装使用。
 
 ### 版本号：2.0.0
 
