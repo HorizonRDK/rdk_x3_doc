@@ -1,8 +1,8 @@
 ---
-sidebar_position: 3
+sidebar_position: 5
 ---
 
-# 2.3 Thermal控制和CPU频率管理
+# 2.5 Thermal控制和CPU频率管理
 
 :::info 注意
 以下内容适用于`RDK X3`和`RDK X3 Module`开发板，不适用于`RDK Ultra`开发板

@@ -1,8 +1,8 @@
 ---
-sidebar_position: 5
+sidebar_position: 6
 ---
 
-# 1.5 资源下载汇总
+# 1.6 资源下载汇总
 
 ## 硬件设计 (Hardware)
 
