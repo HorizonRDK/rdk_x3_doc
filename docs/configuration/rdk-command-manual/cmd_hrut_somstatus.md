@@ -9,7 +9,7 @@ sidebar_position: 1
 ## 语法说明
 
 ```
-hrut_somstatus
+sudo hrut_somstatus
 ```
 
 ## 常用命令

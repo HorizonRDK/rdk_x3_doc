@@ -9,7 +9,7 @@ sidebar_position: 1
 ## 语法说明
 
 ```
-rdk-miniboot-update [options]... [FILE]
+sudo rdk-miniboot-update [options]... [FILE]
 ```
 
 ## 选项说明
@@ -26,13 +26,13 @@ rdk-miniboot-update [options]... [FILE]
 更新`miniboot`镜像为最新版本
 
 ```
-rdk-miniboot-update
+sudo rdk-miniboot-update
 ```
 
 更新使用指定的`miniboot`镜像
 
 ```
-rdk-miniboot-update -f /userdata/miniboot.img
+sudo rdk-miniboot-update -f /userdata/miniboot.img
 ```
 
 查看不带选项参数时会使用什么镜像文件进行更新
