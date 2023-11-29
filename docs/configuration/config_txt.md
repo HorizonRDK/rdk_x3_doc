@@ -40,6 +40,24 @@ dtdebug=1
 dtoverlay=ion_resize,size=0x40000000
 ```
 
+### dtparam
+
+支持设置uart、i2c、spi、i2s等总线的使能与关闭。
+
+目前支持的选项参数：uart3, spi0, spi1, spi2, i2c0, i2c1, i2c2, i2c3, i2c4, i2c5, i2s0, i2s1
+
+例如关闭串口3：
+
+```
+dtparam=uart3=off
+```
+
+例如打开`i2c5`:
+
+```
+dtparam=i2c5=off
+```
+
 ## CPU频率
 
 ### arm_boost
