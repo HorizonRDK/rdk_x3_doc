@@ -13,7 +13,7 @@ Audio Driver HAT REV2是由微雪电子生产的一款音频转接板，采用ES
 
 ![image-audio-driver-hat](./image/image-audio-driver-hat.jpg)
 
-关于音频转接板的详细介绍，请参考[Audio Driver HAT](https://www.waveshare.net/shop/Audio-Driver-HAT.htm)。
+关于音频转接板的详细介绍，请参考[Audio Driver HAT](https://www.waveshare.net/shop/Audio-Driver-HAT.html)。
 
 ### 安装方法
 
