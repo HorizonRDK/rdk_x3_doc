@@ -55,7 +55,7 @@ dtparam=uart3=off
 例如打开`i2c5`:
 
 ```
-dtparam=i2c5=off
+dtparam=i2c5=on
 ```
 
 ## CPU频率
