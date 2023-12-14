@@ -8,7 +8,15 @@ sidebar_position: 1
 
 ## 配置uboot选项参数
 
-首先进入`uboot`目录，执行`make ARCH=arm64 xj3_soc_defconfig `。因为`make`命令将首先执行顶级目录下的 Makefile 文件。其中对于以config结尾的目标都有一个共同的入口：
+:::info 注意
+
+​	以下说明以修改 `xj3_ubuntu_nand_defconfig`配置文件为例。
+
+​	Uboot具体使用的配置文件可以在`./xbuild.sh lunch`之后查看`bootloader/device/.board_config.mk`板级配置文件中 `HR_UBOOT_CONFIG_FILE`的变量值。
+
+:::
+
+首先进入`uboot`目录，执行`make ARCH=arm64 xj3_ubuntu_nand_defconfig `。因为`make`命令将首先执行顶级目录下的 Makefile 文件。其中对于以config结尾的目标都有一个共同的入口：
 
 ```makefile
 %config: scripts_basic outputmakefile FORCE
@@ -18,13 +26,13 @@ sidebar_position: 1
 展开后的执行命令是：
 
 ```
-make -f ./scripts/Makefile.build obj=scripts/kconfig xj3_soc_defconfig
+make -f ./scripts/Makefile.build obj=scripts/kconfig xj3_ubuntu_nand_defconfig
 ```
 
 本命令执行后会在`uboot`的源码根目录下会生成 `.config`的文件。
 
 ```bash
-make ARCH=arm64 xj3_soc_defconfig
+make ARCH=arm64 xj3_ubuntu_nand_defconfig
 
   HOSTCC  scripts/basic/fixdep
   HOSTCC  scripts/kconfig/conf.o
@@ -45,11 +53,19 @@ make ARCH=arm64 xj3_soc_defconfig
 
 ![image-20220518111506018](./image/driver_develop_guide/image-20220518111506018.png)
 
-保存配置后，可以执行命令 `diff .config configs/xj3_soc_defconfig` 对比一下差异，再次确认一下修改是否符合预期。
+保存配置后，可以执行命令 `diff .config configs/xj3_ubuntu_nand_defconfig` 对比一下差异，再次确认一下修改是否符合预期。
 
-如果修改正确，请执行 `cp .config configs/xj3_soc_defconfig`替换默认的配置文件。
+如果修改正确，请执行 `cp .config configs/xj3_ubuntu_nand_defconfig`替换默认的配置文件。
 
 ## 配置kernel选项参数
+
+:::info 注意
+
+​	以下说明以修改 `xj3_perf_ubuntu_defconfig`配置文件为例。
+
+​	kernel具体使用的配置文件可以查看 `mk_kernel.sh` 脚本中 `kernel_config_file` 的变量值。
+
+:::
 
 通过`menuconfig`方式配置`kernel`与配置`uboot`的的过程是一样的。命令执行过程如下：
 
