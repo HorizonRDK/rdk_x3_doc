@@ -20,22 +20,23 @@ Audio Driver HAT REV2是由微雪电子生产的一款音频转接板，采用ES
 1. 按照下图方式，将转接板接入RDK X3 Module的40pin header  
 ![image-audio-driver-hat-setup](./image/image-audio-driver-hat-setup.jpg)
 
-2. 使用`srpi-config`配置工具关闭`I2C3`功能，如下图：  
-![image-audio-driver-hat-setup2](./image/image-audio-driver-hat-setup1.jpg)
+2. 使用`srpi-config`配置音频板  
+进入`3 Interface Options`->`I5 Audio`  
+选择`Audio Driver HAT V2`：
+![image-audio-driver-hat-config00](./image/image-audio-driver-hat-config00.png)  
 
-3. 使用命令`git clone git@github.com:HorizonRDK/hobot-audio.git`，拉取配置文件，执行安装脚本并输入`2`
-    ```shell
-    cd hobot-audio
-    sudo ./install.sh
-    What type of audio board do you have?
-    1. WM8960 Audio HAT
-    2. Audio Driver HAT
-    ```
-4. 运行命令`sync && reboot`重启开发板，如/dev/snd下出现如下设备节点，说明转接板安装成功
+
+3. 运行命令`sync && reboot`重启开发板，如`/dev/snd`下出现如下设备节点，说明转接板安装成功
     ```shell
     root@ubuntu:/userdata# ls /dev/snd
     by-path  controlC0  pcmC0D0p  pcmC0D1c  timer
     ```
+
+
+### 卸载方法
+1. 使用`srpi-config`配置音频板   
+进入`3 Interface Options`->`I5 Audio`  
+选择`UNSET`,即可卸载音频驱动和相关配置
 
 ### 录音播放测试
 
@@ -92,19 +93,22 @@ WM8960 Audio HAT是由微雪电子生产的一款音频转接板，采用WM8960 
 1. 按照下图方式，将转接板接入RDK X3的40pin header  
 ![image-wm8960-audio-hat-setup](./image/image-wm8960-audio-hat-setup.jpg)
 
-2. 使用命令`git clone git@github.com:HorizonRDK/hobot-audio.git`，拉取配置文件，执行安装脚本并输入`1`
-    ```shell
-    cd hobot-audio
-    sudo ./install.sh
-    What type of audio board do you have?
-    1. WM8960 Audio HAT
-    2. Audio Driver HAT
-    ```
-3. 运行命令`sync && reboot`重启开发板，如/dev/snd下出现如下设备节点，说明转接板安装成功
+2. 使用`srpi-config`配置音频板  
+进入`3 Interface Options`->`I5 Audio`  
+选择`WM8960 Audio HAT`：
+![image-audio-driver-hat-config00](./image/image-audio-driver-hat-config01.png)  
+
+3. 运行命令`sync && reboot`重启开发板，如`/dev/snd`下出现如下设备节点，说明转接板安装成功
     ```shell
     root@ubuntu:~# ls /dev/snd/
     by-path  controlC0  pcmC0D0c  pcmC0D0p  pcmC0D1c  pcmC0D1p  timer
     ```
+
+
+### 卸载方法
+1. 使用`srpi-config`配置音频板   
+进入`3 Interface Options`->`I5 Audio`  
+选择`UNSET`,即可卸载音频驱动和相关配置
 
 ### 录音播放测试
 
