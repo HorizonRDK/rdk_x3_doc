@@ -15,7 +15,7 @@ Decoder对象实现了对视频数据的解码功能，包含了`decode`、`set_
 <font color='Blue'>【函数声明】</font>  
 
 ```python
-Decoder.decode(file, video_chn, decode_type, width, height, dec_mode)
+Decoder.decode(file, video_chn, decode_type, width, height)
 ```
 
 <font color='Blue'>【参数描述】</font>  
