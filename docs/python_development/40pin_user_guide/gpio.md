@@ -360,22 +360,21 @@ if __name__ == '__main__':
 
 ```python
 #!/usr/bin/env python3
-
+import sys
+import signal
 import Hobot.GPIO as GPIO
 import time
 
-# Pin Definitions:
-led_pin_1 = 12
-led_pin_2 = 13
-but_pin = 18
+def signal_handler(signal, frame):
+    sys.exit(0)
 
 # 定义使用的GPIO通道：
-# 35号作为输出，可以点亮一个LED
-# 36号作为输出，可以点亮一个LED
+# 12号作为输出，可以点亮一个LED
+# 13号作为输出，可以点亮一个LED
 # 38号作为输入，可以接一个按钮
-led_pin = 35 # BOARD 编码 36
-led_pin2 = 36 # BOARD 编码 36
-but_pin = 38 # BOARD 编码 38
+led_pin_1 = 12 # BOARD 编码 12
+led_pin_2 = 13 # BOARD 编码 13
+but_pin = 38   # BOARD 编码 38
 
 # 禁用警告信息
 GPIO.setwarnings(False)
@@ -414,5 +413,6 @@ def main():
         GPIO.cleanup()  # cleanup all GPIOs
 
 if __name__ == '__main__':
+    signal.signal(signal.SIGINT, signal_handler)
     main()
 ```
