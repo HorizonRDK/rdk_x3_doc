@@ -772,10 +772,8 @@ RDK X3 Module载板提供IO电平切换功能，用于控制40pin header电平�
 此外，用户可以使用命令查询蓝牙进程是否正常，命令如下：
 
 ```bash
-ps ax | grep "/usr/bin/dbus-daemon\|brcm_patchram_plus\|/usr/lib/bluetooth/bluetoothd"`
+ps ax | grep "/usr/bin/dbus-daemon\|/usr/lib/bluetooth/bluetoothd"
 /usr/bin/dbus-daemon
-
-brcm_patchram_plus
 
 /usr/lib/bluetooth/bluetoothd
 ```
