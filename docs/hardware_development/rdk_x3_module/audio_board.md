@@ -18,7 +18,9 @@ Audio Driver HAT REV2是由微雪电子生产的一款音频转接板，采用ES
 ### 安装方法
 
 1. 按照下图方式，将转接板接入RDK X3 Module的40pin header  
-![image-audio-driver-hat-setup](./image/image-audio-driver-hat-setup.jpg)
+![image-audio-driver-hat-setup](./image/image-audio-driver-hat-setup.jpg)  
+并将拨码开关全部拨到**off**
+
 
 2. 使用`srpi-config`配置音频板  
 进入`3 Interface Options`->`I5 Audio`  
@@ -123,3 +125,32 @@ tinycap ./2chn_test.wav -D 0 -d 0 -c 2 -b 16 -r 48000 -p 512 -n 4 -t 5
 ```
 tinyplay ./2chn_test.wav -D 0 -d 1
 ```
+
+## 音频子板和USB声卡共存
+
+如果您有USB声卡，并且想它和上述的音频子板共存，请参考下列的教程进行操作：
+
+1. 根据上面教程，确保音频子板可用
+
+2. 接入USB声卡，驱动加载完成后观察`/dev/snd`下面的新增节点，此处以`WM8960` + USB**全双工**声卡为例：
+```bash
+    root@ubuntu:~# ls /dev/snd/
+    by-path  controlC0  pcmC0D0c  pcmC0D0p  pcmC0D1c  pcmC0D1p  pcmC1D0c  pcmC1D0p  timer
+```
+其中`pcmC1D0c  pcmC1D0p`为USB声卡节点，全双工共用一个节点
+
+3. 修改`/etc/pulse/default.pa`，在`load-module module-alsa-source`下面添加对应的节点信息：
+```apacheconf
+...
+
+.ifexists module-udev-detect.so
+load-module module-alsa-sink device=hw:0,1 mmap=false tsched=0 fragments=2 fragment_size=960 rate=48000 channels=2 rewind_safeguard=960
+load-module module-alsa-source device=hw:0,0 mmap=false tsched=0 fragments=2 fragment_size=960 rate=48000 channels=2
+load-module alsa device=hw:1,0 #对应上面的节点
+load-module module-alsa-source device=hw:1,0 #对应上面的节点
+.else
+
+...
+```
+
+4. 保存配置，并重启开发板
