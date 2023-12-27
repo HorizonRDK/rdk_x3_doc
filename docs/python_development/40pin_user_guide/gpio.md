@@ -292,7 +292,6 @@ def main():
 
     print("Starting demo now! Press CTRL+C to exit")
     try:
-        # 间隔1秒时间，循环控制LED灯亮灭
         while True:
             # 读取管脚电平
             value = GPIO.input(input_pin)
