@@ -72,7 +72,7 @@ iface eth0 inet static
     pre-up ifconfig eth0 hw ether 00:11:22:9f:51:27
 ```
 
-修改完成后，命令行输入`sudo restart_network`命令让配置生效。
+修改完成后，`reboot`重启让配置生效。
 
 ## 无线网络
 
