@@ -222,7 +222,7 @@ Station模式下，开发板作为客户端，接入路由器无线热点进行�
 7. 如需切换回`Station`模式，可按如下方式进行：
     ```bash
     # 停止 hostapd
-    killall5 -9 hostapd
+    killall -9 hostapd
     
     # 清除 wlan0 的地址
     ip addr flush dev wlan0
