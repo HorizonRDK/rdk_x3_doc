@@ -58,7 +58,13 @@ sudo srpi-config
 
 ## Display Options
 
-[TBD]
+显示选项菜单。
+
+![image-20240113163313195](image/srpi-config/image-20240113163313195.png)
+
+- **FB Console Resolution**
+
+  支持设置`Server`系统和`console`模式下的HDMI显示分辨率。
 
 ## Interface Options
 
