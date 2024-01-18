@@ -105,7 +105,7 @@ sidebar_position: 3
 **【参数】**
 
 - `obj`：已经初始化的`DECODER`对象指针
-- `image_buffer`：返回的图像帧数据，这个buffer大小与图像分辨率的关系为 width * height * 3 / 2。
+- `image_buffer`：返回的图像帧数据，这个buffer大小与图像分辨率的关系为 `(width * height * 3) / 2`。
 
 **【返回类型】** 
 

@@ -6,6 +6,13 @@ sidebar_position: 2
 
 RDK X3目前提供对**Audio Driver HAT**、**WM8960 Audio HAT**两款音频转接板的支持，用于满足不同语音场景的功能需求，下面将对两种音频板的使用方法进行详细介绍。
 
+:::note 提示
+
+如果安装驱动后提示Miniboot版本不是最新，请进入`1 System Options` -> `S7 Update Miniboot` 更新miniboot
+
+:::
+
+
 ## Audio Driver HAT REV2
 
 ### 产品简介
@@ -40,24 +47,54 @@ Audio Driver HAT REV2是由微雪电子生产的一款音频转接板，采用ES
 进入`3 Interface Options`->`I5 Audio`  
 选择`UNSET`,即可卸载音频驱动和相关配置
 
+### 音频节点
+该音频板在`RDK X3`上的的播放节点为`pcmC0D0p`，录制节点为`pcmC0D1c`
+
 ### 录音播放测试
+
+测试使用`tinyalsa`库的工具集：使用`tinycap`进行录制，使用`tinyplay`进行播放
+
+`tinycap`使用说明：
+```shell
+tinycap
+Usage: tinycap {file.wav | --} [-D card] [-d device] [-c channels] [-r rate] [-b bits] [-p period_size] [-n n_periods] [-t time_in_seconds]
+
+Use -- for filename to send raw PCM to stdout
+```
+`tinyplay`使用说明：
+```shell
+tinyplay
+usage: tinyplay file.wav [options]
+options:
+-D | --card   <card number>    The device to receive the audio
+-d | --device <device number>  The card to receive the audio
+-p | --period-size <size>      The size of the PCM's period
+-n | --period-count <count>    The number of PCM periods
+-i | --file-type <file-type >  The type of file to read (raw or wav)
+-c | --channels <count>        The amount of channels per frame
+-r | --rate <rate>             The amount of frames per second
+-b | --bits <bit-count>        The number of bits in one sample
+-M | --mmap                    Use memory mapped IO to play audio
+```
+如果想了解更多关于`tinyalsa`库的信息，请查阅它们的[仓库地址](https://github.com/tinyalsa/tinyalsa)
+
 
 - 2通道麦克风录音：
 
 ```
-tinycap ./2chn_test.wav -D 0 -d 0 -c 2 -b 16 -r 48000 -p 512 -n 4 -t 5
+tinycap ./2chn_test.wav -D 0 -d 1 -c 2 -b 16 -r 48000 -p 512 -n 4 -t 5
 ```
 
 - 4通道麦克风录音：
 
 ```
-tinycap ./4chn_test.wav -D 0 -d 0 -c 4 -b 16 -r 48000 -p 512 -n 4 -t 5
+tinycap ./4chn_test.wav -D 0 -d 1 -c 4 -b 16 -r 48000 -p 512 -n 4 -t 5
 ```
 
 - 双通道音频播放：
 
 ```
-tinyplay ./2chn_test.wav -D 0 -d 1
+tinyplay ./2chn_test.wav -D 0 -d 0
 ```
 
 ### 音频回采测试
@@ -66,12 +103,12 @@ tinyplay ./2chn_test.wav -D 0 -d 1
 
 - 启动8通道麦克风录音
 ```shell
-tinycap ./8chn_test.wav -D 0 -d 0 -c 8 -b 16 -r 48000 -p 512 -n 4 -t 5
+tinycap ./8chn_test.wav -D 0 -d 1 -c 8 -b 16 -r 48000 -p 512 -n 4 -t 5
 ```
 
 - 启动双通道音频播放
 ```
-tinyplay ./2chn_test.wav -D 0 -d 1
+tinyplay ./2chn_test.wav -D 0 -d 0
 ```
 
 录制完成后，可使用音频软件查看`2chn_test.wav`文件中通道7&8的频谱信息。
@@ -119,18 +156,49 @@ root@ubuntu:/userdata# cat /sys/class/socinfo/som_name
 进入`3 Interface Options`->`I5 Audio`  
 选择`UNSET`,即可卸载音频驱动和相关配置
 
+### 音频节点
+该音频板在`RDK X3`上的的播放节点为`pcmC0D1p`，录制节点为`pcmC0D0c`
+
 ### 录音播放测试
+
+测试使用`tinyalsa`库的工具集：使用`tinycap`进行录制，使用`tinyplay`进行播放
+
+`tinycap`使用说明：
+```shell
+tinycap
+Usage: tinycap {file.wav | --} [-D card] [-d device] [-c channels] [-r rate] [-b bits] [-p period_size] [-n n_periods] [-t time_in_seconds]
+
+Use -- for filename to send raw PCM to stdout
+```
+`tinyplay`使用说明：
+```shell
+tinyplay
+usage: tinyplay file.wav [options]
+options:
+-D | --card   <card number>    The device to receive the audio
+-d | --device <device number>  The card to receive the audio
+-p | --period-size <size>      The size of the PCM's period
+-n | --period-count <count>    The number of PCM periods
+-i | --file-type <file-type >  The type of file to read (raw or wav)
+-c | --channels <count>        The amount of channels per frame
+-r | --rate <rate>             The amount of frames per second
+-b | --bits <bit-count>        The number of bits in one sample
+-M | --mmap                    Use memory mapped IO to play audio
+```
+如果想了解更多关于`tinyalsa`库的信息，请查阅它们的[仓库地址](https://github.com/tinyalsa/tinyalsa)
+
+
 
 - 2通道麦克风录音：
 
 ```
-tinycap ./2chn_test.wav -D 0 -d 1 -c 2 -b 16 -r 48000 -p 512 -n 4 -t 5
+tinycap ./2chn_test.wav -D 0 -d 0 -c 2 -b 16 -r 48000 -p 512 -n 4 -t 5
 ```
 
 - 双通道音频播放：
 
 ```
-tinyplay ./2chn_test.wav -D 0 -d 0
+tinyplay ./2chn_test.wav -D 0 -d 1
 ```
 
 
