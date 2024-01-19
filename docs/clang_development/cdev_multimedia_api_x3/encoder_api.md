@@ -106,7 +106,7 @@ sidebar_position: 2
 
 - `obj`： 已经初始化的`ENCODER`对象指针
 - `frame_buffer`：需要编码的图像帧数据，必须是 `NV12` 格式，分辨率必须和调用`sp_start_encode`接口是的图像帧分辨率一致。
-- `size`：图像帧数据大小，`NV12` 格式的图像的大小计算公式为 width * height * 3 / 2。
+- `size`：图像帧数据大小，`NV12` 格式的图像的大小计算公式为 `(width * height * 3) / 2`。
 
 **【返回类型】** 
 

@@ -21,24 +21,43 @@ sidebar_position: 1
     ```bash
     sunrise@ubuntu:~$ cd /app/cdev_demo/vio2display
     sunrise@ubuntu:/app/cdev_demo/vio2display$ sudo make
-    sunrise@ubuntu:/app/cdev_demo/vio2display$ sudo ./vio2display
+    sunrise@ubuntu:/app/cdev_demo/vio2display$ sudo ./vio2display -w 1920 -h 1080
     ```
+   参数说明：
+    - -w: sensor输出宽度
+    - -h: sensor输出高度
 
  - **预期效果：**
     程序正确运行后，开发板会通过显示器输出`MIPI`摄像头采集的实时画面。运行log如下：
     ```bash
-    sunrise@ubuntu:/tmp/nfs/sp_cdev/cdev_demo/vio2display$ sudo ./vio2display
-    [sudo] password for sunrise: 
-    disp_w=800, disp_h=480
-    mipi_w:1920,mipi_h:1080;dst_w:800,dst_h:480;
-    mipi_w:1920,mipi_h:1080;dst_w:1920,dst_h:1080;
-    start linear mode, sensor_name f37, setting_size = 3
-    sp_open_camera success!
-    libiar: hb_disp_set_timing done![ 6156.771952] iar_output1_reqbufs.
-    
-    [ 6156.772663] iar_output_stream.
-    
-    Press 'q' to Exit !
+      sunrise@ubuntu:/tmp/nfs/sp_cdev/cdev_demo/vio2display$ ./vio2display -w 1920 -h 1080
+      disp_w=1920, disp_h=1080
+      2023/03/28 02:08:03.359 !INFO [x3_cam_init_param][0099]Enable mipi host0 mclk
+      2023/03/28 02:08:03.359 !INFO [x3_cam_init_param][0099]Enable mipi host1 mclk
+      Camera: gpio_num=114, active=low, i2c_bus=3, mipi_host=0
+      Camera: gpio_num=114, active=low, i2c_bus=1, mipi_host=1
+      Camera: gpio_num=114, active=low, i2c_bus=0, mipi_host=2
+      Camera 0:
+            enable: 1
+            i2c_bus: 3
+            mipi_host: 0
+      Camera 1:
+            enable: 1
+            i2c_bus: 1
+            mipi_host: 1
+      Camera 2:
+            enable: 1
+            i2c_bus: 0
+            mipi_host: 2
+      cmd=i2ctransfer -y -f 3 w2@0x10 0x0 0x0 r1 2>&1, result=0x02
+
+      Found sensor:imx219 on i2c bus 3, use mipi host 0
+      Setting VPS channel-2: src_w:1920, src_h:1080; dst_w:1920, dst_h:1080;
+      Setting VPS channel-1: src_w:1920, src_h:1080; dst_w:1920, dst_h:1080;
+      sp_open_camera success!
+      libiar: hb_disp_set_timing done!
+
+      Press 'q' to Exit !
     ```
 
 ## 摄像头图像本地保存 (RDK X3)
@@ -154,23 +173,44 @@ sidebar_position: 1
     ```bash
     sunrise@ubuntu:~$ cd /app/cdev_demo/vio2encoder
     sunrise@ubuntu:/app/cdev_demo/vio2encoder$ sudo make
-    sunrise@ubuntu:/app/cdev_demo/vio2encoder$ sudo ./vio2encoder -w 1920 -h 1080 -o stream.h264
+    sunrise@ubuntu:/app/cdev_demo/vio2encoder$ sudo ./vio2encoder -w 1920 -h 1080 --iwidth 1920 --iheight 1080 -o test.h264
     ```
     参数说明：
       - -w: 编码视频宽度
       - -h: 编码视频高度
+      - --iwidth: sensor输出宽度
+      - --iheight: sensor输出高度
       - -o: 编码输出路径
 
  - **预期效果**：
     程序正确运行后，在当前目录下会生成名为`stream.h264`的视频文件。运行log如下：
     ```bash
-    sunrise@ubuntu:/tmp/nfs/sp_cdev/cdev_demo/vio2encoder$ sudo ./vio2encoder -w 1920 -h 1080 -o stream.h264
-    Setting VPS channel-2: src_w:1920, src_h:1080; dst_w:1920, dst_h:1080;
-    Setting VPS channel-1: src_w:1920, src_h:1080; dst_w:1920, dst_h:1080;
-    start linear mode, sensor_name f37, setting_size = 3
-    sp_open_camera success!
-    sp_start_encode success!
-    sp_module_bind(vio -> encoder) success!
+   sunrise@ubuntu:/tmp/nfs/sp_cdev/cdev_demo/vio2encoder$ sudo ./vio2encoder -w 1920 -h 1080 --iwidth 1920 --iheight 1080 -o test.h264
+   2023/03/28 02:27:32.560 !INFO [x3_cam_init_param][0099]Enable mipi host0 mclk
+   2023/03/28 02:27:32.561 !INFO [x3_cam_init_param][0099]Enable mipi host1 mclk
+   Camera: gpio_num=114, active=low, i2c_bus=3, mipi_host=0
+   Camera: gpio_num=114, active=low, i2c_bus=1, mipi_host=1
+   Camera: gpio_num=114, active=low, i2c_bus=0, mipi_host=2
+   Camera 0:
+         enable: 1
+         i2c_bus: 3
+         mipi_host: 0
+   Camera 1:
+         enable: 1
+         i2c_bus: 1
+         mipi_host: 1
+   Camera 2:
+         enable: 1
+         i2c_bus: 0
+         mipi_host: 2
+   cmd=i2ctransfer -y -f 3 w2@0x10 0x0 0x0 r1 2>&1, result=0x02
+
+   Found sensor:imx219 on i2c bus 3, use mipi host 0
+   Setting VPS channel-2: src_w:1920, src_h:1080; dst_w:1920, dst_h:1080;
+   Setting VPS channel-1: src_w:1920, src_h:1080; dst_w:1920, dst_h:1080;
+   sp_open_camera success!
+   sp_start_encode success!
+   sp_module_bind(vio -> encoder) success!
     ```
 
 ## 视频文件解码并显示
@@ -272,7 +312,7 @@ sidebar_position: 1
     ```bash
     sunrise@ubuntu:~$ cd /app/cdev_demo/vps
     sunrise@ubuntu:/app/cdev_demo/vps$ sudo make
-    sunrise@ubuntu:/app/cdev_demo/decode2display$ sudo ./vps -m 1 -i stream.h264 -o output.yuv --iheight 1080 --iwidth 1920 --oheight 720 --owidth 1280
+    sunrise@ubuntu:/app/cdev_demo/vps$ sudo ./vps -m 1 -i stream.h264 -o output.yuv --iheight 1080 --iwidth 1920 --oheight 720 --owidth 1280
     ```
     **参数配置：** 
       - -i: 待操作的文件路径
