@@ -11,7 +11,7 @@ sidebar_position: 1
 
 - 本文档中**RDK X3**均使用2.0版本Ubuntu操作系统，对于仍需使用**旭日X3派1.0版本系统**的用户，可从下述链接中获取资料：<br/>
      [旭日X3派用户手册](https://developer.horizon.ai/api/v1/fileData/documents_pi/index.html)<br/>
-     [旭日X3派Ubuntu镜像](http://sunrise.horizon.cc/downloads/os_images/)，选择1.x.x 版本目录下的镜像<br/>
+     [旭日X3派Ubuntu镜像](https://sunrise.horizon.cc/downloads/os_images/)，选择1.x.x 版本目录下的镜像<br/>
      [旭日X3派资料包](https://developer.horizon.ai/api/v1/static/fileData/X3%E6%B4%BE%E8%B5%84%E6%96%99%E5%8C%85_20220711175326.zip)<br/>
 
 -  **RDK X3 Module**出厂已经烧写测试版本系统镜像，为确保使用最新版本的系统，建议参考本文档完成[最新版本系统镜像的烧写](/installation/install_os)。

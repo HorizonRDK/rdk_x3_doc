@@ -24,13 +24,13 @@ RDK X3开发板通过USB Type C接口供电，需要使用支持**5V/3A**的电�
 
 <TabItem value="x3md" label="RDK X3 Module">
 
-RDK X3 Module通过载板上的电源接口供电，[官方载板](http://localhost:3000/documents_rdk/hardware_development/rdk_x3_module/interface)通过DC接口供电，推荐使用认证配件清单中推荐的**12V/2A**适配器。
+RDK X3 Module通过载板上的电源接口供电，[官方载板](https://localhost:3000/documents_rdk/hardware_development/rdk_x3_module/interface)通过DC接口供电，推荐使用认证配件清单中推荐的**12V/2A**适配器。
 
 </TabItem>
 
 <TabItem value="ultra" label="RDK Ultra">
 
-RDK Ultra开发板通过DC接口供电，推荐使用[官方套件](http://localhost:3000/documents_rdk/hardware_development/rdk_ultra/interface)中自带的电源适配器，或者使用至少**12V/5A**的电源适配器供电。
+RDK Ultra开发板通过DC接口供电，推荐使用[官方套件](https://localhost:3000/documents_rdk/hardware_development/rdk_ultra/interface)中自带的电源适配器，或者使用至少**12V/5A**的电源适配器供电。
 
 </TabItem>
 </Tabs>

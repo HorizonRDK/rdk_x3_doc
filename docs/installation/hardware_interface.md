@@ -601,7 +601,7 @@ RDK X3 Module载板提供一路Micro SD存储卡接口（接口18）。推荐使
 
 <TabItem value="x3md" label="RDK X3 Module">
 
-开发板的无线网络支持板载和外置天线两种配置，通常情况下板载天线可以满足使用需求。当开发板安装金属材质外壳后，需要连接外置天线到，以增强信号强度。
+RDK X3 Module无板载天线，通常情况下需要连接外置天线，以增强信号强度。
 
 ![rdk_x3_module_wifi](image/hardware_interface/rdk_x3_module_wifi.png)
 
@@ -737,7 +737,7 @@ RDK X3 Module载板提供IO电平切换功能，用于控制40pin header电平�
 :::caution 当需要切换电平时，请严格按照下述步骤进行。
 默认情况下，RDK X3 Module核心模组固件、载板电平配置为3.3V，如需要切换IO电平时，需要按如下步骤进行：
 
-1. 下载支持1.8V电平配置的启动固件，[固件下载地址](http://sunrise.horizon.cc/downloads/miniboot)。
+1. 下载支持1.8V电平配置的启动固件，[固件下载地址](https://sunrise.horizon.cc/downloads/miniboot)。
 2. 使用官方烧录工具`hbupdate`，更新核心板启动固件，具体方法请参考[镜像烧录](./system.md)。
 3. 设备断电，使用跳线帽将`vref`、`1.8V`信号短接后重新上电。
 :::

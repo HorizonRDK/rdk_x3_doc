@@ -209,7 +209,7 @@ quit
 
 执行程序后会获取到如 `pipe0_plane0_1920x1080_frame_4609.raw` 一样命名的`raw`图像，或者如`pipe0_1920x1080_frame_1024.yuv`一样命名的`yuv`图像。
 
-请使用 [hobotplayer](http://sunrise.horizon.cc/downloads/hobotplayer/hobotplayerv.2.07.1.rar) 工具浏览图像，图像的参数配置说明如下：
+请使用 [hobotplayer](https://sunrise.horizon.cc/downloads/hobotplayer/hobotplayerv.2.07.1.rar) 工具浏览图像，图像的参数配置说明如下：
 
 - 浏览RAW图
 
@@ -427,7 +427,7 @@ quit
 
 执行程序后会获取到如 `pipe0_1920x1080_frame_4609.yuv` 一样命名的`yuv`图像
 
-请使用 [hobotplayer](http://sunrise.horizon.cc/downloads/hobotplayer/hobotplayerv.2.07.1.rar) 工具浏览图像，图像的参数配置说明如下：
+请使用 [hobotplayer](https://sunrise.horizon.cc/downloads/hobotplayer/hobotplayerv.2.07.1.rar) 工具浏览图像，图像的参数配置说明如下：
 
 - 浏览YUV图
 
