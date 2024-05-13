@@ -22,4 +22,4 @@ sidebar_position: 1
 - [RDK X3 2.0 原理图](https://sunrise.horizon.cc/downloads/hardware/rdk_x3/RDK_X3_2.0_IO_Schematics.pdf)
 
 **机械尺寸图**
-- [RDK X3 机械尺寸图](https://sunrise.horizon.cc/downloads/hardware/rdk_x3/RDK_X3_3D_Step_Models.stp)
+- [RDK X3 机械尺寸图](https://sunrise.horizon.cc/downloads/hardware/rdk_x3/RDK_X3_3D_Step_Models.STEP)
